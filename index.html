@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco Tool Hub - Compost C:N Ratio Calculator</title>
+    <title>Eco Tool Hub - Environmental & Utility Calculators</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -12,154 +12,138 @@
             --accent-color: #10b981;
             --accent-hover: #059669;
             --border-color: #334155;
+            --text-muted: #94a3b8;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            text-align: center;
+            padding: 50px 20px 30px 20px;
+        }
+        header h1 {
+            color: var(--accent-color);
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        header p {
+            color: var(--text-muted);
+            font-size: 18px;
+            margin: 0;
         }
         .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            flex: 1;
+        }
+        .tool-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 30px;
-            max-width: 500px;
-            width: 100%;
+            padding: 25px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, border-color 0.3s;
         }
-        h1 {
-            color: var(--accent-color);
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        p.subtitle {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        input {
-            width: 100%;
-            padding: 12px;
-            background-color: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: white;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-        input:focus {
-            outline: none;
+        .tool-card:hover {
+            transform: translateY(-5px);
             border-color: var(--accent-color);
         }
-        button {
-            width: 100%;
+        .tool-card h3 {
+            color: var(--text-color);
+            margin-top: 0;
+            font-size: 20px;
+        }
+        .tool-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .tool-card a {
+            display: inline-block;
             background-color: var(--accent-color);
             color: white;
-            border: none;
-            padding: 12px;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px 15px;
             border-radius: 8px;
-            font-size: 16px;
             font-weight: bold;
-            cursor: pointer;
+            margin-top: 20px;
             transition: background 0.3s;
         }
-        button:hover {
+        .tool-card a:hover {
             background-color: var(--accent-hover);
         }
-        .result {
-            margin-top: 25px;
-            padding: 15px;
-            background-color: #0f172a;
-            border-left: 4px solid var(--accent-color);
-            border-radius: 6px;
-            display: none;
+        .tool-card.coming-soon {
+            opacity: 0.6;
         }
-        .result h3 {
-            margin: 0 0 8px 0;
-            color: var(--accent-color);
+        .tool-card.coming-soon a {
+            background-color: var(--border-color);
+            pointer-events: none;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <header>
         <h1>Eco Tool Hub</h1>
-        <p class="subtitle">Compost C:N Ratio Calculator</p>
-        
-        <div class="form-group">
-            <label for="greenCarbon">Green Material (Nitrogen rich) Carbon (g):</label>
-            <input type="number" id="greenCarbon" placeholder="e.g., 20">
+        <p>Your ultimate destination for environmental and utility calculators.</p>
+    </header>
+
+    <div class="container">
+        <!-- Tool 1: Compost Calculator -->
+        <div class="tool-card">
+            <div>
+                <h3>Compost C:N Ratio Calculator</h3>
+                <p>Calculate the ideal carbon-to-nitrogen ratio for your compost pile to ensure fast and efficient decomposition.</p>
+            </div>
+            <a href="compost-calculator.html">Use Calculator</a>
         </div>
 
-        <div class="form-group">
-            <label for="greenNitrogen">Green Material Nitrogen (g):</label>
-            <input type="number" id="greenNitrogen" placeholder="e.g., 1">
+        <!-- Tool 2: Coming Soon -->
+        <div class="tool-card coming-soon">
+            <div>
+                <h3>Solar Power Calculator</h3>
+                <p>Estimate your household solar panel requirements and energy savings easily. (Launching Soon)</p>
+            </div>
+            <a href="#">Coming Soon</a>
         </div>
 
-        <div class="form-group">
-            <label for="brownCarbon">Brown Material (Carbon rich) Carbon (g):</label>
-            <input type="number" id="brownCarbon" placeholder="e.g., 60">
-        </div>
-
-        <div class="form-group">
-            <label for="brownNitrogen">Brown Material Nitrogen (g):</label>
-            <input type="number" id="brownNitrogen" placeholder="e.g., 1">
-        </div>
-
-        <button onclick="calculateCN()">Calculate Ratio</button>
-
-        <div class="result" id="resultBox">
-            <h3 id="ratioText"></h3>
-            <p id="adviceText"></p>
+        <!-- Tool 3: Coming Soon -->
+        <div class="tool-card coming-soon">
+            <div>
+                <h3>Water Footprint Estimator</h3>
+                <p>Analyze your daily water consumption and get smart tips to conserve water. (Launching Soon)</p>
+            </div>
+            <a href="#">Coming Soon</a>
         </div>
     </div>
 
-    <script>
-        function calculateCN() {
-            const gc = parseFloat(document.getElementById('greenCarbon').value) || 0;
-            const gn = parseFloat(document.getElementById('greenNitrogen').value) || 0;
-            const bc = parseFloat(document.getElementById('brownCarbon').value) || 0;
-            const bn = parseFloat(document.getElementById('brownNitrogen').value) || 0;
+    <footer>
+        &copy; 2026 Eco Tool Hub. All rights reserved.
+    </footer>
 
-            const totalCarbon = gc + bc;
-            const totalNitrogen = gn + bn;
-
-            if (totalNitrogen === 0) {
-                alert("Nitrogen total cannot be zero!");
-                return;
-            }
-
-            const ratio = (totalCarbon / totalNitrogen).toFixed(1);
-            const resultBox = document.getElementById('resultBox');
-            const ratioText = document.getElementById('ratioText');
-            const adviceText = document.getElementById('adviceText');
-
-            resultBox.style.display = 'block';
-            ratioText.innerHTML = `Your C:N Ratio is ${ratio}:1`;
-
-            if (ratio >= 25 && ratio <= 30) {
-                adviceText.innerHTML = "Perfect! This is the ideal C:N ratio for fast and efficient composting.";
-            } else if (ratio < 25) {
-                adviceText.innerHTML = "Too much Nitrogen (Green). Your pile might smell. Add more brown materials (dry leaves, cardboard).";
-            } else {
-                adviceText.innerHTML = "Too much Carbon (Brown). Decomposition will be very slow. Add more green materials (kitchen scraps, grass clippings).";
-            }
-        }
-    </script>
 </body>
 </html>
