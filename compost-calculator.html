@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compost C:N Ratio Calculator - Eco Tool Hub</title>
+    <title>Compost C:N Ratio Calculator & Guide - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -13,6 +13,7 @@
             --accent-hover: #059669;
             --border-color: #334155;
             --text-muted: #94a3b8;
+            --affiliate-bg: #0f172a;
         }
         * { box-sizing: border-box; }
         body {
@@ -26,58 +27,70 @@
             align-items: center;
             min-height: 100vh;
         }
+        .wrapper {
+            max-width: 1100px;
+            width: 100%;
+        }
         .back-link {
-            align-self: flex-start;
             color: var(--accent-color);
             text-decoration: none;
+            display: inline-block;
             margin-bottom: 20px;
             font-weight: 600;
         }
         .back-link:hover { text-decoration: underline; }
-        .container {
+        
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+        }
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 30px;
-            max-width: 550px;
-            width: 100%;
+            padding: 25px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
         h1 {
             color: var(--accent-color);
-            text-align: center;
             font-size: 24px;
             margin-bottom: 5px;
         }
         p.subtitle {
-            text-align: center;
             color: var(--text-muted);
             font-size: 14px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
         }
         input {
             width: 100%;
-            padding: 12px;
+            padding: 10px 12px;
             background-color: #0b0f19;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: white;
-            font-size: 16px;
+            font-size: 15px;
         }
         input:focus {
             outline: none;
             border-color: var(--accent-color);
         }
-        button {
+        button.calc-btn {
             width: 100%;
             background-color: var(--accent-color);
             color: white;
@@ -88,62 +101,137 @@
             font-weight: bold;
             cursor: pointer;
             transition: background 0.3s;
+            margin-top: 10px;
         }
-        button:hover { background-color: var(--accent-hover); }
+        button.calc-btn:hover { background-color: var(--accent-hover); }
+        
         .result {
-            margin-top: 25px;
+            margin-top: 20px;
             padding: 15px;
             background-color: #0b0f19;
             border-left: 4px solid var(--accent-color);
             border-radius: 6px;
             display: none;
         }
-        .result h3 {
-            margin: 0 0 8px 0;
-            color: var(--accent-color);
+        .result h3 { margin: 0 0 5px 0; color: var(--accent-color); font-size: 18px; }
+        .result p { margin: 0; font-size: 13px; color: var(--text-muted); }
+
+        /* Affiliate Sidebar Styling */
+        .affiliate-box {
+            background-color: var(--affiliate-bg);
+            border: 1px dashed var(--accent-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
         }
-        .result p {
-            margin: 0;
-            font-size: 14px;
+        .affiliate-box h3 {
+            color: #f8fafc;
+            font-size: 18px;
+            margin-top: 0;
+        }
+        .affiliate-box p {
             color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.5;
         }
+        .affiliate-btn {
+            display: block;
+            background-color: #f59e0b;
+            color: #0f172a;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        .affiliate-btn:hover { background-color: #d97706; }
+
+        /* SEO Content Section */
+        .seo-content {
+            margin-top: 40px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+        }
+        .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
+        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
     </style>
 </head>
 <body>
 
-    <div style="max-width: 550px; width: 100%;">
-        <a href="index.html" class="back-link">&larr; Back to Home</a>
-    </div>
+    <div class="wrapper">
+        <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
 
-    <div class="container">
-        <h1>Compost C:N Ratio Calculator</h1>
-        <p class="subtitle">Find the optimal carbon-to-nitrogen balance for your compost pile</p>
-        
-        <div class="form-group">
-            <label for="greenCarbon">Green Material (Nitrogen rich) Carbon (g):</label>
-            <input type="number" id="greenCarbon" placeholder="e.g., 20">
+        <div class="main-container">
+            <!-- Left Column: Calculator -->
+            <div class="card">
+                <h1>Compost C:N Ratio Calculator</h1>
+                <p class="subtitle">Optimize your green and brown waste for faster decomposition.</p>
+                
+                <div class="form-group">
+                    <label for="greenCarbon">Green Material (Nitrogen rich) Carbon (g):</label>
+                    <input type="number" id="greenCarbon" placeholder="e.g., 30">
+                </div>
+
+                <div class="form-group">
+                    <label for="greenNitrogen">Green Material Nitrogen (g):</label>
+                    <input type="number" id="greenNitrogen" placeholder="e.g., 2">
+                </div>
+
+                <div class="form-group">
+                    <label for="brownCarbon">Brown Material (Carbon rich) Carbon (g):</label>
+                    <input type="number" id="brownCarbon" placeholder="e.g., 80">
+                </div>
+
+                <div class="form-group">
+                    <label for="brownNitrogen">Brown Material Nitrogen (g):</label>
+                    <input type="number" id="brownNitrogen" placeholder="e.g., 2">
+                </div>
+
+                <button class="calc-btn" onclick="calculateCN()">Calculate Ratio</button>
+
+                <div class="result" id="resultBox">
+                    <h3 id="ratioText"></h3>
+                    <p id="adviceText"></p>
+                </div>
+            </div>
+
+            <!-- Right Column: Affiliate Product Box -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="card affiliate-box">
+                    <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">RECOMMENDED GEAR</span>
+                    <h3 style="margin-top: 15px;">Dual Chamber Tumbler Composter</h3>
+                    <p>Speed up your composting process with a rotating drum design. Perfect for organic gardening lovers.</p>
+                    <!-- Yahan aap apna Amazon ya ClickBank ka Affiliate Link daal sakte hain -->
+                    <a href="#" target="_blank" class="affiliate-btn">Check Price on Amazon</a>
+                </div>
+
+                <div class="card affiliate-box" style="border-color: #334155;">
+                    <span style="background: #334155; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">SOIL HEALTH</span>
+                    <h3 style="margin-top: 15px;">Digital Soil & Compost Thermometer</h3>
+                    <p>Monitor your pile temperature accurately to kill weed seeds and accelerate microbe activity.</p>
+                    <a href="#" target="_blank" class="affiliate-btn" style="background-color: #3b82f6; color: white;">View Best Offer</a>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="greenNitrogen">Green Material Nitrogen (g):</label>
-            <input type="number" id="greenNitrogen" placeholder="e.g., 1">
-        </div>
+        <!-- SEO Content Section for Ranking -->
+        <div class="seo-content">
+            <h2>Complete Guide to Carbon-to-Nitrogen (C:N) Ratio in Composting</h2>
+            <p>Composting is a natural biological process that converts organic waste into nutrient-rich humus. However, to make this process happen efficiently, microorganisms need a balanced diet of <strong>Carbon (Browns)</strong> and <strong>Nitrogen (Greens)</strong>.</p>
+            
+            <h3>What is the Ideal Ratio?</h3>
+            <p>The golden rule of composting is maintaining a <strong>30:1 Carbon-to-Nitrogen ratio</strong> by weight. This means for every 30 parts of carbon, you should have 1 part of nitrogen.</p>
+            
+            <ul>
+                <li><strong>Green Materials (Nitrogen-Rich):</strong> Kitchen scraps, fresh grass clippings, coffee grounds, and vegetable peels. They provide protein and moisture.</li>
+                <li><strong>Brown Materials (Carbon-Rich):</strong> Dry leaves, shredded cardboard, straw, and sawdust. They provide energy and air pockets.</li>
+            </ul>
 
-        <div class="form-group">
-            <label for="brownCarbon">Brown Material (Carbon rich) Carbon (g):</label>
-            <input type="number" id="brownCarbon" placeholder="e.g., 60">
-        </div>
-
-        <div class="form-group">
-            <label for="brownNitrogen">Brown Material Nitrogen (g):</label>
-            <input type="number" id="brownNitrogen" placeholder="e.g., 1">
-        </div>
-
-        <button onclick="calculateCN()">Calculate Ratio</button>
-
-        <div class="result" id="resultBox">
-            <h3 id="ratioText"></h3>
-            <p id="adviceText"></p>
+            <h3>What happens if the ratio is off?</h3>
+            <p>If you add too much green waste, your pile will become wet, dense, and start producing a foul ammonia smell. If you add too much brown waste, decomposition will slow down drastically and nothing will happen. Use our calculator above to balance your pile instantly!</p>
         </div>
     </div>
 
