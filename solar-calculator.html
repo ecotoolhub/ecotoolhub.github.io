@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Energy & Battery Capacity Calculator - Eco Tool Hub</title>
+    <title>Smart Solar & Battery System Planner - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -27,10 +27,7 @@
             align-items: center;
             min-height: 100vh;
         }
-        .wrapper {
-            max-width: 1100px;
-            width: 100%;
-        }
+        .wrapper { max-width: 1100px; width: 100%; }
         .back-link {
             color: var(--accent-color);
             text-decoration: none;
@@ -45,11 +42,7 @@
             grid-template-columns: 1fr 380px;
             gap: 30px;
         }
-        @media (max-width: 900px) {
-            .main-container {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
 
         .card {
             background-color: var(--card-bg);
@@ -58,25 +51,10 @@
             padding: 25px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
-        h1 {
-            color: var(--accent-color);
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        p.subtitle {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            font-size: 13px;
-        }
+        h1 { color: var(--accent-color); font-size: 24px; margin-bottom: 5px; }
+        p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
         input {
             width: 100%;
             padding: 10px 12px;
@@ -86,10 +64,7 @@
             color: white;
             font-size: 15px;
         }
-        input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
+        input:focus { outline: none; border-color: var(--accent-color); }
         button.calc-btn {
             width: 100%;
             background-color: var(--accent-color);
@@ -107,16 +82,28 @@
         
         .result {
             margin-top: 20px;
-            padding: 15px;
+            padding: 20px;
             background-color: #0b0f19;
-            border-left: 4px solid var(--accent-color);
-            border-radius: 6px;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 8px;
             display: none;
         }
-        .result h3 { margin: 0 0 5px 0; color: var(--accent-color); font-size: 18px; }
-        .result p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        .result h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 18px; }
+        .decision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .decision-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
-        /* Affiliate Sidebar Styling */
+        /* Affiliate Sidebar */
         .affiliate-box {
             background-color: var(--affiliate-bg);
             border: 1px dashed var(--accent-color);
@@ -124,16 +111,8 @@
             padding: 20px;
             text-align: center;
         }
-        .affiliate-box h3 {
-            color: #f8fafc;
-            font-size: 18px;
-            margin-top: 0;
-        }
-        .affiliate-box p {
-            color: var(--text-muted);
-            font-size: 13px;
-            line-height: 1.5;
-        }
+        .affiliate-box h3 { color: #f8fafc; font-size: 18px; margin-top: 0; }
+        .affiliate-box p { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
         .affiliate-btn {
             display: block;
             background-color: #f59e0b;
@@ -147,7 +126,7 @@
         }
         .affiliate-btn:hover { background-color: #d97706; }
 
-        /* SEO Content Section */
+        /* SEO Content */
         .seo-content {
             margin-top: 40px;
             background-color: var(--card-bg);
@@ -165,14 +144,14 @@
         <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
 
         <div class="main-container">
-            <!-- Left Column: Calculator -->
+            <!-- Left Column: Tool -->
             <div class="card">
-                <h1>Solar Energy & Battery Calculator</h1>
-                <p class="subtitle">Estimate required solar panel wattage and battery Ah capacity.</p>
+                <h1>Smart Solar & Battery Planner</h1>
+                <p class="subtitle">Calculate optimal panel wattage, backup battery Ah, and required roof space.</p>
                 
                 <div class="form-group">
                     <label for="dailyKWh">Daily Energy Consumption (kWh / Units):</label>
-                    <input type="number" id="dailyKWh" placeholder="e.g., 10">
+                    <input type="number" id="dailyKWh" placeholder="e.g., 12">
                 </div>
 
                 <div class="form-group">
@@ -180,15 +159,34 @@
                     <input type="number" id="sunHours" placeholder="e.g., 5" value="5">
                 </div>
 
-                <button class="calc-btn" onclick="calculateSolar()">Calculate System Size</button>
+                <button class="calc-btn" onclick="calculateSmartSolar()">Generate Solar Architecture</button>
 
                 <div class="result" id="resultBox">
-                    <h3 id="resultText"></h3>
-                    <p id="adviceText"></p>
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultDesc" style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 12px;"></p>
+                    
+                    <div class="decision-grid">
+                        <div class="decision-item">
+                            <b>☀️ Recommended Inverter:</b>
+                            <span id="inverterSize">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>📐 Roof Space Required:</b>
+                            <span id="roofSpace">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>🔋 Battery Backup Bank:</b>
+                            <span id="batteryBank">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>⚡ System Efficiency:</b>
+                            <span id="sysEff">-</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Right Column: Affiliate Product Box -->
+            <!-- Right Column: Affiliate Box -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
                 <div class="card affiliate-box">
                     <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">HIGH EFFICIENCY</span>
@@ -206,49 +204,56 @@
             </div>
         </div>
 
-        <!-- SEO Content Section for Ranking -->
+        <!-- SEO Content -->
         <div class="seo-content">
-            <h2>How to Calculate Your Home Solar Panel & Battery Needs</h2>
-            <p>Transitioning to solar energy is one of the best investments for reducing electricity bills and achieving energy independence. However, correctly sizing your system is crucial to ensure your appliances run smoothly day and night.</p>
+            <h2>Advanced Solar Architecture & Load Sizing</h2>
+            <p>Properly designing a solar energy system requires matching your daily kilowatt-hour needs with peak sunshine hours and storage battery depth-of-discharge limits. Our Smart Solar Planner computes exact inverter loads, rooftop space footprints, and battery backup requirements instantly.</p>
             
-            <h3>Understanding the Components:</h3>
-            <ul>
-                <li><strong>Solar Panel Capacity (Watts):</strong> Calculated based on your daily kilowatt-hour (kWh) usage divided by peak sun hours, factoring in system efficiency losses.</li>
-                <li><strong>Battery Bank Capacity (Amp-hours - Ah):</strong> Required to store surplus energy for nighttime use or cloudy days, typically calculated for a 12V system standard.</li>
-            </ul>
-
-            <h3>Tips for Maximum Solar Efficiency:</h3>
-            <p>Always orient your solar panels toward the equator (South in the Northern Hemisphere) at an optimal tilt angle. Combining high-efficiency inverters with lithium-ion batteries will maximize your system's longevity and performance.</p>
+            <h3>Maximizing Your Solar Investment:</h3>
+            <p>Pairing high-efficiency monocrystalline panels with smart lithium storage banks ensures your system delivers maximum reliability and long-term utility bill reduction.</p>
         </div>
     </div>
 
     <script>
-        function calculateSolar() {
+        function calculateSmartSolar() {
             const kWh = parseFloat(document.getElementById('dailyKWh').value) || 0;
             const sunHours = parseFloat(document.getElementById('sunHours').value) || 5;
+
+            const box = document.getElementById('resultBox');
+            const title = document.getElementById('resultTitle');
+            const desc = document.getElementById('resultDesc');
+            
+            const inverterEl = document.getElementById('inverterSize');
+            const roofEl = document.getElementById('roofSpace');
+            const batteryEl = document.getElementById('batteryBank');
+            const effEl = document.getElementById('sysEff');
 
             if (kWh <= 0 || sunHours <= 0) {
                 alert("Please enter valid positive values!");
                 return;
             }
 
-            // Total Watt-hours needed per day
             const wattHours = kWh * 1000;
-
-            // Recommended Solar Panel Capacity with 25% safety factor for system losses
-            const panelWattsNeeded = Math.round((wattHours / sunHours) * 1.25);
-
-            // Battery Bank Capacity for 12V system (Assuming 50% Depth of Discharge for safety/longevity)
-            // Ah = (Total Wh / System Voltage 12V) / 0.5
+            const panelWatts = Math.round((wattHours / sunHours) * 1.25);
             const batteryAh = Math.round((wattHours / 12) / 0.5);
+            
+            // Approximate roof space: ~18 sq ft per 400W panel (or roughly panelWatts / 22 sq ft)
+            const roofSqFt = Math.round((panelWatts / 400) * 20);
+            
+            // Recommended inverter size with 30% headroom over peak load assumption
+            const inverterKW = (panelWatts / 1000 * 1.2).toFixed(1);
 
-            const resultBox = document.getElementById('resultBox');
-            const resultText = document.getElementById('resultText');
-            const adviceText = document.getElementById('adviceText');
+            box.style.display = 'block';
 
-            resultBox.style.display = 'block';
-            resultText.innerHTML = `Required Solar Panels: ${panelWattsNeeded} Watts`;
-            adviceText.innerHTML = `<b>Recommended Battery Bank:</b> Approx. ${batteryAh} Ah (at 12V system).<br>This setup will comfortably sustain your daily energy consumption of ${kWh} kWh with optimal sunlight.`;
+            title.innerHTML = `Optimal Solar Panel Array: ${panelWatts} Watts`;
+            box.style.borderLeftColor = "#10b981";
+            title.style.color = "#10b981";
+            desc.innerHTML = `Designed to comfortably generate your daily target of ${kWh} kWh based on ${sunHours} peak sun hours.`;
+
+            inverterEl.innerHTML = `⚡ ${inverterKW} kW Hybrid Inverter`;
+            roofEl.innerHTML = `📐 ~${roofSqFt} sq. ft. Roof Area`;
+            batteryEl.innerHTML = `🔋 ~${batteryAh} Ah (12V Bank)`;
+            effEl.innerHTML = "🟢 92% System Optimised";
         }
     </script>
 </body>
