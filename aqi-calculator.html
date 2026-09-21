@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AQI to Health Risk Converter & Guide - Eco Tool Hub</title>
+    <title>Advanced AQI & Health Activity Planner - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -55,7 +55,7 @@
         p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
-        input {
+        input, select {
             width: 100%;
             padding: 10px 12px;
             background-color: #0b0f19;
@@ -64,7 +64,7 @@
             color: white;
             font-size: 15px;
         }
-        input:focus { outline: none; border-color: var(--accent-color); }
+        input:focus, select:focus { outline: none; border-color: var(--accent-color); }
         button.calc-btn {
             width: 100%;
             background-color: var(--accent-color);
@@ -82,14 +82,26 @@
         
         .result {
             margin-top: 20px;
-            padding: 15px;
+            padding: 20px;
             background-color: #0b0f19;
-            border-left: 4px solid var(--accent-color);
-            border-radius: 6px;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 8px;
             display: none;
         }
-        .result h3 { margin: 0 0 5px 0; color: var(--accent-color); font-size: 18px; }
-        .result p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        .result h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 18px; }
+        .decision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .decision-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
         /* Affiliate Sidebar */
         .affiliate-box {
@@ -134,19 +146,48 @@
         <div class="main-container">
             <!-- Left Column: Tool -->
             <div class="card">
-                <h1>AQI to Health Risk Converter</h1>
-                <p class="subtitle">Check health safety risks and outdoor warnings based on AQI.</p>
+                <h1>Smart AQI & Activity Planner</h1>
+                <p class="subtitle">Get custom safety verdicts for outdoor activities, ventilation, and protection.</p>
                 
                 <div class="form-group">
-                    <label for="aqiInput">Enter Air Quality Index (AQI Number):</label>
-                    <input type="number" id="aqiInput" placeholder="e.g., 150">
+                    <label for="aqiInput">Enter Current Air Quality Index (AQI):</label>
+                    <input type="number" id="aqiInput" placeholder="e.g., 180">
                 </div>
 
-                <button class="calc-btn" onclick="convertAQI()">Analyze Health Risk</button>
+                <div class="form-group">
+                    <label for="userActivity">What are you planning to do?</label>
+                    <select id="userActivity">
+                        <option value="general">General Daily Routine</option>
+                        <option value="workout">Outdoor Jogging / Exercise</option>
+                        <option value="kids">Kids Playing Outdoors / School</option>
+                        <option value="windows">Opening Windows for Ventilation</option>
+                    </select>
+                </div>
+
+                <button class="calc-btn" onclick="analyzeAQI()">Generate Smart Health Plan</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
-                    <p id="resultDesc"></p>
+                    <p id="resultDesc" style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 12px;"></p>
+                    
+                    <div class="decision-grid">
+                        <div class="decision-item">
+                            <b>🪟 Room Ventilation:</b>
+                            <span id="ventilationAdvice">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>🏃 Outdoor Exercise:</b>
+                            <span id="exerciseAdvice">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>😷 Protection Mask:</b>
+                            <span id="maskAdvice">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>⚠️ Sensitive Groups:</b>
+                            <span id="sensitiveAdvice">-</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -154,72 +195,107 @@
             <div style="display: flex; flex-direction: column; gap: 20px;">
                 <div class="card affiliate-box">
                     <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">CLEAN AIR</span>
-<div>
                     <h3 style="margin-top: 15px;">True HEPA Air Purifier for Home</h3>
-                    <p>Protect your family from harmful PM2.5 pollutants and smoke indoors.</p>
+                    <p>Protect your indoor spaces from harmful PM2.5 pollutants and smoke.</p>
                     <a href="#" target="_blank" class="affiliate-btn">Check Price on Amazon</a>
-</div>
                 </div>
 
                 <div class="card affiliate-box" style="border-color: #334155;">
                     <span style="background: #334155; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">PROTECTION</span>
-<div>
                     <h3 style="margin-top: 15px;">N95 Anti-Pollution Respirator Masks</h3>
                     <p>Filter out microscopic dust and toxic smog safely during high AQI days.</p>
                     <a href="#" target="_blank" class="affiliate-btn" style="background-color: #3b82f6; color: white;">View Best Offer</a>
-</div>
                 </div>
             </div>
         </div>
 
         <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Understanding Air Quality Index (AQI) and Health Impact</h2>
-            <p>The Air Quality Index is used by government agencies to communicate to the public how polluted the air currently is or how polluted it is forecast to become. Knowing the numerical value helps you decide whether outdoor exercise is safe.</p>
+            <h2>Why Standard AQI Numbers Are Not Enough</h2>
+            <p>Simply knowing that the AQI is 150 or 250 doesn't help you plan your day. Our Smart AQI Planner goes beyond basic numbers by providing precise decision-making metrics for ventilation, outdoor workouts, and mask requirements based on real-time pollution thresholds.</p>
             
-            <h3>AQI Categories Explained:</h3>
-            <ul>
-                <li><strong>0 - 50 (Good):</strong> Air quality is satisfactory and poses little or no risk.</li>
-                <li><strong>51 - 100 (Moderate):</strong> Acceptable air quality; sensitive individuals should limit prolonged outdoor exertion.</li>
-                <li><strong>101 - 200 (Unhealthy):</strong> General public and sensitive groups may experience health effects.</li>
-                <li><strong>201+ (Very Unhealthy to Hazardous):</strong> Health alert; everyone should avoid outdoor activities.</li>
-            </ul>
+            <h3>How to Protect Yourself During Smog Seasons:</h3>
+            <p>When air quality dips into unhealthy zones, microscopic pollutants (PM2.5) can enter your bloodstream through your lungs. Using air purifiers indoors, sealing doors and windows during peak pollution hours, and wearing certified N95 respirators outdoors are proven ways to safeguard your health.</p>
         </div>
     </div>
 
     <script>
-        function convertAQI() {
+        function analyzeAQI() {
             const aqi = parseFloat(document.getElementById('aqiInput').value);
+            const activity = document.getElementById('userActivity').value;
             const box = document.getElementById('resultBox');
             const title = document.getElementById('resultTitle');
             const desc = document.getElementById('resultDesc');
+            
+            const ventEl = document.getElementById('ventilationAdvice');
+            const exEl = document.getElementById('exerciseAdvice');
+            const maskEl = document.getElementById('maskAdvice');
+            const sensEl = document.getElementById('sensitiveAdvice');
 
             if (isNaN(aqi) || aqi < 0) {
-                alert("Kripya ek valid AQI number enter karein!");
+                alert("Please enter a valid AQI number!");
                 return;
             }
 
             box.style.display = 'block';
 
+            let category = "";
+            let vent = "";
+            let exercise = "";
+            let mask = "";
+            let sensitive = "";
+            let borderColor = "#10b981";
+
             if (aqi <= 50) {
-                title.innerHTML = `AQI ${aqi}: Good (Green)`;
-                desc.innerHTML = "Air quality is considered satisfactory, and air pollution poses little or no risk. Safe for outdoor exercise!";
+                category = "Good (Safe Air Quality)";
+                desc.innerHTML = "Air quality is satisfactory. Enjoy your normal routine without any restrictions.";
+                vent = "🟢 Safe to open windows.";
+                exercise = "🟢 Highly Recommended.";
+                mask = "⚪ Not Required.";
+                sensitive = "🟢 Safe for everyone.";
+                borderColor = "#10b981";
             } else if (aqi <= 100) {
-                title.innerHTML = `AQI ${aqi}: Moderate (Yellow)`;
-                desc.innerHTML = "Air quality is acceptable. However, unusually sensitive people may experience minor irritation.";
+                category = "Moderate (Acceptable)";
+                desc.innerHTML = "Air quality is acceptable, though sensitive people might experience minor discomfort.";
+                vent = "🟢 Safe to ventilate.";
+                exercise = "🟢 Safe (reduce intense exertion if sensitive).";
+                mask = "⚪ Optional.";
+                sensitive = "🟡 Caution for asthma patients.";
+                borderColor = "#f59e0b";
             } else if (aqi <= 150) {
-                title.innerHTML = `AQI ${aqi}: Unhealthy for Sensitive Groups (Orange)`;
-                desc.innerHTML = "Elderly, children, and people with heart/lung conditions should reduce outdoor physical exertion.";
+                category = "Unhealthy for Sensitive Groups";
+                desc.innerHTML = "Sensitive individuals (kids, elderly, asthma) should limit outdoor exposure.";
+                vent = "🟡 Keep windows closed during peak hours.";
+                exercise = "🟡 Move workouts indoors.";
+                mask = "🟡 Recommended outdoors.";
+                sensitive = "🟠 High Risk for kids & elderly.";
+                borderColor = "#f97316";
             } else if (aqi <= 200) {
-                title.innerHTML = `AQI ${aqi}: Unhealthy (Red)`;
-                desc.innerHTML = "Everyone may begin to experience health effects. Avoid outdoor jogging or heavy workouts.";
-            } else if (aqi <= 300) {
-                title.innerHTML = `AQI ${aqi}: Very Unhealthy (Purple)`;
-                desc.innerHTML = "Health warning of emergency conditions. Everyone should stay indoors and keep windows closed.";
+                category = "Unhealthy (Red Alert)";
+                desc.innerHTML = "General public may experience health effects. Avoid prolonged outdoor exertion.";
+                vent = "🔴 Keep windows shut tight.";
+                exercise = "🔴 Strictly Prohibited Outdoors.";
+                mask = "🟢 N95 Mask Mandatory.";
+                sensitive = "🔴 High Risk for all groups.";
+                borderColor = "#ef4444";
             } else {
-                title.innerHTML = `AQI ${aqi}: Hazardous (Maroon)`;
-                desc.innerHTML = "Health alert: severe risk of respiratory effects for everyone. Avoid all outdoor exposure.";
+                category = "Very Unhealthy / Hazardous";
+                desc.innerHTML = "Emergency conditions. Toxic smog levels pose severe respiratory risks.";
+                vent = "🔴 Seal windows / Use Air Purifiers.";
+                exercise = "🔴 Do not step outside.";
+                mask = "🟢 Certified N95/N99 Required.";
+                sensitive = "🔴 Severe Hazard. Stay Indoors.";
+                borderColor = "#9333ea";
             }
+
+            title.innerHTML = `AQI ${aqi}: ${category}`;
+            box.style.borderLeftColor = borderColor;
+            title.style.color = borderColor;
+            
+            ventEl.innerHTML = vent;
+            exEl.innerHTML = exercise;
+            maskEl.innerHTML = mask;
+            sensEl.innerHTML = sensitive;
         }
     </script>
 </body>
