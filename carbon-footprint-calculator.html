@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint / CO2 Emission Calculator - Eco Tool Hub</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #10b981;
+            --accent-hover: #059669;
+            --border-color: #334155;
+            --text-muted: #94a3b8;
+            --affiliate-bg: #0f172a;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .wrapper {
+            max-width: 1100px;
+            width: 100%;
+        }
+        .back-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .back-link:hover { text-decoration: underline; }
+        
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+        }
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        h1 {
+            color: var(--accent-color);
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            background-color: #0b0f19;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        button.calc-btn {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        button.calc-btn:hover { background-color: var(--accent-hover); }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #0b0f19;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 6px;
+            display: none;
+        }
+        .result h3 { margin: 0 0 5px 0; color: var(--accent-color); font-size: 18px; }
+        .result p { margin: 0; font-size: 13px; color: var(--text-muted); }
+
+        /* Affiliate Sidebar Styling */
+        .affiliate-box {
+            background-color: var(--affiliate-bg);
+            border: 1px dashed var(--accent-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .affiliate-box h3 {
+            color: #f8fafc;
+            font-size: 18px;
+            margin-top: 0;
+        }
+        .affiliate-box p {
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .affiliate-btn {
+            display: block;
+            background-color: #f59e0b;
+            color: #0f172a;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        .affiliate-btn:hover { background-color: #d97706; }
+
+        /* SEO Content Section */
+        .seo-content {
+            margin-top: 40px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+        }
+        .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
+        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
+
+        <div class="main-container">
+            <!-- Left Column: Calculator -->
+            <div class="card">
+                <h1>Carbon Footprint / CO2 Calculator</h1>
+                <p class="subtitle">Estimate your daily travel and electricity emissions easily.</p>
+                
+                <div class="form-group">
+                    <label for="carTravel">Daily Car Travel (Kilometers / km):</label>
+                    <input type="number" id="carTravel" placeholder="e.g., 25">
+                </div>
+
+                <div class="form-group">
+                    <label for="electricity">Monthly Electricity Usage (kWh / Units):</label>
+                    <input type="number" id="electricity" placeholder="e.g., 300">
+                </div>
+
+                <div class="form-group">
+                    <label for="lpgGas">Monthly LPG / Gas Consumption (kg):</label>
+                    <input type="number" id="lpgGas" placeholder="e.g., 15">
+                </div>
+
+                <button class="calc-btn" onclick="calculateCarbon()">Calculate CO2 Footprint</button>
+
+                <div class="result" id="resultBox">
+                    <h3 id="resultText"></h3>
+                    <p id="adviceText"></p>
+                </div>
+            </div>
+
+            <!-- Right Column: Affiliate Product Box -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="card affiliate-box">
+                    <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">ENERGY SAVING</span>
+                    <h3 style="margin-top: 15px;">Home Energy Monitor Smart Plug</h3>
+                    <p>Track real-time electricity usage of your appliances and reduce your carbon footprint instantly.</p>
+                    <a href="#" target="_blank" class="affiliate-btn">Check Price on Amazon</a>
+                </div>
+
+                <div class="card affiliate-box" style="border-color: #334155;">
+                    <span style="background: #334155; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">GREEN COMMUTE</span>
+                    <h3 style="margin-top: 15px;">Foldable Electric Scooter for Adults</h3>
+                    <p>Cut down daily vehicle emissions for short commutes with a zero-emission electric ride.</p>
+                    <a href="#" target="_blank" class="affiliate-btn" style="background-color: #3b82f6; color: white;">View Best Offer</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content Section for Ranking -->
+        <div class="seo-content">
+            <h2>Understanding Your Carbon Footprint and CO2 Emissions</h2>
+            <p>A <strong>carbon footprint</strong> is the total amount of greenhouse gases (including carbon dioxide and methane) that are generated by our actions. Measuring your emissions is the first step toward living a more sustainable, eco-conscious lifestyle.</p>
+            
+            <h3>How are these emissions calculated?</h3>
+            <p>Our calculator uses standard environmental conversion factors:</p>
+            <ul>
+                <li><strong>Vehicle Travel:</strong> Average petrol/diesel cars emit roughly 0.21 kg of CO2 per kilometer driven.</li>
+                <li><strong>Electricity Consumption:</strong> Generating power produces CO2 (approx. 0.85 kg CO2 per kWh depending on the grid).</li>
+                <li><strong>Gas / LPG Usage:</strong> Burning household gas releases direct carbon emissions (approx. 2.98 kg CO2 per kg).</li>
+            </ul>
+
+            <h3>How can you reduce your carbon footprint?</h3>
+            <p>Switching to energy-efficient appliances, carpooling or using public transport, reducing single-use plastics, and adopting renewable energy sources like solar panels can dramatically lower your annual environmental impact.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateCarbon() {
+            const car = parseFloat(document.getElementById('carTravel').value) || 0;
+            const elec = parseFloat(document.getElementById('electricity').value) || 0;
+            const gas = parseFloat(document.getElementById('lpgGas').value) || 0;
+
+            // Approximate conversion factors to Monthly CO2 in kg
+            // Car daily km * 30 days * 0.21 kg CO2/km
+            const carCO2 = car * 30 * 0.21;
+            // Electricity kWh * 0.85 kg CO2/kWh
+            const elecCO2 = elec * 0.85;
+            // Gas kg * 2.98 kg CO2/kg
+            const gasCO2 = gas * 2.98;
+
+            const totalMonthlyCO2 = (carCO2 + elecCO2 + gasCO2).toFixed(1);
+            const totalAnnualCO2 = ((totalMonthlyCO2 * 12) / 1000).toFixed(2); // in Tonnes
+
+            const resultBox = document.getElementById('resultBox');
+            const resultText = document.getElementById('resultText');
+            const adviceText = document.getElementById('adviceText');
+
+            resultBox.style.display = 'block';
+            resultText.innerHTML = `Estimated CO2: ${totalMonthlyCO2} kg/month (${totalAnnualCO2} Tons/year)`;
+
+            if (totalAnnualCO2 < 3.0) {
+                adviceText.innerHTML = "Great job! Your carbon footprint is relatively low compared to global averages.";
+            } else if (totalAnnualCO2 >= 3.0 && totalAnnualCO2 <= 7.0) {
+                adviceText.innerHTML = "Moderate footprint. Consider optimizing your electricity usage and carpooling to reduce emissions.";
+            } else {
+                adviceText.innerHTML = "High footprint detected. Adopting energy-saving habits and exploring green energy can significantly help.";
+            }
+        }
+    </script>
+</body>
+</html>
