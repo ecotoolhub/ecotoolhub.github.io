@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Radioactive Half-Life & Decay Calculator - Eco Tool Hub</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #10b981;
+            --accent-hover: #059669;
+            --border-color: #334155;
+            --text-muted: #94a3b8;
+            --affiliate-bg: #0f172a;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .wrapper { max-width: 1100px; width: 100%; }
+        .back-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .back-link:hover { text-decoration: underline; }
+        
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+        }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        h1 { color: var(--accent-color); font-size: 24px; margin-bottom: 5px; }
+        p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            background-color: #0b0f19;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+        }
+        input:focus { outline: none; border-color: var(--accent-color); }
+        button.calc-btn {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        button.calc-btn:hover { background-color: var(--accent-hover); }
+        
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #0b0f19;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 8px;
+            display: none;
+        }
+        .result h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 18px; }
+        .decision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .decision-item {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
+
+        /* Affiliate Sidebar */
+        .affiliate-box {
+            background-color: var(--affiliate-bg);
+            border: 1px dashed var(--accent-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .affiliate-box h3 { color: #f8fafc; font-size: 18px; margin-top: 0; }
+        .affiliate-box p { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+        .affiliate-btn {
+            display: block;
+            background-color: #f59e0b;
+            color: #0f172a;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        .affiliate-btn:hover { background-color: #d97706; }
+
+        /* SEO Content */
+        .seo-content {
+            margin-top: 40px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+        }
+        .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
+        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
+
+        <div class="main-container">
+            <!-- Left Column: Tool -->
+            <div class="card">
+                <h1>Smart Half-Life & Decay Calculator</h1>
+                <p class="subtitle">Compute nuclear disintegration, remaining quantity, and decay phase percentages.</p>
+                
+                <div class="form-group">
+                    <label for="initialMass">Initial Quantity / Mass ($N_0$):</label>
+                    <input type="number" id="initialMass" placeholder="e.g., 100">
+                </div>
+
+                <div class="form-group">
+                    <label for="halfLife">Half-Life Period ($t_{1/2}$):</label>
+                    <input type="number" id="halfLife" placeholder="e.g., 8">
+                </div>
+
+                <div class="form-group">
+                    <label for="elapsedTime">Total Elapsed Time ($t$):</label>
+                    <input type="number" id="elapsedTime" placeholder="e.g., 24">
+                </div>
+
+                <button class="calc-btn" onclick="calculateDecay()">Compute Decay Kinetics</button>
+
+                <div class="result" id="resultBox">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultDesc" style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 12px;"></p>
+                    
+                    <div class="decision-grid">
+                        <div class="decision-item">
+                            <b>⏳ Half-Lives Elapsed:</b>
+                            <span id="halfLivesPassed">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>📉 Percentage Decayed:</b>
+                            <span id="pctDecayed">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>☢️ Activity Status:</b>
+                            <span id="activityStatus">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>🔬 Decay Formula:</b>
+                            <span>$N(t) = N_0(1/2)^{t/t_{1/2}}$</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Affiliate Box -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="card affiliate-box">
+                    <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">LAB EQUIPMENT</span>
+                    <h3 style="margin-top: 15px;">Digital Geiger Counter & Radiation Meter</h3>
+                    <p>Precise beta, gamma, and X-ray radiation detector for educational and professional labs.</p>
+                    <a href="#" target="_blank" class="affiliate-btn">Check Price on Amazon</a>
+                </div>
+
+                <div class="card affiliate-box" style="border-color: #334155;">
+                    <span style="background: #334155; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">SAFETY GEAR</span>
+                    <h3 style="margin-top: 15px;">Professional Lead Safety Shielding Apron</h3>
+                    <p>Essential personal protective equipment for handling radioactive isotope experiments.</p>
+                    <a href="#" target="_blank" class="affiliate-btn" style="background-color: #3b82f6; color: white;">View Best Offer</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>Understanding Radioactive Decay and Half-Life Calculations</h2>
+            <p>Radioactive half-life is the time required for a quantity of a radioactive isotope to reduce to half of its initial value. This principle is fundamental in nuclear chemistry, physics, radiometric dating (like carbon dating), and medical isotope therapy.</p>
+            
+            <h3>The Core Decay Formula:</h3>
+            <p>The mathematical model follows exponential decay: <b>N(t) = N₀ × (1/2)^(t / t₁/₂ પ્રમાણ)</b>. Our smart calculator automates this calculation while analyzing overall isotope stability and remaining percentage instantly.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateDecay() {
+            const n0 = parseFloat(document.getElementById('initialMass').value);
+            const hlife = parseFloat(document.getElementById('halfLife').value);
+            const t = parseFloat(document.getElementById('elapsedTime').value);
+
+            const box = document.getElementById('resultBox');
+            const title = document.getElementById('resultTitle');
+            const desc = document.getElementById('resultDesc');
+            
+            const hlEl = document.getElementById('halfLivesPassed');
+            const pctEl = document.getElementById('pctDecayed');
+            const actEl = document.getElementById('activityStatus');
+
+            if (isNaN(n0) || isNaN(hlife) || isNaN(t) || n0 <= 0 || hlife <= 0 || t < 0) {
+                alert("Please enter valid positive numbers!");
+                return;
+            }
+
+            const n_t = n0 * Math.pow(0.5, (t / hlife));
+            const n_passes = (t / hlife).toFixed(2);
+            const remainingPct = ((n_t / n0) * 100).toFixed(2);
+            const decayedPct = (100 - remainingPct).toFixed(2);
+
+            box.style.display = 'block';
+
+            let status = "";
+            let borderColor = "#10b981";
+
+            if (remainingPct > 50) {
+                status = "🔴 Highly Radioactive";
+                borderColor = "#ef4444";
+            } else if (remainingPct >= 10) {
+                status = "🟡 Moderately Active";
+                borderColor = "#f59e0b";
+            } else {
+                status = "🟢 Stable / Trace Level";
+                borderColor = "#10b981";
+            }
+
+            title.innerHTML = `Remaining Quantity N(t): ${n_t.toFixed(4)}`;
+            box.style.borderLeftColor = borderColor;
+            title.style.color = borderColor;
+            desc.innerHTML = `After ${t} time units with a half-life of ${hlife}, the substance has undergone significant exponential disintegration.`;
+
+            hlEl.innerHTML = `⏱️ ${n_passes} Cycles`;
+            pctEl.innerHTML = `📉 ${decayedPct}% Decayed (${remainingPct}% Left)`;
+            actEl.innerHTML = status;
+        }
+    </script>
+</body>
+</html>
