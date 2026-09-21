@@ -25,9 +25,34 @@
             display: flex;
             flex-direction: column;
         }
+        /* Global Top Navigation Bar */
+        .site-nav {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .site-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .site-nav a:hover, .site-nav a.active {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+        }
+
         header {
             text-align: center;
-            padding: 40px 20px 20px 20px;
+            padding: 30px 20px 20px 20px;
         }
         header h1 {
             color: var(--accent-color);
@@ -99,13 +124,19 @@
 </head>
 <body>
 
+    <!-- Uniform Top Navigation Bar -->
+    <nav class="site-nav">
+        <a href="index.html" class="active">🏠 Home</a>
+        <a href="blog.html">📚 Blog & Guides</a>
+    </nav>
+
     <header>
         <h1>Eco Tool Hub</h1>
         <p>Your ultimate destination for environmental, scientific, and utility calculators.</p>
     </header>
 
     <div class="container">
-        <!-- Tool 1: Compost Calculator -->
+        <!-- Tool 1 -->
         <div class="tool-card">
             <div>
                 <h3>Compost C:N Ratio Calculator</h3>
@@ -114,7 +145,7 @@
             <a href="compost-calculator.html">Use Calculator</a>
         </div>
 
-        <!-- Tool 2: Carbon Footprint Calculator -->
+        <!-- Tool 2 -->
         <div class="tool-card">
             <div>
                 <h3>Carbon Footprint / CO2 Calculator</h3>
@@ -123,7 +154,7 @@
             <a href="carbon-footprint-calculator.html">Use Calculator</a>
         </div>
 
-        <!-- Tool 3: Solar Energy Calculator -->
+        <!-- Tool 3 -->
         <div class="tool-card">
             <div>
                 <h3>Solar Energy & Battery Calculator</h3>
@@ -132,16 +163,16 @@
             <a href="solar-calculator.html">Use Calculator</a>
         </div>
 
-        <!-- Tool 4: AQI Health Risk Converter -->
+        <!-- Tool 4 -->
         <div class="tool-card">
             <div>
-                <h3>AQI to Health Risk Converter</h3>
+                <h3>AQI Health Risk Converter</h3>
                 <p>Convert air quality index into smart safety verdicts for ventilation, workouts, and masks.</p>
             </div>
             <a href="aqi-calculator.html">Use Calculator</a>
         </div>
 
-        <!-- Tool 5: Radioactive Half-Life Calculator -->
+        <!-- Tool 5 -->
         <div class="tool-card">
             <div>
                 <h3>Radioactive Half-Life Calculator</h3>
@@ -150,7 +181,7 @@
             <a href="half-life-calculator.html">Use Calculator</a>
         </div>
 
-        <!-- Tool 6: Plant Water Estimator -->
+        <!-- Tool 6 -->
         <div class="tool-card">
             <div>
                 <h3>Plant Water & Humidity Estimator</h3>
