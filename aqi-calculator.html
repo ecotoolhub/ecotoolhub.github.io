@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQI to Health Risk Converter & Guide - Eco Tool Hub</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #10b981;
+            --accent-hover: #059669;
+            --border-color: #334155;
+            --text-muted: #94a3b8;
+            --affiliate-bg: #0f172a;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .wrapper { max-width: 1100px; width: 100%; }
+        .back-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .back-link:hover { text-decoration: underline; }
+        
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+        }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        h1 { color: var(--accent-color); font-size: 24px; margin-bottom: 5px; }
+        p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            background-color: #0b0f19;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+        }
+        input:focus { outline: none; border-color: var(--accent-color); }
+        button.calc-btn {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        button.calc-btn:hover { background-color: var(--accent-hover); }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #0b0f19;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 6px;
+            display: none;
+        }
+        .result h3 { margin: 0 0 5px 0; color: var(--accent-color); font-size: 18px; }
+        .result p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        /* Affiliate Sidebar */
+        .affiliate-box {
+            background-color: var(--affiliate-bg);
+            border: 1px dashed var(--accent-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .affiliate-box h3 { color: #f8fafc; font-size: 18px; margin-top: 0; }
+        .affiliate-box p { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+        .affiliate-btn {
+            display: block;
+            background-color: #f59e0b;
+            color: #0f172a;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        .affiliate-btn:hover { background-color: #d97706; }
+
+        /* SEO Content */
+        .seo-content {
+            margin-top: 40px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+        }
+        .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
+        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
+
+        <div class="main-container">
+            <!-- Left Column: Tool -->
+            <div class="card">
+                <h1>AQI to Health Risk Converter</h1>
+                <p class="subtitle">Check health safety risks and outdoor warnings based on AQI.</p>
+                
+                <div class="form-group">
+                    <label for="aqiInput">Enter Air Quality Index (AQI Number):</label>
+                    <input type="number" id="aqiInput" placeholder="e.g., 150">
+                </div>
+
+                <button class="calc-btn" onclick="convertAQI()">Analyze Health Risk</button>
+
+                <div class="result" id="resultBox">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultDesc"></p>
+                </div>
+            </div>
+
+            <!-- Right Column: Affiliate Box -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="card affiliate-box">
+                    <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">CLEAN AIR</span>
+<div>
+                    <h3 style="margin-top: 15px;">True HEPA Air Purifier for Home</h3>
+                    <p>Protect your family from harmful PM2.5 pollutants and smoke indoors.</p>
+                    <a href="#" target="_blank" class="affiliate-btn">Check Price on Amazon</a>
+</div>
+                </div>
+
+                <div class="card affiliate-box" style="border-color: #334155;">
+                    <span style="background: #334155; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">PROTECTION</span>
+<div>
+                    <h3 style="margin-top: 15px;">N95 Anti-Pollution Respirator Masks</h3>
+                    <p>Filter out microscopic dust and toxic smog safely during high AQI days.</p>
+                    <a href="#" target="_blank" class="affiliate-btn" style="background-color: #3b82f6; color: white;">View Best Offer</a>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>Understanding Air Quality Index (AQI) and Health Impact</h2>
+            <p>The Air Quality Index is used by government agencies to communicate to the public how polluted the air currently is or how polluted it is forecast to become. Knowing the numerical value helps you decide whether outdoor exercise is safe.</p>
+            
+            <h3>AQI Categories Explained:</h3>
+            <ul>
+                <li><strong>0 - 50 (Good):</strong> Air quality is satisfactory and poses little or no risk.</li>
+                <li><strong>51 - 100 (Moderate):</strong> Acceptable air quality; sensitive individuals should limit prolonged outdoor exertion.</li>
+                <li><strong>101 - 200 (Unhealthy):</strong> General public and sensitive groups may experience health effects.</li>
+                <li><strong>201+ (Very Unhealthy to Hazardous):</strong> Health alert; everyone should avoid outdoor activities.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function convertAQI() {
+            const aqi = parseFloat(document.getElementById('aqiInput').value);
+            const box = document.getElementById('resultBox');
+            const title = document.getElementById('resultTitle');
+            const desc = document.getElementById('resultDesc');
+
+            if (isNaN(aqi) || aqi < 0) {
+                alert("Kripya ek valid AQI number enter karein!");
+                return;
+            }
+
+            box.style.display = 'block';
+
+            if (aqi <= 50) {
+                title.innerHTML = `AQI ${aqi}: Good (Green)`;
+                desc.innerHTML = "Air quality is considered satisfactory, and air pollution poses little or no risk. Safe for outdoor exercise!";
+            } else if (aqi <= 100) {
+                title.innerHTML = `AQI ${aqi}: Moderate (Yellow)`;
+                desc.innerHTML = "Air quality is acceptable. However, unusually sensitive people may experience minor irritation.";
+            } else if (aqi <= 150) {
+                title.innerHTML = `AQI ${aqi}: Unhealthy for Sensitive Groups (Orange)`;
+                desc.innerHTML = "Elderly, children, and people with heart/lung conditions should reduce outdoor physical exertion.";
+            } else if (aqi <= 200) {
+                title.innerHTML = `AQI ${aqi}: Unhealthy (Red)`;
+                desc.innerHTML = "Everyone may begin to experience health effects. Avoid outdoor jogging or heavy workouts.";
+            } else if (aqi <= 300) {
+                title.innerHTML = `AQI ${aqi}: Very Unhealthy (Purple)`;
+                desc.innerHTML = "Health warning of emergency conditions. Everyone should stay indoors and keep windows closed.";
+            } else {
+                title.innerHTML = `AQI ${aqi}: Hazardous (Maroon)`;
+                desc.innerHTML = "Health alert: severe risk of respiratory effects for everyone. Avoid all outdoor exposure.";
+            }
+        }
+    </script>
+</body>
+</html>
