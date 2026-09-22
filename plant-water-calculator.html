@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<script src="nav.js"></script>
-
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Plant Water & Humidity Planner - Eco Tool Hub</title>
@@ -31,7 +27,7 @@
             align-items: center;
             min-height: 100vh;
         }
-        .wrapper { max-width: 1100px; width: 100%; }
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
         .back-link {
             color: var(--accent-color);
             text-decoration: none;
@@ -251,12 +247,10 @@
             const mistEl = document.getElementById('mistingAdvice');
             const rotEl = document.getElementById('rotRisk');
 
-            // Base ml mapping by pot size
             let baseMl = 150;
             if (pSize === 'small') baseMl = 60;
             if (pSize === 'large') baseMl = 450;
 
-            // Multiplier by plant type
             let multiplier = 1.0;
             let freqDays = 7;
             let misting = "Optional weekly";
@@ -284,7 +278,6 @@
                 rot = "🟡 Moderate";
             }
 
-            // Environment adjustment
             if (rEnv === 'dry') {
                 freqDays = Math.max(3, freqDays - 2);
             } else if (rEnv === 'humid') {
@@ -301,9 +294,10 @@
 
             volEl.innerHTML = `💧 ~${totalMl} ml per watering`;
             freqEl.innerHTML = `⏱️ Every ${freqDays} to ${freqDays + 2} days`;
-            mistEl.innerHTML = misting;
+            mistingEl.innerHTML = misting;
             rotEl.innerHTML = rot;
         }
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
