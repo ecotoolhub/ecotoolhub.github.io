@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
-<script src="nav.js"></script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Solar & Battery System Planner - Eco Tool Hub</title>
@@ -31,7 +27,7 @@
             align-items: center;
             min-height: 100vh;
         }
-        .wrapper { max-width: 1100px; width: 100%; }
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
         .back-link {
             color: var(--accent-color);
             text-decoration: none;
@@ -241,10 +237,7 @@
             const panelWatts = Math.round((wattHours / sunHours) * 1.25);
             const batteryAh = Math.round((wattHours / 12) / 0.5);
             
-            // Approximate roof space: ~18 sq ft per 400W panel (or roughly panelWatts / 22 sq ft)
             const roofSqFt = Math.round((panelWatts / 400) * 20);
-            
-            // Recommended inverter size with 30% headroom over peak load assumption
             const inverterKW = (panelWatts / 1000 * 1.2).toFixed(1);
 
             box.style.display = 'block';
@@ -260,5 +253,6 @@
             effEl.innerHTML = "🟢 92% System Optimised";
         }
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
