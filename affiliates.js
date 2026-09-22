@@ -29,14 +29,15 @@ const affiliateData = {
     ]
 };
 
-function loadAffiliateProducts(categoryKey, containerId, index = null) {
+function loadAffiliateProducts(categoryKey, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
     const products = affiliateData[categoryKey];
     if (!products || products.length === 0) return;
 
-    const selectedProduct = (index !== null && products[index]) ? products[index] : products[Math.floor(Math.random() * products.length)];
+    // Har refresh par random product select hogi
+    const selectedProduct = products[Math.floor(Math.random() * products.length)];
 
     container.innerHTML = `
         <div class="affiliate-card" style="background-color: #0f172a; border: 1px dashed #10b981; border-radius: 12px; padding: 20px; text-align: center;">
