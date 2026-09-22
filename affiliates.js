@@ -1,48 +1,49 @@
 const affiliateData = {
     "solar-energy": [
         {
-            title: "Easy DIY Power Plan | E-books",
-            description: "Complete home solar setup and renewable energy guide with 85% commission.",
+            title: "Complete Home Solar DIY Power Blueprint",
+            description: "Step-by-step master guide for designing and installing efficient off-grid solar energy systems.",
             buttonText: "Get Instant Access",
             link: "https://easydiypowerplan4all.com/index_dg24/#aff=umer7367"
         },
         {
-            title: "Solar Innovator – MASSIVE OFFER",
-            description: "Direct solar energy and home installation blueprint for green living.",
+            title: "Advanced Solar Innovator Installation Guide",
+            description: "Professional blueprints and cost-saving strategies for maximum home solar power generation.",
             buttonText: "Download Guide",
             link: "https://thesolarinnovator.com/index-solar-innovator-proof-new-auto.html#aff=umer7367"
         }
     ],
     "carbon-footprint": [
         {
-            title: "New Water Offer: SmartWaterBox",
-            description: "Sustainable off-grid water system and conservation guide.",
+            title: "SmartWaterBox Sustainable Off-Grid System",
+            description: "Eco-friendly water conservation and independent supply guide for modern sustainable homes.",
             buttonText: "Check Offer",
             link: "https://feelbetter-today.com/free-water#aff=umer7367"
         },
         {
-            title: "NEW: Aqua Tower - Blockbuster Offer",
-            description: "Eco-friendly water generation and independent survival system.",
+            title: "Aqua Tower Eco-Water Generation System",
+            description: "Advanced independent water generation and green living survival blueprint.",
             buttonText: "Learn More",
             link: "https://www.checkout-ds24.com/redir/732876/umer7367/"
         }
     ]
 };
 
-function loadAffiliateProducts(categoryKey, containerId) {
+function loadAffiliateProducts(categoryKey, containerId, index = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
     const products = affiliateData[categoryKey];
     if (!products || products.length === 0) return;
 
-    const selectedProduct = products[Math.floor(Math.random() * products.length)];
+    const selectedProduct = (index !== null && products[index]) ? products[index] : products[Math.floor(Math.random() * products.length)];
 
     container.innerHTML = `
-        <div class="affiliate-card" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #f9f9f9; margin-bottom: 20px;">
-            <h4 style="color: #2e7d32; margin-bottom: 8px;">${selectedProduct.title}</h4>
-            <p style="font-size: 14px; color: #555; margin-bottom: 12px;">${selectedProduct.description}</p>
-            <a href="${selectedProduct.link}" target="_blank" class="aff-btn" style="background: #2e7d32; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: bold;">${selectedProduct.buttonText}</a>
+        <div class="affiliate-card" style="background-color: #0f172a; border: 1px dashed #10b981; border-radius: 12px; padding: 20px; text-align: center;">
+            <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">RECOMMENDED RESOURCE</span>
+            <h3 style="color: #f8fafc; font-size: 18px; margin-top: 15px; margin-bottom: 8px;">${selectedProduct.title}</h3>
+            <p style="color: #94a3b8; font-size: 13px; line-height: 1.5; margin-bottom: 15px;">${selectedProduct.description}</p>
+            <a href="${selectedProduct.link}" target="_blank" class="affiliate-btn" style="display: block; background-color: #10b981; color: #0f172a; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: bold; transition: background 0.3s;">${selectedProduct.buttonText}</a>
         </div>
     `;
 }
