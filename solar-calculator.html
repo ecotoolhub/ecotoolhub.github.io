@@ -103,29 +103,6 @@
         }
         .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
-        /* Affiliate Sidebar */
-        .affiliate-box {
-            background-color: var(--affiliate-bg);
-            border: 1px dashed var(--accent-color);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-        .affiliate-box h3 { color: #f8fafc; font-size: 18px; margin-top: 0; }
-        .affiliate-box p { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
-        .affiliate-btn {
-            display: block;
-            background-color: #f59e0b;
-            color: #0f172a;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
-        .affiliate-btn:hover { background-color: #d97706; }
-
         /* SEO Content */
         .seo-content {
             margin-top: 40px;
@@ -146,7 +123,7 @@
         <div class="main-container">
             <!-- Left Column: Tool -->
             <div class="card">
-                <h1>Smart Solar & Battery Planner</h1>
+                <h1>Smart Solar & Battery System Planner</h1>
                 <p class="subtitle">Calculate optimal panel wattage, backup battery Ah, and required roof space.</p>
                 
                 <div class="form-group">
@@ -186,21 +163,10 @@
                 </div>
             </div>
 
-            <!-- Right Column: Affiliate Box -->
+            <!-- Right Column: Dynamic SEO-Optimized Affiliate Boxes -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div class="card affiliate-box">
-                    <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">HIGH EFFICIENCY</span>
-                    <h3 style="margin-top: 15px;">Monocrystalline Solar Panel Kit</h3>
-                    <p>Upgrade your home with high-performance solar panels designed for maximum energy output.</p>
-                    <a href="#" target="_blank" class="affiliate-btn">Check Price on Amazon</a>
-                </div>
-
-                <div class="card affiliate-box" style="border-color: #334155;">
-                    <span style="background: #334155; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">POWER STORAGE</span>
-                    <h3 style="margin-top: 15px;">Deep Cycle Lithium Solar Battery</h3>
-                    <p>Reliable backup power with long lifespan and fast charging capabilities for your solar setup.</p>
-                    <a href="#" target="_blank" class="affiliate-btn" style="background-color: #3b82f6; color: white;">View Best Offer</a>
-                </div>
+                <div id="solar-product-box-1"></div>
+                <div id="solar-product-box-2"></div>
             </div>
         </div>
 
@@ -210,7 +176,7 @@
             <p>Properly designing a solar energy system requires matching your daily kilowatt-hour needs with peak sunshine hours and storage battery depth-of-discharge limits. Our Smart Solar Planner computes exact inverter loads, rooftop space footprints, and battery backup requirements instantly.</p>
             
             <h3>Maximizing Your Solar Investment:</h3>
-            <p>Pairing high-efficiency monocrystalline panels with smart lithium storage banks ensures your system delivers maximum reliability and long-term utility bill reduction.</p>
+            <p>Pairing high-efficiency solar setups with professional DIY guides ensures your green energy transition delivers maximum reliability and long-term utility bill reduction.</p>
         </div>
     </div>
 
@@ -252,6 +218,11 @@
             batteryEl.innerHTML = `🔋 ~${batteryAh} Ah (12V Bank)`;
             effEl.innerHTML = "🟢 92% System Optimised";
         }
+    </script>
+    <script src="affiliates.js"></script>
+    <script>
+        loadAffiliateProducts('solar-energy', 'solar-product-box-1', 0);
+        loadAffiliateProducts('solar-energy', 'solar-product-box-2', 1);
     </script>
     <script src="nav.js"></script>
 </body>
