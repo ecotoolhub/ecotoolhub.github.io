@@ -27,7 +27,7 @@
             align-items: center;
             min-height: 100vh;
         }
-        .wrapper { max-width: 1100px; width: 100%; }
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
         .back-link {
             color: var(--accent-color);
             text-decoration: none;
@@ -276,7 +276,6 @@
                 borderColor = "#f59e0b";
             } else {
                 category = `C:N Ratio ${ratio}:1 (Too Much Carbon)`;
-                desc.keyword = "";
                 desc.innerHTML = "Your pile lacks sufficient nitrogen, causing microbial activity to stall and decomposition to freeze.";
                 mic = "🔴 Dormant Microbes.";
                 odor = "🟢 Odorless but inactive.";
@@ -295,5 +294,6 @@
             actionEl.innerHTML = action;
         }
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
