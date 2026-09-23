@@ -134,7 +134,6 @@ function loadAffiliateSlider(categoryKey, containerId) {
 
     renderSlide(currentIndex);
 
-    // Auto rotate every 4 seconds
     setInterval(() => {
         currentIndex = (currentIndex + 1) % products.length;
         renderSlide(currentIndex);
