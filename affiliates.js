@@ -90,7 +90,10 @@ const affiliateData = {
 // 1. Static / Refresh Card Function
 function loadAffiliateProducts(categoryKey, containerId, index = null) {
     const container = document.getElementById(containerId);
-    if (!container) return;
+    if (!container) {
+        console.error("Container not found: " + containerId);
+        return;
+    }
 
     const products = affiliateData[categoryKey];
     if (!products || products.length === 0) return;
@@ -110,7 +113,10 @@ function loadAffiliateProducts(categoryKey, containerId, index = null) {
 // 2. Auto-Sliding Card Function (Rotates every 4 seconds)
 function loadAffiliateSlider(categoryKey, containerId) {
     const container = document.getElementById(containerId);
-    if (!container) return;
+    if (!container) {
+        console.error("Slider container not found: " + containerId);
+        return;
+    }
 
     const products = affiliateData[categoryKey];
     if (!products || products.length === 0) return;
