@@ -163,7 +163,7 @@
                 </div>
             </div>
 
-            <!-- Right Column: Slider Card & Static Card Containers -->
+            <!-- Right Column: Product Cards Containers -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
                 <!-- 1. Auto-sliding product card -->
                 <div id="gardening-slider-box"></div>
@@ -220,11 +220,14 @@
     </script>
     <script src="affiliates.js"></script>
     <script>
-        // Load Auto Slider Card
-        loadAffiliateSlider('indoor-gardening', 'gardening-slider-box');
-        
-        // Load Static Refresh Card
-        loadAffiliateProducts('indoor-gardening', 'gardening-refresh-box');
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof loadAffiliateSlider === "function") {
+                loadAffiliateSlider('indoor-gardening', 'gardening-slider-box');
+                loadAffiliateProducts('indoor-gardening', 'gardening-refresh-box');
+            } else {
+                console.error("affiliates.js is not loaded properly.");
+            }
+        });
     </script>
     <script src="nav.js"></script>
 </body>
