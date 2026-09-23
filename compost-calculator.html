@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Compost C:N Ratio & Recipe Fixer - Eco Tool Hub</title>
+    <title>Smart Compost & Indoor Garden Planner - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -103,29 +103,6 @@
         }
         .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
-        /* Affiliate Sidebar */
-        .affiliate-box {
-            background-color: var(--affiliate-bg);
-            border: 1px dashed var(--accent-color);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-        .affiliate-box h3 { color: #f8fafc; font-size: 18px; margin-top: 0; }
-        .affiliate-box p { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
-        .affiliate-btn {
-            display: block;
-            background-color: #f59e0b;
-            color: #0f172a;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
-        .affiliate-btn:hover { background-color: #d97706; }
-
         /* SEO Content */
         .seo-content {
             margin-top: 40px;
@@ -146,30 +123,20 @@
         <div class="main-container">
             <!-- Left Column: Tool -->
             <div class="card">
-                <h1>Smart Compost Ratio & Fixer</h1>
-                <p class="subtitle">Calculate C:N balance and get exact corrective recipe recommendations.</p>
+                <h1>Smart Compost & Organic Garden Planner</h1>
+                <p class="subtitle">Calculate optimal carbon-to-nitrogen ratios, compost volume, and soil enrichment needs.</p>
                 
                 <div class="form-group">
-                    <label for="greenCarbon">Green Material (Nitrogen rich) Carbon (g):</label>
-                    <input type="number" id="greenCarbon" placeholder="e.g., 30">
+                    <label for="greenWaste">Weekly Green Waste / Food Scraps (kg):</label>
+                    <input type="number" id="greenWaste" placeholder="e.g., 5">
                 </div>
 
                 <div class="form-group">
-                    <label for="greenNitrogen">Green Material Nitrogen (g):</label>
-                    <input type="number" id="greenNitrogen" placeholder="e.g., 2">
+                    <label for="brownWaste">Weekly Brown Waste / Dry Leaves (kg):</label>
+                    <input type="number" id="brownWaste" placeholder="e.g., 10">
                 </div>
 
-                <div class="form-group">
-                    <label for="brownCarbon">Brown Material (Carbon rich) Carbon (g):</label>
-                    <input type="number" id="brownCarbon" placeholder="e.g., 80">
-                </div>
-
-                <div class="form-group">
-                    <label for="brownNitrogen">Brown Material Nitrogen (g):</label>
-                    <input type="number" id="brownNitrogen" placeholder="e.g., 2">
-                </div>
-
-                <button class="calc-btn" onclick="calculateSmartCompost()">Analyze & Fix Pile</button>
+                <button class="calc-btn" onclick="calculateCompost()">Calculate Organic Yield</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
@@ -177,122 +144,87 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>🧪 Microbial Health:</b>
-                            <span id="microbialStatus">-</span>
+                            <b>🍂 Carbon:Nitrogen Ratio:</b>
+                            <span id="cnRatio">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>👃 Odor Control:</b>
-                            <span id="odorStatus">-</span>
+                            <b>🪴 Estimated Compost Volume:</b>
+                            <span id="compostVol">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>⏱️ Decomposition Speed:</b>
-                            <span id="speedStatus">-</span>
+                            <b>⏱️ Decomposition Time:</b>
+                            <span id="decompTime">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🛠️ Actionable Fix:</b>
-                            <span id="actionFix">-</span>
+                            <b>🌱 Garden Suitability:</b>
+                            <span id="gardenSuitability">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Affiliate Box -->
+            <!-- Right Column: Slider Card & Static Card Containers -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div class="card affiliate-box">
-                    <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">RECOMMENDED GEAR</span>
-                    <h3 style="margin-top: 15px;">Dual Chamber Tumbler Composter</h3>
-                    <p>Speed up your composting process with a rotating drum design. Perfect for organic gardening lovers.</p>
-                    <a href="#" target="_blank" class="affiliate-btn">Check Price on Amazon</a>
-                </div>
-
-                <div class="card affiliate-box" style="border-color: #334155;">
-                    <span style="background: #334155; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">SOIL HEALTH</span>
-                    <h3 style="margin-top: 15px;">Digital Soil & Compost Thermometer</h3>
-                    <p>Monitor your pile temperature accurately to kill weed seeds and accelerate microbe activity.</p>
-                    <a href="#" target="_blank" class="affiliate-btn" style="background-color: #3b82f6; color: white;">View Best Offer</a>
-                </div>
+                <!-- 1. Auto-sliding product card -->
+                <div id="gardening-slider-box"></div>
+                <!-- 2. Random refresh product card -->
+                <div id="gardening-refresh-box"></div>
             </div>
         </div>
 
         <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Beyond Basic Math: Intelligent Composting Management</h2>
-            <p>Traditional calculators only give you a number. Our Smart Compost Fixer provides practical action steps—telling you exactly whether your pile is prone to bad odors or slow decomposition, and how to balance it instantly.</p>
+            <h2>Mastering Home Composting & Indoor Organic Gardening</h2>
+            <p>Achieving healthy, nutrient-rich soil requires balancing nitrogen-rich green waste with carbon-rich brown material at an optimal 30:1 ratio. Our Smart Compost Planner helps homeowners recycle kitchen waste efficiently into natural fertilizer.</p>
             
-            <h3>The Golden 30:1 Rule:</h3>
-            <p>Maintaining balance requires blending carbon-rich "browns" (dry leaves, cardboard) with nitrogen-rich "greens" (kitchen scraps, grass clippings). Use our decision engine above to keep your compost active year-round.</p>
+            <h3>Optimizing Small-Space Urban Gardening:</h3>
+            <p>Whether managing container vegetable setups or balcony herb gardens, utilizing structured planners and organic composting guarantees high yields and sustainable food production.</p>
         </div>
     </div>
 
     <script>
-        function calculateSmartCompost() {
-            const gc = parseFloat(document.getElementById('greenCarbon').value) || 0;
-            const gn = parseFloat(document.getElementById('greenNitrogen').value) || 0;
-            const bc = parseFloat(document.getElementById('brownCarbon').value) || 0;
-            const bn = parseFloat(document.getElementById('brownNitrogen').value) || 0;
-
-            const totalCarbon = gc + bc;
-            const totalNitrogen = gn + bn;
+        function calculateCompost() {
+            const green = parseFloat(document.getElementById('greenWaste').value) || 0;
+            const brown = parseFloat(document.getElementById('brownWaste').value) || 0;
 
             const box = document.getElementById('resultBox');
             const title = document.getElementById('resultTitle');
             const desc = document.getElementById('resultDesc');
             
-            const micEl = document.getElementById('microbialStatus');
-            const odorEl = document.getElementById('odorStatus');
-            const speedEl = document.getElementById('speedStatus');
-            const actionEl = document.getElementById('actionFix');
+            const ratioEl = document.getElementById('cnRatio');
+            const volEl = document.getElementById('compostVol');
+            const timeEl = document.getElementById('decompTime');
+            const suitEl = document.getElementById('gardenSuitability');
 
-            if (totalNitrogen === 0) {
-                alert("Nitrogen total cannot be zero!");
+            if (green <= 0 && brown <= 0) {
+                alert("Please enter valid waste values!");
                 return;
             }
 
-            const ratio = (totalCarbon / totalNitrogen).toFixed(1);
+            const totalKg = green + brown;
+            const approxRatio = brown > 0 ? (brown / (green || 1) * 15).toFixed(0) : "10";
+            const monthlyLiters = (totalKg * 4 * 0.6).toFixed(0);
+
             box.style.display = 'block';
 
-            let borderColor = "#10b981";
-            let category = "";
-            let mic = "";
-            let odor = "";
-            let speed = "";
-            let action = "";
+            title.innerHTML = `Compost Production: ~${monthlyLiters} Liters / Month`;
+            box.style.borderLeftColor = "#10b981";
+            title.style.color = "#10b981";
+            desc.innerHTML = `Based on your weekly input of ${totalKg} kg organic waste material.`;
 
-            if (ratio >= 25 && ratio <= 30) {
-                category = `C:N Ratio ${ratio}:1 (Perfect Balance)`;
-                desc.innerHTML = "Your compost pile is in the optimal sweet spot for rapid decomposition and rich humus creation.";
-                mic = "🟢 Thriving Microbes.";
-                odor = "🟢 Zero Foul Smell.";
-                speed = "⚡ Maximum Speed.";
-                action = "🟢 Keep turning weekly.";
-                borderColor = "#10b981";
-            } else if (ratio < 25) {
-                category = `C:N Ratio ${ratio}:1 (Too Much Nitrogen)`;
-                desc.innerHTML = "Your pile is too wet and nitrogen-heavy, which can trigger anaerobic decay and foul odors.";
-                mic = "🟡 Stressed by excess moisture.";
-                odor = "🔴 High Ammonia Smell Risk.";
-                speed = "🐢 Slow & Soggy.";
-                action = "🛠️ Add dry leaves or shredded cardboard.";
-                borderColor = "#f59e0b";
-            } else {
-                category = `C:N Ratio ${ratio}:1 (Too Much Carbon)`;
-                desc.innerHTML = "Your pile lacks sufficient nitrogen, causing microbial activity to stall and decomposition to freeze.";
-                mic = "🔴 Dormant Microbes.";
-                odor = "🟢 Odorless but inactive.";
-                speed = "🐢 Extremely Slow.";
-                action = "🛠️ Add fresh grass clippings or food scraps.";
-                borderColor = "#ef4444";
-            }
-
-            title.innerHTML = category;
-            box.style.borderLeftColor = borderColor;
-            title.style.color = borderColor;
-
-            micEl.innerHTML = mic;
-            odorEl.innerHTML = odor;
-            speedEl.innerHTML = speed;
-            actionEl.innerHTML = action;
+            ratioEl.innerHTML = `🍂 C:N ~${approxRatio}:1 Ratio`;
+            volEl.innerHTML = `🪴 ~${monthlyLiters} L Rich Soil / Mo`;
+            timeEl.innerHTML = "⏱️ 6-8 Weeks Active Batch";
+            suitEl.innerHTML = "🟢 Excellent for Vegetables";
         }
+    </script>
+    <script src="affiliates.js"></script>
+    <script>
+        // Load Auto Slider Card
+        loadAffiliateSlider('indoor-gardening', 'gardening-slider-box');
+        
+        // Load Static Refresh Card
+        loadAffiliateProducts('indoor-gardening', 'gardening-refresh-box');
     </script>
     <script src="nav.js"></script>
 </body>
