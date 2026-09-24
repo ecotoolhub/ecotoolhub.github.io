@@ -231,8 +231,20 @@
     </script>
     <script src="affiliates.js"></script>
     <script>
-        loadAffiliateProducts('air-quality-health', 'health-product-box-1', 0);
-        loadAffiliateProducts('air-quality-health', 'health-product-box-2', 1);
+        // Random Rotation Script across 3 products without duplication
+        document.addEventListener("DOMContentLoaded", function() {
+            const totalProducts = 3; // Total products in air-quality-health
+            const firstIndex = Math.floor(Math.random() * totalProducts);
+            let secondIndex = Math.floor(Math.random() * totalProducts);
+            
+            // Ensure Box 2 shows a different product than Box 1
+            while (secondIndex === firstIndex) {
+                secondIndex = Math.floor(Math.random() * totalProducts);
+            }
+
+            loadAffiliateProducts('air-quality-health', 'health-product-box-1', firstIndex);
+            loadAffiliateProducts('air-quality-health', 'health-product-box-2', secondIndex);
+        });
     </script>
     <script src="nav.js"></script>
 </body>
