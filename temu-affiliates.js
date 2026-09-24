@@ -7,7 +7,6 @@ function calculatePrices(rawPrice) {
         return { dealPrice: "$12.99", originalPrice: "$24.99", savePct: "SAVE 48%" };
     }
     
-    // Extract numbers only
     let cleanNum = String(rawPrice).replace(/[^0-9]/g, '');
     let pkr = parseInt(cleanNum, 10);
     
@@ -16,17 +15,17 @@ function calculatePrices(rawPrice) {
     }
 
     let dealUsd = (pkr / pkrToUsdRate).toFixed(2);
-    let origUsd = (dealUsd * 1.82).toFixed(2);
+    let origUsd = (parseFloat(dealUsd) * 1.82).toFixed(2);
 
     return {
-        dealPrice: `$${dealUsd}`,
-        originalPrice: `$${origUsd}`,
-        savePct: `SAVE 45%`
+        dealPrice: "$" + dealUsd,
+        originalPrice: "$" + origUsd,
+        savePct: "SAVE 45%"
     };
 }
 
-// Direct Working Solar Images Pool
-const defaultSolarImg = "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600&auto=format&fit=crop&q=80";
+// Guaranteed Fallback SVG Image
+const defaultSolarImg = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20300%22%3E%3Crect%20fill%3D%22%231e293b%22%20width%3D%22500%22%20height%3D%22300%22%2F%3E%3Ctext%20fill%3D%22%23f97316%22%20font-family%3D%22sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22bold%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%20dy%3D%22.3em%22%3ETemu%20Solar%20Deal%3C%2Ftext%3E%3C%2Fsvg%3E";
 
 // Full Temu Solar Physical Products Pool
 const temuData = {
@@ -128,7 +127,7 @@ const temuData = {
             image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&auto=format&fit=crop&q=80"
         },
         {
-            title: "Solar-Powered Outdoor Motion Sensor Floodlight 74 LEDs 270° Angle",
+            title: "Solar-Powered Outdoor Motion Sensor Floodlight 74 LEDs 270&deg; Angle",
             rawPrice: "Rs.4,980",
             link: "https://temu.to/k/eexss92yxah",
             image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&auto=format&fit=crop&q=80"
@@ -146,7 +145,7 @@ const temuData = {
             image: "https://images.unsplash.com/photo-1548611716-30018596f2a2?w=600&auto=format&fit=crop&q=80"
         },
         {
-            title: "4/8 Adjustable Solar Tilt Mounting Bracket Bases 10° to 60°",
+            title: "4/8 Adjustable Solar Tilt Mounting Bracket Bases 10&deg; to 60&deg;",
             rawPrice: "Rs.19,083",
             link: "https://temu.to/k/egmxf37l195",
             image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600&auto=format&fit=crop&q=80"
@@ -207,24 +206,24 @@ function renderTemuSlider(categoryKey, containerId) {
         <div class="temu-slider-card" style="background-color: #0f172a; border: 1px solid #f97316; border-radius: 12px; padding: 18px; text-align: center; position: relative; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.15);">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                 <span style="background: #f97316; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold; text-transform: uppercase;">Temu Hot Deal</span>
-                <span style="color: #94a3b8; font-size: 12px; font-weight: bold;">Item ${index + 1} of ${products.length}</span>
+                <span style="color: #94a3b8; font-size: 12px; font-weight: bold;">Item ` + (index + 1) + ` of ` + products.length + `</span>
             </div>
             
-            <img src="${item.image}" alt="${item.title}" onerror="this.onerror=null; this.src='${defaultSolarImg}';" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; background-color: #1e293b;">
+            <img src="` + item.image + `" alt="` + item.title + `" onerror="this.onerror=null; this.src='` + defaultSolarImg + `';" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; background-color: #1e293b;">
             
-            <h4 style="color: #f8fafc; font-size: 14px; margin: 0 0 10px 0; line-height: 1.4; min-height: 38px;">${item.title}</h4>
+            <h4 style="color: #f8fafc; font-size: 14px; margin: 0 0 10px 0; line-height: 1.4; min-height: 38px;">` + item.title + `</h4>
             
             <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 14px;">
-                <span style="color: #10b981; font-size: 22px; font-weight: bold;">${priceInfo.dealPrice}</span>
-                <span style="color: #94a3b8; font-size: 13px; text-decoration: line-through;">${priceInfo.originalPrice}</span>
-                <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: bold; padding: 2px 6px; border-radius: 4px;">${priceInfo.savePct}</span>
+                <span style="color: #10b981; font-size: 22px; font-weight: bold;">` + priceInfo.dealPrice + `</span>
+                <span style="color: #94a3b8; font-size: 13px; text-decoration: line-through;">` + priceInfo.originalPrice + `</span>
+                <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: bold; padding: 2px 6px; border-radius: 4px;">` + priceInfo.savePct + `</span>
             </div>
             
-            <a href="${item.link}" target="_blank" style="display: block; background-color: #f97316; color: white; text-decoration: none; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 14px; margin-bottom: 12px; transition: background 0.3s;">View Deal on Temu</a>
+            <a href="` + item.link + `" target="_blank" style="display: block; background-color: #f97316; color: white; text-decoration: none; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 14px; margin-bottom: 12px; transition: background 0.3s;">View Deal on Temu</a>
             
             <div style="display: flex; gap: 10px; justify-content: center;">
-                <button onclick="changeTemuSlide('${categoryKey}', '${containerId}', -1)" style="flex: 1; background: #334155; color: white; border: none; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: bold;">❮ Prev</button>
-                <button onclick="changeTemuSlide('${categoryKey}', '${containerId}', 1)" style="flex: 1; background: #334155; color: white; border: none; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: bold;">Next ❯</button>
+                <button onclick="changeTemuSlide('` + categoryKey + `', '` + containerId + `', -1)" style="flex: 1; background: #334155; color: white; border: none; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: bold;">&#10094; Prev</button>
+                <button onclick="changeTemuSlide('` + categoryKey + `', '` + containerId + `', 1)" style="flex: 1; background: #334155; color: white; border: none; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: bold;">Next &#10095;</button>
             </div>
         </div>
     `;
