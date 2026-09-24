@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced AQI & Health Activity Planner - Eco Tool Hub</title>
+    <title>Indoor Air Quality & Health Risk Calculator - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -103,29 +103,6 @@
         }
         .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
-        /* Affiliate Sidebar */
-        .affiliate-box {
-            background-color: var(--affiliate-bg);
-            border: 1px dashed var(--accent-color);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-        .affiliate-box h3 { color: #f8fafc; font-size: 18px; margin-top: 0; }
-        .affiliate-box p { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
-        .affiliate-btn {
-            display: block;
-            background-color: #f59e0b;
-            color: #0f172a;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
-        .affiliate-btn:hover { background-color: #d97706; }
-
         /* SEO Content */
         .seo-content {
             margin-top: 40px;
@@ -146,25 +123,20 @@
         <div class="main-container">
             <!-- Left Column: Tool -->
             <div class="card">
-                <h1>Smart AQI & Activity Planner</h1>
-                <p class="subtitle">Get custom safety verdicts for outdoor activities, ventilation, and protection.</p>
+                <h1>Indoor AQI & Health Safety Planner</h1>
+                <p class="subtitle">Evaluate indoor air quality risks, ventilation needs, and eco-wellness recommendations.</p>
                 
                 <div class="form-group">
-                    <label for="aqiInput">Enter Current Air Quality Index (AQI):</label>
-                    <input type="number" id="aqiInput" placeholder="e.g., 180">
+                    <label for="pm25Level">Estimated PM2.5 / Outdoor Air AQI:</label>
+                    <input type="number" id="pm25Level" placeholder="e.g., 85">
                 </div>
 
                 <div class="form-group">
-                    <label for="userActivity">What are you planning to do?</label>
-                    <select id="userActivity">
-                        <option value="general">General Daily Routine</option>
-                        <option value="workout">Outdoor Jogging / Exercise</option>
-                        <option value="kids">Kids Playing Outdoors / School</option>
-                        <option value="windows">Opening Windows for Ventilation</option>
-                    </select>
+                    <label for="roomSize">Room Size (Square Feet):</label>
+                    <input type="number" id="roomSize" placeholder="e.g., 250">
                 </div>
 
-                <button class="calc-btn" onclick="analyzeAQI()">Generate Smart Health Plan</button>
+                <button class="calc-btn" onclick="calculateAQI()">Analyze Air Safety</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
@@ -172,131 +144,95 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>🪟 Room Ventilation:</b>
-                            <span id="ventilationAdvice">-</span>
+                            <b>🛡️ Air Quality Status:</b>
+                            <span id="aqiStatus">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🏃 Outdoor Exercise:</b>
-                            <span id="exerciseAdvice">-</span>
+                            <b>🌿 Recommended Plants:</b>
+                            <span id="plantCount">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>😷 Protection Mask:</b>
-                            <span id="maskAdvice">-</span>
+                            <b>💨 Air Circulation Need:</b>
+                            <span id="ventilationNeed">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>⚠️ Sensitive Groups:</b>
-                            <span id="sensitiveAdvice">-</span>
+                            <b>🩺 Health Risk Level:</b>
+                            <span id="healthRisk">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Affiliate Box -->
+            <!-- Right Column: Dynamic SEO-Optimized Affiliate Boxes -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div class="card affiliate-box">
-                    <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">CLEAN AIR</span>
-                    <h3 style="margin-top: 15px;">True HEPA Air Purifier for Home</h3>
-                    <p>Protect your indoor spaces from harmful PM2.5 pollutants and smoke.</p>
-                    <a href="#" target="_blank" class="affiliate-btn">Check Price on Amazon</a>
-                </div>
-
-                <div class="card affiliate-box" style="border-color: #334155;">
-                    <span style="background: #334155; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">PROTECTION</span>
-                    <h3 style="margin-top: 15px;">N95 Anti-Pollution Respirator Masks</h3>
-                    <p>Filter out microscopic dust and toxic smog safely during high AQI days.</p>
-                    <a href="#" target="_blank" class="affiliate-btn" style="background-color: #3b82f6; color: white;">View Best Offer</a>
-                </div>
+                <div id="health-product-box-1"></div>
+                <div id="health-product-box-2"></div>
             </div>
         </div>
 
         <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Why Standard AQI Numbers Are Not Enough</h2>
-            <p>Simply knowing that the AQI is 150 or 250 doesn't help you plan your day. Our Smart AQI Planner goes beyond basic numbers by providing precise decision-making metrics for ventilation, outdoor workouts, and mask requirements based on real-time pollution thresholds.</p>
+            <h2>Indoor Air Quality & Natural Wellness Architecture</h2>
+            <p>Indoor air pollution can often exceed outdoor levels due to dust accumulation, volatile organic compounds (VOCs), and improper ventilation. Utilizing air-purifying indoor flora along with holistic wellness approaches creates a cleaner, toxin-free home environment.</p>
             
-            <h3>How to Protect Yourself During Smog Seasons:</h3>
-            <p>When air quality dips into unhealthy zones, microscopic pollutants (PM2.5) can enter your bloodstream through your lungs. Using air purifiers indoors, sealing doors and windows during peak pollution hours, and wearing certified N95 respirators outdoors are proven ways to safeguard your health.</p>
+            <h3>Promoting Holistic Health & Clean Air:</h3>
+            <p>Integrating natural herbal remedies, indoor air-purifying plants, and eco-friendly home practices significantly reduces respiratory stress and boosts long-term household wellness.</p>
         </div>
     </div>
 
     <script>
-        function analyzeAQI() {
-            const aqi = parseFloat(document.getElementById('aqiInput').value);
-            const activity = document.getElementById('userActivity').value;
+        function calculateAQI() {
+            const aqi = parseFloat(document.getElementById('pm25Level').value) || 0;
+            const sqft = parseFloat(document.getElementById('roomSize').value) || 0;
+
             const box = document.getElementById('resultBox');
             const title = document.getElementById('resultTitle');
             const desc = document.getElementById('resultDesc');
             
-            const ventEl = document.getElementById('ventilationAdvice');
-            const exEl = document.getElementById('exerciseAdvice');
-            const maskEl = document.getElementById('maskAdvice');
-            const sensEl = document.getElementById('sensitiveAdvice');
+            const statusEl = document.getElementById('aqiStatus');
+            const plantEl = document.getElementById('plantCount');
+            const ventEl = document.getElementById('ventilationNeed');
+            const riskEl = document.getElementById('healthRisk');
 
-            if (isNaN(aqi) || aqi < 0) {
-                alert("Please enter a valid AQI number!");
+            if (aqi <= 0 || sqft <= 0) {
+                alert("Please enter valid positive values!");
                 return;
             }
 
+            const plantsNeeded = Math.ceil(sqft / 100);
+
             box.style.display = 'block';
 
-            let category = "";
-            let vent = "";
-            let exercise = "";
-            let mask = "";
-            let sensitive = "";
-            let borderColor = "#10b981";
-
             if (aqi <= 50) {
-                category = "Good (Safe Air Quality)";
-                desc.innerHTML = "Air quality is satisfactory. Enjoy your normal routine without any restrictions.";
-                vent = "🟢 Safe to open windows.";
-                exercise = "🟢 Highly Recommended.";
-                mask = "⚪ Not Required.";
-                sensitive = "🟢 Safe for everyone.";
-                borderColor = "#10b981";
+                title.innerHTML = "Air Quality: Good (Safe)";
+                box.style.borderLeftColor = "#10b981";
+                title.style.color = "#10b981";
+                statusEl.innerHTML = "🟢 Clean & Fresh Air";
+                riskEl.innerHTML = "🟢 Minimal Risk";
             } else if (aqi <= 100) {
-                category = "Moderate (Acceptable)";
-                desc.innerHTML = "Air quality is acceptable, though sensitive people might experience minor discomfort.";
-                vent = "🟢 Safe to ventilate.";
-                exercise = "🟢 Safe (reduce intense exertion if sensitive).";
-                mask = "⚪ Optional.";
-                sensitive = "🟡 Caution for asthma patients.";
-                borderColor = "#f59e0b";
-            } else if (aqi <= 150) {
-                category = "Unhealthy for Sensitive Groups";
-                desc.innerHTML = "Sensitive individuals (kids, elderly, asthma) should limit outdoor exposure.";
-                vent = "🟡 Keep windows closed during peak hours.";
-                exercise = "🟡 Move workouts indoors.";
-                mask = "🟡 Recommended outdoors.";
-                sensitive = "🟠 High Risk for kids & elderly.";
-                borderColor = "#f97316";
-            } else if (aqi <= 200) {
-                category = "Unhealthy (Red Alert)";
-                desc.innerHTML = "General public may experience health effects. Avoid prolonged outdoor exertion.";
-                vent = "🔴 Keep windows shut tight.";
-                exercise = "🔴 Strictly Prohibited Outdoors.";
-                mask = "🟢 N95 Mask Mandatory.";
-                sensitive = "🔴 High Risk for all groups.";
-                borderColor = "#ef4444";
+                title.innerHTML = "Air Quality: Moderate Risk";
+                box.style.borderLeftColor = "#f59e0b";
+                title.style.color = "#f59e0b";
+                statusEl.innerHTML = "🟡 Moderate Pollutants";
+                riskEl.innerHTML = "🟡 Low Health Concern";
             } else {
-                category = "Very Unhealthy / Hazardous";
-                desc.innerHTML = "Emergency conditions. Toxic smog levels pose severe respiratory risks.";
-                vent = "🔴 Seal windows / Use Air Purifiers.";
-                exercise = "🔴 Do not step outside.";
-                mask = "🟢 Certified N95/N99 Required.";
-                sensitive = "🔴 Severe Hazard. Stay Indoors.";
-                borderColor = "#9333ea";
+                title.innerHTML = "Air Quality: Poor (Action Required)";
+                box.style.borderLeftColor = "#ef4444";
+                title.style.color = "#ef4444";
+                statusEl.innerHTML = "🔴 High Pollutant Density";
+                riskEl.innerHTML = "🔴 Elevated Health Risk";
             }
 
-            title.innerHTML = `AQI ${aqi}: ${category}`;
-            box.style.borderLeftColor = borderColor;
-            title.style.color = borderColor;
-            
-            ventEl.innerHTML = vent;
-            exEl.innerHTML = exercise;
-            maskEl.innerHTML = mask;
-            sensEl.innerHTML = sensitive;
+            desc.innerHTML = `Assessment based on AQI value of ${aqi} for a ${sqft} sq. ft. living space.`;
+
+            plantEl.innerHTML = `🌿 ~${plantsNeeded} Air-Purifying Plants`;
+            ventEl.innerHTML = aqi > 100 ? "💨 High Air Renewal Required" : "💨 Standard Ventilation";
         }
+    </script>
+    <script src="affiliates.js"></script>
+    <script>
+        loadAffiliateProducts('air-quality-health', 'health-product-box-1', 0);
+        loadAffiliateProducts('air-quality-health', 'health-product-box-2', 1);
     </script>
     <script src="nav.js"></script>
 </body>
