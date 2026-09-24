@@ -68,7 +68,7 @@ const affiliateData = {
     "air-quality-health": [
         {
             title: "The Holistic Healing & Herbal Handbook",
-            description: "Natural indoor wellness, organic remedies, and holistic health routines.",
+            description: "Natural indoor wellness, organic remedies, and holistic health routines for clean living.",
             buttonText: "Get Herbal Guide",
             link: "https://www.theherbalhandbook.site/#aff=umer7367"
         },
@@ -87,13 +87,10 @@ const affiliateData = {
     ]
 };
 
-// 1. Static / Refresh Card Function
+// Simple, reliable card loader
 function loadAffiliateProducts(categoryKey, containerId, index = null) {
     const container = document.getElementById(containerId);
-    if (!container) {
-        console.error("Container not found: " + containerId);
-        return;
-    }
+    if (!container) return;
 
     const products = affiliateData[categoryKey];
     if (!products || products.length === 0) return;
@@ -108,40 +105,4 @@ function loadAffiliateProducts(categoryKey, containerId, index = null) {
             <a href="${selectedProduct.link}" target="_blank" class="affiliate-btn" style="display: block; background-color: #10b981; color: #0f172a; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: bold; transition: background 0.3s;">${selectedProduct.buttonText}</a>
         </div>
     `;
-}
-
-// 2. Auto-Sliding Card Function (Rotates every 4 seconds)
-function loadAffiliateSlider(categoryKey, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) {
-        console.error("Slider container not found: " + containerId);
-        return;
-    }
-
-    const products = affiliateData[categoryKey];
-    if (!products || products.length === 0) return;
-
-    let currentIndex = 0;
-
-    function renderSlide(index) {
-        const product = products[index];
-        container.innerHTML = `
-            <div class="affiliate-slider-card" style="background-color: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 20px; text-align: center; transition: all 0.5s ease-in-out;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <span style="background: #3b82f6; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">FEATURED OFFER</span>
-                    <span style="color: #94a3b8; font-size: 11px;">${index + 1} / ${products.length}</span>
-                </div>
-                <h3 style="color: #f8fafc; font-size: 18px; margin-top: 10px; margin-bottom: 8px; min-height: 48px;">${product.title}</h3>
-                <p style="color: #94a3b8; font-size: 13px; line-height: 1.5; margin-bottom: 15px; min-height: 40px;">${product.description}</p>
-                <a href="${product.link}" target="_blank" style="display: block; background-color: #f59e0b; color: #0f172a; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: bold; transition: background 0.3s;">${product.buttonText}</a>
-            </div>
-        `;
-    }
-
-    renderSlide(currentIndex);
-
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % products.length;
-        renderSlide(currentIndex);
-    }, 4000);
 }
