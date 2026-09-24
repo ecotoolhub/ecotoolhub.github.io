@@ -63,12 +63,10 @@ const affiliateData = {
             description: "High-yield organic farming blueprint optimized for tiny spaces and balconies.",
             buttonText: "View Blueprint",
             link: "https://cf.5footfarm.com/vsl-v1-live-h3jk4-e4f19-fp-nv#aff=umer7367"
-        }
-    ],
-    "air-quality-health": [
+        },
         {
             title: "The Holistic Healing & Herbal Handbook",
-            description: "Natural indoor wellness, organic remedies, and holistic health routines for clean living.",
+            description: "Natural indoor wellness, organic remedies, and holistic health routines.",
             buttonText: "Get Herbal Guide",
             link: "https://www.theherbalhandbook.site/#aff=umer7367"
         },
@@ -87,7 +85,7 @@ const affiliateData = {
     ]
 };
 
-// Simple, reliable card loader
+// Universal Affiliate Card Loader
 function loadAffiliateProducts(categoryKey, containerId, index = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
