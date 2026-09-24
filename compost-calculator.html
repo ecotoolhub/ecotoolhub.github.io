@@ -219,16 +219,19 @@
     <script src="affiliates.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const totalCompostProducts = 6;
-            const firstIndex = Math.floor(Math.random() * totalCompostProducts);
-            let secondIndex = Math.floor(Math.random() * totalCompostProducts);
+            // Using 'indoor-gardening' category which contains all 9 composting & gardening products
+            const categoryKey = 'indoor-gardening';
+            const totalProducts = (typeof affiliateData !== 'undefined' && affiliateData[categoryKey]) ? affiliateData[categoryKey].length : 9;
             
-            while (secondIndex === firstIndex) {
-                secondIndex = Math.floor(Math.random() * totalCompostProducts);
+            const firstIndex = Math.floor(Math.random() * totalProducts);
+            let secondIndex = Math.floor(Math.random() * totalProducts);
+            
+            while (secondIndex === firstIndex && totalProducts > 1) {
+                secondIndex = Math.floor(Math.random() * totalProducts);
             }
 
-            loadAffiliateProducts('composting-gardening', 'compost-product-box-1', firstIndex);
-            loadAffiliateProducts('composting-gardening', 'compost-product-box-2', secondIndex);
+            loadAffiliateProducts(categoryKey, 'compost-product-box-1', firstIndex);
+            loadAffiliateProducts(categoryKey, 'compost-product-box-2', secondIndex);
         });
     </script>
     <script src="nav.js"></script>
