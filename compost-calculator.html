@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Compost & Indoor Garden Planner - Eco Tool Hub</title>
+    <title>Smart Compost & Organic Garden Planner - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -163,12 +163,10 @@
                 </div>
             </div>
 
-            <!-- Right Column: Product Cards Containers -->
+            <!-- Right Column: Dynamic Affiliate Boxes -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- 1. Auto-sliding product card -->
-                <div id="gardening-slider-box"></div>
-                <!-- 2. Random refresh product card -->
-                <div id="gardening-refresh-box"></div>
+                <div id="compost-product-box-1"></div>
+                <div id="compost-product-box-2"></div>
             </div>
         </div>
 
@@ -220,13 +218,17 @@
     </script>
     <script src="affiliates.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            if (typeof loadAffiliateSlider === "function") {
-                loadAffiliateSlider('indoor-gardening', 'gardening-slider-box');
-                loadAffiliateProducts('indoor-gardening', 'gardening-refresh-box');
-            } else {
-                console.error("affiliates.js is not loaded properly.");
+        document.addEventListener("DOMContentLoaded", function() {
+            const totalProducts = 9;
+            const firstIndex = Math.floor(Math.random() * totalProducts);
+            let secondIndex = Math.floor(Math.random() * totalProducts);
+            
+            while (secondIndex === firstIndex) {
+                secondIndex = Math.floor(Math.random() * totalProducts);
             }
+
+            loadAffiliateProducts('indoor-gardening', 'compost-product-box-1', firstIndex);
+            loadAffiliateProducts('indoor-gardening', 'compost-product-box-2', secondIndex);
         });
     </script>
     <script src="nav.js"></script>
