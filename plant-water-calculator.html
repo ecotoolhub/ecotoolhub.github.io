@@ -124,28 +124,23 @@
             <!-- Left Column: Tool -->
             <div class="card">
                 <h1>Plant Water & Humidity Estimator</h1>
-                <p class="subtitle">Determine exact weekly watering volume and misting schedules for your house plants.</p>
+                <p class="subtitle">Calculate optimal watering schedule and target humidity levels for indoor & outdoor plants.</p>
                 
                 <div class="form-group">
-                    <label for="potDiameter">Pot Diameter (Inches):</label>
-                    <input type="number" id="potDiameter" placeholder="e.g., 8">
+                    <label for="potSize">Pot Size (Inches / Diameter):</label>
+                    <input type="number" id="potSize" placeholder="e.g., 8" value="8">
                 </div>
 
                 <div class="form-group">
-                    <label for="plantType">Plant Type:</label>
+                    <label for="plantType">Plant Category:</label>
                     <select id="plantType">
-                        <option value="tropical">Tropical / Foliage (High Moisture)</option>
-                        <option value="succulent">Succulent / Cactus (Low Moisture)</option>
-                        <option value="herb">Vegetable / Culinary Herb (Moderate Moisture)</option>
+                        <option value="tropical">Tropical / Foliage (High Humidity)</option>
+                        <option value="succulent">Succulents & Cacti (Low Water)</option>
+                        <option value="vegetable">Vegetables / Herbs (Moisture Loving)</option>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="roomTemp">Average Indoor Temperature (°C):</label>
-                    <input type="number" id="roomTemp" placeholder="e.g., 25" value="25">
-                </div>
-
-                <button class="calc-btn" onclick="calculatePlantWater()">Calculate Water & Mist Schedule</button>
+                <button class="calc-btn" onclick="calculatePlantWater()">Estimate Plant Care Needs</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
@@ -153,11 +148,11 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>💧 Weekly Water Need:</b>
+                            <b>💧 Water Volume:</b>
                             <span id="waterVol">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>📅 Frequency:</b>
+                            <b>📅 Interval:</b>
                             <span id="waterFreq">-</span>
                         </div>
                         <div class="decision-item">
@@ -165,35 +160,34 @@
                             <span id="humidityTarget">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🌿 Misting Schedule:</b>
-                            <span id="mistingNeed">-</span>
+                            <b>🪴 Recommended Tool:</b>
+                            <span id="recTool">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Dynamic SEO-Optimized Affiliate Boxes -->
+            <!-- Right Column: Temu Physical Deals Slider (TOP) + Digital Product Offer (BOTTOM) -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Temu Physical Deals Slider (TOP) -->
+                <div id="temu-plant-slider-container"></div>
+
+                <!-- Digital Product Offer (Digistore24) (BOTTOM) -->
                 <div id="plant-product-box-1"></div>
-                <div id="plant-product-box-2"></div>
             </div>
         </div>
 
         <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Precision Plant Hydration & Indoor Microclimate Management</h2>
-            <p>Overwatering and low humidity are the primary causes of indoor plant decline. Calculating precise water volume based on container diameter, plant category, and ambient room temperature prevents root rot while ensuring vibrant foliage growth.</p>
-            
-            <h3>Optimizing Indoor & Container Farming:</h3>
-            <p>Combining proper watering techniques with structured garden planners, container vegetable systems, and herbal cultivation guides guarantees thriving indoor gardens and bountiful organic yields.</p>
+            <h2>Optimizing Indoor Plant Moisture & Smart Drip Irrigation</h2>
+            <p>Managing soil moisture levels accurately reduces root rot and promotes healthy plant foliage. Automated drip irrigation kits, smart WiFi sensors, and full-spectrum LED grow lights offer consistent growth environments for indoor gardening.</p>
         </div>
     </div>
 
     <script>
         function calculatePlantWater() {
-            const potInches = parseFloat(document.getElementById('potDiameter').value) || 0;
-            const plantType = document.getElementById('plantType').value;
-            const temp = parseFloat(document.getElementById('roomTemp').value) || 25;
+            const pot = parseFloat(document.getElementById('potSize').value) || 8;
+            const type = document.getElementById('plantType').value;
 
             const box = document.getElementById('resultBox');
             const title = document.getElementById('resultTitle');
@@ -202,57 +196,47 @@
             const volEl = document.getElementById('waterVol');
             const freqEl = document.getElementById('waterFreq');
             const humEl = document.getElementById('humidityTarget');
-            const mistEl = document.getElementById('mistingNeed');
+            const toolEl = document.getElementById('recTool');
 
-            if (potInches <= 0) {
-                alert("Please enter a valid pot diameter!");
-                return;
+            let vol = Math.round(pot * 45); // ml
+            let freq = "Every 3-4 Days";
+            let hum = "50% - 60%";
+            let tool = "Smart Drip Irrigation";
+
+            if (type === "succulent") {
+                vol = Math.round(pot * 20);
+                freq = "Every 10-14 Days";
+                hum = "30% - 40%";
+                tool = "Moisture Tester Sensor";
+            } else if (type === "vegetable") {
+                vol = Math.round(pot * 60);
+                freq = "Every 1-2 Days";
+                hum = "60% - 70%";
+                tool = "Solar Auto Drip Kit";
             }
-
-            let baseMl = potInches * 60;
-            if (plantType === 'succulent') baseMl *= 0.35;
-            if (plantType === 'herb') baseMl *= 0.8;
-            if (temp > 28) baseMl *= 1.2;
 
             box.style.display = 'block';
 
-            title.innerHTML = `Recommended Hydration: ~${Math.round(baseMl)} ml / Week`;
+            title.innerHTML = "Plant Care Estimate";
             box.style.borderLeftColor = "#10b981";
             title.style.color = "#10b981";
-            desc.innerHTML = `Optimal hydration for a ${potInches}" pot in ~${temp}°C room temperature.`;
+            desc.innerHTML = "Care parameters for a " + pot + "-inch pot size.";
 
-            volEl.innerHTML = `💧 ~${Math.round(baseMl)} ml Total`;
-            
-            if (plantType === 'succulent') {
-                freqEl.innerHTML = "📅 Every 12-14 Days";
-                humEl.innerHTML = "💨 30-40% (Low)";
-                mistEl.innerHTML = "🚫 Do Not Mist";
-            } else if (plantType === 'herb') {
-                freqEl.innerHTML = "📅 Every 4-5 Days";
-                humEl.innerHTML = "💨 50-60% (Moderate)";
-                mistEl.innerHTML = "🌿 Mist 1x Weekly";
-            } else {
-                freqEl.innerHTML = "📅 Every 3-4 Days";
-                humEl.innerHTML = "💨 60-70% (High)";
-                mistEl.innerHTML = "🌿 Mist 2-3x Weekly";
-            }
+            volEl.innerHTML = "~" + vol + " ml per session";
+            freqEl.innerHTML = freq;
+            humEl.innerHTML = hum;
+            toolEl.innerHTML = tool;
         }
     </script>
     <script src="affiliates.js"></script>
+    <script src="temu-affiliates.js?v=6.0"></script>
     <script>
-        // Dynamic random rotation across all 9 indoor-gardening products
         document.addEventListener("DOMContentLoaded", function() {
-            const totalProducts = 9; // Total products in indoor-gardening
-            const firstIndex = Math.floor(Math.random() * totalProducts);
-            let secondIndex = Math.floor(Math.random() * totalProducts);
-            
-            // Ensure Box 2 shows a different product than Box 1
-            while (secondIndex === firstIndex) {
-                secondIndex = Math.floor(Math.random() * totalProducts);
-            }
+            // Load Temu Physical Product Slider (TOP)
+            renderTemuSlider('indoor-gardening', 'temu-plant-slider-container');
 
-            loadAffiliateProducts('indoor-gardening', 'plant-product-box-1', firstIndex);
-            loadAffiliateProducts('indoor-gardening', 'plant-product-box-2', secondIndex);
+            // Load Digital Product Box (BOTTOM)
+            loadAffiliateProducts('indoor-gardening', 'plant-product-box-1');
         });
     </script>
     <script src="nav.js"></script>
