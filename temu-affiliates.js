@@ -24,9 +24,6 @@ function calculatePrices(rawPrice) {
     };
 }
 
-// SVG Fallback Banner (If link ever fails)
-const defaultSolarImg = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20300%22%3E%3Crect%20fill%3D%22%231e293b%22%20width%3D%22500%22%20height%3D%22300%22%2F%3E%3Ctext%20fill%3D%22%23f97316%22%20font-family%3D%22sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22bold%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%20dy%3D%22.3em%22%3ETemu%20Solar%20Deal%3C%2Ftext%3E%3C%2Fsvg%3E";
-
 // Full Temu Solar Physical Products Pool
 const temuData = {
     "solar-energy": [
@@ -34,151 +31,151 @@ const temuData = {
             title: "NITEK 9000mAh Solar Generator Kit with USB Charger & LED Light",
             rawPrice: "Rs.8,437",
             link: "https://temu.to/k/e10mj3jtsqe",
-            image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600&auto=format&fit=crop&q=80"
+            badge: "HOT SELLER"
         },
         {
             title: "A Portable 6V Rechargeable Solar Panel Power Generation System",
             rawPrice: "Rs.8,246",
             link: "https://temu.to/k/edpvs4ourjg",
-            image: "https://images.unsplash.com/photo-1508873696983-2df515122519?w=600&auto=format&fit=crop&q=80"
+            badge: "TOP RATED"
         },
         {
             title: "2 to 4/6/8 Y-Branch Parallel Solar Panel Connectors & Splitters",
             rawPrice: "Rs.3,115",
             link: "https://temu.to/k/es8dyxlla44",
-            image: "https://images.unsplash.com/photo-1548611716-30018596f2a2?w=600&auto=format&fit=crop&q=80"
+            badge: "BEST VALUE"
         },
         {
             title: "500W Continuous Power Inverter, 50W Solar Panel & 50A Controller Kit",
             rawPrice: "Rs.40,865",
             link: "https://temu.to/k/e1qqwds8fqz",
-            image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600&auto=format&fit=crop&q=80"
+            badge: "COMPLETE KIT"
         },
         {
             title: "22.5W Fast Charging Power Bank DIY Case (6x21700 QC3.0)",
             rawPrice: "Rs.8,500",
             link: "https://temu.to/k/eg1rvdpb47o",
-            image: "https://images.unsplash.com/photo-1609592424109-dd9892f1b177?w=600&auto=format&fit=crop&q=80"
+            badge: "FAST CHARGE"
         },
         {
             title: "Heavy-Duty Wireless Heating Lunch Box with 12000mAh Battery",
             rawPrice: "Rs.34,155",
             link: "https://temu.to/k/e1b1y7qqd5r",
-            image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=600&auto=format&fit=crop&q=80"
+            badge: "POPULAR"
         },
         {
             title: "1pc 100A Solar Charge Controller 12V/24V Auto Regulator",
             rawPrice: "Rs.2,230",
             link: "https://temu.to/k/eych3uo9xgj",
-            image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600&auto=format&fit=crop&q=80"
+            badge: "SMART REGULATOR"
         },
         {
             title: "120A MPPT Solar Charge Controller 60A (12V/24V/36V/48V Auto)",
             rawPrice: "Rs.16,368",
             link: "https://temu.to/k/eowfmxnimjm",
-            image: "https://images.unsplash.com/photo-1508873696983-2df515122519?w=600&auto=format&fit=crop&q=80"
+            badge: "HIGH EFFICIENCY"
         },
         {
             title: "150A 7200W Max MPPT Solar Controller with Smart Cooling Fan",
             rawPrice: "Rs.22,190",
             link: "https://temu.to/k/e17hjx30hm1",
-            image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600&auto=format&fit=crop&q=80"
+            badge: "HEAVY DUTY"
         },
         {
             title: "Solar Controller 12V/24V/36V/48V Parameter Adjustable LCD Display",
             rawPrice: "Rs.8,773",
             link: "https://temu.to/k/e57pzq4untn",
-            image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600&auto=format&fit=crop&q=80"
+            badge: "LCD DISPLAY"
         },
         {
             title: "Portable Power Inverter 300W DC 12V to AC 220V Dual USB",
             rawPrice: "Rs.19,643",
             link: "https://temu.to/k/emzahb8y87c",
-            image: "https://images.unsplash.com/photo-1609592424109-dd9892f1b177?w=600&auto=format&fit=crop&q=80"
+            badge: "DUAL USB"
         },
         {
             title: "100A 80A 60A MPPT Solar Charge Controller LCD Display Regulator",
             rawPrice: "Rs.8,635",
             link: "https://temu.to/k/eule1hdiow9",
-            image: "https://images.unsplash.com/photo-1508873696983-2df515122519?w=600&auto=format&fit=crop&q=80"
+            badge: "AUTO DETECT"
         },
         {
             title: "1 Pack Solar Outdoor Motion Sensor Light 106 Super Bright LEDs IP65",
             rawPrice: "Rs.9,020",
             link: "https://temu.to/k/e4s18njnz03",
-            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&auto=format&fit=crop&q=80"
+            badge: "MOTION SENSOR"
         },
         {
             title: "504 LED Solar Street Light with Remote Control & Motion Sensor",
             rawPrice: "Rs.14,433",
             link: "https://temu.to/k/e3pabdjr6w2",
-            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&auto=format&fit=crop&q=80"
+            badge: "SUPER BRIGHT"
         },
         {
             title: "High Brightness Commercial Solar Street Light Dusk to Dawn Sensor",
             rawPrice: "Rs.40,595",
             link: "https://temu.to/k/ebpwlken46k",
-            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&auto=format&fit=crop&q=80"
+            badge: "COMMERCIAL GRADE"
         },
         {
             title: "4pcs Solar Wall Light with Motion Sensor Remote Control IP65",
             rawPrice: "Rs.8,573",
             link: "https://temu.to/k/epq3ne35xhh",
-            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&auto=format&fit=crop&q=80"
+            badge: "4-PACK DEAL"
         },
         {
-            title: "Solar-Powered Outdoor Motion Sensor Floodlight 74 LEDs 270&deg; Angle",
+            title: "Solar-Powered Outdoor Motion Sensor Floodlight 74 LEDs 270 deg Angle",
             rawPrice: "Rs.4,980",
             link: "https://temu.to/k/eexss92yxah",
-            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&auto=format&fit=crop&q=80"
+            badge: "WIDE ANGLE"
         },
         {
             title: "172 LED Solar Outdoor Security Motion Sensor Flood Light IP65",
             rawPrice: "Rs.6,828",
             link: "https://temu.to/k/eus08rww2z9",
-            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=600&auto=format&fit=crop&q=80"
+            badge: "WATERPROOF"
         },
         {
             title: "10 Pairs Solar Plug MC4 Connectors Male/Female Photovoltaic Plug",
             rawPrice: "Rs.2,832",
             link: "https://temu.to/k/e6r8bm7em5x",
-            image: "https://images.unsplash.com/photo-1548611716-30018596f2a2?w=600&auto=format&fit=crop&q=80"
+            badge: "EASY INSTALL"
         },
         {
-            title: "4/8 Adjustable Solar Tilt Mounting Bracket Bases 10&deg; to 60&deg;",
+            title: "4/8 Adjustable Solar Tilt Mounting Bracket Bases 10 to 60 deg",
             rawPrice: "Rs.19,083",
             link: "https://temu.to/k/egmxf37l195",
-            image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600&auto=format&fit=crop&q=80"
+            badge: "ROOF MOUNT"
         },
         {
             title: "104cm Adjustable Solar Panel Tilt Mounting Brackets for RVs/Roofs",
             rawPrice: "Rs.15,522",
             link: "https://temu.to/k/e09le8jeqdi",
-            image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600&auto=format&fit=crop&q=80"
+            badge: "FOLDABLE DESIGN"
         },
         {
             title: "11.8ft Solar Panel Cleaning Kit with Extendable Pole Tool",
             rawPrice: "Rs.29,700",
             link: "https://temu.to/k/ejuijnk2fkq",
-            image: "https://images.unsplash.com/photo-1508873696983-2df515122519?w=600&auto=format&fit=crop&q=80"
+            badge: "MAINTENANCE KIT"
         },
         {
             title: "4-Inch Wall/Glass Mounted Exhaust Ventilation Fan 15W 220V",
             rawPrice: "Rs.7,704",
             link: "https://temu.to/k/ebe0sp4aoza",
-            image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80"
+            badge: "LOW POWER"
         },
         {
             title: "Solar-Powered Exhaust Fan Featuring 17W/20W Panel & 8-Inch Fan",
             rawPrice: "Rs.25,554",
             link: "https://temu.to/k/e0tsax0ike9",
-            image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80"
+            badge: "HIGH SPEED"
         },
         {
             title: "17W Solar Powered Chicken Coop Ventilation System & 8-Inch Fan",
             rawPrice: "Rs.22,470",
             link: "https://temu.to/k/e23xnwagymy",
-            image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80"
+            badge: "ECO VENTILATION"
         }
     ]
 };
@@ -186,7 +183,7 @@ const temuData = {
 // Slider State Tracker
 const sliderStates = {};
 
-// Render Temu Slider Function
+// Render Temu Slider Function (CTA & Text Highlights Focused)
 function renderTemuSlider(categoryKey, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -201,29 +198,39 @@ function renderTemuSlider(categoryKey, containerId) {
     const index = sliderStates[containerId];
     const item = products[index];
     const priceInfo = calculatePrices(item.rawPrice);
+    const itemBadge = item.badge || "RECOMMENDED DEAL";
 
     container.innerHTML = `
-        <div class="temu-slider-card" style="background-color: #0f172a; border: 1px solid #f97316; border-radius: 12px; padding: 18px; text-align: center; position: relative; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.15);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <span style="background: #f97316; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold; text-transform: uppercase;">Temu Hot Deal</span>
-                <span style="color: #94a3b8; font-size: 12px; font-weight: bold;">Item ` + (index + 1) + ` of ` + products.length + `</span>
+        <div class="temu-slider-card" style="background-color: #0f172a; border: 2px solid #f97316; border-radius: 14px; padding: 22px; text-align: center; position: relative; box-shadow: 0 8px 25px rgba(249, 115, 22, 0.2);">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <span style="background: #f97316; color: white; padding: 4px 10px; font-size: 11px; border-radius: 6px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">&#9889; ` + itemBadge + `</span>
+                <span style="color: #94a3b8; font-size: 12px; font-weight: 700;">Item ` + (index + 1) + ` of ` + products.length + `</span>
             </div>
             
-            <img src="` + item.image + `" alt="` + item.title + `" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='` + defaultSolarImg + `';" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; background-color: #1e293b;">
-            
-            <h4 style="color: #f8fafc; font-size: 14px; margin: 0 0 10px 0; line-height: 1.4; min-height: 38px;">` + item.title + `</h4>
-            
-            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 14px;">
-                <span style="color: #10b981; font-size: 22px; font-weight: bold;">` + priceInfo.dealPrice + `</span>
-                <span style="color: #94a3b8; font-size: 13px; text-decoration: line-through;">` + priceInfo.originalPrice + `</span>
-                <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: bold; padding: 2px 6px; border-radius: 4px;">` + priceInfo.savePct + `</span>
+            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 10px; padding: 16px; margin-bottom: 16px;">
+                <h3 style="color: #f8fafc; font-size: 15px; font-weight: 700; margin: 0 0 10px 0; line-height: 1.5; min-height: 45px;">` + item.title + `</h3>
+                
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 8px;">
+                    <span style="color: #10b981; font-size: 26px; font-weight: 800;">` + priceInfo.dealPrice + `</span>
+                    <span style="color: #94a3b8; font-size: 14px; text-decoration: line-through;">` + priceInfo.originalPrice + `</span>
+                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px;">` + priceInfo.savePct + `</span>
+                </div>
+            </div>
+
+            <div style="text-align: left; background: #1e293b; border-radius: 8px; padding: 12px 16px; margin-bottom: 18px; font-size: 12px; color: #cbd5e1; line-height: 1.8;">
+                <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #10b981; font-weight: bold;">&#10003;</span> Verified Quality & High Efficiency</div>
+                <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #10b981; font-weight: bold;">&#10003;</span> Exclusive Discount via Temu Promo</div>
+                <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #10b981; font-weight: bold;">&#10003;</span> Fast Shipping & Buyer Protection</div>
             </div>
             
-            <a href="` + item.link + `" target="_blank" style="display: block; background-color: #f97316; color: white; text-decoration: none; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 14px; margin-bottom: 12px; transition: background 0.3s;">View Deal on Temu</a>
+            <a href="` + item.link + `" target="_blank" style="display: block; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 15px; letter-spacing: 0.3px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4); transition: transform 0.2s;">
+                View Deal on Temu &rarr;
+            </a>
             
             <div style="display: flex; gap: 10px; justify-content: center;">
-                <button onclick="changeTemuSlide('` + categoryKey + `', '` + containerId + `', -1)" style="flex: 1; background: #334155; color: white; border: none; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: bold;">&#10094; Prev</button>
-                <button onclick="changeTemuSlide('` + categoryKey + `', '` + containerId + `', 1)" style="flex: 1; background: #334155; color: white; border: none; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: bold;">Next &#10095;</button>
+                <button onclick="changeTemuSlide('` + categoryKey + `', '` + containerId + `', -1)" style="flex: 1; background: #334155; color: white; border: 1px solid #475569; padding: 9px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 13px;">&#10094; Prev</button>
+                <button onclick="changeTemuSlide('` + categoryKey + `', '` + containerId + `', 1)" style="flex: 1; background: #334155; color: white; border: 1px solid #475569; padding: 9px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 13px;">Next &#10095;</button>
             </div>
         </div>
     `;
