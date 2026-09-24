@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Compost & Organic Garden Planner - Eco Tool Hub</title>
+    <title>Compost C:N Ratio & Bin Calculator - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -55,7 +55,7 @@
         p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
-        input {
+        input, select {
             width: 100%;
             padding: 10px 12px;
             background-color: #0b0f19;
@@ -64,7 +64,7 @@
             color: white;
             font-size: 15px;
         }
-        input:focus { outline: none; border-color: var(--accent-color); }
+        input:focus, select:focus { outline: none; border-color: var(--accent-color); }
         button.calc-btn {
             width: 100%;
             background-color: var(--accent-color);
@@ -123,20 +123,24 @@
         <div class="main-container">
             <!-- Left Column: Tool -->
             <div class="card">
-                <h1>Smart Compost & Organic Garden Planner</h1>
-                <p class="subtitle">Calculate optimal carbon-to-nitrogen ratios, compost volume, and soil enrichment needs.</p>
+                <h1>Compost C:N Ratio & Bin Calculator</h1>
+                <p class="subtitle">Estimate the balance of greens (nitrogen) and browns (carbon) for rapid decomposition.</p>
                 
                 <div class="form-group">
-                    <label for="greenWaste">Weekly Green Waste / Food Scraps (kg):</label>
-                    <input type="number" id="greenWaste" placeholder="e.g., 5">
+                    <label for="greenWeight">Green Waste Weight (Kitchen Scraps in kg):</label>
+                    <input type="number" id="greenWeight" placeholder="e.g., 5" value="5">
                 </div>
 
                 <div class="form-group">
-                    <label for="brownWaste">Weekly Brown Waste / Dry Leaves (kg):</label>
-                    <input type="number" id="brownWaste" placeholder="e.g., 10">
+                    <label for="brownType">Primary Brown Material Type:</label>
+                    <select id="brownType">
+                        <option value="leaves">Dry Leaves / Straw (High Carbon)</option>
+                        <option value="sawdust">Wood Sawdust / Chips (Very High Carbon)</option>
+                        <option value="cardboard">Shredded Cardboard / Paper</option>
+                    </select>
                 </div>
 
-                <button class="calc-btn" onclick="calculateCompost()">Calculate Organic Yield</button>
+                <button class="calc-btn" onclick="calculateCompost()">Calculate Compost Balance</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
@@ -144,94 +148,95 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>🍂 Carbon:Nitrogen Ratio:</b>
+                            <b>🍂 Brown Material Needed:</b>
+                            <span id="brownNeeded">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>⚖️ Estimated C:N Ratio:</b>
                             <span id="cnRatio">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🪴 Estimated Compost Volume:</b>
-                            <span id="compostVol">-</span>
+                            <b>🗑️ Recommended Bin:</b>
+                            <span id="recBinSize">-</span>
                         </div>
                         <div class="decision-item">
                             <b>⏱️ Decomposition Time:</b>
                             <span id="decompTime">-</span>
                         </div>
-                        <div class="decision-item">
-                            <b>🌱 Garden Suitability:</b>
-                            <span id="gardenSuitability">-</span>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Dynamic Relevant Product Boxes -->
+            <!-- Right Column: Temu Physical Deals Slider (TOP) + Digital Product Offer (BOTTOM) -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Temu Physical Deals Slider (TOP) -->
+                <div id="temu-compost-slider-container"></div>
+
+                <!-- Digital Product Offer (Digistore24) (BOTTOM) -->
                 <div id="compost-product-box-1"></div>
-                <div id="compost-product-box-2"></div>
             </div>
         </div>
 
         <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Mastering Home Composting & Indoor Organic Gardening</h2>
-            <p>Achieving healthy, nutrient-rich soil requires balancing nitrogen-rich green waste with carbon-rich brown material at an optimal 30:1 ratio. Our Smart Compost Planner helps homeowners recycle kitchen waste efficiently into natural fertilizer.</p>
-            
-            <h3>Optimizing Small-Space Urban Gardening:</h3>
-            <p>Whether managing container vegetable setups or balcony herb gardens, utilizing structured planners and organic composting guarantees high yields and sustainable food production.</p>
+            <h2>Mastering the Carbon-to-Nitrogen (C:N) Ratio in Composting</h2>
+            <p>Achieving a balanced 30:1 carbon-to-nitrogen ratio accelerates microbial breakdown, eliminates foul odors, and turns kitchen waste into rich organic fertilizer efficiently. Using stainless steel countertop bins, tumbler barrels, and digital thermometers makes home composting seamless.</p>
         </div>
     </div>
 
     <script>
         function calculateCompost() {
-            const green = parseFloat(document.getElementById('greenWaste').value) || 0;
-            const brown = parseFloat(document.getElementById('brownWaste').value) || 0;
+            const greens = parseFloat(document.getElementById('greenWeight').value) || 5;
+            const type = document.getElementById('brownType').value;
 
             const box = document.getElementById('resultBox');
             const title = document.getElementById('resultTitle');
             const desc = document.getElementById('resultDesc');
             
+            const brownEl = document.getElementById('brownNeeded');
             const ratioEl = document.getElementById('cnRatio');
-            const volEl = document.getElementById('compostVol');
+            const binEl = document.getElementById('recBinSize');
             const timeEl = document.getElementById('decompTime');
-            const suitEl = document.getElementById('gardenSuitability');
 
-            if (green <= 0 && brown <= 0) {
-                alert("Please enter valid waste values!");
-                return;
+            let brownsMultiplier = 2.5;
+            let ratio = "28:1 (Optimal)";
+            let time = "6 - 8 Weeks";
+
+            if (type === "sawdust") {
+                brownsMultiplier = 1.8;
+                ratio = "32:1 (Good)";
+                time = "8 - 10 Weeks";
+            } else if (type === "cardboard") {
+                brownsMultiplier = 2.2;
+                ratio = "30:1 (Balanced)";
+                time = "6 - 7 Weeks";
             }
 
-            const totalKg = green + brown;
-            const approxRatio = brown > 0 ? (brown / (green || 1) * 15).toFixed(0) : "10";
-            const monthlyLiters = (totalKg * 4 * 0.6).toFixed(0);
+            let brownsNeededKg = (greens * brownsMultiplier).toFixed(1);
+            let recommendedBinSize = greens > 10 ? "50L - 100L Tumbler Bin" : "10L - 20L Countertop Bin";
 
             box.style.display = 'block';
 
-            title.innerHTML = `Compost Production: ~${monthlyLiters} Liters / Month`;
+            title.innerHTML = "Composting Formula Analysis";
             box.style.borderLeftColor = "#10b981";
             title.style.color = "#10b981";
-            desc.innerHTML = `Based on your weekly input of ${totalKg} kg organic waste material.`;
+            desc.innerHTML = "Based on " + greens + " kg of kitchen green waste.";
 
-            ratioEl.innerHTML = `🍂 C:N ~${approxRatio}:1 Ratio`;
-            volEl.innerHTML = `🪴 ~${monthlyLiters} L Rich Soil / Mo`;
-            timeEl.innerHTML = "⏱️ 6-8 Weeks Active Batch";
-            suitEl.innerHTML = "🟢 Excellent for Vegetables";
+            brownEl.innerHTML = "~" + brownsNeededKg + " kg Browns";
+            ratioEl.innerHTML = ratio;
+            binEl.innerHTML = recommendedBinSize;
+            timeEl.innerHTML = time;
         }
     </script>
     <script src="affiliates.js"></script>
+    <script src="temu-affiliates.js?v=7.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Using 'indoor-gardening' category which contains all 9 composting & gardening products
-            const categoryKey = 'indoor-gardening';
-            const totalProducts = (typeof affiliateData !== 'undefined' && affiliateData[categoryKey]) ? affiliateData[categoryKey].length : 9;
-            
-            const firstIndex = Math.floor(Math.random() * totalProducts);
-            let secondIndex = Math.floor(Math.random() * totalProducts);
-            
-            while (secondIndex === firstIndex && totalProducts > 1) {
-                secondIndex = Math.floor(Math.random() * totalProducts);
-            }
+            // Load Temu Physical Product Slider (TOP)
+            renderTemuSlider('compost-calculator', 'temu-compost-slider-container');
 
-            loadAffiliateProducts(categoryKey, 'compost-product-box-1', firstIndex);
-            loadAffiliateProducts(categoryKey, 'compost-product-box-2', secondIndex);
+            // Load Digital Product Box (BOTTOM)
+            loadAffiliateProducts('compost-calculator', 'compost-product-box-1');
         });
     </script>
     <script src="nav.js"></script>
