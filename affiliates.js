@@ -27,6 +27,44 @@ const affiliateData = {
             link: "https://www.checkout-ds24.com/redir/732876/umer7367/"
         }
     ],
+    "composting-gardening": [
+        {
+            title: "The Self-Sufficient Backyard Manual",
+            description: "Step-by-step guide for composting, organic soil building, and backyard self-reliance.",
+            buttonText: "Check Offer",
+            link: "https://independentbackyard.com/my-book/#aff=umer7367"
+        },
+        {
+            title: "The Grocery Freedom Garden Blueprint",
+            description: "Learn how to turn kitchen waste into organic soil and grow budget-friendly greens.",
+            buttonText: "Learn More",
+            link: "https://buylessmakemore.com/GFG_sales-page.html#aff=umer7367"
+        },
+        {
+            title: "Printable Garden Planner & Tracking Logbook",
+            description: "Track compost batches, soil pH, and indoor garden schedules effortlessly.",
+            buttonText: "Get Planner",
+            link: "https://www.checkout-ds24.com/redir/724875/umer7367/"
+        },
+        {
+            title: "The 5 Foot Farm Micro-Gardening Guide",
+            description: "High-yield organic soil farming blueprint optimized for tiny spaces and balconies.",
+            buttonText: "View Blueprint",
+            link: "https://cf.5footfarm.com/vsl-v1-live-h3jk4-e4f19-fp-nv#aff=umer7367"
+        },
+        {
+            title: "The 3-Minute Garden Master Blueprint",
+            description: "Fast organic soil creation techniques and space-saving plant setups.",
+            buttonText: "Get Instant Access",
+            link: "http://www.betterdailyguide.site/ds24/5-minute-garden#aff=umer7367"
+        },
+        {
+            title: "Container Vegetable Gardening Handbook",
+            description: "Complete guide for balcony pots, organic soil mix, and container gardening.",
+            buttonText: "Download Guide",
+            link: "https://www.checkout-ds24.com/redir/725086/umer7367/"
+        }
+    ],
     "indoor-gardening": [
         {
             title: "The 3-Minute Garden Master Blueprint",
@@ -82,10 +120,30 @@ const affiliateData = {
             buttonText: "Watch Masterclass",
             link: "https://gardeningkitformedicinalplants-5zp.plannerpack.co#aff=umer7367"
         }
+    ],
+    "air-quality-health": [
+        {
+            title: "The Holistic Healing & Herbal Handbook",
+            description: "Natural indoor wellness, organic remedies, and holistic health routines.",
+            buttonText: "Get Herbal Guide",
+            link: "https://www.theherbalhandbook.site/#aff=umer7367"
+        },
+        {
+            title: "Backyard Healing Herbs Complete Guide",
+            description: "Learn to cultivate medicinal plants and prepare eco-friendly home remedies.",
+            buttonText: "Order Guide",
+            link: "https://www.digistore24.com/redir/454227/umer7367/"
+        },
+        {
+            title: "Medicinal Plants Indoor Cultivation Kit",
+            description: "Video course and guide for growing air-purifying and medicinal plants indoors.",
+            buttonText: "Watch Masterclass",
+            link: "https://gardeningkitformedicinalplants-5zp.plannerpack.co#aff=umer7367"
+        }
     ]
 };
 
-// Universal Affiliate Card Loader
+// Universal Affiliate Loader Function
 function loadAffiliateProducts(categoryKey, containerId, index = null) {
     const container = document.getElementById(containerId);
     if (!container) return;
