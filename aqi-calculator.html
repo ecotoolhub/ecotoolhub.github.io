@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indoor Air Quality & Health Risk Calculator - Eco Tool Hub</title>
+    <title>Indoor AQI & Health Safety Planner - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -55,7 +55,7 @@
         p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
-        input, select {
+        input {
             width: 100%;
             padding: 10px 12px;
             background-color: #0b0f19;
@@ -64,7 +64,7 @@
             color: white;
             font-size: 15px;
         }
-        input:focus, select:focus { outline: none; border-color: var(--accent-color); }
+        input:focus { outline: none; border-color: var(--accent-color); }
         button.calc-btn {
             width: 100%;
             background-color: var(--accent-color);
@@ -127,16 +127,16 @@
                 <p class="subtitle">Evaluate indoor air quality risks, ventilation needs, and eco-wellness recommendations.</p>
                 
                 <div class="form-group">
-                    <label for="pm25Level">Estimated PM2.5 / Outdoor Air AQI:</label>
-                    <input type="number" id="pm25Level" placeholder="e.g., 85">
+                    <label for="aqiVal">Estimated PM2.5 / Outdoor Air AQI:</label>
+                    <input type="number" id="aqiVal" placeholder="e.g., 85" value="85">
                 </div>
 
                 <div class="form-group">
-                    <label for="roomSize">Room Size (Square Feet):</label>
-                    <input type="number" id="roomSize" placeholder="e.g., 250">
+                    <label for="roomSqft">Room Size (Square Feet):</label>
+                    <input type="number" id="roomSqft" placeholder="e.g., 250" value="250">
                 </div>
 
-                <button class="calc-btn" onclick="calculateAQI()">Analyze Air Safety</button>
+                <button class="calc-btn" onclick="calculateAqi()">Analyze Air Safety</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
@@ -144,106 +144,94 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>🛡️ Air Quality Status:</b>
-                            <span id="aqiStatus">-</span>
+                            <b>🛡️ Health Level:</b>
+                            <span id="healthLvl">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🌿 Recommended Plants:</b>
-                            <span id="plantCount">-</span>
+                            <b>💨 Recommended CADR:</b>
+                            <span id="recCadr">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>💨 Air Circulation Need:</b>
-                            <span id="ventilationNeed">-</span>
+                            <b>🩺 Mask / Filter Need:</b>
+                            <span id="filterNeed">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🩺 Health Risk Level:</b>
-                            <span id="healthRisk">-</span>
+                            <b>🌿 Recommended Solution:</b>
+                            <span id="recSol">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Dynamic SEO-Optimized Affiliate Boxes -->
+            <!-- Right Column: Temu Physical Deals Slider (TOP) + Digital Product Offer (BOTTOM) -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div id="health-product-box-1"></div>
-                <div id="health-product-box-2"></div>
+                <!-- Temu Physical Deals Slider (TOP) -->
+                <div id="temu-aqi-slider-container"></div>
+
+                <!-- Digital Product Offer (Digistore24) (BOTTOM) -->
+                <div id="aqi-product-box-1"></div>
             </div>
         </div>
 
         <!-- SEO Content -->
         <div class="seo-content">
             <h2>Indoor Air Quality & Natural Wellness Architecture</h2>
-            <p>Indoor air pollution can often exceed outdoor levels due to dust accumulation, volatile organic compounds (VOCs), and improper ventilation. Utilizing air-purifying indoor flora along with holistic wellness approaches creates a cleaner, toxin-free home environment.</p>
-            
-            <h3>Promoting Holistic Health & Clean Air:</h3>
-            <p>Integrating natural herbal remedies, indoor air-purifying plants, and eco-friendly home practices significantly reduces respiratory stress and boosts long-term household wellness.</p>
+            <p>Indoor air pollution can often exceed outdoor levels due to dust accumulation, volatile organic compounds (VOCs), and improper ventilation. Utilizing air-purifying True HEPA systems, digital PM2.5 detectors, and negative ion air fresheners provides immediate respiratory relief.</p>
         </div>
     </div>
 
     <script>
-        function calculateAQI() {
-            const aqi = parseFloat(document.getElementById('pm25Level').value) || 0;
-            const sqft = parseFloat(document.getElementById('roomSize').value) || 0;
+        function calculateAqi() {
+            const aqi = parseFloat(document.getElementById('aqiVal').value) || 0;
+            const sqft = parseFloat(document.getElementById('roomSqft').value) || 250;
 
             const box = document.getElementById('resultBox');
             const title = document.getElementById('resultTitle');
             const desc = document.getElementById('resultDesc');
             
-            const statusEl = document.getElementById('aqiStatus');
-            const plantEl = document.getElementById('plantCount');
-            const ventEl = document.getElementById('ventilationNeed');
-            const riskEl = document.getElementById('healthRisk');
+            const healthEl = document.getElementById('healthLvl');
+            const cadrEl = document.getElementById('recCadr');
+            const filterEl = document.getElementById('filterNeed');
+            const solEl = document.getElementById('recSol');
 
-            if (aqi <= 0 || sqft <= 0) {
-                alert("Please enter valid positive values!");
-                return;
+            let cadr = Math.round(sqft * 0.67); // CFM needed
+            let health = "Moderate Air Quality";
+            let filter = "Optional HEPA";
+            let sol = "5-in-1 AQI Monitor";
+
+            if (aqi <= 50) {
+                health = "Good / Healthy Air";
+                filter = "Basic Dust Filter";
+                sol = "Negative Ion Purifier";
+            } else if (aqi > 100 && aqi <= 150) {
+                health = "Unhealthy for Sensitive Groups";
+                filter = "HEPA Filter Recommended";
+                sol = "True HEPA Air Purifier";
+            } else if (aqi > 150) {
+                health = "Unhealthy / Hazardous Air";
+                filter = "Mandatory True HEPA + Mask";
+                sol = "10-in-1 AQI + Dual HEPA";
             }
-
-            const plantsNeeded = Math.ceil(sqft / 100);
 
             box.style.display = 'block';
 
-            if (aqi <= 50) {
-                title.innerHTML = "Air Quality: Good (Safe)";
-                box.style.borderLeftColor = "#10b981";
-                title.style.color = "#10b981";
-                statusEl.innerHTML = "🟢 Clean & Fresh Air";
-                riskEl.innerHTML = "🟢 Minimal Risk";
-            } else if (aqi <= 100) {
-                title.innerHTML = "Air Quality: Moderate Risk";
-                box.style.borderLeftColor = "#f59e0b";
-                title.style.color = "#f59e0b";
-                statusEl.innerHTML = "🟡 Moderate Pollutants";
-                riskEl.innerHTML = "🟡 Low Health Concern";
-            } else {
-                title.innerHTML = "Air Quality: Poor (Action Required)";
-                box.style.borderLeftColor = "#ef4444";
-                title.style.color = "#ef4444";
-                statusEl.innerHTML = "🔴 High Pollutant Density";
-                riskEl.innerHTML = "🔴 Elevated Health Risk";
-            }
+            title.innerHTML = "Air Analysis: AQI " + aqi;
+            box.style.borderLeftColor = "#10b981";
+            title.style.color = "#10b981";
+            desc.innerHTML = "Evaluation for a " + sqft + " sq. ft. room size.";
 
-            desc.innerHTML = `Assessment based on AQI value of ${aqi} for a ${sqft} sq. ft. living space.`;
-
-            plantEl.innerHTML = `🌿 ~${plantsNeeded} Air-Purifying Plants`;
-            ventEl.innerHTML = aqi > 100 ? "💨 High Air Renewal Required" : "💨 Standard Ventilation";
+            healthEl.innerHTML = health;
+            cadrEl.innerHTML = "~" + cadr + " CFM Purifier";
+            filterEl.innerHTML = filter;
+            solEl.innerHTML = sol;
         }
     </script>
     <script src="affiliates.js"></script>
+    <script src="temu-affiliates.js?v=11.0"></script>
     <script>
-        // Random Rotation Script across 3 products without duplication
         document.addEventListener("DOMContentLoaded", function() {
-            const totalProducts = 3; // Total products in air-quality-health
-            const firstIndex = Math.floor(Math.random() * totalProducts);
-            let secondIndex = Math.floor(Math.random() * totalProducts);
-            
-            // Ensure Box 2 shows a different product than Box 1
-            while (secondIndex === firstIndex) {
-                secondIndex = Math.floor(Math.random() * totalProducts);
-            }
-
-            loadAffiliateProducts('air-quality-health', 'health-product-box-1', firstIndex);
-            loadAffiliateProducts('air-quality-health', 'health-product-box-2', secondIndex);
+            renderTemuSlider('aqi-safety', 'temu-aqi-slider-container');
+            loadAffiliateProducts('aqi-safety', 'aqi-product-box-1');
         });
     </script>
     <script src="nav.js"></script>
