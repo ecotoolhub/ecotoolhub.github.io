@@ -24,7 +24,7 @@ function calculatePrices(rawPrice) {
     };
 }
 
-// Guaranteed Fallback SVG Image
+// SVG Fallback Banner (If link ever fails)
 const defaultSolarImg = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20300%22%3E%3Crect%20fill%3D%22%231e293b%22%20width%3D%22500%22%20height%3D%22300%22%2F%3E%3Ctext%20fill%3D%22%23f97316%22%20font-family%3D%22sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22bold%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%20dy%3D%22.3em%22%3ETemu%20Solar%20Deal%3C%2Ftext%3E%3C%2Fsvg%3E";
 
 // Full Temu Solar Physical Products Pool
@@ -209,7 +209,7 @@ function renderTemuSlider(categoryKey, containerId) {
                 <span style="color: #94a3b8; font-size: 12px; font-weight: bold;">Item ` + (index + 1) + ` of ` + products.length + `</span>
             </div>
             
-            <img src="` + item.image + `" alt="` + item.title + `" onerror="this.onerror=null; this.src='` + defaultSolarImg + `';" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; background-color: #1e293b;">
+            <img src="` + item.image + `" alt="` + item.title + `" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='` + defaultSolarImg + `';" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; background-color: #1e293b;">
             
             <h4 style="color: #f8fafc; font-size: 14px; margin: 0 0 10px 0; line-height: 1.4; min-height: 38px;">` + item.title + `</h4>
             
