@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Plant Water & Humidity Planner - Eco Tool Hub</title>
+    <title>Plant Water & Humidity Estimator - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -55,7 +55,7 @@
         p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
-        select, input {
+        input, select {
             width: 100%;
             padding: 10px 12px;
             background-color: #0b0f19;
@@ -64,7 +64,7 @@
             color: white;
             font-size: 15px;
         }
-        select:focus, input:focus { outline: none; border-color: var(--accent-color); }
+        input:focus, select:focus { outline: none; border-color: var(--accent-color); }
         button.calc-btn {
             width: 100%;
             background-color: var(--accent-color);
@@ -103,29 +103,6 @@
         }
         .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
-        /* Affiliate Sidebar */
-        .affiliate-box {
-            background-color: var(--affiliate-bg);
-            border: 1px dashed var(--accent-color);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-        .affiliate-box h3 { color: #f8fafc; font-size: 18px; margin-top: 0; }
-        .affiliate-box p { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
-        .affiliate-btn {
-            display: block;
-            background-color: #f59e0b;
-            color: #0f172a;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: background 0.3s;
-        }
-        .affiliate-btn:hover { background-color: #d97706; }
-
         /* SEO Content */
         .seo-content {
             margin-top: 40px;
@@ -146,38 +123,29 @@
         <div class="main-container">
             <!-- Left Column: Tool -->
             <div class="card">
-                <h1>Smart Plant Care & Water Planner</h1>
-                <p class="subtitle">Calculate precise weekly watering volume and humidity needs for your indoor greens.</p>
+                <h1>Plant Water & Humidity Estimator</h1>
+                <p class="subtitle">Determine exact weekly watering volume and misting schedules for your house plants.</p>
                 
                 <div class="form-group">
-                    <label for="plantType">Select Plant Category:</label>
+                    <label for="potDiameter">Pot Diameter (Inches):</label>
+                    <input type="number" id="potDiameter" placeholder="e.g., 8">
+                </div>
+
+                <div class="form-group">
+                    <label for="plantType">Plant Type:</label>
                     <select id="plantType">
-                        <option value="succulent">Succulent / Cactus (Low Water)</option>
-                        <option value="tropical">Tropical Foliage (Monstera, Pothos)</option>
-                        <option value="fern">Fern / Moisture-Loving (High Water)</option>
-                        <option value="general">General Houseplant</option>
+                        <option value="tropical">Tropical / Foliage (High Moisture)</option>
+                        <option value="succulent">Succulent / Cactus (Low Moisture)</option>
+                        <option value="herb">Vegetable / Culinary Herb (Moderate Moisture)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="potSize">Pot Size / Diameter:</label>
-                    <select id="potSize">
-                        <option value="small">Small (4 inch / 10 cm)</option>
-                        <option value="medium" selected>Medium (6-8 inch / 15-20 cm)</option>
-                        <option value="large">Large (10+ inch / 25+ cm)</option>
-                    </select>
+                    <label for="roomTemp">Average Indoor Temperature (°C):</label>
+                    <input type="number" id="roomTemp" placeholder="e.g., 25" value="25">
                 </div>
 
-                <div class="form-group">
-                    <label for="roomEnv">Room Environment:</label>
-                    <select id="roomEnv">
-                        <option value="dry">Dry / AC Room (Fast evaporation)</option>
-                        <option value="normal" selected>Normal Room Climate</option>
-                        <option value="humid">Humid / Low Light (Slow drying)</option>
-                    </select>
-                </div>
-
-                <button class="calc-btn" onclick="calculatePlantWater()">Generate Care Schedule</button>
+                <button class="calc-btn" onclick="calculatePlantWater()">Calculate Water & Mist Schedule</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
@@ -185,58 +153,47 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>💧 Weekly Water Volume:</b>
+                            <b>💧 Weekly Water Need:</b>
                             <span id="waterVol">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>⏱️ Watering Frequency:</b>
+                            <b>📅 Frequency:</b>
                             <span id="waterFreq">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🌫️ Misting & Humidity:</b>
-                            <span id="mistingAdvice">-</span>
+                            <b>💨 Humidity Target:</b>
+                            <span id="humidityTarget">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>⚠️ Overwatering Risk:</b>
-                            <span id="rotRisk">-</span>
+                            <b>🌿 Misting Schedule:</b>
+                            <span id="mistingNeed">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Affiliate Box -->
+            <!-- Right Column: Dynamic SEO-Optimized Affiliate Boxes -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div class="card affiliate-box">
-                    <span style="background: #10b981; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">BEST SELLER</span>
-                    <h3 style="margin-top: 15px;">3-in-1 Soil Moisture & Light Meter</h3>
-                    <p>Never guess when to water again. Test soil moisture, pH, and sunlight levels instantly.</p>
-                    <a href="#" target="_blank" class="affiliate-btn">Check Price on Amazon</a>
-                </div>
-
-                <div class="card affiliate-box" style="border-color: #334155;">
-                    <span style="background: #334155; color: white; padding: 3px 8px; font-size: 11px; border-radius: 4px; font-weight: bold;">GROWTH BOOST</span>
-                    <h3 style="margin-top: 15px;">Self-Watering Indoor Plant Pots</h3>
-                    <p>Keep your house plants hydrated automatically while you are away from home.</p>
-                    <a href="#" target="_blank" class="affiliate-btn" style="background-color: #3b82f6; color: white;">View Best Offer</a>
-                </div>
+                <div id="plant-product-box-1"></div>
+                <div id="plant-product-box-2"></div>
             </div>
         </div>
 
         <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Mastering Indoor Plant Hydration and Humidity</h2>
-            <p>Overwatering is the #1 killer of houseplants. Determining the exact volume of water and frequency based on your pot size and room climate ensures your greenery thrives without root rot or dehydration.</p>
+            <h2>Precision Plant Hydration & Indoor Microclimate Management</h2>
+            <p>Overwatering and low humidity are the primary causes of indoor plant decline. Calculating precise water volume based on container diameter, plant category, and ambient room temperature prevents root rot while ensuring vibrant foliage growth.</p>
             
-            <h3>The Finger Test Rule:</h3>
-            <p>Always check the top 2 inches of soil before watering. If it feels dry, it is time to hydrate. Pair your routine with reliable moisture meters for professional-grade indoor gardening results.</p>
+            <h3>Optimizing Indoor & Container Farming:</h3>
+            <p>Combining proper watering techniques with structured garden planners, container vegetable systems, and herbal cultivation guides guarantees thriving indoor gardens and bountiful organic yields.</p>
         </div>
     </div>
 
     <script>
         function calculatePlantWater() {
-            const pType = document.getElementById('plantType').value;
-            const pSize = document.getElementById('potSize').value;
-            const rEnv = document.getElementById('roomEnv').value;
+            const potInches = parseFloat(document.getElementById('potDiameter').value) || 0;
+            const plantType = document.getElementById('plantType').value;
+            const temp = parseFloat(document.getElementById('roomTemp').value) || 25;
 
             const box = document.getElementById('resultBox');
             const title = document.getElementById('resultTitle');
@@ -244,59 +201,59 @@
             
             const volEl = document.getElementById('waterVol');
             const freqEl = document.getElementById('waterFreq');
-            const mistEl = document.getElementById('mistingAdvice');
-            const rotEl = document.getElementById('rotRisk');
+            const humEl = document.getElementById('humidityTarget');
+            const mistEl = document.getElementById('mistingNeed');
 
-            let baseMl = 150;
-            if (pSize === 'small') baseMl = 60;
-            if (pSize === 'large') baseMl = 450;
-
-            let multiplier = 1.0;
-            let freqDays = 7;
-            let misting = "Optional weekly";
-            let rot = "Low Risk";
-
-            if (pType === 'succulent') {
-                multiplier = 0.5;
-                freqDays = 14;
-                misting = "❌ Do not mist";
-                rot = "🔴 High if overwatered";
-            } else if (pType === 'tropical') {
-                multiplier = 1.2;
-                freqDays = 7;
-                misting = "🟢 2-3 times a week";
-                rot = "🟡 Moderate";
-            } else if (pType === 'fern') {
-                multiplier = 1.6;
-                freqDays = 4;
-                misting = "🟢 Daily misting required";
-                rot = "🟢 Low (likes moisture)";
-            } else {
-                multiplier = 1.0;
-                freqDays = 7;
-                misting = "🟡 Weekly misting";
-                rot = "🟡 Moderate";
+            if (potInches <= 0) {
+                alert("Please enter a valid pot diameter!");
+                return;
             }
 
-            if (rEnv === 'dry') {
-                freqDays = Math.max(3, freqDays - 2);
-            } else if (rEnv === 'humid') {
-                freqDays += 3;
-            }
-
-            const totalMl = Math.round(baseMl * multiplier);
+            let baseMl = potInches * 60;
+            if (plantType === 'succulent') baseMl *= 0.35;
+            if (plantType === 'herb') baseMl *= 0.8;
+            if (temp > 28) baseMl *= 1.2;
 
             box.style.display = 'block';
-            title.innerHTML = `Recommended Water Dose: ~${totalMl} ml`;
+
+            title.innerHTML = `Recommended Hydration: ~${Math.round(baseMl)} ml / Week`;
             box.style.borderLeftColor = "#10b981";
             title.style.color = "#10b981";
-            desc.innerHTML = `Tailored for a ${pSize} pot under ${rEnv} climate conditions.`;
+            desc.innerHTML = `Optimal hydration for a ${potInches}" pot in ~${temp}°C room temperature.`;
 
-            volEl.innerHTML = `💧 ~${totalMl} ml per watering`;
-            freqEl.innerHTML = `⏱️ Every ${freqDays} to ${freqDays + 2} days`;
-            mistingEl.innerHTML = misting;
-            rotEl.innerHTML = rot;
+            volEl.innerHTML = `💧 ~${Math.round(baseMl)} ml Total`;
+            
+            if (plantType === 'succulent') {
+                freqEl.innerHTML = "📅 Every 12-14 Days";
+                humEl.innerHTML = "💨 30-40% (Low)";
+                mistEl.innerHTML = "🚫 Do Not Mist";
+            } else if (plantType === 'herb') {
+                freqEl.innerHTML = "📅 Every 4-5 Days";
+                humEl.innerHTML = "💨 50-60% (Moderate)";
+                mistEl.innerHTML = "🌿 Mist 1x Weekly";
+            } else {
+                freqEl.innerHTML = "📅 Every 3-4 Days";
+                humEl.innerHTML = "💨 60-70% (High)";
+                mistEl.innerHTML = "🌿 Mist 2-3x Weekly";
+            }
         }
+    </script>
+    <script src="affiliates.js"></script>
+    <script>
+        // Dynamic random rotation across all 9 indoor-gardening products
+        document.addEventListener("DOMContentLoaded", function() {
+            const totalProducts = 9; // Total products in indoor-gardening
+            const firstIndex = Math.floor(Math.random() * totalProducts);
+            let secondIndex = Math.floor(Math.random() * totalProducts);
+            
+            // Ensure Box 2 shows a different product than Box 1
+            while (secondIndex === firstIndex) {
+                secondIndex = Math.floor(Math.random() * totalProducts);
+            }
+
+            loadAffiliateProducts('indoor-gardening', 'plant-product-box-1', firstIndex);
+            loadAffiliateProducts('indoor-gardening', 'plant-product-box-2', secondIndex);
+        });
     </script>
     <script src="nav.js"></script>
 </body>
