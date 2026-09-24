@@ -371,6 +371,206 @@ const temuData = {
             link: "https://temu.to/k/e6yaleuqito",
             badge: "SMART DRIP"
         }
+    ],
+    "compost-calculator": [
+        {
+            title: "6L/10L/15L/30L Stainless Steel Kitchen Trash Bin with Pedal & Inner Bucket",
+            rawPrice: "Rs.63,607",
+            link: "https://temu.to/k/e4ofbzg53i1",
+            badge: "PREMIUM PEDAL BIN"
+        },
+        {
+            title: "Stainless Steel Kitchen Compost Bin Round Shape with Filter Feature",
+            rawPrice: "Rs.10,525",
+            link: "https://temu.to/k/e02xgca8c1m",
+            badge: "COUNTERTOP BIN"
+        },
+        {
+            title: "VEELAR Stainless Steel Hanging Trash Can with Lid & Inner Bucket",
+            rawPrice: "Rs.19,985",
+            link: "https://temu.to/k/eh2qla4pd5j",
+            badge: "CABINET HANGING"
+        },
+        {
+            title: "1 Set 5L/1.32 Gal Stainless Steel Kitchen Waste Bin & Indoor Compost",
+            rawPrice: "Rs.11,246",
+            link: "https://temu.to/k/e0mw80x8zck",
+            badge: "COMPACT 5L"
+        },
+        {
+            title: "1-Gallon Rust-Resistant Indoor Compost Bin with Charcoal Filter",
+            rawPrice: "Rs.8,022",
+            link: "https://temu.to/k/ekb7ayb9uz7",
+            badge: "ODORLESS DESIGN"
+        },
+        {
+            title: "304 Stainless Steel Desktop 1.5L Mini Countertop Waste Bin with Lid",
+            rawPrice: "Rs.14,487",
+            link: "https://temu.to/k/eei4xijw8xo",
+            badge: "MINI DESKTOP"
+        },
+        {
+            title: "USB Automatic Drip Irrigation System Kit with Controller",
+            rawPrice: "Rs.7,774",
+            link: "https://temu.to/k/e1c5i6x9mx9",
+            badge: "WATERING KIT"
+        },
+        {
+            title: "100L Worm Composter 5-Tray Worm Compost Bin for Vermicomposting",
+            rawPrice: "Rs.55,288",
+            link: "https://temu.to/k/e1km5d2oyau",
+            badge: "WORM FARM"
+        },
+        {
+            title: "New 5-Tier Tray Outdoor Worm Bin Sturdy Multi-Tier Composter",
+            rawPrice: "Rs.41,454",
+            link: "https://temu.to/k/ec7sz90blxe",
+            badge: "5-TIER COMPOSTER"
+        },
+        {
+            title: "294L / 127L / 58L Heavy-Duty Large Capacity Reusable Compost Bag",
+            rawPrice: "Rs.2,332",
+            link: "https://temu.to/k/eub54wxaszp",
+            badge: "LARGE BAG"
+        },
+        {
+            title: "Soil Sampling Probe 36-Inch Stainless Steel Sampler Tool",
+            rawPrice: "Rs.12,713",
+            link: "https://temu.to/k/ewbvu854tq0",
+            badge: "SOIL PROBE"
+        },
+        {
+            title: "Compost Thermometer 100cm Stem Waterproof Soil Temperature Gauge",
+            rawPrice: "Rs.1,949",
+            link: "https://temu.to/k/eomeiv05ix1",
+            badge: "STEM THERMOMETER"
+        },
+        {
+            title: "1pc Soil Moisture Tester No Batteries Required Quick Testing",
+            rawPrice: "Rs.1,039",
+            link: "https://temu.to/k/egcsdau4xkq",
+            badge: "NO BATTERY"
+        },
+        {
+            title: "6-in-1 Digital Soil Tester Meter with Backlit LCD Display",
+            rawPrice: "Rs.5,294",
+            link: "https://temu.to/k/eu8hwdim5p8",
+            badge: "DIGITAL 6-IN-1"
+        },
+        {
+            title: "Cute Ladybug Soil Moisture Meter for Plant Care",
+            rawPrice: "Rs.2,322",
+            link: "https://temu.to/k/e84xu8ukyat",
+            badge: "LADYBUG TESTER"
+        },
+        {
+            title: "All Mesh Bubble Hash Bags 18.93L Ice Hash Filter Kit",
+            rawPrice: "Rs.10,780",
+            link: "https://temu.to/k/enfe7xfwbfw",
+            badge: "MESH FILTER"
+        },
+        {
+            title: "Three Sets of 72-Gallon (272L) Reusable Yard Waste Bags with Lids",
+            rawPrice: "Rs.16,777",
+            link: "https://temu.to/k/ewzqdf3z6k2",
+            badge: "3-PACK YARD BAGS"
+        },
+        {
+            title: "3pcs Heavy Duty Garden Garbage Bag 272L Leaf Bag with Handle",
+            rawPrice: "Rs.14,734",
+            link: "https://temu.to/k/eb9ht1ayyzo",
+            badge: "272L LEAF BAG"
+        },
+        {
+            title: "18.93L Herbal Ice Hash Micron Filter Mesh Bag Set with Screen",
+            rawPrice: "Rs.14,675",
+            link: "https://temu.to/k/ehng231vc2h",
+            badge: "EXTRACTOR KIT"
+        },
+        {
+            title: "2pcs Heavy-Duty 500L Garden Waste Bags Waterproof & Foldable",
+            rawPrice: "Rs.11,663",
+            link: "https://temu.to/k/egsb7v1y6ni",
+            badge: "500L GIANT BAG"
+        },
+        {
+            title: "15pcs Heavy-Duty Large Garbage Bags 30L to 98L Sizes",
+            rawPrice: "Rs.2,803",
+            link: "https://temu.to/k/e7tyo7lsrjr",
+            badge: "THICK PLASTIC"
+        },
+        {
+            title: "USB Rechargeable Portable Electric Knife Sharpener Tool",
+            rawPrice: "Rs.6,505",
+            link: "https://temu.to/k/eetg9kw4wkx",
+            badge: "SHARPENER"
+        },
+        {
+            title: "1pc Electric Meat Grinder & Food Processor 148W 2L Capacity",
+            rawPrice: "Rs.12,415",
+            link: "https://temu.to/k/enahsvsx8y3",
+            badge: "FOOD PROCESSOR"
+        },
+        {
+            title: "450ML Cordless Electric Garlic Chopper Mini Food Grinder",
+            rawPrice: "Rs.5,137",
+            link: "https://temu.to/k/e823hgon543",
+            badge: "CORDLESS CHOPPER"
+        },
+        {
+            title: "1pc Mini Garlic Chopper & Vegetable Grinder Light Weight",
+            rawPrice: "Rs.2,591",
+            link: "https://temu.to/k/e52zkrva4pa",
+            badge: "MINI CHOPPER"
+        },
+        {
+            title: "FLZH Electric Food Chopper 280ml Portable Mini Mincer",
+            rawPrice: "Rs.4,470",
+            link: "https://temu.to/k/eobajkuji0x",
+            badge: "PORTABLE MINCER"
+        },
+        {
+            title: "Stainless Steel Garlic Press Upgraded Heavy-Duty Chopping Tool",
+            rawPrice: "Rs.2,195",
+            link: "https://temu.to/k/e4qeoa8w6h4",
+            badge: "GARLIC PRESS"
+        },
+        {
+            title: "Extra Large 20L Odor-Sealed Swing Lid Bin Japanese-Style Bin",
+            rawPrice: "Rs.13,230",
+            link: "https://temu.to/k/ev56bxqbumi",
+            badge: "20L SWING BIN"
+        },
+        {
+            title: "Large Capacity Red Wine Glass Trash Bin Dual Bin Design",
+            rawPrice: "Rs.24,869",
+            link: "https://temu.to/k/e1c139jtdpu",
+            badge: "LUXURY DUAL BIN"
+        },
+        {
+            title: "Hanging Kitchen Waste Bin Folding Waste Bin with Lid 10L",
+            rawPrice: "Rs.8,480",
+            link: "https://temu.to/k/eztpsthmhxd",
+            badge: "FOLDING HANGING"
+        },
+        {
+            title: "2-in-1 Heavy-Duty Plastic Trash & Compost Bin Organizer 60L-120L",
+            rawPrice: "Rs.16,688",
+            link: "https://temu.to/k/ebrhpwfox24",
+            badge: "LARGE ORGANIZER"
+        },
+        {
+            title: "25L Smart Sensor Trash Can Electronic Compost Bin with Bag Holder",
+            rawPrice: "Rs.16,695",
+            link: "https://temu.to/k/ezy401dx4z8",
+            badge: "SMART SENSOR"
+        },
+        {
+            title: "12L Kitchen Compost Bin Countertop Wall-Mounted Waste Bin",
+            rawPrice: "Rs.9,060",
+            link: "https://temu.to/k/efxql8rwcef",
+            badge: "12L COUNTERTOP"
+        }
     ]
 };
 
