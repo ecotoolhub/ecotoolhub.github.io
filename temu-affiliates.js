@@ -1,13 +1,13 @@
 // Temu Global Settings & PKR to USD Rate
-const pkrToUsdRate = 278;
+const pkrToUsdRate = 278; // 1 USD = 278 PKR
 
 // Robust Price Calculator Function
 function calculatePrices(pkrString) {
     if (!pkrString) return { dealPrice: "$11.20", originalPrice: "$22.00", savePct: "49%" };
     
-    // Extract only digits from string
-    let cleanNumbers = pkrString.toString().replace(/[^0-9]/g, '');
-    let numericValue = parseInt(cleanNumbers, 10);
+    // Remove commas and non-numeric characters except decimals
+    let cleanNumbers = pkrString.toString().replace(/,/g, '').replace(/[^0-9.]/g, '');
+    let numericValue = parseFloat(cleanNumbers);
     
     if (isNaN(numericValue) || numericValue <= 0) {
         return { dealPrice: "$12.50", originalPrice: "$25.00", savePct: "50%" };
@@ -15,170 +15,171 @@ function calculatePrices(pkrString) {
 
     // Convert PKR to USD accurately
     let usdDealVal = numericValue / pkrToUsdRate;
-    let usdOrigVal = usdDealVal * 1.8;
+    let usdOrigVal = usdDealVal * 1.82; // ~45% discount estimation
+    let savePercent = Math.round(((usdOrigVal - usdDealVal) / usdOrigVal) * 100);
 
     return {
         dealPrice: `$${usdDealVal.toFixed(2)}`,
         originalPrice: `$${usdOrigVal.toFixed(2)}`,
-        savePct: `SAVE 45%`
+        savePct: `SAVE ${savePercent}%`
     };
 }
 
 // Guaranteed Fallback SVG Image
 const fallbackImgData = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20300%22%3E%3Crect%20fill%3D%22%231e293b%22%20width%3D%22500%22%20height%3D%22300%22%2F%3E%3Ctext%20fill%3D%22%23f97316%22%20font-family%3D%22sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22bold%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%20dy%3D%22.3em%22%3ETemu%20Solar%20Deal%3C%2Ftext%3E%3C%2Fsvg%3E";
 
-// Full Temu Solar Physical Products Pool
+// Full Temu Solar Physical Products Pool (25 Items)
 const temuData = {
     "solar-energy": [
         {
             title: "NITEK 9000mAh Solar Generator Kit with USB Charger & LED Light",
             rawPrice: "Rs.8,437",
             link: "https://temu.to/k/e10mj3jtsqe",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-solar.jpg"
+            image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "A Portable 6V Rechargeable Solar Panel Power Generation System",
             rawPrice: "Rs.8,246",
             link: "https://temu.to/k/edpvs4ourjg",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-panel.jpg"
+            image: "https://images.unsplash.com/photo-1508873696983-2df515122519?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "2 to 4/6/8 Y-Branch Parallel Solar Panel Connectors & Splitters",
             rawPrice: "Rs.3,115",
             link: "https://temu.to/k/es8dyxlla44",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-connector.jpg"
+            image: "https://images.unsplash.com/photo-1548611716-30018596f2a2?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "500W Continuous Power Inverter, 50W Solar Panel & 50A Controller Kit",
             rawPrice: "Rs.40,865",
             link: "https://temu.to/k/e1qqwds8fqz",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-inverter.jpg"
+            image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "22.5W Fast Charging Power Bank DIY Case (6x21700 QC3.0)",
             rawPrice: "Rs.8,500",
             link: "https://temu.to/k/eg1rvdpb47o",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-powerbank.jpg"
+            image: "https://images.unsplash.com/photo-1609592424109-dd9892f1b177?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "Heavy-Duty Wireless Heating Lunch Box with 12000mAh Battery",
             rawPrice: "Rs.34,155",
             link: "https://temu.to/k/e1b1y7qqd5r",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-lunchbox.jpg"
+            image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "1pc 100A Solar Charge Controller 12V/24V Auto Regulator",
             rawPrice: "Rs.2,230",
             link: "https://temu.to/k/eych3uo9xgj",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-controller.jpg"
+            image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "120A MPPT Solar Charge Controller 60A (12V/24V/36V/48V Auto)",
             rawPrice: "Rs.16,368",
             link: "https://temu.to/k/eowfmxnimjm",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-mppt.jpg"
+            image: "https://images.unsplash.com/photo-1508873696983-2df515122519?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "150A 7200W Max MPPT Solar Controller with Smart Cooling Fan",
             rawPrice: "Rs.22,190",
             link: "https://temu.to/k/e17hjx30hm1",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-fan.jpg"
+            image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "Solar Controller 12V/24V/36V/48V Parameter Adjustable LCD Display",
             rawPrice: "Rs.8,773",
             link: "https://temu.to/k/e57pzq4untn",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-lcd.jpg"
+            image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "Portable Power Inverter 300W DC 12V to AC 220V Dual USB",
             rawPrice: "Rs.19,643",
             link: "https://temu.to/k/emzahb8y87c",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-inverter300.jpg"
+            image: "https://images.unsplash.com/photo-1609592424109-dd9892f1b177?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "100A 80A 60A MPPT Solar Charge Controller LCD Display Regulator",
             rawPrice: "Rs.8,635",
             link: "https://temu.to/k/eule1hdiow9",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-mppt60.jpg"
+            image: "https://images.unsplash.com/photo-1508873696983-2df515122519?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "1 Pack Solar Outdoor Motion Sensor Light 106 Super Bright LEDs IP65",
             rawPrice: "Rs.9,020",
             link: "https://temu.to/k/e4s18njnz03",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-light.jpg"
+            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "504 LED Solar Street Light with Remote Control & Motion Sensor",
             rawPrice: "Rs.14,433",
             link: "https://temu.to/k/e3pabdjr6w2",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-street.jpg"
+            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "High Brightness Commercial Solar Street Light Dusk to Dawn Sensor",
             rawPrice: "Rs.40,595",
             link: "https://temu.to/k/ebpwlken46k",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-commercial.jpg"
+            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "4pcs Solar Wall Light with Motion Sensor Remote Control IP65",
             rawPrice: "Rs.8,573",
             link: "https://temu.to/k/epq3ne35xhh",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-wall.jpg"
+            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "Solar-Powered Outdoor Motion Sensor Floodlight 74 LEDs 270° Angle",
             rawPrice: "Rs.4,980",
             link: "https://temu.to/k/eexss92yxah",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-flood.jpg"
+            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "172 LED Solar Outdoor Security Motion Sensor Flood Light IP65",
             rawPrice: "Rs.6,828",
             link: "https://temu.to/k/eus08rww2z9",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-sec.jpg"
+            image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "10 Pairs Solar Plug MC4 Connectors Male/Female Photovoltaic Plug",
             rawPrice: "Rs.2,832",
             link: "https://temu.to/k/e6r8bm7em5x",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-mc4.jpg"
+            image: "https://images.unsplash.com/photo-1548611716-30018596f2a2?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "4/8 Adjustable Solar Tilt Mounting Bracket Bases 10° to 60°",
             rawPrice: "Rs.19,083",
             link: "https://temu.to/k/egmxf37l195",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-mount.jpg"
+            image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "104cm Adjustable Solar Panel Tilt Mounting Brackets for RVs/Roofs",
             rawPrice: "Rs.15,522",
             link: "https://temu.to/k/e09le8jeqdi",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-tilt.jpg"
+            image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "11.8ft Solar Panel Cleaning Kit with Extendable Pole Tool",
             rawPrice: "Rs.29,700",
             link: "https://temu.to/k/ejuijnk2fkq",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-clean.jpg"
+            image: "https://images.unsplash.com/photo-1508873696983-2df515122519?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "4-Inch Wall/Glass Mounted Exhaust Ventilation Fan 15W 220V",
             rawPrice: "Rs.7,704",
             link: "https://temu.to/k/ebe0sp4aoza",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-ex.jpg"
+            image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "Solar-Powered Exhaust Fan Featuring 17W/20W Panel & 8-Inch Fan",
             rawPrice: "Rs.25,554",
             link: "https://temu.to/k/e0tsax0ike9",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-soex.jpg"
+            image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80"
         },
         {
             title: "17W Solar Powered Chicken Coop Ventilation System & 8-Inch Fan",
             rawPrice: "Rs.22,470",
             link: "https://temu.to/k/e23xnwagymy",
-            image: "https://img.kwcdn.com/product/open/2023-08-15/example-coop.jpg"
+            image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80"
         }
     ]
 };
