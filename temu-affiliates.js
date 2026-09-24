@@ -147,6 +147,27 @@ const temuData = {
         { title: "8mm Single-Lens Industrial Endoscope 4.3-inch IPS Screen", rawPrice: "Rs.8,080", link: "https://temu.to/k/ec33hkyd8xk", badge: "INSPECTION CAM" },
         { title: "Rechargeable Digital Combustible Natural Gas Leak Detector", rawPrice: "Rs.11,099", link: "https://temu.to/k/elvg738grbi", badge: "GAS TESTER" },
         { title: "4.3-inch LCD Industrial Endoscope 1080P Diagnostic Sewer Camera", rawPrice: "Rs.8,091", link: "https://temu.to/k/er2trpd0dkd", badge: "CAR ENDOSCOPE" }
+    ],
+    "aqi-safety": [
+        { title: "5-in-1 Smart Air Quality Monitor CO2 Meter & HCHO TVOC Detector", rawPrice: "Rs.5,165", link: "https://temu.to/k/ejd9qjv6gcx", badge: "5-IN-1 MONITOR" },
+        { title: "2pcs 5-in-1 Smart Air Quality Monitor CO2/HCHO/TVOC LCD Meter", rawPrice: "Rs.9,992", link: "https://temu.to/k/ex8mfacf0ax", badge: "2-PACK MONITOR" },
+        { title: "Portable 10-in-1 Air Quality Monitor PM2.5/CO2/CO/TVOC Detector", rawPrice: "Rs.9,334", link: "https://temu.to/k/ekjfn0ixvin", badge: "10-IN-1 DETECTOR" },
+        { title: "Portable Air Quality Monitor Carbon Monoxide Digital Detector", rawPrice: "Rs.2,987", link: "https://temu.to/k/e4r6clsko6e", badge: "CO DETECTOR" },
+        { title: "9-in-1 Portable Air Quality Monitor LCD Display CO2 PM2.5 Detector", rawPrice: "Rs.5,962", link: "https://temu.to/k/eiykzqko211", badge: "9-IN-1 AQI" },
+        { title: "Home Air Purifier True HEPA Filter Silent Formaldehyde Removal", rawPrice: "Rs.27,499", link: "https://temu.to/k/eo5iw12dqy5", badge: "TRUE HEPA" },
+        { title: "1pc HEPA Air Purifier for Home & Office Smokers Odor Pollen Removal", rawPrice: "Rs.5,984", link: "https://temu.to/k/eakumwgvceg", badge: "HEPA PURIFIER" },
+        { title: "Portable USB Air Purifier Cleaner HEPA Filter & Negative Ions", rawPrice: "Rs.5,558", link: "https://temu.to/k/ep4tucjljca", badge: "USB PURIFIER" },
+        { title: "Portable Negative Ion Air Purifier USB Silent Operation for Car/Home", rawPrice: "Rs.6,346", link: "https://temu.to/k/e58r9kir3hq", badge: "ION PURIFIER" },
+        { title: "Air Purifier Anti-Allergy Negative Ion Desktop Dual HEPA Filter", rawPrice: "Rs.7,975", link: "https://temu.to/k/enuomje20p0", badge: "DUAL FILTER" },
+        { title: "Air Purifier HEPA Filter Smoke Pollen Pet Hair Odor Removal", rawPrice: "Rs.6,862", link: "https://temu.to/k/e8kw4a47wol", badge: "LOW ENERGY" },
+        { title: "UNI-T UT377B Pin Moisture Meter Wood Humidity Tester", rawPrice: "Rs.11,877", link: "https://temu.to/k/eue3h8l7qcq", badge: "MOISTURE METER" },
+        { title: "Digital LCD Display Two Pins Wood Building Materials Moisture Meter", rawPrice: "Rs.2,466", link: "https://temu.to/k/evrabhqirun", badge: "WOOD HUMIDITY" },
+        { title: "Negative Ion Air Purifier Home Formaldehyde & Odor Removal", rawPrice: "Rs.6,774", link: "https://temu.to/k/eubd3miwcjn", badge: "ANION CLEANER" },
+        { title: "USB Powered Portable Air Purifier Triple Pollen Filter", rawPrice: "Rs.4,848", link: "https://temu.to/k/erxyv6xq19f", badge: "MINI PURIFIER" },
+        { title: "1pc Electronic Odor Eliminator Mini Ozone Purifier Filter-Free", rawPrice: "Rs.3,878", link: "https://temu.to/k/eac1audrm6y", badge: "OZONE PURIFIER" },
+        { title: "Odor Eliminator USB/Battery Powered Small Air Deodorizer", rawPrice: "Rs.3,776", link: "https://temu.to/k/exkgq005vua", badge: "ODOR REMOVER" },
+        { title: "1pc Dual-Core USB Powered Silent Car Air Purifier", rawPrice: "Rs.6,206", link: "https://temu.to/k/e66334gxbmi", badge: "CAR PURIFIER" },
+        { title: "Wearable Personal Air Purifier Necklace Anxiety Breathlace", rawPrice: "Rs.8,397", link: "https://temu.to/k/ecafjs3gir4", badge: "WEARABLE AIR" }
     ]
 };
 
