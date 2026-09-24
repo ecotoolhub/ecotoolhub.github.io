@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Solar & Battery System Planner - Eco Tool Hub</title>
+    <title>Solar Energy & Battery Calculator - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -123,20 +123,20 @@
         <div class="main-container">
             <!-- Left Column: Tool -->
             <div class="card">
-                <h1>Smart Solar & Battery System Planner</h1>
-                <p class="subtitle">Calculate optimal panel wattage, backup battery Ah, and required roof space.</p>
+                <h1>Solar Energy & Battery Calculator</h1>
+                <p class="subtitle">Estimate household solar panel wattage, required roof area, and battery backup banks.</p>
                 
                 <div class="form-group">
-                    <label for="dailyKWh">Daily Energy Consumption (kWh / Units):</label>
-                    <input type="number" id="dailyKWh" placeholder="e.g., 12">
+                    <label for="monthlyKwh">Monthly Electricity Usage (kWh):</label>
+                    <input type="number" id="monthlyKwh" placeholder="e.g., 350">
                 </div>
 
                 <div class="form-group">
-                    <label for="sunHours">Average Peak Sun Hours per Day:</label>
+                    <label for="sunHours">Average Daily Peak Sun Hours:</label>
                     <input type="number" id="sunHours" placeholder="e.g., 5" value="5">
                 </div>
 
-                <button class="calc-btn" onclick="calculateSmartSolar()">Generate Solar Architecture</button>
+                <button class="calc-btn" onclick="calculateSolar()">Calculate System Requirements</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
@@ -144,85 +144,90 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>☀️ Recommended Inverter:</b>
-                            <span id="inverterSize">-</span>
+                            <b>☀️ System Size:</b>
+                            <span id="systemSize">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>📐 Roof Space Required:</b>
-                            <span id="roofSpace">-</span>
+                            <b>📐 Estimated Panels:</b>
+                            <span id="panelCount">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🔋 Battery Backup Bank:</b>
+                            <b>🔋 Battery Bank (12V):</b>
                             <span id="batteryBank">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>⚡ System Efficiency:</b>
-                            <span id="sysEff">-</span>
+                            <b>🏠 Roof Area Needed:</b>
+                            <span id="roofArea">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Dynamic SEO-Optimized Affiliate Boxes -->
+            <!-- Right Column: Digital Product Box + Temu Physical Products Slider -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Digital Product Offer (Digistore24) -->
                 <div id="solar-product-box-1"></div>
-                <div id="solar-product-box-2"></div>
+                
+                <!-- Temu Physical Deals Slider -->
+                <div id="temu-solar-slider-container"></div>
             </div>
         </div>
 
         <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Advanced Solar Architecture & Load Sizing</h2>
-            <p>Properly designing a solar energy system requires matching your daily kilowatt-hour needs with peak sunshine hours and storage battery depth-of-discharge limits. Our Smart Solar Planner computes exact inverter loads, rooftop space footprints, and battery backup requirements instantly.</p>
-            
-            <h3>Maximizing Your Solar Investment:</h3>
-            <p>Pairing high-efficiency solar setups with professional DIY guides ensures your green energy transition delivers maximum reliability and long-term utility bill reduction.</p>
+            <h2>Designing Efficient Off-Grid & Residential Solar Systems</h2>
+            <p>Accurately sizing a solar energy setup requires calculating daily kilowatt-hour demand against peak sun availability. Combining solar generation with battery storage and efficient MPPT controllers guarantees uninterrupted clean power.</p>
         </div>
     </div>
 
     <script>
-        function calculateSmartSolar() {
-            const kWh = parseFloat(document.getElementById('dailyKWh').value) || 0;
-            const sunHours = parseFloat(document.getElementById('sunHours').value) || 5;
+        function calculateSolar() {
+            const kwh = parseFloat(document.getElementById('monthlyKwh').value) || 0;
+            const hours = parseFloat(document.getElementById('sunHours').value) || 5;
 
             const box = document.getElementById('resultBox');
             const title = document.getElementById('resultTitle');
             const desc = document.getElementById('resultDesc');
             
-            const inverterEl = document.getElementById('inverterSize');
-            const roofEl = document.getElementById('roofSpace');
-            const batteryEl = document.getElementById('batteryBank');
-            const effEl = document.getElementById('sysEff');
+            const sizeEl = document.getElementById('systemSize');
+            const countEl = document.getElementById('panelCount');
+            const batEl = document.getElementById('batteryBank');
+            const areaEl = document.getElementById('roofArea');
 
-            if (kWh <= 0 || sunHours <= 0) {
-                alert("Please enter valid positive values!");
+            if (kwh <= 0 || hours <= 0) {
+                alert("Please enter valid usage and sun hour numbers!");
                 return;
             }
 
-            const wattHours = kWh * 1000;
-            const panelWatts = Math.round((wattHours / sunHours) * 1.25);
-            const batteryAh = Math.round((wattHours / 12) / 0.5);
-            
-            const roofSqFt = Math.round((panelWatts / 400) * 20);
-            const inverterKW = (panelWatts / 1000 * 1.2).toFixed(1);
+            const dailyKw = (kwh / 30);
+            const kwNeeded = (dailyKw / hours) * 1.25; // 25% system loss factor
+            const panelCount = Math.ceil((kwNeeded * 1000) / 400); // Assuming 400W panels
+            const batteryAh = Math.round((dailyKw * 1000) / 12); // 12V system
+            const sqFt = Math.round(panelCount * 22);
 
             box.style.display = 'block';
 
-            title.innerHTML = `Optimal Solar Panel Array: ${panelWatts} Watts`;
+            title.innerHTML = `Recommended System: ~${kwNeeded.toFixed(2)} kW`;
             box.style.borderLeftColor = "#10b981";
             title.style.color = "#10b981";
-            desc.innerHTML = `Designed to comfortably generate your daily target of ${kWh} kWh based on ${sunHours} peak sun hours.`;
+            desc.innerHTML = `Based on ${kwh} kWh monthly consumption and ~${hours} peak sun hours daily.`;
 
-            inverterEl.innerHTML = `⚡ ${inverterKW} kW Hybrid Inverter`;
-            roofEl.innerHTML = `📐 ~${roofSqFt} sq. ft. Roof Area`;
-            batteryEl.innerHTML = `🔋 ~${batteryAh} Ah (12V Bank)`;
-            effEl.innerHTML = "🟢 92% System Optimised";
+            sizeEl.innerHTML = `☀️ ~${kwNeeded.toFixed(2)} kW System`;
+            countEl.innerHTML = `📐 ~${panelCount} Panels (400W ea)`;
+            batEl.innerHTML = `🔋 ~${batteryAh} Ah @ 12V`;
+            areaEl.innerHTML = `🏠 ~${sqFt} Sq. Ft.`;
         }
     </script>
     <script src="affiliates.js"></script>
+    <script src="temu-affiliates.js"></script>
     <script>
-        loadAffiliateProducts('solar-energy', 'solar-product-box-1', 0);
-        loadAffiliateProducts('solar-energy', 'solar-product-box-2', 1);
+        document.addEventListener("DOMContentLoaded", function() {
+            // Load Digital Product Box
+            loadAffiliateProducts('solar-energy', 'solar-product-box-1');
+            
+            // Load Temu Physical Product Slider
+            renderTemuSlider('solar-energy', 'temu-solar-slider-container');
+        });
     </script>
     <script src="nav.js"></script>
 </body>
