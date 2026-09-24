@@ -163,7 +163,7 @@
                 </div>
             </div>
 
-            <!-- Right Column: Dynamic Affiliate Boxes -->
+            <!-- Right Column: Dynamic Relevant Product Boxes -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
                 <div id="compost-product-box-1"></div>
                 <div id="compost-product-box-2"></div>
@@ -219,16 +219,16 @@
     <script src="affiliates.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const totalProducts = 9;
-            const firstIndex = Math.floor(Math.random() * totalProducts);
-            let secondIndex = Math.floor(Math.random() * totalProducts);
+            const totalCompostProducts = 6;
+            const firstIndex = Math.floor(Math.random() * totalCompostProducts);
+            let secondIndex = Math.floor(Math.random() * totalCompostProducts);
             
             while (secondIndex === firstIndex) {
-                secondIndex = Math.floor(Math.random() * totalProducts);
+                secondIndex = Math.floor(Math.random() * totalCompostProducts);
             }
 
-            loadAffiliateProducts('indoor-gardening', 'compost-product-box-1', firstIndex);
-            loadAffiliateProducts('indoor-gardening', 'compost-product-box-2', secondIndex);
+            loadAffiliateProducts('composting-gardening', 'compost-product-box-1', firstIndex);
+            loadAffiliateProducts('composting-gardening', 'compost-product-box-2', secondIndex);
         });
     </script>
     <script src="nav.js"></script>
