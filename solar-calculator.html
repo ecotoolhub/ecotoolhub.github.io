@@ -144,19 +144,19 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>☀️ System Size:</b>
+                            <b>System Size:</b>
                             <span id="systemSize">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>📐 Estimated Panels:</b>
+                            <b>Estimated Panels:</b>
                             <span id="panelCount">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🔋 Battery Bank (12V):</b>
+                            <b>Battery Bank (12V):</b>
                             <span id="batteryBank">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🏠 Roof Area Needed:</b>
+                            <b>Roof Area Needed:</b>
                             <span id="roofArea">-</span>
                         </div>
                     </div>
@@ -207,19 +207,19 @@
 
             box.style.display = 'block';
 
-            title.innerHTML = `Recommended System: ~${kwNeeded.toFixed(2)} kW`;
+            title.innerHTML = "Recommended System: ~" + kwNeeded.toFixed(2) + " kW";
             box.style.borderLeftColor = "#10b981";
             title.style.color = "#10b981";
-            desc.innerHTML = `Based on ${kwh} kWh monthly consumption and ~${hours} peak sun hours daily.`;
+            desc.innerHTML = "Based on " + kwh + " kWh monthly consumption and ~" + hours + " peak sun hours daily.";
 
-            sizeEl.innerHTML = `☀️ ~${kwNeeded.toFixed(2)} kW System`;
-            countEl.innerHTML = `📐 ~${panelCount} Panels (400W ea)`;
-            batEl.innerHTML = `🔋 ~${batteryAh} Ah @ 12V`;
-            areaEl.innerHTML = `🏠 ~${sqFt} Sq. Ft.`;
+            sizeEl.innerHTML = "~" + kwNeeded.toFixed(2) + " kW System";
+            countEl.innerHTML = "~" + panelCount + " Panels (400W ea)";
+            batEl.innerHTML = "~" + batteryAh + " Ah @ 12V";
+            areaEl.innerHTML = "~" + sqFt + " Sq. Ft.";
         }
     </script>
     <script src="affiliates.js"></script>
-    <script src="temu-affiliates.js?v=3.0"></script>
+    <script src="temu-affiliates.js?v=4.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Load Temu Physical Product Slider (TOP)
