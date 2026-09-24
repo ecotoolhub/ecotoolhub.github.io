@@ -1,7 +1,6 @@
 // Temu Settings & Calculation Logic
 const pkrToUsdRate = 278;
 
-// Direct Fail-Safe Price Calculator
 function calculatePrices(rawPrice) {
     if (!rawPrice) {
         return { dealPrice: "$12.99", originalPrice: "$24.99", savePct: "SAVE 48%" };
@@ -24,7 +23,6 @@ function calculatePrices(rawPrice) {
     };
 }
 
-// Full Temu Physical Products Pool
 const temuData = {
     "solar-energy": [
         { title: "NITEK 9000mAh Solar Generator Kit with USB Charger & LED Light", rawPrice: "Rs.8,437", link: "https://temu.to/k/e10mj3jtsqe", badge: "HOT SELLER" },
@@ -121,18 +119,44 @@ const temuData = {
         { title: "2-in-1 Heavy-Duty Plastic Trash & Compost Bin Organizer 60L-120L", rawPrice: "Rs.16,688", link: "https://temu.to/k/ebrhpwfox24", badge: "LARGE ORGANIZER" },
         { title: "25L Smart Sensor Trash Can Electronic Compost Bin with Bag Holder", rawPrice: "Rs.16,695", link: "https://temu.to/k/ezy401dx4z8", badge: "SMART SENSOR" },
         { title: "12L Kitchen Compost Bin Countertop Wall-Mounted Waste Bin", rawPrice: "Rs.9,060", link: "https://temu.to/k/efxql8rwcef", badge: "12L COUNTERTOP" }
+    ],
+    "carbon-footprint": [
+        { title: "Unit Digital Clamp Meter Automatic Range High-Precision Ammeter", rawPrice: "Rs.13,978", link: "https://temu.to/k/e19our1mtwk", badge: "DIGITAL METER" },
+        { title: "Snakol SK-Q60 Combustible Gas Detector Sound & Light Alarm", rawPrice: "Rs.2,545", link: "https://temu.to/k/en3kjuebvs6", badge: "GAS DETECTOR" },
+        { title: "High-Precision Clamp Ammeter U-Type Multimeter Mini Ammeter", rawPrice: "Rs.10,586", link: "https://temu.to/k/ejp7bu7jf2z", badge: "CLAMP METER" },
+        { title: "Outdoor Personal Water Filter Ultralight 4-Stage Straw Purifier", rawPrice: "Rs.1,835", link: "https://temu.to/k/eh05g37ngzy", badge: "WATER FILTER" },
+        { title: "Outdoor Personal Water Filter 0.01 Micron Straw 4pcs Set", rawPrice: "Rs.2,308", link: "https://temu.to/k/ega5mqn96vv", badge: "SURVIVAL 4-PACK" },
+        { title: "Portable PC Water Tank with Faucet Outdoor Camping Container", rawPrice: "Rs.7,725", link: "https://temu.to/k/e7sphrcg927", badge: "WATER BUCKET" },
+        { title: "Portable Water Filtration Straws Set for Emergency Camping", rawPrice: "Rs.1,754", link: "https://temu.to/k/eg67xwhp8e4", badge: "EMERGENCY STRAW" },
+        { title: "Portable ABS Mini Water Filter Straw Survival Gear", rawPrice: "Rs.3,042", link: "https://temu.to/k/eza0jclbdy8", badge: "MINI PURIFIER" },
+        { title: "50-160L Collapsible Rain Barrel with Spigot & Filter PVC Collector", rawPrice: "Rs.14,143", link: "https://temu.to/k/eujljzrz3nv", badge: "RAIN BARREL" },
+        { title: "Foldable Rain Water Collection Bucket with Filter & Faucet", rawPrice: "Rs.34,046", link: "https://temu.to/k/efqo28233iz", badge: "WATER STORAGE" },
+        { title: "42gal/160L High Strength Collapsible PVC Rainwater Storage Tank", rawPrice: "Rs.27,858", link: "https://temu.to/k/etxwvlktqnh", badge: "160L PVC TANK" },
+        { title: "Multifunctional Smart Electrical Voltage Current Power Meter", rawPrice: "Rs.9,830", link: "https://temu.to/k/e2s347ki5zx", badge: "POWER MONITOR" },
+        { title: "Surge & Lightning Protection Device 2P/4P 20KA-40KA AC 380V", rawPrice: "Rs.3,136", link: "https://temu.to/k/em5h3mn72rv", badge: "SURGE PROTECTOR" },
+        { title: "LED Light Strip Dimmer DC 12V/24V 30A PWM Controller Switch", rawPrice: "Rs.7,574", link: "https://temu.to/k/eugzgtkc2qo", badge: "DC DIMMER" },
+        { title: "Motorcycle SAE to USB Charger PD3.0 & QC3.0 with Voltage Meter", rawPrice: "Rs.4,106", link: "https://temu.to/k/e2fi43s24mv", badge: "USB CHARGER" },
+        { title: "8V Lithium Rechargeable Electric Screwdriver Tool Set", rawPrice: "Rs.15,854", link: "https://temu.to/k/ed5asro0kga", badge: "CORDLESS DRILL" },
+        { title: "47pcs Small Hand-Held Electric Screwdriver Set 90 Deg Rotatable", rawPrice: "Rs.8,545", link: "https://temu.to/k/erd2asfi9sr", badge: "ROTATABLE TOOL" },
+        { title: "47pcs Rechargeable Cordless Electric Screwdriver Kit with LED", rawPrice: "Rs.7,035", link: "https://temu.to/k/e6zpab89qii", badge: "RECHARGEABLE KIT" },
+        { title: "Intelligent USB Lithium Rechargeable Electric Screwdriver Set", rawPrice: "Rs.3,932", link: "https://temu.to/k/ef9hv9jw9t4", badge: "PRECISION TOOL" },
+        { title: "Industrial Endoscope 8mm Lens IPS Display 8 LED IP67 Camera", rawPrice: "Rs.10,822", link: "https://temu.to/k/e2e01j86zc6", badge: "BORESCOPE CAM" },
+        { title: "Ralcam 6.2mm HD Universal Borescope Camera 1m Cable", rawPrice: "Rs.67,793", link: "https://temu.to/k/e28c46xug81", badge: "PRO DIAGNOSTIC" },
+        { title: "BINAZON Industrial Endoscope Borescope 4.3-inch Screen 5m Cable", rawPrice: "Rs.11,081", link: "https://temu.to/k/eq68vynf2f7", badge: "SEWER CAMERA" },
+        { title: "1080P HD Endoscope Camera 4.3 Screen IP67 5m Cable", rawPrice: "Rs.12,088", link: "https://temu.to/k/el8mnoa19f0", badge: "1080P ENDOSCOPE" },
+        { title: "8mm Single-Lens Industrial Endoscope 4.3-inch IPS Screen", rawPrice: "Rs.8,080", link: "https://temu.to/k/ec33hkyd8xk", badge: "INSPECTION CAM" },
+        { title: "Rechargeable Digital Combustible Natural Gas Leak Detector", rawPrice: "Rs.11,099", link: "https://temu.to/k/elvg738grbi", badge: "GAS TESTER" },
+        { title: "4.3-inch LCD Industrial Endoscope 1080P Diagnostic Sewer Camera", rawPrice: "Rs.8,091", link: "https://temu.to/k/er2trpd0dkd", badge: "CAR ENDOSCOPE" }
     ]
 };
 
-// Slider State Tracker
 const sliderStates = {};
 
-// Render Temu Slider Function
 function renderTemuSlider(categoryKey, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    const products = temuData[categoryKey];
+    const products = temuData[categoryKey] || temuData["solar-energy"];
     if (!products || products.length === 0) return;
 
     if (sliderStates[containerId] === undefined) {
@@ -146,43 +170,36 @@ function renderTemuSlider(categoryKey, containerId) {
 
     container.innerHTML = `
         <div class="temu-slider-card" style="background-color: #0f172a; border: 2px solid #f97316; border-radius: 14px; padding: 22px; text-align: center; position: relative; box-shadow: 0 8px 25px rgba(249, 115, 22, 0.2);">
-            
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="background: #f97316; color: white; padding: 4px 10px; font-size: 11px; border-radius: 6px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">&#9889; ` + itemBadge + `</span>
+                <span style="background: #f97316; color: white; padding: 4px 10px; font-size: 11px; border-radius: 6px; font-weight: 800; text-transform: uppercase;">&#9889; ` + itemBadge + `</span>
                 <span style="color: #94a3b8; font-size: 12px; font-weight: 700;">Item ` + (index + 1) + ` of ` + products.length + `</span>
             </div>
-            
             <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid #334155; border-radius: 10px; padding: 16px; margin-bottom: 16px;">
                 <h3 style="color: #f8fafc; font-size: 15px; font-weight: 700; margin: 0 0 10px 0; line-height: 1.5; min-height: 45px;">` + item.title + `</h3>
-                
                 <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 8px;">
                     <span style="color: #10b981; font-size: 26px; font-weight: 800;">` + priceInfo.dealPrice + `</span>
                     <span style="color: #94a3b8; font-size: 14px; text-decoration: line-through;">` + priceInfo.originalPrice + `</span>
                     <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px;">` + priceInfo.savePct + `</span>
                 </div>
             </div>
-
             <div style="text-align: left; background: #1e293b; border-radius: 8px; padding: 12px 16px; margin-bottom: 18px; font-size: 12px; color: #cbd5e1; line-height: 1.8;">
                 <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #10b981; font-weight: bold;">&#10003;</span> Verified Quality & High Efficiency</div>
                 <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #10b981; font-weight: bold;">&#10003;</span> Exclusive Discount via Temu Promo</div>
                 <div style="display: flex; align-items: center; gap: 8px;"><span style="color: #10b981; font-weight: bold;">&#10003;</span> Fast Shipping & Buyer Protection</div>
             </div>
-            
-            <a href="` + item.link + `" target="_blank" style="display: block; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 15px; letter-spacing: 0.3px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4); transition: transform 0.2s;">
+            <a href="` + item.link + `" target="_blank" style="display: block; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: 800; font-size: 15px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);">
                 View Deal on Temu &rarr;
             </a>
-            
             <div style="display: flex; gap: 10px; justify-content: center;">
-                <button onclick="changeTemuSlide('` + categoryKey + `', '` + containerId + `', -1)" style="flex: 1; background: #334155; color: white; border: 1px solid #475569; padding: 9px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 13px;">&#10094; Prev</button>
-                <button onclick="changeTemuSlide('` + categoryKey + `', '` + containerId + `', 1)" style="flex: 1; background: #334155; color: white; border: 1px solid #475569; padding: 9px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 13px;">Next &#10095;</button>
+                <button onclick="changeTemuSlide('` + categoryKey + `', '` + containerId + `', -1)" style="flex: 1; background: #334155; color: white; border: 1px solid #475569; padding: 9px; border-radius: 6px; cursor: pointer; font-weight: 700;">&#10094; Prev</button>
+                <button onclick="changeTemuSlide('` + categoryKey + `', '` + containerId + `', 1)" style="flex: 1; background: #334155; color: white; border: 1px solid #475569; padding: 9px; border-radius: 6px; cursor: pointer; font-weight: 700;">Next &#10095;</button>
             </div>
         </div>
     `;
 }
 
-// Next / Prev Actions
 function changeTemuSlide(categoryKey, containerId, direction) {
-    const products = temuData[categoryKey];
+    const products = temuData[categoryKey] || temuData["solar-energy"];
     if (!products || products.length === 0) return;
 
     let currentIndex = sliderStates[containerId] || 0;
