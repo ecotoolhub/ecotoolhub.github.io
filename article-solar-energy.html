@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residential Solar & Battery Sizing Guide: Step-by-Step 2026</title>
+    <meta name="description" content="Master home solar system design with our 2026 guide. Learn how to calculate peak sun hours, inverter capacity, and lithium battery storage correctly.">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #10b981;
+            --accent-hover: #059669;
+            --border-color: #334155;
+            --text-muted: #94a3b8;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 10px; }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .main-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        h1 { color: var(--accent-color); font-size: 28px; margin-bottom: 10px; line-height: 1.3; }
+        .article-meta { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
+        .quick-answer-box { background: rgba(16, 185, 129, 0.1); border: 1px solid var(--accent-color); border-radius: 10px; padding: 18px; margin-bottom: 25px; }
+        .quick-answer-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 15px; text-transform: uppercase; }
+        .quick-answer-box p { margin: 0; font-size: 14px; line-height: 1.6; color: #e2e8f0; }
+        .key-takeaways { background-color: #0f172a; border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; margin-bottom: 30px; }
+        .key-takeaways h3 { color: #f8fafc; margin: 0 0 12px 0; font-size: 16px; }
+        .key-takeaways ul { margin: 0; padding-left: 20px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+        .article-content h2 { color: var(--text-color); font-size: 20px; margin-top: 30px; margin-bottom: 12px; border-left: 4px solid var(--accent-color); padding-left: 10px; }
+        .article-content p, .article-content li { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
+        .article-content a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+        .data-table th, .data-table td { border: 1px solid var(--border-color); padding: 10px 14px; text-align: left; }
+        .data-table th { background-color: #0f172a; color: var(--accent-color); font-weight: 700; }
+        .data-table td { color: var(--text-muted); }
+        .faq-item { margin-bottom: 18px; background: #0f172a; padding: 16px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .faq-item h3 { color: var(--text-color); font-size: 15px; margin: 0 0 8px 0; }
+        .faq-item p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+        .cta-box { background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%); border: 1px solid var(--accent-color); border-radius: 12px; padding: 22px; margin: 30px 0; text-align: center; }
+        .cta-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 18px; }
+        .cta-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
+        .cta-btn { display: inline-block; background-color: var(--accent-color); color: white; text-decoration: none; padding: 11px 22px; border-radius: 8px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <a href="blog.html" class="back-link">&larr; Back to Articles & Guides</a>
+
+        <div class="main-container">
+            <div class="card article-content">
+                <h1>Complete Guide to Residential Solar & Battery Sizing</h1>
+                <div class="article-meta">Published by Eco Tool Hub Editorial Team &bull; Updated September 2026 &bull; 8 min read</div>
+
+                <div class="quick-answer-box">
+                    <h3>⚡ Quick Answer</h3>
+                    <p>To size a residential solar system, divide your daily watt-hour electricity consumption by your local peak sun hours (typically 4.5 to 5.5 hours), then add a 20% system loss factor. For battery backup, multiply essential nighttime watt-hours by desired autonomy days and divide by the battery depth of discharge (80% for LiFePO4, 50% for lead-acid).</p>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>💡 Key Takeaways</h3>
+                    <ul>
+                        <li><b>Peak Sun Hours:</b> Solar panel production depends on peak solar irradiance hours, not total daylight hours.</li>
+                        <li><b>Inverter Capacity:</b> Sized to handle continuous running watts plus peak surge starting currents from inductive loads.</li>
+                        <li><b>Lithium vs AGM:</b> LiFePO4 batteries offer 80–90% usable capacity and 4,000+ cycles compared to AGM's 50% depth of discharge.</li>
+                        <li><b>Precise Calculator:</b> Use our Solar Sizing Calculator to match your inverter and array to your exact appliance load.</li>
+                    </ul>
+                </div>
+
+                <h2>Step 1: Calculate Total Daily Energy Usage</h2>
+                <p>Begin by checking your electric utility bill for total kilowatt-hours (kWh) consumed over a 30-day period. Divide this figure by 30 to establish your average daily requirement. For instance, a home consuming 900 kWh monthly uses approximately 30 kWh per day.</p>
+
+                <h2>Step 2: Account for Peak Sun Hours and Inverter Surge</h2>
+                <p>Solar panels produce power at maximum efficiency during peak sun hours. If your region receives 5 peak hours daily, a 30 kWh daily load requires a minimum solar array capacity of 6 kW (30 kWh / 5 hours = 6 kW array before system losses).</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Daily Load (kWh)</th>
+                            <th>Peak Sun Hours</th>
+                            <th>Recommended Solar Array</th>
+                            <th>Battery Storage (LiFePO4)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>10 kWh (Small Home)</td><td>4.5 Hours</td><td>2.6 kW Array</td><td>5.1 kWh Bank</td></tr>
+                        <tr><td>20 kWh (Medium Home)</td><td>5.0 Hours</td><td>4.8 kW Array</td><td>10.2 kWh Bank</td></tr>
+                        <tr><td>30 kWh (Large Home)</td><td>5.0 Hours</td><td>7.2 kW Array</td><td>15.3 kWh Bank</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="cta-box">
+                    <h3>Calculate Your Exact Solar & Battery Needs</h3>
+                    <p>Input your appliances and daily electricity consumption into our interactive tool for instant sizing accuracy.</p>
+                    <a href="solar-calculator.html" class="cta-btn">Open Solar Calculator &rarr;</a>
+                </div>
+
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <h3>How do I calculate how many solar panels I need?</h3>
+                    <p>Divide your required daily solar capacity in watts by the wattage rating of your target panel (e.g., a 6,000W requirement divided by 550W panels equals approximately 11 panels).</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What size inverter do I need for a 5 kW solar system?</h3>
+                    <p>A 5 kW solar array typically pairs with a 5 kW or 6 kW hybrid inverter to allow for array oversizing and start-up surge current from motors or air conditioners.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Why are Lithium LiFePO4 batteries better than Lead-Acid for solar?</h3>
+                    <p>LiFePO4 batteries allow an 80–90% Depth of Discharge without damaging cell health, weigh half as much, and last over 10 years compared to 2–3 years for traditional lead-acid batteries.</p>
+                </div>
+
+                <h2>Conclusion</h2>
+                <p>Properly sizing your residential solar array and battery storage ensures dependable clean power without overspending on excess panels. Use our automated calculator tool to fine-tune your design parameters.</p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div id="temu-solar-slider-container"></div>
+                <div id="solar-product-box-1"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="affiliates.js"></script>
+    <script src="temu-affiliates.js?v=13.0"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderTemuSlider('solar-energy', 'temu-solar-slider-container');
+            loadAffiliateProducts('solar-energy', 'solar-product-box-1');
+        });
+    </script>
+    <script src="nav.js"></script>
+</body>
+</html>
