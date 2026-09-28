@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compost C:N Ratio & Bin Calculator - Eco Tool Hub</title>
+    <title>Smart Compost Mix Calculator - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -13,7 +13,6 @@
             --accent-hover: #059669;
             --border-color: #334155;
             --text-muted: #94a3b8;
-            --affiliate-bg: #0f172a;
         }
         * { box-sizing: border-box; }
         body {
@@ -28,13 +27,7 @@
             min-height: 100vh;
         }
         .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
-        .back-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
         
         .main-container {
@@ -55,7 +48,7 @@
         p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
-        input, select {
+        input {
             width: 100%;
             padding: 10px 12px;
             background-color: #0b0f19;
@@ -64,7 +57,6 @@
             color: white;
             font-size: 15px;
         }
-        input:focus, select:focus { outline: none; border-color: var(--accent-color); }
         button.calc-btn {
             width: 100%;
             background-color: var(--accent-color);
@@ -103,7 +95,6 @@
         }
         .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
-        /* SEO Content */
         .seo-content {
             margin-top: 40px;
             background-color: var(--card-bg);
@@ -112,7 +103,7 @@
             padding: 30px;
         }
         .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
-        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+        .seo-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -121,26 +112,21 @@
         <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
 
         <div class="main-container">
-            <!-- Left Column: Tool -->
             <div class="card">
-                <h1>Compost C:N Ratio & Bin Calculator</h1>
-                <p class="subtitle">Estimate the balance of greens (nitrogen) and browns (carbon) for rapid decomposition.</p>
+                <h1>Smart Compost Mix Calculator</h1>
+                <p class="subtitle">Calculate optimal Carbon-to-Nitrogen (C:N) ratios for efficient aerobic composting.</p>
                 
                 <div class="form-group">
-                    <label for="greenWeight">Green Waste Weight (Kitchen Scraps in kg):</label>
-                    <input type="number" id="greenWeight" placeholder="e.g., 5" value="5">
+                    <label for="greenKg">Green Ingredients Weight (kg) - Food Scraps:</label>
+                    <input type="number" id="greenKg" placeholder="e.g., 5" value="5">
                 </div>
 
                 <div class="form-group">
-                    <label for="brownType">Primary Brown Material Type:</label>
-                    <select id="brownType">
-                        <option value="leaves">Dry Leaves / Straw (High Carbon)</option>
-                        <option value="sawdust">Wood Sawdust / Chips (Very High Carbon)</option>
-                        <option value="cardboard">Shredded Cardboard / Paper</option>
-                    </select>
+                    <label for="brownKg">Brown Ingredients Weight (kg) - Leaves/Cardboard:</label>
+                    <input type="number" id="brownKg" placeholder="e.g., 15" value="15">
                 </div>
 
-                <button class="calc-btn" onclick="calculateCompost()">Calculate Compost Balance</button>
+                <button class="calc-btn" onclick="calculateCompost()">Compute C:N Ratio</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
@@ -148,94 +134,79 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>🍂 Brown Material Needed:</b>
-                            <span id="brownNeeded">-</span>
-                        </div>
-                        <div class="decision-item">
-                            <b>⚖️ Estimated C:N Ratio:</b>
+                            <b>🍂 Estimated C:N Ratio:</b>
                             <span id="cnRatio">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🗑️ Recommended Bin:</b>
-                            <span id="recBinSize">-</span>
+                            <b>⚖️ Mix Balance:</b>
+                            <span id="mixStatus">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>⏱️ Decomposition Time:</b>
+                            <b>⏱️ Est. Decomposition Time:</b>
                             <span id="decompTime">-</span>
+                        </div>
+                        <div class="decision-item">
+                            <b>🗑️ Recommended Bin Size:</b>
+                            <span id="binVolume">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Temu Physical Deals Slider (TOP) + Digital Product Offer (BOTTOM) -->
+            <!-- Right Column: Sidebar -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- Temu Physical Deals Slider (TOP) -->
                 <div id="temu-compost-slider-container"></div>
-
-                <!-- Digital Product Offer (Digistore24) (BOTTOM) -->
                 <div id="compost-product-box-1"></div>
+
+                <!-- Recommended Article Box -->
+                <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
+                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">RECOMMENDED GUIDE</span>
+                    <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">Home Composting 101: Food Waste to Soil</h3>
+                    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 14px; line-height: 1.5;">Master C:N ratios, vermicomposting, and odor-free kitchen compost management.</p>
+                    <a href="article-composting.html" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-weight: bold; font-size: 13px;">Read Full Guide &rarr;</a>
+                </div>
             </div>
         </div>
 
-        <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Mastering the Carbon-to-Nitrogen (C:N) Ratio in Composting</h2>
-            <p>Achieving a balanced 30:1 carbon-to-nitrogen ratio accelerates microbial breakdown, eliminates foul odors, and turns kitchen waste into rich organic fertilizer efficiently. Using stainless steel countertop bins, tumbler barrels, and digital thermometers makes home composting seamless.</p>
+            <h2>Understanding the 30:1 Composting Ratio</h2>
+            <p>Aerobic composting relies on microbes breaking down organic matter. Maintaining a 30:1 carbon-to-nitrogen ratio speeds up decomposition while eliminating foul odors in stainless steel countertop bins and outdoor tumblers.</p>
         </div>
     </div>
 
     <script>
         function calculateCompost() {
-            const greens = parseFloat(document.getElementById('greenWeight').value) || 5;
-            const type = document.getElementById('brownType').value;
+            const greens = parseFloat(document.getElementById('greenKg').value) || 0;
+            const browns = parseFloat(document.getElementById('brownKg').value) || 0;
+
+            const ratio = (greens === 0) ? 0 : (browns * 60 + greens * 15) / (greens + browns);
 
             const box = document.getElementById('resultBox');
-            const title = document.getElementById('resultTitle');
-            const desc = document.getElementById('resultDesc');
+            document.getElementById('resultTitle').innerText = "Calculated C:N Ratio: ~" + ratio.toFixed(1) + ":1";
             
-            const brownEl = document.getElementById('brownNeeded');
-            const ratioEl = document.getElementById('cnRatio');
-            const binEl = document.getElementById('recBinSize');
-            const timeEl = document.getElementById('decompTime');
-
-            let brownsMultiplier = 2.5;
-            let ratio = "28:1 (Optimal)";
-            let time = "6 - 8 Weeks";
-
-            if (type === "sawdust") {
-                brownsMultiplier = 1.8;
-                ratio = "32:1 (Good)";
-                time = "8 - 10 Weeks";
-            } else if (type === "cardboard") {
-                brownsMultiplier = 2.2;
-                ratio = "30:1 (Balanced)";
-                time = "6 - 7 Weeks";
+            if (ratio >= 25 && ratio <= 35) {
+                document.getElementById('resultDesc').innerText = "Perfect C:N balance for rapid odor-free composting!";
+                document.getElementById('mixStatus').innerText = "Optimal Balance";
+            } else if (ratio < 25) {
+                document.getElementById('resultDesc').innerText = "Too high in nitrogen. Add dry browns (leaves/cardboard) to prevent odors.";
+                document.getElementById('mixStatus').innerText = "High Nitrogen";
+            } else {
+                document.getElementById('resultDesc').innerText = "Too high in carbon. Add green food scraps or grass clippings to accelerate decomposition.";
+                document.getElementById('mixStatus').innerText = "High Carbon";
             }
 
-            let brownsNeededKg = (greens * brownsMultiplier).toFixed(1);
-            let recommendedBinSize = greens > 10 ? "50L - 100L Tumbler Bin" : "10L - 20L Countertop Bin";
+            document.getElementById('cnRatio').innerText = ratio.toFixed(1) + " : 1";
+            document.getElementById('decompTime').innerText = "4 - 8 Weeks";
+            document.getElementById('binVolume').innerText = Math.ceil((greens + browns) * 2) + " L Bin";
 
             box.style.display = 'block';
-
-            title.innerHTML = "Composting Formula Analysis";
-            box.style.borderLeftColor = "#10b981";
-            title.style.color = "#10b981";
-            desc.innerHTML = "Based on " + greens + " kg of kitchen green waste.";
-
-            brownEl.innerHTML = "~" + brownsNeededKg + " kg Browns";
-            ratioEl.innerHTML = ratio;
-            binEl.innerHTML = recommendedBinSize;
-            timeEl.innerHTML = time;
         }
     </script>
     <script src="affiliates.js"></script>
-    <script src="temu-affiliates.js?v=8.0"></script>
+    <script src="temu-affiliates.js?v=13.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Load Temu Physical Product Slider (TOP)
             renderTemuSlider('compost-calculator', 'temu-compost-slider-container');
-
-            // Load Digital Product Box (BOTTOM)
             loadAffiliateProducts('compost-calculator', 'compost-product-box-1');
         });
     </script>
