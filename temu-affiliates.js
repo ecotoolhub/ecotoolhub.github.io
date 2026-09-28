@@ -168,6 +168,27 @@ var temuData = {
         { title: "Odor Eliminator USB Battery Powered Small Air Deodorizer", rawPrice: "Rs.3,776", link: "https://temu.to/k/exkgq005vua", badge: "ODOR REMOVER" },
         { title: "1pc Dual-Core USB Powered Silent Car Air Purifier", rawPrice: "Rs.6,206", link: "https://temu.to/k/e66334gxbmi", badge: "CAR PURIFIER" },
         { title: "Wearable Personal Air Purifier Necklace Anxiety Breathlace", rawPrice: "Rs.8,397", link: "https://temu.to/k/ecafjs3gir4", badge: "WEARABLE AIR" }
+    ],
+    "half-life": [
+        { title: "POROMETISTO ND01 Handheld Portable Nuclear Radiation Detector Pen Geiger Counter", rawPrice: "Rs.12,009", link: "https://temu.to/k/enume56zj28", badge: "GEIGER COUNTER" },
+        { title: "UNI-T Radiation Dose Detector Geiger Counter Real-Time Beta Gamma X-Ray", rawPrice: "Rs.30,279", link: "https://temu.to/k/et25lxdwlqx", badge: "UNI-T DETECTOR" },
+        { title: "Aicevoos Rechargeable Digital Flammable Gas Leak Detector Alarm", rawPrice: "Rs.16,480", link: "https://temu.to/k/ed983jxv3sm", badge: "GAS TESTER" },
+        { title: "UNI-T UT335A UT335B Gauss Meter Magnetic Field Strength Tester", rawPrice: "Rs.28,881", link: "https://temu.to/k/eef18h2rnlt", badge: "GAUSS METER" },
+        { title: "5-In-1 High Frequency EMF Meter Electromagnetic Field Radiation Detector", rawPrice: "Rs.11,695", link: "https://temu.to/k/eh2lcqs91js", badge: "EMF METER" },
+        { title: "Handheld Double Scale Sugar Salinity Salt Brix ATC Refractometer", rawPrice: "Rs.3,382", link: "https://temu.to/k/et64hc7njcq", badge: "REFRACTOMETER" },
+        { title: "Digital Lab Scale Gram Scale 1000G by 0.01G Accuracy", rawPrice: "Rs.6,249", link: "https://temu.to/k/etlhpkd2roc", badge: "LAB SCALE" },
+        { title: "High-Precision Portable Digital Scale 0.001G Accuracy with Weight", rawPrice: "Rs.5,758", link: "https://temu.to/k/e8c3etzbegi", badge: "0.001G SCALE" },
+        { title: "1pc Portable Mini Micro Pocket Scale 0.01g Precision", rawPrice: "Rs.1,651", link: "https://temu.to/k/extxgo6yhbz", badge: "POCKET SCALE" },
+        { title: "UNI-T UTi160S Industrial Infrared Thermal Imaging Instrument", rawPrice: "Rs.57,814", link: "https://temu.to/k/erhjb9mhfxp", badge: "THERMAL IMAGER" },
+        { title: "IR02 Digital Infrared Thermometer -50-800C Laser Temp Gun", rawPrice: "Rs.6,975", link: "https://temu.to/k/ej0957uvwai", badge: "LASER TEMP GUN" },
+        { title: "UNI-T Infrared Thermometer Gun -20 to 400C Digital Laser", rawPrice: "Rs.6,375", link: "https://temu.to/k/es0mopsq7qw", badge: "UNI-T IR GUN" },
+        { title: "IR01 High Precision Infrared Thermometer Non-Contact Temperature Meter", rawPrice: "Rs.5,125", link: "https://temu.to/k/exarcdwj290", badge: "IR METER" },
+        { title: "Digital Kitchen Meat Thermometer with Probe and Timer Alarm", rawPrice: "Rs.2,608", link: "https://temu.to/k/evl647p1olb", badge: "PROBE THERMOMETER" },
+        { title: "Decibel Sound Level Meter Large LED Display Noise Temp Monitor", rawPrice: "Rs.16,433", link: "https://temu.to/k/e7x9os152ch", badge: "DECIBEL METER" },
+        { title: "Compact Digital Noise Meter 30 to 130dB Sound Level Measurement", rawPrice: "Rs.2,897", link: "https://temu.to/k/ek0a17960j7", badge: "NOISE MONITOR" },
+        { title: "UNI-T Uni-Trend Infrared Thermal Imager for HVAC and Solar", rawPrice: "Rs.68,620", link: "https://temu.to/k/eayljj3zqoz", badge: "PRO THERMAL CAM" },
+        { title: "50pcs Transparent Plastic Test Tubes with Caps 75x12mm", rawPrice: "Rs.1,554", link: "https://temu.to/k/epfbtfd9q6x", badge: "TEST TUBES 50PK" },
+        { title: "25pcs Plastic Test Tubes Transparent with Screw Caps", rawPrice: "Rs.4,738", link: "https://temu.to/k/et6usdq4pae", badge: "SCREW CAP TUBES" }
     ]
 };
 
