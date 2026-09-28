@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco Blog & Guides - Eco Tool Hub</title>
+    <title>Eco Tool Hub - Articles & Guides</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -20,123 +20,221 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 0;
-            min-height: 100vh;
+            padding: 20px;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
-        header {
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 10px; }
+        
+        .header-section {
             text-align: center;
-            padding: 40px 20px 20px 20px;
+            margin-bottom: 35px;
         }
-        header h1 {
+        .header-section h1 {
             color: var(--accent-color);
-            font-size: clamp(28px, 5vw, 40px);
-            margin-bottom: 10px;
+            font-size: 32px;
+            margin: 0 0 10px 0;
         }
-        header p {
+        .header-section p {
             color: var(--text-muted);
-            font-size: clamp(14px, 2vw, 18px);
+            font-size: 15px;
             margin: 0;
         }
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 20px;
+
+        .main-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            flex: 1;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
         }
-        .blog-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        @media (max-width: 900px) {
+            .main-container { grid-template-columns: 1fr; }
+        }
+
+        /* Articles List (Left) */
+        .articles-list {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            gap: 20px;
         }
-        .blog-card:hover {
-            transform: translateY(-5px);
+        .article-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .article-card:hover {
+            transform: translateY(-2px);
             border-color: var(--accent-color);
         }
-        .blog-card h3 {
-            color: var(--text-color);
-            margin-top: 0;
-            font-size: 20px;
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
         }
-        .blog-card p {
+        .category-tag {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-color);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+        .read-time {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .article-card h2 {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+        }
+        .article-card h2 a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .article-card h2 a:hover {
+            color: var(--accent-color);
+        }
+        .article-desc {
             color: var(--text-muted);
             font-size: 14px;
             line-height: 1.6;
+            margin: 0 0 18px 0;
         }
-        .blog-card .meta {
-            font-size: 12px;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-        .blog-card a.read-btn {
+        .read-btn {
             display: inline-block;
             background-color: var(--accent-color);
             color: white;
             text-decoration: none;
-            text-align: center;
-            padding: 10px 15px;
+            padding: 9px 18px;
             border-radius: 8px;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-        .blog-card a.read-btn:hover { background-color: var(--accent-hover); }
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: var(--text-muted);
             font-size: 13px;
-            border-top: 1px solid var(--border-color);
-            margin-top: 40px;
+            font-weight: 700;
+            transition: background 0.2s;
+        }
+        .read-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Sidebar (Right) */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Eco Tool Hub - Articles & Guides</h1>
-        <p>In-depth insights, eco-friendly lifestyle tips, and expert guides.</p>
-    </header>
-
-    <div class="container">
-        <!-- Article 1 Card -->
-        <div class="blog-card">
-            <div>
-                <div class="meta">Sustainability • 5 min read</div>
-                <h3>How to Reduce Your Carbon Footprint in 2026</h3>
-                <p>Discover actionable daily habits, energy-saving hacks, and smart tools to shrink your household CO2 emissions effectively.</p>
-            </div>
-            <a href="article-carbon-footprint.html" class="read-btn">Read Article</a>
+    <div class="wrapper">
+        <div class="header-section">
+            <h1>Eco Tool Hub - Articles & Guides</h1>
+            <p>In-depth insights, eco-friendly lifestyle tips, and expert practical guides.</p>
         </div>
 
-        <!-- Placeholder for future articles -->
-        <div class="blog-card" style="opacity: 0.6;">
-            <div>
-                <div class="meta">Solar Energy • Coming Soon</div>
-                <h3>Complete Guide to Residential Solar & Battery Sizing</h3>
-                <p>Everything you need to know about calculating peak sun hours, inverter capacities, and deep-cycle lithium storage.</p>
+        <div class="main-container">
+            <!-- Left Column: Topic-wise Articles List -->
+            <div class="articles-list">
+
+                <!-- Article 1 -->
+                <div class="article-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Sustainability</span>
+                        <span class="read-time">&bull; 5 min read</span>
+                    </div>
+                    <h2><a href="article-carbon-footprint.html">How to Reduce Your Carbon Footprint in 2026</a></h2>
+                    <p class="article-desc">Discover actionable daily habits, energy-saving hacks, and smart tools to shrink your household CO2 emissions effectively.</p>
+                    <a href="article-carbon-footprint.html" class="read-btn">Read Article &rarr;</a>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="article-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Solar Energy</span>
+                        <span class="read-time">&bull; 8 min read</span>
+                    </div>
+                    <h2><a href="solar-calculator.html">Complete Guide to Residential Solar & Battery Sizing</a></h2>
+                    <p class="article-desc">Everything you need to know about calculating peak sun hours, inverter capacities, and deep-cycle lithium storage for off-grid setup.</p>
+                    <a href="solar-calculator.html" class="read-btn">Read Article &rarr;</a>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="article-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Indoor Gardening</span>
+                        <span class="read-time">&bull; 6 min read</span>
+                    </div>
+                    <h2><a href="plant-water-calculator.html">Smart Indoor Gardening & Automatic Drip Irrigation Setup</a></h2>
+                    <p class="article-desc">Learn how automatic watering timers, full-spectrum LED grow lights, and soil moisture meters optimize indoor plant yields.</p>
+                    <a href="plant-water-calculator.html" class="read-btn">Read Article &rarr;</a>
+                </div>
+
+                <!-- Article 4 -->
+                <div class="article-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Composting</span>
+                        <span class="read-time">&bull; 7 min read</span>
+                    </div>
+                    <h2><a href="compost-calculator.html">Home Composting 101: Turn Food Waste into Organic Fertilizer</a></h2>
+                    <p class="article-desc">Master C:N ratios, vermicomposting with worm bins, and odor-free kitchen compost management using smart stainless steel bins.</p>
+                    <a href="compost-calculator.html" class="read-btn">Read Article &rarr;</a>
+                </div>
+
+                <!-- Article 5 -->
+                <div class="article-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Air Quality</span>
+                        <span class="read-time">&bull; 5 min read</span>
+                    </div>
+                    <h2><a href="aqi-calculator.html">Improving Indoor Air Quality & AQI Safety Guide</a></h2>
+                    <p class="article-desc">How HEPA filters, negative ion air purifiers, and 5-in-1 AQI monitors eliminate smoke, allergens, and toxic formaldehyde.</p>
+                    <a href="aqi-calculator.html" class="read-btn">Read Article &rarr;</a>
+                </div>
+
+                <!-- Article 6 -->
+                <div class="article-card">
+                    <div class="article-meta">
+                        <span class="category-tag">Science & Lab</span>
+                        <span class="read-time">&bull; 10 min read</span>
+                    </div>
+                    <h2><a href="half-life-calculator.html">Understanding Radioactive Decay & Geiger Counter Basics</a></h2>
+                    <p class="article-desc">A complete guide to half-life calculations, nuclear disintegration rates, and essential radiation detection tools.</p>
+                    <a href="half-life-calculator.html" class="read-btn">Read Article &rarr;</a>
+                </div>
+
             </div>
-            <a href="#" class="read-btn" style="background-color: var(--border-color); pointer-events: none;">Coming Soon</a>
+
+            <!-- Right Column: Sidebar with ALL Synced Physical & Digital Products -->
+            <div class="sidebar">
+                <!-- Temu Physical Products Slider (Showing ALL 150+ Products) -->
+                <div id="temu-all-slider-container"></div>
+
+                <!-- Digital Product Offer (Digistore24) -->
+                <div id="blog-digital-product-container"></div>
+            </div>
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 Eco Tool Hub. All rights reserved.
-    </footer>
+    <!-- Scripts for Syncing Products -->
+    <script src="affiliates.js"></script>
+    <script src="temu-affiliates.js?v=13.0"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Render ALL Physical Products in Slider (Right Sidebar)
+            renderTemuSlider('all', 'temu-all-slider-container');
 
+            // Render Digital Product Offer in Right Sidebar
+            loadAffiliateProducts('carbon-footprint', 'blog-digital-product-container');
+        });
+    </script>
     <script src="nav.js"></script>
 </body>
 </html>
