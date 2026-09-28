@@ -13,7 +13,6 @@
             --accent-hover: #059669;
             --border-color: #334155;
             --text-muted: #94a3b8;
-            --affiliate-bg: #0f172a;
         }
         * { box-sizing: border-box; }
         body {
@@ -28,13 +27,7 @@
             min-height: 100vh;
         }
         .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
-        .back-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
         
         .main-container {
@@ -103,7 +96,6 @@
         }
         .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
-        /* SEO Content */
         .seo-content {
             margin-top: 40px;
             background-color: var(--card-bg);
@@ -112,7 +104,7 @@
             padding: 30px;
         }
         .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
-        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+        .seo-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -121,14 +113,14 @@
         <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
 
         <div class="main-container">
-            <!-- Left Column: Tool -->
+            <!-- Left Column: Calculator -->
             <div class="card">
                 <h1>Smart Carbon Footprint Planner</h1>
                 <p class="subtitle">Estimate your household carbon emissions and discover sustainable lifestyle adjustments.</p>
                 
                 <div class="form-group">
-                    <label for="kwhUnits">Monthly Electricity Usage (kWh / Units):</label>
-                    <input type="number" id="kwhUnits" placeholder="e.g., 300" value="300">
+                    <label for="elecKwh">Monthly Electricity Usage (kWh / Units):</label>
+                    <input type="number" id="elecKwh" placeholder="e.g., 300" value="300">
                 </div>
 
                 <div class="form-group">
@@ -144,82 +136,74 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>⚡ Power Emissions:</b>
-                            <span id="powerCo2">-</span>
+                            <b>⚡ Electricity CO2:</b>
+                            <span id="elecCo2">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🚗 Travel Emissions:</b>
+                            <b>🚗 Travel CO2:</b>
                             <span id="travelCo2">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🌍 Total Monthly CO2:</b>
+                            <b>📊 Total Monthly Emissions:</b>
                             <span id="totalCo2">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🌲 Trees Needed to Offset:</b>
-                            <span id="offsetTrees">-</span>
+                            <b>🌳 Trees to Offset/Yr:</b>
+                            <span id="treesNeeded">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Temu Physical Deals Slider (TOP) + Digital Product Offer (BOTTOM) -->
+            <!-- Right Column: Sidebar -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- Temu Physical Deals Slider (TOP) -->
                 <div id="temu-carbon-slider-container"></div>
-
-                <!-- Digital Product Offer (Digistore24) (BOTTOM) -->
                 <div id="carbon-product-box-1"></div>
+
+                <!-- Recommended Article Box -->
+                <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
+                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">RECOMMENDED GUIDE</span>
+                    <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">How to Reduce Your Carbon Footprint in 2026</h3>
+                    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 14px; line-height: 1.5;">Read our step-by-step guide on lowering home emissions, saving energy, and adopting eco-habits.</p>
+                    <a href="article-carbon-footprint.html" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-weight: bold; font-size: 13px;">Read Full Guide &rarr;</a>
+                </div>
             </div>
         </div>
 
-        <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Understanding and Reducing Your Household Carbon Footprint</h2>
-            <p>Every household activity contributes to overall carbon emissions, primarily through electricity consumption and daily transportation. Tracking power draw with smart energy meters, utilizing rainwater collection systems, and switching to off-grid gear drastically lowers environmental footprint.</p>
+            <h2>Why Tracking Household Carbon Footprint Matters</h2>
+            <p>Household energy consumption and transportation generate a substantial share of daily greenhouse emissions. Monitoring electricity usage, switching to efficient devices, and utilizing rainwater harvesters and portable purifiers helps minimize personal ecological impact.</p>
         </div>
     </div>
 
     <script>
         function calculateCarbon() {
-            const kwh = parseFloat(document.getElementById('kwhUnits').value) || 0;
+            const elec = parseFloat(document.getElementById('elecKwh').value) || 0;
             const km = parseFloat(document.getElementById('driveKm').value) || 0;
 
-            const box = document.getElementById('resultBox');
-            const title = document.getElementById('resultTitle');
-            const desc = document.getElementById('resultDesc');
-            
-            const powerEl = document.getElementById('powerCo2');
-            const travelEl = document.getElementById('travelCo2');
-            const totalEl = document.getElementById('totalCo2');
-            const treesEl = document.getElementById('offsetTrees');
+            const elecCo2 = elec * 0.85;
+            const travelCo2 = (km * 4) * 0.21;
+            const totalMonthlyKg = elecCo2 + travelCo2;
+            const totalAnnualKg = totalMonthlyKg * 12;
+            const trees = Math.ceil(totalAnnualKg / 22);
 
-            let powerCo2Kg = (kwh * 0.85); // approx kg CO2 per kWh
-            let travelCo2Kg = (km * 4 * 0.21); // approx kg CO2 per km per month
-            let totalKg = powerCo2Kg + travelCo2Kg;
-            let trees = Math.ceil(totalKg / 21); // 1 tree absorbs ~21kg CO2/yr
+            const box = document.getElementById('resultBox');
+            document.getElementById('resultTitle').innerText = "Monthly Impact: ~" + totalMonthlyKg.toFixed(1) + " kg CO2";
+            document.getElementById('resultDesc').innerText = "Estimated annual footprint is " + (totalAnnualKg / 1000).toFixed(2) + " metric tons of CO2 equivalent.";
+
+            document.getElementById('elecCo2').innerText = elecCo2.toFixed(1) + " kg/mo";
+            document.getElementById('travelCo2').innerText = travelCo2.toFixed(1) + " kg/mo";
+            document.getElementById('totalCo2').innerText = totalMonthlyKg.toFixed(1) + " kg/mo";
+            document.getElementById('treesNeeded').innerText = trees + " trees";
 
             box.style.display = 'block';
-
-            title.innerHTML = "Estimated Emissions: ~" + Math.round(totalKg) + " kg CO2 / month";
-            box.style.borderLeftColor = "#10b981";
-            title.style.color = "#10b981";
-            desc.innerHTML = "Calculated from " + kwh + " kWh monthly electricity and " + km + " km weekly drive.";
-
-            powerEl.innerHTML = "~" + Math.round(powerCo2Kg) + " kg CO2";
-            travelEl.innerHTML = "~" + Math.round(travelCo2Kg) + " kg CO2";
-            totalEl.innerHTML = "~" + Math.round(totalKg) + " kg / Mo";
-            treesEl.innerHTML = "~" + trees + " Trees / Year";
         }
     </script>
     <script src="affiliates.js"></script>
-    <script src="temu-affiliates.js?v=10.0"></script>
+    <script src="temu-affiliates.js?v=13.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Load Temu Physical Product Slider (TOP)
             renderTemuSlider('carbon-footprint', 'temu-carbon-slider-container');
-
-            // Load Digital Product Box (BOTTOM)
             loadAffiliateProducts('carbon-footprint', 'carbon-product-box-1');
         });
     </script>
