@@ -44,7 +44,21 @@
         .cta-box { background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%); border: 1px solid var(--accent-color); border-radius: 12px; padding: 22px; margin: 30px 0; text-align: center; }
         .cta-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 18px; }
         .cta-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
-        .cta-btn { display: inline-block; background-color: var(--accent-color); color: white; text-decoration: none; padding: 11px 22px; border-radius: 8px; font-weight: bold; }
+        .article-content a.cta-btn,
+        .cta-btn {
+            display: inline-block !important;
+            background-color: var(--accent-color) !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            padding: 11px 22px !important;
+            border-radius: 8px !important;
+            font-weight: 800 !important;
+            font-size: 14px !important;
+            transition: background 0.3s !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+        }
+        .article-content a.cta-btn:hover,
+        .cta-btn:hover { background-color: var(--accent-hover) !important; color: #ffffff !important; text-decoration: none !important; }
     </style>
 </head>
 <body>
