@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Radioactive Decay & Geiger Counter Basics</title>
+    <meta name="description" content="Master radioactive half-life calculations and radiation measurement techniques. Learn how digital Geiger counters and lab balance scales operate.">
+    <style>
+        :root { --bg-color: #0b0f19; --card-bg: #1e293b; --text-color: #f8fafc; --accent-color: #10b981; --accent-hover: #059669; --border-color: #334155; --text-muted: #94a3b8; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 10px; }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
+        .main-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        h1 { color: var(--accent-color); font-size: 28px; margin-bottom: 10px; line-height: 1.3; }
+        .article-meta { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
+        .quick-answer-box { background: rgba(16, 185, 129, 0.1); border: 1px solid var(--accent-color); border-radius: 10px; padding: 18px; margin-bottom: 25px; }
+        .quick-answer-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 15px; text-transform: uppercase; }
+        .quick-answer-box p { margin: 0; font-size: 14px; line-height: 1.6; color: #e2e8f0; }
+        .key-takeaways { background-color: #0f172a; border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; margin-bottom: 30px; }
+        .key-takeaways h3 { color: #f8fafc; margin: 0 0 12px 0; font-size: 16px; }
+        .key-takeaways ul { margin: 0; padding-left: 20px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+        .article-content h2 { color: var(--text-color); font-size: 20px; margin-top: 30px; margin-bottom: 12px; border-left: 4px solid var(--accent-color); padding-left: 10px; }
+        .article-content p, .article-content li { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
+        .article-content a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+        .data-table th, .data-table td { border: 1px solid var(--border-color); padding: 10px 14px; text-align: left; }
+        .data-table th { background-color: #0f172a; color: var(--accent-color); font-weight: 700; }
+        .data-table td { color: var(--text-muted); }
+        .faq-item { margin-bottom: 18px; background: #0f172a; padding: 16px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .faq-item h3 { color: var(--text-color); font-size: 15px; margin: 0 0 8px 0; }
+        .faq-item p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+        .cta-box { background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%); border: 1px solid var(--accent-color); border-radius: 12px; padding: 22px; margin: 30px 0; text-align: center; }
+        .cta-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 18px; }
+        .cta-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
+        .cta-btn { display: inline-block; background-color: var(--accent-color); color: white; text-decoration: none; padding: 11px 22px; border-radius: 8px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <a href="blog.html" class="back-link">&larr; Back to Articles & Guides</a>
+
+        <div class="main-container">
+            <div class="card article-content">
+                <h1>Understanding Radioactive Decay & Geiger Counter Basics</h1>
+                <div class="article-meta">Published by Eco Tool Hub Editorial Team &bull; Updated September 2026 &bull; 10 min read</div>
+
+                <div class="quick-answer-box">
+                    <h3>⚡ Quick Answer</h3>
+                    <p>Radioactive half-life is the time required for half of the unstable atomic nuclei in a sample to undergo radioactive decay. Calculated using the formula N(t) = N0 * (1/2)^(t / t1/2), this decay rate is measured experimentally using handheld Geiger-Müller counters and high-precision 0.001g laboratory balance scales.</p>
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>💡 Key Takeaways</h3>
+                    <ul>
+                        <li><b>Exponential Kinetics:</b> Nuclear decay rate is constant and unaffected by external temperature or pressure.</li>
+                        <li><b>Radiation Types:</b> Geiger counters detect ionizing Beta particles, Gamma rays, and X-rays in microsieverts per hour (µSv/h).</li>
+                        <li><b>Lab Measurement:</b> Precision digital scales measuring down to 1 milligram (0.001g) are essential for tracking physical sample mass changes.</li>
+                        <li><b>Decay Calculator:</b> Compute remaining radioactive mass and elapsed cycles with our Half-Life Calculator.</li>
+                    </ul>
+                </div>
+
+                <h2>1. The Mathematics of Radioactive Decay</h2>
+                <p>Radioactive decay follows first-order exponential kinetics. Regardless of initial quantity, exactly 50% of the remaining parent isotope transforms into daughter products during each half-life interval.</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Isotope Entity</th>
+                            <th>Half-Life Period</th>
+                            <th>Primary Emission Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Iodine-131 (Medical)</td><td>8.02 Days</td><td>Beta & Gamma Radiation</td></tr>
+                        <tr><td>Carbon-14 (Radiocarbon)</td><td>5,730 Years</td><td>Beta Particle Emission</td></tr>
+                        <tr><td>Uranium-238 (Geological)</td><td>4.47 Billion Years</td><td>Alpha Particle Emission</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="cta-box">
+                    <h3>Compute Decay Mass & Kinetics</h3>
+                    <p>Calculate remaining substance quantity and percentage decay over any elapsed timeframe using our interactive tool.</p>
+                    <a href="half-life-calculator.html" class="cta-btn">Open Half-Life Calculator &rarr;</a>
+                </div>
+
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <h3>How does a Geiger Counter detect ionizing radiation?</h3>
+                    <p>Geiger counters contain a gas-filled tube (Geiger-Müller tube). When ionizing radiation passes through the tube, it ionizes the gas, creating an electrical pulse that registers on the digital screen in µSv/h.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What is a safe background radiation reading?</h3>
+                    <p>Normal ambient background radiation typically ranges between 0.08 µSv/h and 0.25 µSv/h. Readings consistently above 0.50 µSv/h indicate elevated environmental radiation.</p>
+                </div>
+
+                <h2>Conclusion</h2>
+                <p>Understanding half-life kinetics is fundamental to nuclear safety, radiocarbon dating, and medical dosimetry. Use our automated calculator to evaluate decay equations quickly.</p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div id="temu-halflife-slider-container"></div>
+                <div id="halflife-product-box-1"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="affiliates.js"></script>
+    <script src="temu-affiliates.js?v=13.0"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderTemuSlider('half-life', 'temu-halflife-slider-container');
+            loadAffiliateProducts('half-life', 'halflife-product-box-1');
+        });
+    </script>
+    <script src="nav.js"></script>
+</body>
+</html>
