@@ -35,13 +35,27 @@
         .cta-box { background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%); border: 1px solid var(--accent-color); border-radius: 12px; padding: 22px; margin: 30px 0; text-align: center; }
         .cta-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 18px; }
         .cta-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
-        .cta-btn { display: inline-block; background-color: var(--accent-color); color: white; text-decoration: none; padding: 11px 22px; border-radius: 8px; font-weight: bold; }
+        .article-content a.cta-btn,
+        .cta-btn {
+            display: inline-block !important;
+            background-color: var(--accent-color) !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            padding: 11px 22px !important;
+            border-radius: 8px !important;
+            font-weight: 800 !important;
+            font-size: 14px !important;
+            transition: background 0.3s !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+        }
+        .article-content a.cta-btn:hover,
+        .cta-btn:hover { background-color: var(--accent-hover) !important; color: #ffffff !important; text-decoration: none !important; }
     </style>
 </head>
 <body>
 
     <div class="wrapper">
-        <a href="blog.html" class="back-link">&larr; Back to Articles & Guides</a>
+        <a href="blog.html" class="back-link">&larr; Back to Articles and Guides</a>
 
         <div class="main-container">
             <div class="card article-content">
@@ -75,8 +89,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>High Nitrogen (Greens)</td><td>Vegetable peels, Coffee grounds, Grass clippings</td><td>15:1 – 20:1</td></tr>
-                        <tr><td>High Carbon (Browns)</td><td>Shredded cardboard, Dry leaves, Wood shavings</td><td>60:1 – 400:1</td></tr>
+                        <tr><td>High Nitrogen (Greens)</td><td>Vegetable peels, Coffee grounds, Grass clippings</td><td>15:1 to 20:1</td></tr>
+                        <tr><td>High Carbon (Browns)</td><td>Shredded cardboard, Dry leaves, Wood shavings</td><td>60:1 to 400:1</td></tr>
                         <tr><td>Balanced Ideal Mix</td><td>3 Parts Browns + 1 Part Greens</td><td>Target 30:1</td></tr>
                     </tbody>
                 </table>
