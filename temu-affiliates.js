@@ -194,11 +194,24 @@ var temuData = {
 
 var sliderStates = {};
 
+function getProductList(categoryKey) {
+    if (categoryKey === 'all') {
+        var allProducts = [];
+        for (var k in temuData) {
+            if (temuData.hasOwnProperty(k)) {
+                allProducts = allProducts.concat(temuData[k]);
+            }
+        }
+        return allProducts;
+    }
+    return temuData[categoryKey] || temuData["solar-energy"];
+}
+
 function renderTemuSlider(categoryKey, containerId) {
     var container = document.getElementById(containerId);
     if (!container) return;
 
-    var products = temuData[categoryKey] || temuData["solar-energy"];
+    var products = getProductList(categoryKey);
     if (!products || products.length === 0) return;
 
     if (sliderStates[containerId] === undefined) {
@@ -240,7 +253,7 @@ function renderTemuSlider(categoryKey, containerId) {
 }
 
 function changeTemuSlide(categoryKey, containerId, direction) {
-    var products = temuData[categoryKey] || temuData["solar-energy"];
+    var products = getProductList(categoryKey);
     if (!products || products.length === 0) return;
 
     var currentIndex = sliderStates[containerId] || 0;
