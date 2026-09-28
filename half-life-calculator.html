@@ -127,18 +127,18 @@
                 <p class="subtitle">Compute nuclear disintegration, remaining quantity, and decay phase percentages.</p>
                 
                 <div class="form-group">
-                    <label for="initQty">Initial Quantity / Mass ($N_0$):</label>
-                    <input type="number" id="initQty" placeholder="e.g., 100">
+                    <label for="initMass">Initial Quantity / Mass (N0):</label>
+                    <input type="number" id="initMass" placeholder="e.g., 100" value="100">
                 </div>
 
                 <div class="form-group">
-                    <label for="halfLife">Half-Life Period ($t_{1/2}$):</label>
-                    <input type="number" id="halfLife" placeholder="e.g., 8">
+                    <label for="halfLife">Half-Life Period (t1/2):</label>
+                    <input type="number" id="halfLife" placeholder="e.g., 8" value="8">
                 </div>
 
                 <div class="form-group">
-                    <label for="elapsedTime">Total Elapsed Time ($t$):</label>
-                    <input type="number" id="elapsedTime" placeholder="e.g., 24">
+                    <label for="elapsedTime">Total Elapsed Time (t):</label>
+                    <input type="number" id="elapsedTime" placeholder="e.g., 24" value="24">
                 </div>
 
                 <button class="calc-btn" onclick="calculateHalfLife()">Compute Decay Kinetics</button>
@@ -153,80 +153,77 @@
                             <span id="remMass">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>📉 Decayed Fraction:</b>
-                            <span id="decayPct">-</span>
+                            <b>📉 Remaining Percentage:</b>
+                            <span id="remPct">-</span>
                         </div>
                         <div class="decision-item">
                             <b>⏳ Elapsed Half-Lives:</b>
-                            <span id="numHalfLives">-</span>
+                            <span id="numCycles">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>📊 Stability Status:</b>
-                            <span id="stabilityStatus">-</span>
+                            <b>🧪 Decayed Portion:</b>
+                            <span id="decayedMass">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Dynamic Off-Grid / Self-Reliance Offers -->
+            <!-- Right Column: Temu Physical Deals Slider (TOP) + Digital Product Offer (BOTTOM) -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Temu Physical Deals Slider (TOP) -->
+                <div id="temu-halflife-slider-container"></div>
+
+                <!-- Digital Product Offer (Digistore24) (BOTTOM) -->
                 <div id="halflife-product-box-1"></div>
-                <div id="halflife-product-box-2"></div>
             </div>
         </div>
 
         <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Understanding Radioactive Decay and Half-Life Calculations</h2>
-            <p>Radioactive half-life is the time required for a quantity of a radioactive isotope to reduce to half of its initial value. This principle is fundamental in nuclear chemistry, physics, radiometric dating, and medical isotope therapy.</p>
-            
-            <h3>Self-Reliance & Off-Grid Resource Planning:</h3>
-            <p>Understanding scientific decay and resource management helps households plan long-term energy, clean water supply, and independent off-grid living arrangements efficiently.</p>
+            <h2>Understanding Radioactive Decay & Precision Laboratory Measurements</h2>
+            <p>Radioactive decay kinetics govern nuclear physics, radiocarbon dating, and medical isotope degradation. Precise measurements using specialized digital Geiger counters, high-accuracy lab balance scales, and thermal imaging gear provide key safety and research data.</p>
         </div>
     </div>
 
     <script>
         function calculateHalfLife() {
-            const n0 = parseFloat(document.getElementById('initQty').value) || 0;
-            const h = parseFloat(document.getElementById('halfLife').value) || 0;
+            const n0 = parseFloat(document.getElementById('initMass').value) || 0;
+            const h = parseFloat(document.getElementById('halfLife').value) || 1;
             const t = parseFloat(document.getElementById('elapsedTime').value) || 0;
 
             const box = document.getElementById('resultBox');
             const title = document.getElementById('resultTitle');
             const desc = document.getElementById('resultDesc');
             
-            const massEl = document.getElementById('remMass');
-            const pctEl = document.getElementById('decayPct');
-            const cyclesEl = document.getElementById('numHalfLives');
-            const statEl = document.getElementById('stabilityStatus');
+            const remMassEl = document.getElementById('remMass');
+            const remPctEl = document.getElementById('remPct');
+            const cyclesEl = document.getElementById('numCycles');
+            const decayedEl = document.getElementById('decayedMass');
 
-            if (n0 <= 0 || h <= 0 || t < 0) {
-                alert("Please enter valid positive numbers!");
-                return;
-            }
-
-            const cycles = t / h;
-            const remaining = n0 * Math.pow(0.5, cycles);
-            const decayedPct = ((n0 - remaining) / n0 * 100).toFixed(2);
+            let cycles = t / h;
+            let nt = n0 * Math.pow(0.5, cycles);
+            let pct = (nt / n0) * 100;
+            let decayed = n0 - nt;
 
             box.style.display = 'block';
 
-            title.innerHTML = `Remaining Mass: ${remaining.toFixed(2)} Units`;
+            title.innerHTML = "Remaining Quantity: ~" + nt.toFixed(2) + " units";
             box.style.borderLeftColor = "#10b981";
             title.style.color = "#10b981";
-            desc.innerHTML = `Calculated over ${cycles.toFixed(2)} half-life cycles.`;
+            desc.innerHTML = "Calculated over " + t + " time units (" + cycles.toFixed(2) + " half-life cycles).";
 
-            massEl.innerHTML = `⚛️ ${remaining.toFixed(2)} Units Left`;
-            pctEl.innerHTML = `📉 ${decayedPct}% Decayed`;
-            cyclesEl.innerHTML = `⏳ ${cycles.toFixed(2)} Cycles`;
-            statEl.innerHTML = cycles > 5 ? "🟢 Highly Decayed" : "🟡 Actively Decaying";
+            remMassEl.innerHTML = nt.toFixed(2) + " units";
+            remPctEl.innerHTML = pct.toFixed(1) + "% remaining";
+            cyclesEl.innerHTML = cycles.toFixed(2) + " cycles";
+            decayedEl.innerHTML = decayed.toFixed(2) + " units decayed";
         }
     </script>
     <script src="affiliates.js"></script>
+    <script src="temu-affiliates.js?v=12.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            loadAffiliateProducts('carbon-footprint', 'halflife-product-box-1', 0);
-            loadAffiliateProducts('carbon-footprint', 'halflife-product-box-2', 1);
+            renderTemuSlider('half-life', 'temu-halflife-slider-container');
+            loadAffiliateProducts('half-life', 'halflife-product-box-1');
         });
     </script>
     <script src="nav.js"></script>
