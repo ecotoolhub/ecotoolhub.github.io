@@ -28,36 +28,14 @@
         }
         .wrapper { max-width: 1100px; width: 100%; margin-top: 10px; }
         
-        .header-section {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-        .header-section h1 {
-            color: var(--accent-color);
-            font-size: 32px;
-            margin: 0 0 10px 0;
-        }
-        .header-section p {
-            color: var(--text-muted);
-            font-size: 15px;
-            margin: 0;
-        }
+        .header-section { text-align: center; margin-bottom: 35px; }
+        .header-section h1 { color: var(--accent-color); font-size: 32px; margin: 0 0 10px 0; }
+        .header-section p { color: var(--text-muted); font-size: 15px; margin: 0; }
 
-        .main-container {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 30px;
-        }
-        @media (max-width: 900px) {
-            .main-container { grid-template-columns: 1fr; }
-        }
+        .main-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
 
-        /* Articles List (Left) */
-        .articles-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .articles-list { display: flex; flex-direction: column; gap: 20px; }
         .article-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -66,70 +44,18 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
             transition: transform 0.2s, border-color 0.2s;
         }
-        .article-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-color);
-        }
-        .article-meta {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-        .category-tag {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-color);
-            font-size: 11px;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 6px;
-            text-transform: uppercase;
-        }
-        .read-time {
-            color: var(--text-muted);
-            font-size: 12px;
-            font-weight: 600;
-        }
-        .article-card h2 {
-            font-size: 20px;
-            margin: 0 0 10px 0;
-            line-height: 1.4;
-        }
-        .article-card h2 a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .article-card h2 a:hover {
-            color: var(--accent-color);
-        }
-        .article-desc {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0 0 18px 0;
-        }
-        .read-btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            padding: 9px 18px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            transition: background 0.2s;
-        }
-        .read-btn:hover {
-            background-color: var(--accent-hover);
-        }
+        .article-card:hover { transform: translateY(-2px); border-color: var(--accent-color); }
+        .article-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .category-tag { background: rgba(16, 185, 129, 0.15); color: var(--accent-color); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; }
+        .read-time { color: var(--text-muted); font-size: 12px; font-weight: 600; }
+        .article-card h2 { font-size: 20px; margin: 0 0 10px 0; line-height: 1.4; }
+        .article-card h2 a { color: var(--text-color); text-decoration: none; transition: color 0.2s; }
+        .article-card h2 a:hover { color: var(--accent-color); }
+        .article-desc { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin: 0 0 18px 0; }
+        .read-btn { display: inline-block; background-color: var(--accent-color); color: white; text-decoration: none; padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 700; transition: background 0.2s; }
+        .read-btn:hover { background-color: var(--accent-hover); }
 
-        /* Sidebar (Right) */
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
     </style>
 </head>
 <body>
@@ -137,21 +63,21 @@
     <div class="wrapper">
         <div class="header-section">
             <h1>Eco Tool Hub - Articles & Guides</h1>
-            <p>In-depth insights, eco-friendly lifestyle tips, and expert practical guides.</p>
+            <p>SEO + AEO Optimized Expert Insights & Practical Eco Guides</p>
         </div>
 
         <div class="main-container">
-            <!-- Left Column: Topic-wise Articles List -->
+            <!-- Left Column: Articles List -->
             <div class="articles-list">
 
                 <!-- Article 1 -->
                 <div class="article-card">
                     <div class="article-meta">
                         <span class="category-tag">Sustainability</span>
-                        <span class="read-time">&bull; 5 min read</span>
+                        <span class="read-time">&bull; 6 min read</span>
                     </div>
-                    <h2><a href="article-carbon-footprint.html">How to Reduce Your Carbon Footprint in 2026</a></h2>
-                    <p class="article-desc">Discover actionable daily habits, energy-saving hacks, and smart tools to shrink your household CO2 emissions effectively.</p>
+                    <h2><a href="article-carbon-footprint.html">How to Reduce Your Carbon Footprint at Home: Practical 2026 Guide</a></h2>
+                    <p class="article-desc">Discover actionable daily habits, energy-saving hacks, and smart power monitors to shrink your household CO2 emissions effectively.</p>
                     <a href="article-carbon-footprint.html" class="read-btn">Read Article &rarr;</a>
                 </div>
 
@@ -161,9 +87,9 @@
                         <span class="category-tag">Solar Energy</span>
                         <span class="read-time">&bull; 8 min read</span>
                     </div>
-                    <h2><a href="solar-calculator.html">Complete Guide to Residential Solar & Battery Sizing</a></h2>
-                    <p class="article-desc">Everything you need to know about calculating peak sun hours, inverter capacities, and deep-cycle lithium storage for off-grid setup.</p>
-                    <a href="solar-calculator.html" class="read-btn">Read Article &rarr;</a>
+                    <h2><a href="article-solar-energy.html">Complete Guide to Residential Solar & Battery Sizing</a></h2>
+                    <p class="article-desc">Master home solar system design with our 2026 guide. Calculate peak sun hours, inverter capacities, and lithium battery storage correctly.</p>
+                    <a href="article-solar-energy.html" class="read-btn">Read Article &rarr;</a>
                 </div>
 
                 <!-- Article 3 -->
@@ -172,9 +98,9 @@
                         <span class="category-tag">Indoor Gardening</span>
                         <span class="read-time">&bull; 6 min read</span>
                     </div>
-                    <h2><a href="plant-water-calculator.html">Smart Indoor Gardening & Automatic Drip Irrigation Setup</a></h2>
+                    <h2><a href="article-indoor-gardening.html">Smart Indoor Gardening & Automatic Drip Irrigation Setup</a></h2>
                     <p class="article-desc">Learn how automatic watering timers, full-spectrum LED grow lights, and soil moisture meters optimize indoor plant yields.</p>
-                    <a href="plant-water-calculator.html" class="read-btn">Read Article &rarr;</a>
+                    <a href="article-indoor-gardening.html" class="read-btn">Read Article &rarr;</a>
                 </div>
 
                 <!-- Article 4 -->
@@ -183,9 +109,9 @@
                         <span class="category-tag">Composting</span>
                         <span class="read-time">&bull; 7 min read</span>
                     </div>
-                    <h2><a href="compost-calculator.html">Home Composting 101: Turn Food Waste into Organic Fertilizer</a></h2>
+                    <h2><a href="article-composting.html">Home Composting 101: Turn Food Waste into Organic Fertilizer</a></h2>
                     <p class="article-desc">Master C:N ratios, vermicomposting with worm bins, and odor-free kitchen compost management using smart stainless steel bins.</p>
-                    <a href="compost-calculator.html" class="read-btn">Read Article &rarr;</a>
+                    <a href="article-composting.html" class="read-btn">Read Article &rarr;</a>
                 </div>
 
                 <!-- Article 5 -->
@@ -194,9 +120,9 @@
                         <span class="category-tag">Air Quality</span>
                         <span class="read-time">&bull; 5 min read</span>
                     </div>
-                    <h2><a href="aqi-calculator.html">Improving Indoor Air Quality & AQI Safety Guide</a></h2>
+                    <h2><a href="article-air-quality.html">Improving Indoor Air Quality & AQI Safety Guide</a></h2>
                     <p class="article-desc">How HEPA filters, negative ion air purifiers, and 5-in-1 AQI monitors eliminate smoke, allergens, and toxic formaldehyde.</p>
-                    <a href="aqi-calculator.html" class="read-btn">Read Article &rarr;</a>
+                    <a href="article-air-quality.html" class="read-btn">Read Article &rarr;</a>
                 </div>
 
                 <!-- Article 6 -->
@@ -205,33 +131,26 @@
                         <span class="category-tag">Science & Lab</span>
                         <span class="read-time">&bull; 10 min read</span>
                     </div>
-                    <h2><a href="half-life-calculator.html">Understanding Radioactive Decay & Geiger Counter Basics</a></h2>
+                    <h2><a href="article-half-life.html">Understanding Radioactive Decay & Geiger Counter Basics</a></h2>
                     <p class="article-desc">A complete guide to half-life calculations, nuclear disintegration rates, and essential radiation detection tools.</p>
-                    <a href="half-life-calculator.html" class="read-btn">Read Article &rarr;</a>
+                    <a href="article-half-life.html" class="read-btn">Read Article &rarr;</a>
                 </div>
 
             </div>
 
-            <!-- Right Column: Sidebar with ALL Synced Physical & Digital Products -->
+            <!-- Right Column: Sidebar -->
             <div class="sidebar">
-                <!-- Temu Physical Products Slider (Showing ALL 150+ Products) -->
                 <div id="temu-all-slider-container"></div>
-
-                <!-- Digital Product Offer (Digistore24) -->
                 <div id="blog-digital-product-container"></div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts for Syncing Products -->
     <script src="affiliates.js"></script>
     <script src="temu-affiliates.js?v=13.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Render ALL Physical Products in Slider (Right Sidebar)
             renderTemuSlider('all', 'temu-all-slider-container');
-
-            // Render Digital Product Offer in Right Sidebar
             loadAffiliateProducts('carbon-footprint', 'blog-digital-product-container');
         });
     </script>
