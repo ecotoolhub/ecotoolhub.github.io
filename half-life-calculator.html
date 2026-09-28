@@ -13,7 +13,6 @@
             --accent-hover: #059669;
             --border-color: #334155;
             --text-muted: #94a3b8;
-            --affiliate-bg: #0f172a;
         }
         * { box-sizing: border-box; }
         body {
@@ -28,13 +27,7 @@
             min-height: 100vh;
         }
         .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
-        .back-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
         
         .main-container {
@@ -64,7 +57,6 @@
             color: white;
             font-size: 15px;
         }
-        input:focus { outline: none; border-color: var(--accent-color); }
         button.calc-btn {
             width: 100%;
             background-color: var(--accent-color);
@@ -103,7 +95,6 @@
         }
         .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
-        /* SEO Content */
         .seo-content {
             margin-top: 40px;
             background-color: var(--card-bg);
@@ -112,7 +103,7 @@
             padding: 30px;
         }
         .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
-        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+        .seo-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -121,7 +112,6 @@
         <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
 
         <div class="main-container">
-            <!-- Left Column: Tool -->
             <div class="card">
                 <h1>Smart Half-Life & Decay Calculator</h1>
                 <p class="subtitle">Compute nuclear disintegration, remaining quantity, and decay phase percentages.</p>
@@ -168,20 +158,24 @@
                 </div>
             </div>
 
-            <!-- Right Column: Temu Physical Deals Slider (TOP) + Digital Product Offer (BOTTOM) -->
+            <!-- Right Column: Sidebar -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- Temu Physical Deals Slider (TOP) -->
                 <div id="temu-halflife-slider-container"></div>
-
-                <!-- Digital Product Offer (Digistore24) (BOTTOM) -->
                 <div id="halflife-product-box-1"></div>
+
+                <!-- Recommended Article Box -->
+                <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
+                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">RECOMMENDED GUIDE</span>
+                    <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">Radioactive Decay & Geiger Counter Basics</h3>
+                    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 14px; line-height: 1.5;">Learn about half-life calculations, nuclear disintegration rates, and radiation detection gear.</p>
+                    <a href="article-half-life.html" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-weight: bold; font-size: 13px;">Read Full Guide &rarr;</a>
+                </div>
             </div>
         </div>
 
-        <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Understanding Radioactive Decay & Precision Laboratory Measurements</h2>
-            <p>Radioactive decay kinetics govern nuclear physics, radiocarbon dating, and medical isotope degradation. Precise measurements using specialized digital Geiger counters, high-accuracy lab balance scales, and thermal imaging gear provide key safety and research data.</p>
+            <h2>Understanding Radioactive Decay & Precision Measurements</h2>
+            <p>Radioactive decay kinetics govern nuclear physics and radiocarbon dating. Precise measurements using digital Geiger counters and milligram balance scales provide critical safety and research data.</p>
         </div>
     </div>
 
@@ -191,35 +185,25 @@
             const h = parseFloat(document.getElementById('halfLife').value) || 1;
             const t = parseFloat(document.getElementById('elapsedTime').value) || 0;
 
-            const box = document.getElementById('resultBox');
-            const title = document.getElementById('resultTitle');
-            const desc = document.getElementById('resultDesc');
-            
-            const remMassEl = document.getElementById('remMass');
-            const remPctEl = document.getElementById('remPct');
-            const cyclesEl = document.getElementById('numCycles');
-            const decayedEl = document.getElementById('decayedMass');
+            const cycles = t / h;
+            const nt = n0 * Math.pow(0.5, cycles);
+            const pct = (nt / n0) * 100;
+            const decayed = n0 - nt;
 
-            let cycles = t / h;
-            let nt = n0 * Math.pow(0.5, cycles);
-            let pct = (nt / n0) * 100;
-            let decayed = n0 - nt;
+            const box = document.getElementById('resultBox');
+            document.getElementById('resultTitle').innerText = "Remaining Quantity: ~" + nt.toFixed(2) + " units";
+            document.getElementById('resultDesc').innerText = "Calculated over " + t + " time units (" + cycles.toFixed(2) + " half-life cycles).";
+
+            document.getElementById('remMass').innerText = nt.toFixed(2) + " units";
+            document.getElementById('remPct').innerText = pct.toFixed(1) + "% remaining";
+            document.getElementById('numCycles').innerText = cycles.toFixed(2) + " cycles";
+            document.getElementById('decayedMass').innerText = decayed.toFixed(2) + " units decayed";
 
             box.style.display = 'block';
-
-            title.innerHTML = "Remaining Quantity: ~" + nt.toFixed(2) + " units";
-            box.style.borderLeftColor = "#10b981";
-            title.style.color = "#10b981";
-            desc.innerHTML = "Calculated over " + t + " time units (" + cycles.toFixed(2) + " half-life cycles).";
-
-            remMassEl.innerHTML = nt.toFixed(2) + " units";
-            remPctEl.innerHTML = pct.toFixed(1) + "% remaining";
-            cyclesEl.innerHTML = cycles.toFixed(2) + " cycles";
-            decayedEl.innerHTML = decayed.toFixed(2) + " units decayed";
         }
     </script>
     <script src="affiliates.js"></script>
-    <script src="temu-affiliates.js?v=12.0"></script>
+    <script src="temu-affiliates.js?v=13.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             renderTemuSlider('half-life', 'temu-halflife-slider-container');
