@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Carbon Footprint Planner - Eco Tool Hub</title>
+    <meta name="description" content="Estimate your household carbon emissions and calculate potential CO2 savings with our interactive tool.">
+
+    <link rel="canonical" href="https://ecotoolhub.github.io/carbon-footprint-calculator.html" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Smart Carbon Footprint Planner",
+      "url": "https://ecotoolhub.github.io/carbon-footprint-calculator.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -15,94 +29,26 @@
             --text-muted: #94a3b8;
         }
         * { box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
         .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
-        
-        .main-container {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 30px;
-        }
+        .main-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
         @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
         h1 { color: var(--accent-color); font-size: 24px; margin-bottom: 5px; }
         p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
-        input {
-            width: 100%;
-            padding: 10px 12px;
-            background-color: #0b0f19;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: white;
-            font-size: 15px;
-        }
-        input:focus { outline: none; border-color: var(--accent-color); }
-        button.calc-btn {
-            width: 100%;
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 10px;
-        }
+        input { width: 100%; padding: 10px 12px; background-color: #0b0f19; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-size: 15px; }
+        button.calc-btn { width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
         button.calc-btn:hover { background-color: var(--accent-hover); }
-        
-        .result {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #0b0f19;
-            border-left: 5px solid var(--accent-color);
-            border-radius: 8px;
-            display: none;
-        }
+        .result { margin-top: 20px; padding: 20px; background-color: #0b0f19; border-left: 5px solid var(--accent-color); border-radius: 8px; display: none; }
         .result h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 18px; }
-        .decision-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 12px;
-        }
-        .decision-item {
-            background: rgba(255,255,255,0.05);
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 13px;
-        }
+        .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+        .decision-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; font-size: 13px; }
         .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
-
-        .seo-content {
-            margin-top: 40px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 30px;
-        }
+        .seo-content { margin-top: 40px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; }
         .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
         .seo-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
     </style>
@@ -113,7 +59,6 @@
         <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
 
         <div class="main-container">
-            <!-- Left Column: Calculator -->
             <div class="card">
                 <h1>Smart Carbon Footprint Planner</h1>
                 <p class="subtitle">Estimate your household carbon emissions and discover sustainable lifestyle adjustments.</p>
@@ -155,12 +100,10 @@
                 </div>
             </div>
 
-            <!-- Right Column: Sidebar -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
                 <div id="temu-carbon-slider-container"></div>
                 <div id="carbon-product-box-1"></div>
 
-                <!-- Recommended Article Box -->
                 <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
                     <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">RECOMMENDED GUIDE</span>
                     <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">How to Reduce Your Carbon Footprint in 2026</h3>
