@@ -16,17 +16,7 @@
             --text-muted: #94a3b8;
         }
         * { box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         .wrapper { max-width: 1100px; width: 100%; margin-top: 10px; }
         .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
@@ -38,41 +28,23 @@
         h1 { color: var(--accent-color); font-size: 28px; margin-bottom: 10px; line-height: 1.3; }
         .article-meta { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
 
-        /* Quick Answer Box (AEO) */
-        .quick-answer-box {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid var(--accent-color);
-            border-radius: 10px;
-            padding: 18px;
-            margin-bottom: 25px;
-        }
-        .quick-answer-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .quick-answer-box { background: rgba(16, 185, 129, 0.1); border: 1px solid var(--accent-color); border-radius: 10px; padding: 18px; margin-bottom: 25px; }
+        .quick-answer-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 15px; text-transform: uppercase; }
         .quick-answer-box p { margin: 0; font-size: 14px; line-height: 1.6; color: #e2e8f0; }
 
-        /* Key Takeaways Box (GEO) */
-        .key-takeaways {
-            background-color: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
+        .key-takeaways { background-color: #0f172a; border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; margin-bottom: 30px; }
         .key-takeaways h3 { color: #f8fafc; margin: 0 0 12px 0; font-size: 16px; }
         .key-takeaways ul { margin: 0; padding-left: 20px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
 
         .article-content h2 { color: var(--text-color); font-size: 20px; margin-top: 30px; margin-bottom: 12px; border-left: 4px solid var(--accent-color); padding-left: 10px; }
-        .article-content h3 { color: #cbd5e1; font-size: 16px; margin-top: 20px; margin-bottom: 8px; }
         .article-content p, .article-content li { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
         .article-content a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
-        .article-content a:hover { text-decoration: underline; }
 
-        /* Data Table */
         .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
         .data-table th, .data-table td { border: 1px solid var(--border-color); padding: 10px 14px; text-align: left; }
         .data-table th { background-color: #0f172a; color: var(--accent-color); font-weight: 700; }
         .data-table td { color: var(--text-muted); }
 
-        /* FAQ Section */
         .faq-item { margin-bottom: 18px; background: #0f172a; padding: 16px; border-radius: 8px; border: 1px solid var(--border-color); }
         .faq-item h3 { color: var(--text-color); font-size: 15px; margin: 0 0 8px 0; }
         .faq-item p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.6; }
@@ -80,28 +52,39 @@
         .cta-box { background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%); border: 1px solid var(--accent-color); border-radius: 12px; padding: 22px; margin: 30px 0; text-align: center; }
         .cta-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 18px; }
         .cta-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
-        .cta-btn { display: inline-block; background-color: var(--accent-color); color: white; text-decoration: none; padding: 11px 22px; border-radius: 8px; font-weight: bold; transition: background 0.3s; }
-        .cta-btn:hover { background-color: var(--accent-hover); text-decoration: none; }
+        
+        .article-content a.cta-btn,
+        .cta-btn {
+            display: inline-block !important;
+            background-color: var(--accent-color) !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            padding: 11px 22px !important;
+            border-radius: 8px !important;
+            font-weight: 800 !important;
+            font-size: 14px !important;
+            transition: background 0.3s !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+        }
+        .article-content a.cta-btn:hover,
+        .cta-btn:hover { background-color: var(--accent-hover) !important; color: #ffffff !important; text-decoration: none !important; }
     </style>
 </head>
 <body>
 
     <div class="wrapper">
-        <a href="blog.html" class="back-link">&larr; Back to Articles & Guides</a>
+        <a href="blog.html" class="back-link">&larr; Back to Articles and Guides</a>
 
         <div class="main-container">
-            <!-- Left Column: Article Content -->
             <div class="card article-content">
                 <h1>How to Reduce Your Carbon Footprint at Home: Practical 2026 Guide</h1>
                 <div class="article-meta">Published by Eco Tool Hub Editorial Team &bull; Updated September 2026 &bull; 6 min read</div>
 
-                <!-- AEO Quick Answer -->
                 <div class="quick-answer-box">
                     <h3>⚡ Quick Answer</h3>
-                    <p>To effectively reduce your home carbon footprint, focus on three high-impact areas: switch home lighting to LEDs and install smart power monitors (cuts household electricity emissions by 15–25%), adopt rainwater harvesting and low-flow plumbing fixtures, and replace short car drives with electric scooters or walking. Combined, these steps can eliminate 2.5 to 4 metric tons of CO2 annually per household.</p>
+                    <p>To effectively reduce your home carbon footprint, focus on three high-impact areas: switch home lighting to LEDs and install smart power monitors (cuts household electricity emissions by 15 to 25%), adopt rainwater harvesting and low-flow plumbing fixtures, and replace short car drives with electric scooters or walking. Combined, these steps can eliminate 2.5 to 4 metric tons of CO2 annually per household.</p>
                 </div>
 
-                <!-- GEO Key Takeaways -->
                 <div class="key-takeaways">
                     <h3>💡 Key Takeaways</h3>
                     <ul>
@@ -114,11 +97,9 @@
 
                 <h2>Understanding Household Emissions and Impact</h2>
                 <p>An average four-person household generates roughly 14 to 18 metric tons of carbon dioxide equivalent (CO2e) each year. Primary emission drivers include HVAC heating and cooling, unmonitored baseline electricity usage, water heating, and daily personal vehicle travel.</p>
-                <p>Systematically tackling these sources yields immediate utility bill savings alongside environmental benefits.</p>
 
-                <h2>1. Eliminate Phantom Energy Loads & Optimize HVAC</h2>
-                <p>Unseen electrical waste—often called "vampire draw"—occurs when televisions, chargers, micro-appliances, and gaming systems stay plugged in while idle. Smart plug power strips automatically sever current when devices enter standby mode.</p>
-                <p>HVAC optimization yields the largest single carbon reduction. Setting smart thermostats just 2 degrees lower in winter and 2 degrees higher in summer reduces annual HVAC emissions by approximately 850 lbs of CO2.</p>
+                <h2>1. Eliminate Phantom Energy Loads and Optimize HVAC</h2>
+                <p>Unseen electrical waste occurs when televisions, chargers, micro-appliances, and gaming systems stay plugged in while idle. Smart plug power strips automatically sever current when devices enter standby mode.</p>
 
                 <table class="data-table">
                     <thead>
@@ -129,26 +110,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Switching to 100% LED bulbs</td>
-                            <td>450 kg CO2</td>
-                            <td>$75 – $120</td>
-                        </tr>
-                        <tr>
-                            <td>Eliminating Phantom Power Loads</td>
-                            <td>300 kg CO2</td>
-                            <td>$50 – $90</td>
-                        </tr>
-                        <tr>
-                            <td>Smart Thermostat Setback (2°F)</td>
-                            <td>380 kg CO2</td>
-                            <td>$110 – $180</td>
-                        </tr>
-                        <tr>
-                            <td>Rainwater Harvesting for Irrigation</td>
-                            <td>180 kg CO2</td>
-                            <td>$40 – $70</td>
-                        </tr>
+                        <tr><td>Switching to 100% LED bulbs</td><td>450 kg CO2</td><td>$75 to $120</td></tr>
+                        <tr><td>Eliminating Phantom Power Loads</td><td>300 kg CO2</td><td>$50 to $90</td></tr>
+                        <tr><td>Smart Thermostat Setback (2F)</td><td>380 kg CO2</td><td>$110 to $180</td></tr>
+                        <tr><td>Rainwater Harvesting for Irrigation</td><td>180 kg CO2</td><td>$40 to $70</td></tr>
                     </tbody>
                 </table>
 
@@ -180,7 +145,7 @@
                 </div>
 
                 <div class="faq-item">
-                    <h3>How do I calculate my household's monthly CO2 baseline?</h3>
+                    <h3>How do I calculate my household baseline CO2?</h3>
                     <p>You can input your monthly electricity kWh bill, gas usage, and transportation miles into our free Carbon Footprint Calculator to receive an immediate breakdown of your metric ton footprint.</p>
                 </div>
 
