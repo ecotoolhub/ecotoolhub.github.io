@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indoor AQI & Health Safety Planner - Eco Tool Hub</title>
+    <title>Smart Air Quality & Safety Calculator - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -13,7 +13,6 @@
             --accent-hover: #059669;
             --border-color: #334155;
             --text-muted: #94a3b8;
-            --affiliate-bg: #0f172a;
         }
         * { box-sizing: border-box; }
         body {
@@ -28,13 +27,7 @@
             min-height: 100vh;
         }
         .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
-        .back-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
         
         .main-container {
@@ -64,7 +57,6 @@
             color: white;
             font-size: 15px;
         }
-        input:focus { outline: none; border-color: var(--accent-color); }
         button.calc-btn {
             width: 100%;
             background-color: var(--accent-color);
@@ -103,7 +95,6 @@
         }
         .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
-        /* SEO Content */
         .seo-content {
             margin-top: 40px;
             background-color: var(--card-bg);
@@ -112,7 +103,7 @@
             padding: 30px;
         }
         .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
-        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+        .seo-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -121,22 +112,16 @@
         <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
 
         <div class="main-container">
-            <!-- Left Column: Tool -->
             <div class="card">
-                <h1>Indoor AQI & Health Safety Planner</h1>
-                <p class="subtitle">Evaluate indoor air quality risks, ventilation needs, and eco-wellness recommendations.</p>
+                <h1>Smart Air Quality & Safety Calculator</h1>
+                <p class="subtitle">Evaluate health directives and air purifier speeds based on PM2.5 or AQI levels.</p>
                 
                 <div class="form-group">
-                    <label for="aqiVal">Estimated PM2.5 / Outdoor Air AQI:</label>
+                    <label for="aqiVal">Current Air Quality Index (AQI / PM2.5):</label>
                     <input type="number" id="aqiVal" placeholder="e.g., 85" value="85">
                 </div>
 
-                <div class="form-group">
-                    <label for="roomSqft">Room Size (Square Feet):</label>
-                    <input type="number" id="roomSqft" placeholder="e.g., 250" value="250">
-                </div>
-
-                <button class="calc-btn" onclick="calculateAqi()">Analyze Air Safety</button>
+                <button class="calc-btn" onclick="calculateAqi()">Evaluate Air Safety</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
@@ -144,90 +129,93 @@
                     
                     <div class="decision-grid">
                         <div class="decision-item">
-                            <b>🛡️ Health Level:</b>
-                            <span id="healthLvl">-</span>
+                            <b>🛡️ Air Safety Level:</b>
+                            <span id="safetyCat">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>💨 Recommended CADR:</b>
-                            <span id="recCadr">-</span>
+                            <b>💨 HEPA Purifier Fan Speed:</b>
+                            <span id="fanSpeed">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🩺 Mask / Filter Need:</b>
-                            <span id="filterNeed">-</span>
+                            <b>🪟 Window Ventilation:</b>
+                            <span id="windowAdvice">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🌿 Recommended Solution:</b>
-                            <span id="recSol">-</span>
+                            <b>😷 Mask Recommendation:</b>
+                            <span id="maskAdvice">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Temu Physical Deals Slider (TOP) + Digital Product Offer (BOTTOM) -->
+            <!-- Right Column: Sidebar -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- Temu Physical Deals Slider (TOP) -->
                 <div id="temu-aqi-slider-container"></div>
-
-                <!-- Digital Product Offer (Digistore24) (BOTTOM) -->
                 <div id="aqi-product-box-1"></div>
+
+                <!-- Recommended Article Box -->
+                <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
+                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">RECOMMENDED GUIDE</span>
+                    <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">Improving Indoor Air Quality & AQI Safety</h3>
+                    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 14px; line-height: 1.5;">How True HEPA purifiers, negative ion technology, and AQI monitors keep indoor air safe.</p>
+                    <a href="article-air-quality.html" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-weight: bold; font-size: 13px;">Read Full Guide &rarr;</a>
+                </div>
             </div>
         </div>
 
-        <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Indoor Air Quality & Natural Wellness Architecture</h2>
-            <p>Indoor air pollution can often exceed outdoor levels due to dust accumulation, volatile organic compounds (VOCs), and improper ventilation. Utilizing air-purifying True HEPA systems, digital PM2.5 detectors, and negative ion air fresheners provides immediate respiratory relief.</p>
+            <h2>Understanding Air Quality Index (AQI)</h2>
+            <p>Particulate matter PM2.5 penetrates deep into respiratory airways. Utilizing True HEPA air purifiers, negative ion deodorizers, and real-time digital sensors maintains pristine indoor air quality.</p>
         </div>
     </div>
 
     <script>
         function calculateAqi() {
             const aqi = parseFloat(document.getElementById('aqiVal').value) || 0;
-            const sqft = parseFloat(document.getElementById('roomSqft').value) || 250;
-
             const box = document.getElementById('resultBox');
-            const title = document.getElementById('resultTitle');
-            const desc = document.getElementById('resultDesc');
-            
-            const healthEl = document.getElementById('healthLvl');
-            const cadrEl = document.getElementById('recCadr');
-            const filterEl = document.getElementById('filterNeed');
-            const solEl = document.getElementById('recSol');
 
-            let cadr = Math.round(sqft * 0.67); // CFM needed
-            let health = "Moderate Air Quality";
-            let filter = "Optional HEPA";
-            let sol = "5-in-1 AQI Monitor";
+            let title = "Good Air Quality (AQI " + aqi + ")";
+            let desc = "Air quality is satisfactory and poses little or no health risk.";
+            let cat = "Good (Green)";
+            let speed = "Low / Auto Mode";
+            let win = "Open for Fresh Air";
+            let mask = "Not Required";
 
-            if (aqi <= 50) {
-                health = "Good / Healthy Air";
-                filter = "Basic Dust Filter";
-                sol = "Negative Ion Purifier";
-            } else if (aqi > 100 && aqi <= 150) {
-                health = "Unhealthy for Sensitive Groups";
-                filter = "HEPA Filter Recommended";
-                sol = "True HEPA Air Purifier";
-            } else if (aqi > 150) {
-                health = "Unhealthy / Hazardous Air";
-                filter = "Mandatory True HEPA + Mask";
-                sol = "10-in-1 AQI + Dual HEPA";
+            if (aqi > 150) {
+                title = "Unhealthy Air Quality (AQI " + aqi + ")";
+                desc = "Everyone may begin to experience health effects. Keep purifiers running.";
+                cat = "Unhealthy (Red)";
+                speed = "High / Turbo Mode";
+                win = "Keep Closed";
+                mask = "N95 Recommended";
+            } else if (aqi > 100) {
+                title = "Unhealthy for Sensitive Groups (AQI " + aqi + ")";
+                desc = "Members of sensitive groups may experience health effects.";
+                cat = "Sensitive (Orange)";
+                speed = "Medium Speed";
+                win = "Keep Mostly Closed";
+                mask = "Optional Outdoors";
+            } else if (aqi > 50) {
+                title = "Moderate Air Quality (AQI " + aqi + ")";
+                desc = "Air quality is acceptable for most individuals.";
+                cat = "Moderate (Yellow)";
+                speed = "Medium / Auto Mode";
+                win = "Ventilate Periodically";
+                mask = "Not Required";
             }
 
+            document.getElementById('resultTitle').innerText = title;
+            document.getElementById('resultDesc').innerText = desc;
+            document.getElementById('safetyCat').innerText = cat;
+            document.getElementById('fanSpeed').innerText = speed;
+            document.getElementById('windowAdvice').innerText = win;
+            document.getElementById('maskAdvice').innerText = mask;
+
             box.style.display = 'block';
-
-            title.innerHTML = "Air Analysis: AQI " + aqi;
-            box.style.borderLeftColor = "#10b981";
-            title.style.color = "#10b981";
-            desc.innerHTML = "Evaluation for a " + sqft + " sq. ft. room size.";
-
-            healthEl.innerHTML = health;
-            cadrEl.innerHTML = "~" + cadr + " CFM Purifier";
-            filterEl.innerHTML = filter;
-            solEl.innerHTML = sol;
         }
     </script>
     <script src="affiliates.js"></script>
-    <script src="temu-affiliates.js?v=11.0"></script>
+    <script src="temu-affiliates.js?v=13.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             renderTemuSlider('aqi-safety', 'temu-aqi-slider-container');
