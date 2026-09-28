@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Water & Humidity Estimator - Eco Tool Hub</title>
+    <title>Smart Plant Watering Calculator - Eco Tool Hub</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -13,7 +13,6 @@
             --accent-hover: #059669;
             --border-color: #334155;
             --text-muted: #94a3b8;
-            --affiliate-bg: #0f172a;
         }
         * { box-sizing: border-box; }
         body {
@@ -28,13 +27,7 @@
             min-height: 100vh;
         }
         .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
-        .back-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
         
         .main-container {
@@ -64,7 +57,6 @@
             color: white;
             font-size: 15px;
         }
-        input:focus, select:focus { outline: none; border-color: var(--accent-color); }
         button.calc-btn {
             width: 100%;
             background-color: var(--accent-color);
@@ -103,7 +95,6 @@
         }
         .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
 
-        /* SEO Content */
         .seo-content {
             margin-top: 40px;
             background-color: var(--card-bg);
@@ -112,7 +103,7 @@
             padding: 30px;
         }
         .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
-        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+        .seo-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -121,26 +112,25 @@
         <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
 
         <div class="main-container">
-            <!-- Left Column: Tool -->
             <div class="card">
-                <h1>Plant Water & Humidity Estimator</h1>
-                <p class="subtitle">Calculate optimal watering schedule and target humidity levels for indoor & outdoor plants.</p>
+                <h1>Smart Plant Water Calculator</h1>
+                <p class="subtitle">Calculate optimal irrigation volume and frequency for indoor potted plants.</p>
                 
                 <div class="form-group">
-                    <label for="potSize">Pot Size (Inches / Diameter):</label>
+                    <label for="potSize">Pot Size (Inches Diameter):</label>
                     <input type="number" id="potSize" placeholder="e.g., 8" value="8">
                 </div>
 
                 <div class="form-group">
                     <label for="plantType">Plant Category:</label>
                     <select id="plantType">
-                        <option value="tropical">Tropical / Foliage (High Humidity)</option>
-                        <option value="succulent">Succulents & Cacti (Low Water)</option>
-                        <option value="vegetable">Vegetables / Herbs (Moisture Loving)</option>
+                        <option value="1.0">Tropical / High Moisture</option>
+                        <option value="0.7">Standard Foliage / Herbs</option>
+                        <option value="0.3">Succulent / Low Moisture</option>
                     </select>
                 </div>
 
-                <button class="calc-btn" onclick="calculatePlantWater()">Estimate Plant Care Needs</button>
+                <button class="calc-btn" onclick="calculateWater()">Compute Watering Schedule</button>
 
                 <div class="result" id="resultBox">
                     <h3 id="resultTitle"></h3>
@@ -152,91 +142,77 @@
                             <span id="waterVol">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>📅 Interval:</b>
+                            <b>📅 Watering Frequency:</b>
                             <span id="waterFreq">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>💨 Humidity Target:</b>
-                            <span id="humidityTarget">-</span>
+                            <b>🌱 Drip Emitter Rate:</b>
+                            <span id="emitterRate">-</span>
                         </div>
                         <div class="decision-item">
-                            <b>🪴 Recommended Tool:</b>
-                            <span id="recTool">-</span>
+                            <b>💡 Light Duration:</b>
+                            <span id="lightHours">-</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Temu Physical Deals Slider (TOP) + Digital Product Offer (BOTTOM) -->
+            <!-- Right Column: Sidebar -->
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- Temu Physical Deals Slider (TOP) -->
-                <div id="temu-plant-slider-container"></div>
+                <div id="temu-gardening-slider-container"></div>
+                <div id="gardening-product-box-1"></div>
 
-                <!-- Digital Product Offer (Digistore24) (BOTTOM) -->
-                <div id="plant-product-box-1"></div>
+                <!-- Recommended Article Box -->
+                <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
+                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">RECOMMENDED GUIDE</span>
+                    <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">Smart Indoor Gardening & Drip Irrigation Setup</h3>
+                    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 14px; line-height: 1.5;">Discover how automatic watering timers and LED grow lights optimize plant growth.</p>
+                    <a href="article-indoor-gardening.html" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-weight: bold; font-size: 13px;">Read Full Guide &rarr;</a>
+                </div>
             </div>
         </div>
 
-        <!-- SEO Content -->
         <div class="seo-content">
-            <h2>Optimizing Indoor Plant Moisture & Smart Drip Irrigation</h2>
-            <p>Managing soil moisture levels accurately reduces root rot and promotes healthy plant foliage. Automated drip irrigation kits, smart WiFi sensors, and full-spectrum LED grow lights offer consistent growth environments for indoor gardening.</p>
+            <h2>Optimizing Indoor Plant Irrigation</h2>
+            <p>Overwatering is the primary cause of indoor plant root rot. Automating plant irrigation with micro-drip timers and monitoring soil moisture with digital probes keeps foliage healthy while conserving water.</p>
         </div>
     </div>
 
     <script>
-        function calculatePlantWater() {
-            const pot = parseFloat(document.getElementById('potSize').value) || 8;
-            const type = document.getElementById('plantType').value;
+        function calculateWater() {
+            const pot = parseFloat(document.getElementById('potSize').value) || 6;
+            const factor = parseFloat(document.getElementById('plantType').value) || 0.7;
 
-            const box = document.getElementById('resultBox');
-            const title = document.getElementById('resultTitle');
-            const desc = document.getElementById('resultDesc');
-            
-            const volEl = document.getElementById('waterVol');
-            const freqEl = document.getElementById('waterFreq');
-            const humEl = document.getElementById('humidityTarget');
-            const toolEl = document.getElementById('recTool');
+            const ml = Math.round(pot * 60 * factor);
+            let freq = "Every 3 - 4 Days";
+            let light = "12 - 14 Hours/Day";
 
-            let vol = Math.round(pot * 45); // ml
-            let freq = "Every 3-4 Days";
-            let hum = "50% - 60%";
-            let tool = "Smart Drip Irrigation";
-
-            if (type === "succulent") {
-                vol = Math.round(pot * 20);
-                freq = "Every 10-14 Days";
-                hum = "30% - 40%";
-                tool = "Moisture Tester Sensor";
-            } else if (type === "vegetable") {
-                vol = Math.round(pot * 60);
-                freq = "Every 1-2 Days";
-                hum = "60% - 70%";
-                tool = "Solar Auto Drip Kit";
+            if (factor <= 0.3) {
+                freq = "Every 12 - 16 Days";
+                light = "8 - 10 Hours/Day";
+            } else if (factor >= 1.0) {
+                freq = "Every 2 - 3 Days";
+                light = "14 - 16 Hours/Day";
             }
 
+            const box = document.getElementById('resultBox');
+            document.getElementById('resultTitle').innerText = "Recommended Volume: ~" + ml + " ml";
+            document.getElementById('resultDesc').innerText = "Targeted for a " + pot + "-inch pot container.";
+
+            document.getElementById('waterVol').innerText = ml + " ml per session";
+            document.getElementById('waterFreq').innerText = freq;
+            document.getElementById('emitterRate').innerText = "2 L/h Micro Drip";
+            document.getElementById('lightHours').innerText = light;
+
             box.style.display = 'block';
-
-            title.innerHTML = "Plant Care Estimate";
-            box.style.borderLeftColor = "#10b981";
-            title.style.color = "#10b981";
-            desc.innerHTML = "Care parameters for a " + pot + "-inch pot size.";
-
-            volEl.innerHTML = "~" + vol + " ml per session";
-            freqEl.innerHTML = freq;
-            humEl.innerHTML = hum;
-            toolEl.innerHTML = tool;
         }
     </script>
     <script src="affiliates.js"></script>
-    <script src="temu-affiliates.js?v=6.0"></script>
+    <script src="temu-affiliates.js?v=13.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Load Temu Physical Product Slider (TOP)
-            renderTemuSlider('indoor-gardening', 'temu-plant-slider-container');
-
-            // Load Digital Product Box (BOTTOM)
-            loadAffiliateProducts('indoor-gardening', 'plant-product-box-1');
+            renderTemuSlider('indoor-gardening', 'temu-gardening-slider-container');
+            loadAffiliateProducts('indoor-gardening', 'gardening-product-box-1');
         });
     </script>
     <script src="nav.js"></script>
