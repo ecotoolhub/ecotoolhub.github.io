@@ -3,161 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Plant Watering Calculator - Eco Tool Hub</title>
-    <meta name="description" content="Calculate optimal irrigation volume and frequency for indoor potted plants.">
+    <title>Home Composting 101: Turn Food Waste into Soil</title>
+    <meta name="description" content="Learn how to start kitchen composting and vermicomposting at home. Master the 30:1 Carbon-to-Nitrogen ratio and eliminate compost odors easily.">
 
-    <link rel="canonical" href="https://ecotoolhub.github.io/plant-water-calculator.html" />
+    <link rel="canonical" href="https://ecotoolhub.github.io/article-composting.html" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Smart Plant Water Calculator",
-      "url": "https://ecotoolhub.github.io/plant-water-calculator.html",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All"
+      "@type": "Article",
+      "headline": "Home Composting 101: Turn Food Waste into Nutrient-Rich Soil",
+      "description": "Learn how to start kitchen composting and vermicomposting at home. Master the 30:1 Carbon-to-Nitrogen ratio and eliminate compost odors.",
+      "author": {
+        "@type": "Organization",
+        "name": "Eco Tool Hub Editorial Team"
+      }
     }
     </script>
 
     <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --accent-color: #10b981;
-            --accent-hover: #059669;
-            --border-color: #334155;
-            --text-muted: #94a3b8;
-        }
+        :root { --bg-color: #0b0f19; --card-bg: #1e293b; --text-color: #f8fafc; --accent-color: #10b981; --accent-hover: #059669; --border-color: #334155; --text-muted: #94a3b8; }
         * { box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 10px; }
         .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
         .back-link:hover { text-decoration: underline; }
         .main-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
         @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
-        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
-        h1 { color: var(--accent-color); font-size: 24px; margin-bottom: 5px; }
-        p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
-        input, select { width: 100%; padding: 10px 12px; background-color: #0b0f19; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-size: 15px; }
-        button.calc-btn { width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
-        button.calc-btn:hover { background-color: var(--accent-hover); }
-        .result { margin-top: 20px; padding: 20px; background-color: #0b0f19; border-left: 5px solid var(--accent-color); border-radius: 8px; display: none; }
-        .result h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 18px; }
-        .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
-        .decision-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; font-size: 13px; }
-        .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
-        .seo-content { margin-top: 40px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; }
-        .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
-        .seo-content p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        h1 { color: var(--accent-color); font-size: 28px; margin-bottom: 10px; line-height: 1.3; }
+        .article-meta { color: var(--text-muted); font-size: 13px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
+        .quick-answer-box { background: rgba(16, 185, 129, 0.1); border: 1px solid var(--accent-color); border-radius: 10px; padding: 18px; margin-bottom: 25px; }
+        .quick-answer-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 15px; text-transform: uppercase; }
+        .quick-answer-box p { margin: 0; font-size: 14px; line-height: 1.6; color: #e2e8f0; }
+        .key-takeaways { background-color: #0f172a; border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; margin-bottom: 30px; }
+        .key-takeaways h3 { color: #f8fafc; margin: 0 0 12px 0; font-size: 16px; }
+        .key-takeaways ul { margin: 0; padding-left: 20px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+        .article-content h2 { color: var(--text-color); font-size: 20px; margin-top: 30px; margin-bottom: 12px; border-left: 4px solid var(--accent-color); padding-left: 10px; }
+        .article-content p, .article-content li { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
+        .article-content a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+        .data-table th, .data-table td { border: 1px solid var(--border-color); padding: 10px 14px; text-align: left; }
+        .data-table th { background-color: #0f172a; color: var(--accent-color); font-weight: 700; }
+        .data-table td { color: var(--text-muted); }
+        .faq-item { margin-bottom: 18px; background: #0f172a; padding: 16px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .faq-item h3 { color: var(--text-color); font-size: 15px; margin: 0 0 8px 0; }
+        .faq-item p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+        .cta-box { background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%); border: 1px solid var(--accent-color); border-radius: 12px; padding: 22px; margin: 30px 0; text-align: center; }
+        .cta-box h3 { color: var(--accent-color); margin: 0 0 8px 0; font-size: 18px; }
+        .cta-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
+        .article-content a.cta-btn,
+        .cta-btn {
+            display: inline-block !important;
+            background-color: var(--accent-color) !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            padding: 11px 22px !important;
+            border-radius: 8px !important;
+            font-weight: 800 !important;
+            font-size: 14px !important;
+            transition: background 0.3s !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+        }
+        .article-content a.cta-btn:hover,
+        .cta-btn:hover { background-color: var(--accent-hover) !important; color: #ffffff !important; text-decoration: none !important; }
     </style>
 </head>
 <body>
 
     <div class="wrapper">
-        <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
+        <a href="blog.html" class="back-link">&larr; Back to Articles and Guides</a>
 
         <div class="main-container">
-            <div class="card">
-                <h1>Smart Plant Water Calculator</h1>
-                <p class="subtitle">Calculate optimal irrigation volume and frequency for indoor potted plants.</p>
-                
-                <div class="form-group">
-                    <label for="potSize">Pot Size (Inches Diameter):</label>
-                    <input type="number" id="potSize" placeholder="e.g., 8" value="8">
+            <div class="card article-content">
+                <h1>Home Composting 101: Turn Food Waste into Nutrient-Rich Soil</h1>
+                <div class="article-meta">Published by Eco Tool Hub Editorial Team &bull; Updated September 2026 &bull; 7 min read</div>
+
+                <div class="quick-answer-box">
+                    <h3>⚡ Quick Answer</h3>
+                    <p>To start composting at home, maintain an optimal 30:1 Carbon-to-Nitrogen ratio by combining 3 parts "Brown" materials (dry leaves, cardboard, sawdust) with 1 part "Green" materials (food scraps, coffee grounds). Use stainless steel countertop bins with charcoal filters to prevent odors, or multi-tray worm bins for indoor vermicomposting.</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="plantType">Plant Category:</label>
-                    <select id="plantType">
-                        <option value="1.0">Tropical / High Moisture</option>
-                        <option value="0.7">Standard Foliage / Herbs</option>
-                        <option value="0.3">Succulent / Low Moisture</option>
-                    </select>
+                <div class="key-takeaways">
+                    <h3>💡 Key Takeaways</h3>
+                    <ul>
+                        <li><b>C:N Ratio:</b> Balancing 30 parts carbon to 1 part nitrogen prevents anaerobic odor generation.</li>
+                        <li><b>Odor Control:</b> Activated carbon filters in countertop bins neutralize volatile organic compounds before dumping into main tumblers.</li>
+                        <li><b>Vermicomposting:</b> Red wiggler worms process food scraps up to 3 times faster than traditional cold composting.</li>
+                        <li><b>Compost Calculator:</b> Calculate exact ingredient proportions using our Compost Mix Calculator.</li>
+                    </ul>
                 </div>
 
-                <button class="calc-btn" onclick="calculateWater()">Compute Watering Schedule</button>
+                <h2>1. Mastering Greens vs. Browns</h2>
+                <p>Composting relies on aerobic microorganisms breaking down organic matter. Nitrogen-rich "Greens" fuel bacterial growth, while Carbon-rich "Browns" provide energy and airflow structure.</p>
 
-                <div class="result" id="resultBox">
-                    <h3 id="resultTitle"></h3>
-                    <p id="resultDesc" style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 12px;"></p>
-                    
-                    <div class="decision-grid">
-                        <div class="decision-item">
-                            <b>💧 Water Volume:</b>
-                            <span id="waterVol">-</span>
-                        </div>
-                        <div class="decision-item">
-                            <b>📅 Watering Frequency:</b>
-                            <span id="waterFreq">-</span>
-                        </div>
-                        <div class="decision-item">
-                            <b>🌱 Drip Emitter Rate:</b>
-                            <span id="emitterRate">-</span>
-                        </div>
-                        <div class="decision-item">
-                            <b>💡 Light Duration:</b>
-                            <span id="lightHours">-</span>
-                        </div>
-                    </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Ingredient Class</th>
+                            <th>Examples</th>
+                            <th>Carbon : Nitrogen Ratio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>High Nitrogen (Greens)</td><td>Vegetable peels, Coffee grounds, Grass clippings</td><td>15:1 to 20:1</td></tr>
+                        <tr><td>High Carbon (Browns)</td><td>Shredded cardboard, Dry leaves, Wood shavings</td><td>60:1 to 400:1</td></tr>
+                        <tr><td>Balanced Ideal Mix</td><td>3 Parts Browns + 1 Part Greens</td><td>Target 30:1</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="cta-box">
+                    <h3>Balance Your Compost Mix Ratio</h3>
+                    <p>Use our interactive calculator to determine the exact weight of greens and browns required for optimal decomposition.</p>
+                    <a href="compost-calculator.html" class="cta-btn">Open Compost Calculator &rarr;</a>
                 </div>
+
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <h3>Why does my compost bin smell bad?</h3>
+                    <p>Foul odors indicate an anaerobic environment caused by excess moisture or too much nitrogen. Add dry shredded cardboard or leaves and turn the pile to restore airflow.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Can I compost citrus peels and coffee grounds?</h3>
+                    <p>Yes. Coffee grounds are excellent greens (20:1 C:N ratio). Citrus peels should be added in moderation to avoid over-acidifying worm bins.</p>
+                </div>
+
+                <h2>Conclusion</h2>
+                <p>Composting redirects valuable organic waste away from landfills and into nutrient-rich humus for your garden. Check your mixture balance with our automated calculator tool.</p>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div id="temu-gardening-slider-container"></div>
-                <div id="gardening-product-box-1"></div>
-
-                <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
-                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">RECOMMENDED GUIDE</span>
-                    <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">Smart Indoor Gardening & Drip Irrigation Setup</h3>
-                    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 14px; line-height: 1.5;">Discover how automatic watering timers and LED grow lights optimize plant growth.</p>
-                    <a href="article-indoor-gardening.html" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-weight: bold; font-size: 13px;">Read Full Guide &rarr;</a>
-                </div>
+                <div id="temu-compost-slider-container"></div>
+                <div id="compost-product-box-1"></div>
             </div>
-        </div>
-
-        <div class="seo-content">
-            <h2>Optimizing Indoor Plant Irrigation</h2>
-            <p>Overwatering is the primary cause of indoor plant root rot. Automating plant irrigation with micro-drip timers and monitoring soil moisture with digital probes keeps foliage healthy while conserving water.</p>
         </div>
     </div>
 
-    <script>
-        function calculateWater() {
-            const pot = parseFloat(document.getElementById('potSize').value) || 6;
-            const factor = parseFloat(document.getElementById('plantType').value) || 0.7;
-
-            const ml = Math.round(pot * 60 * factor);
-            let freq = "Every 3 - 4 Days";
-            let light = "12 - 14 Hours/Day";
-
-            if (factor <= 0.3) {
-                freq = "Every 12 - 16 Days";
-                light = "8 - 10 Hours/Day";
-            } else if (factor >= 1.0) {
-                freq = "Every 2 - 3 Days";
-                light = "14 - 16 Hours/Day";
-            }
-
-            const box = document.getElementById('resultBox');
-            document.getElementById('resultTitle').innerText = "Recommended Volume: ~" + ml + " ml";
-            document.getElementById('resultDesc').innerText = "Targeted for a " + pot + "-inch pot container.";
-
-            document.getElementById('waterVol').innerText = ml + " ml per session";
-            document.getElementById('waterFreq').innerText = freq;
-            document.getElementById('emitterRate').innerText = "2 L/h Micro Drip";
-            document.getElementById('lightHours').innerText = light;
-
-            box.style.display = 'block';
-        }
-    </script>
     <script src="affiliates.js"></script>
     <script src="temu-affiliates.js?v=13.0"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            renderTemuSlider('indoor-gardening', 'temu-gardening-slider-container');
-            loadAffiliateProducts('indoor-gardening', 'gardening-product-box-1');
+            renderTemuSlider('compost-calculator', 'temu-compost-slider-container');
+            loadAffiliateProducts('compost-calculator', 'compost-product-box-1');
         });
     </script>
     <script src="nav.js"></script>
