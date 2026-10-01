@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. Purane duplicate headers aur elements remove karein
+    // 1. Purane duplicate headers remove karein
     const existingHeaders = document.querySelectorAll('header, .navbar, .site-header, .site-footer, .social-bar-container');
     existingHeaders.forEach(el => el.remove());
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 align-items: center;
                 gap: 10px;
                 background-color: #0b1329;
-                border: 1px solid #1e293b;
+                border: 1px solid #334155;
                 padding: 6px 18px;
                 border-radius: 30px;
                 box-shadow: 0 4px 15px rgba(0,0,0,0.4);
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .bg-pin { background-color: #e60023; }
             .bg-reddit { background-color: #ff4500; }
 
-            /* Mobile, iPads, Tablets & iOS Devices Responsive Alignment */
+            /* Mobile & Tablets Accessibility & Responsive Alignment */
             @media (max-width: 1024px) {
                 .site-header {
                     flex-direction: column;
@@ -161,29 +161,30 @@ document.addEventListener('DOMContentLoaded', function () {
         document.head.appendChild(style);
     }
 
-    // 4. Header Element Create Karein
+    // 4. Header Element Create Karein (With Accessible ARIA Attributes)
     const header = document.createElement('header');
     header.className = 'site-header';
+    header.setAttribute('role', 'banner');
     header.innerHTML = `
         <div class="header-left">
-            <a href="index.html" style="text-decoration: none;">
-                <img src="logo.png" alt="Eco Tool Hub Logo" class="logo-img">
+            <a href="index.html" style="text-decoration: none;" aria-label="Eco Tool Hub Home">
+                <img src="logo.png" alt="Eco Tool Hub Official Logo" class="logo-img" width="160" height="85">
             </a>
         </div>
         <div class="header-center">
-            <nav class="nav-links">
-                <a href="index.html" class="nav-btn">Home</a>
-                <a href="blog.html" class="nav-btn"><span>📚</span> <span>Blog & Guides</span></a>
+            <nav class="nav-links" aria-label="Main Navigation">
+                <a href="index.html" class="nav-btn" aria-label="Go to Home page">Home</a>
+                <a href="blog.html" class="nav-btn" aria-label="Go to Blog and Guides"><span>📚</span> <span>Blog & Guides</span></a>
             </nav>
-            <div class="social-pill">
-                <a href="https://x.com" target="_blank" class="bg-x" title="X"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://facebook.com" target="_blank" class="bg-fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://instagram.com" target="_blank" class="bg-insta" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://threads.net" target="_blank" class="bg-threads" title="Threads"><i class="fa-brands fa-threads"></i></a>
-                <a href="https://tiktok.com" target="_blank" class="bg-tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://youtube.com" target="_blank" class="bg-yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://pinterest.com" target="_blank" class="bg-pin" title="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-                <a href="https://reddit.com" target="_blank" class="bg-reddit" title="Reddit"><i class="fa-brands fa-reddit-alien"></i></a>
+            <div class="social-pill" role="region" aria-label="Social Media Links">
+                <a href="https://x.com" target="_blank" class="bg-x" title="X" aria-label="Follow us on X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+                <a href="https://facebook.com" target="_blank" class="bg-fb" title="Facebook" aria-label="Follow us on Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                <a href="https://instagram.com" target="_blank" class="bg-insta" title="Instagram" aria-label="Follow us on Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://threads.net" target="_blank" class="bg-threads" title="Threads" aria-label="Follow us on Threads"><i class="fa-brands fa-threads" aria-hidden="true"></i></a>
+                <a href="https://tiktok.com" target="_blank" class="bg-tiktok" title="TikTok" aria-label="Follow us on TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+                <a href="https://youtube.com" target="_blank" class="bg-yt" title="YouTube" aria-label="Subscribe on YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+                <a href="https://pinterest.com" target="_blank" class="bg-pin" title="Pinterest" aria-label="Follow us on Pinterest"><i class="fa-brands fa-pinterest-p" aria-hidden="true"></i></a>
+                <a href="https://reddit.com" target="_blank" class="bg-reddit" title="Reddit" aria-label="Join our Reddit community"><i class="fa-brands fa-reddit-alien" aria-hidden="true"></i></a>
             </div>
         </div>
         <div class="header-right"></div>
@@ -197,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
         wrapper.insertBefore(header, wrapper.firstChild);
     }
 
-    // 6. Automatic WebApplication Structured Data Schema Injection
+    // 6. Automatic WebApplication Schema Injection
     if (!document.getElementById('dynamic-app-schema')) {
         const isCalculator = window.location.pathname.includes('calculator') || window.location.pathname.includes('planner') || window.location.pathname.includes('evaluator');
         const pageTitle = document.title || 'Eco Tool Hub Interactive Calculator';
