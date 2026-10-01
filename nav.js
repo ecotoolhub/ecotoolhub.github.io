@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.head.appendChild(faLink);
     }
 
-    // 3. CSS Styles Inject Karein (Centered Layout Fix)
+    // 3. CSS Styles Inject Karein
     if (!document.getElementById('nav-custom-styles')) {
         const style = document.createElement('style');
         style.id = 'nav-custom-styles';
@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 flex-direction: column;
                 align-items: center;
                 gap: 12px;
+                width: 100%;
             }
             .header-right {
                 flex: 1;
@@ -52,6 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 gap: 8px;
                 align-items: center;
                 justify-content: center;
+                width: 100%;
+                box-sizing: border-box;
             }
             .nav-btn {
                 display: inline-flex;
@@ -112,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .bg-pin { background-color: #e60023; }
             .bg-reddit { background-color: #ff4500; }
 
-            /* Mobile Responsiveness */
+            /* Mobile & Small Devices Specific Alignment */
             @media (max-width: 768px) {
                 .site-header {
                     flex-direction: column;
@@ -143,12 +146,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     height: 24px;
                     font-size: 11px;
                 }
+                /* Home Button Starts Directly Above Facebook Icon */
+                .nav-links {
+                    justify-content: flex-start;
+                    padding-left: calc(50% - 87px);
+                }
             }
         `;
         document.head.appendChild(style);
     }
 
-    // 4. Header Element Create Karein (Buttons Directly Above Social Pill in Center)
+    // 4. Header Element Create Karein
     const header = document.createElement('header');
     header.className = 'site-header';
     header.innerHTML = `
