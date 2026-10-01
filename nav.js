@@ -115,13 +115,13 @@ document.addEventListener('DOMContentLoaded', function () {
             .bg-pin { background-color: #e60023; }
             .bg-reddit { background-color: #ff4500; }
 
-            /* Mobile & Small Devices Specific Alignment */
+            /* Mobile & Small Devices Space Optimization */
             @media (max-width: 768px) {
                 .site-header {
                     flex-direction: column;
-                    gap: 15px;
-                    padding: 8px 10px;
-                    margin-bottom: 15px;
+                    gap: 6px;
+                    padding: 5px 10px;
+                    margin: 0 auto 10px auto;
                 }
                 .header-left {
                     justify-content: center;
@@ -130,26 +130,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 .header-right {
                     display: none;
                 }
+                .header-center {
+                    gap: 6px;
+                }
                 .site-header .logo-img {
-                    height: 60px;
+                    height: 48px;
+                }
+                .nav-links {
+                    justify-content: center;
+                    padding-left: 0;
+                    gap: 6px;
                 }
                 .nav-btn {
-                    padding: 6px 12px;
-                    font-size: 13px;
+                    padding: 5px 10px;
+                    font-size: 12px;
+                    border-radius: 6px;
                 }
                 .social-pill {
-                    gap: 6px;
-                    padding: 5px 12px;
+                    gap: 5px;
+                    padding: 4px 10px;
                 }
                 .social-pill a {
-                    width: 24px;
-                    height: 24px;
-                    font-size: 11px;
-                }
-                /* Home Button Starts Directly Above Facebook Icon */
-                .nav-links {
-                    justify-content: flex-start;
-                    padding-left: calc(50% - 87px);
+                    width: 22px;
+                    height: 22px;
+                    font-size: 10px;
                 }
             }
         `;
