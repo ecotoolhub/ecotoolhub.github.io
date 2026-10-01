@@ -1,9 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. Purane duplicate headers remove karein
-    const existingHeaders = document.querySelectorAll('header, .navbar');
+    // 1. Purane duplicate headers aur footers remove karein
+    const existingHeaders = document.querySelectorAll('header, .navbar, .site-header, .site-footer, .social-bar-container');
     existingHeaders.forEach(el => el.remove());
 
-    // 2. CSS Styles Inject Karein (Mobile Alignment & Social Icons Fix)
+    // 2. Font Awesome CDN Load Karein Icons Ke Liye
+    if (!document.getElementById('font-awesome-css')) {
+        const faLink = document.createElement('link');
+        faLink.id = 'font-awesome-css';
+        faLink.rel = 'stylesheet';
+        faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
+        document.head.appendChild(faLink);
+    }
+
+    // 3. CSS Styles Inject Karein (Header + Pill Shape Social Bar)
     if (!document.getElementById('nav-custom-styles')) {
         const style = document.createElement('style');
         style.id = 'nav-custom-styles';
@@ -14,10 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 align-items: center;
                 max-width: 1100px;
                 width: 100%;
-                margin: 10px auto 20px auto;
+                margin: 10px auto 10px auto;
                 padding: 10px 15px;
                 box-sizing: border-box;
-                border-bottom: 1px solid rgba(51, 65, 85, 0.4);
             }
             .site-header .logo-img {
                 height: 80px;
@@ -51,69 +59,82 @@ document.addEventListener('DOMContentLoaded', function () {
                 color: #10b981;
             }
 
-            /* Social Media Footer */
-            .site-footer {
-                max-width: 1100px;
-                width: 100%;
-                margin: 40px auto 20px auto;
-                padding: 20px 15px;
-                border-top: 1px solid rgba(51, 65, 85, 0.4);
-                text-align: center;
-                color: #94a3b8;
-                font-size: 14px;
-                box-sizing: border-box;
-            }
-            .social-icons {
+            /* Top Social Pill Bar (Exact Like Screenshot) */
+            .social-bar-container {
                 display: flex;
                 justify-content: center;
-                gap: 15px;
-                margin-bottom: 12px;
+                max-width: 1100px;
+                width: 100%;
+                margin: 0 auto 25px auto;
+                padding: 0 15px;
+                box-sizing: border-box;
             }
-            .social-icons a {
-                color: #f8fafc;
-                background-color: #1e293b;
-                border: 1px solid #334155;
-                width: 38px;
-                height: 38px;
+            .social-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                background-color: #0b1329;
+                border: 1px solid #1e293b;
+                padding: 6px 18px;
+                border-radius: 30px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            }
+            .social-pill a {
+                width: 28px;
+                height: 28px;
                 border-radius: 50%;
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
+                color: #ffffff;
                 text-decoration: none;
-                font-size: 16px;
-                transition: all 0.2s;
+                font-size: 13px;
+                transition: transform 0.2s ease;
             }
-            .social-icons a:hover {
-                border-color: #10b981;
-                color: #10b981;
-                transform: translateY(-2px);
+            .social-pill a:hover {
+                transform: scale(1.18);
             }
+
+            /* Brand Colors */
+            .bg-x { background-color: #000000; }
+            .bg-fb { background-color: #1877f2; }
+            .bg-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+            .bg-threads { background-color: #000000; }
+            .bg-tiktok { background-color: #000000; }
+            .bg-yt { background-color: #ff0000; }
+            .bg-pin { background-color: #e60023; }
+            .bg-reddit { background-color: #ff4500; }
 
             /* Mobile Responsiveness */
             @media (max-width: 600px) {
                 .site-header {
                     padding: 8px 10px;
-                    margin-bottom: 15px;
+                    margin-bottom: 5px;
                 }
                 .site-header .logo-img {
                     height: 55px;
                 }
-                .site-header .nav-links {
-                    gap: 6px;
-                }
                 .site-header .nav-btn {
                     padding: 6px 10px;
                     font-size: 13px;
+                }
+                .social-pill {
+                    gap: 6px;
+                    padding: 5px 12px;
+                }
+                .social-pill a {
+                    width: 24px;
+                    height: 24px;
+                    font-size: 11px;
                 }
             }
         `;
         document.head.appendChild(style);
     }
 
-    // 3. Header Element Create Karein (Home icon removed, Blog icon kept)
+    // 4. Header Element Create Karein
     const header = document.createElement('header');
     header.className = 'site-header';
-
     header.innerHTML = `
         <a href="index.html" style="text-decoration: none;">
             <img src="logo.png" alt="Eco Tool Hub Logo" class="logo-img">
@@ -124,32 +145,29 @@ document.addEventListener('DOMContentLoaded', function () {
         </nav>
     `;
 
-    // Header Insert
+    // 5. Social Icons Bar Create Karein
+    const socialBar = document.createElement('div');
+    socialBar.className = 'social-bar-container';
+    socialBar.innerHTML = `
+        <div class="social-pill">
+            <a href="https://x.com" target="_blank" class="bg-x" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://facebook.com" target="_blank" class="bg-fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank" class="bg-insta" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://threads.net" target="_blank" class="bg-threads" title="Threads"><i class="fa-brands fa-threads"></i></a>
+            <a href="https://tiktok.com" target="_blank" class="bg-tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://youtube.com" target="_blank" class="bg-yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://pinterest.com" target="_blank" class="bg-pin" title="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            <a href="https://reddit.com" target="_blank" class="bg-reddit" title="Reddit"><i class="fa-brands fa-reddit-alien"></i></a>
+        </div>
+    `;
+
+    // 6. Header aur Social Bar Insert Karein
     const wrapper = document.querySelector('.wrapper') || document.body;
     if (wrapper === document.body) {
-        document.body.insertBefore(header, document.body.firstChild);
+        document.body.insertBefore(socialBar, document.body.firstChild);
+        document.body.insertBefore(header, socialBar);
     } else {
-        wrapper.insertBefore(header, wrapper.firstChild);
-    }
-
-    // 4. Social Media Footer Auto-Inject
-    let footer = document.querySelector('.site-footer');
-    if (!footer) {
-        footer = document.createElement('footer');
-        footer.className = 'site-footer';
-        footer.innerHTML = `
-            <div class="social-icons">
-                <a href="https://twitter.com" target="_blank" title="X / Twitter">🌐</a>
-                <a href="https://facebook.com" target="_blank" title="Facebook">📱</a>
-                <a href="https://pinterest.com" target="_blank" title="Pinterest">📌</a>
-                <a href="https://linkedin.com" target="_blank" title="LinkedIn">💼</a>
-            </div>
-            <p style="margin:0;">&copy; ${new Date().getFullYear()} Eco Tool Hub. All rights reserved.</p>
-        `;
-        if (wrapper === document.body) {
-            document.body.appendChild(footer);
-        } else {
-            wrapper.appendChild(footer);
-        }
+        wrapper.insertBefore(socialBar, wrapper.firstChild);
+        wrapper.insertBefore(header, socialBar);
     }
 });
