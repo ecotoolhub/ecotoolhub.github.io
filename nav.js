@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 align-items: center;
             }
             .site-header .logo-img {
-                height: 80px;
+                height: 85px;
                 width: auto;
                 display: block;
             }
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 12px;
+                gap: 10px;
                 width: 100%;
             }
             .header-right {
@@ -115,13 +115,13 @@ document.addEventListener('DOMContentLoaded', function () {
             .bg-pin { background-color: #e60023; }
             .bg-reddit { background-color: #ff4500; }
 
-            /* Mobile & Small Devices Space Optimization */
-            @media (max-width: 768px) {
+            /* Mobile, iPads, Tablets & iOS Devices Responsive Alignment */
+            @media (max-width: 1024px) {
                 .site-header {
                     flex-direction: column;
-                    gap: 6px;
-                    padding: 5px 10px;
-                    margin: 0 auto 10px auto;
+                    gap: 10px;
+                    padding: 8px 10px;
+                    margin: 0 auto 15px auto;
                 }
                 .header-left {
                     justify-content: center;
@@ -131,29 +131,30 @@ document.addEventListener('DOMContentLoaded', function () {
                     display: none;
                 }
                 .header-center {
-                    gap: 6px;
+                    gap: 8px;
+                    align-items: center;
                 }
                 .site-header .logo-img {
-                    height: 48px;
+                    height: 60px;
                 }
                 .nav-links {
-                    justify-content: center;
-                    padding-left: 0;
-                    gap: 6px;
+                    justify-content: center !important;
+                    padding-left: 0 !important;
+                    gap: 8px;
                 }
                 .nav-btn {
-                    padding: 5px 10px;
-                    font-size: 12px;
+                    padding: 6px 12px;
+                    font-size: 13px;
                     border-radius: 6px;
                 }
                 .social-pill {
-                    gap: 5px;
-                    padding: 4px 10px;
+                    gap: 6px;
+                    padding: 5px 14px;
                 }
                 .social-pill a {
-                    width: 22px;
-                    height: 22px;
-                    font-size: 10px;
+                    width: 24px;
+                    height: 24px;
+                    font-size: 11px;
                 }
             }
         `;
@@ -194,5 +195,34 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.insertBefore(header, document.body.firstChild);
     } else {
         wrapper.insertBefore(header, wrapper.firstChild);
+    }
+
+    // 6. Automatic WebApplication Structured Data Schema Injection
+    if (!document.getElementById('dynamic-app-schema')) {
+        const isCalculator = window.location.pathname.includes('calculator') || window.location.pathname.includes('planner') || window.location.pathname.includes('evaluator');
+        const pageTitle = document.title || 'Eco Tool Hub Interactive Calculator';
+        const pageDesc = document.querySelector('meta[name="description"]')?.content || 'Free interactive eco calculator and sustainability tool.';
+
+        const schemaJSON = {
+            "@context": "https://schema.org",
+            "@type": isCalculator ? "WebApplication" : "WebSite",
+            "name": pageTitle,
+            "url": window.location.href,
+            "description": pageDesc,
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        };
+
+        const schemaScript = document.createElement('script');
+        schemaScript.id = 'dynamic-app-schema';
+        schemaScript.type = 'application/ld+json';
+        schemaScript.textContent = JSON.stringify(schemaJSON);
+        document.head.appendChild(schemaScript);
     }
 });
