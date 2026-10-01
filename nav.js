@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. Purane duplicate headers aur footers remove karein
+    // 1. Purane duplicate headers aur elements remove karein
     const existingHeaders = document.querySelectorAll('header, .navbar, .site-header, .site-footer, .social-bar-container');
     existingHeaders.forEach(el => el.remove());
 
@@ -12,32 +12,48 @@ document.addEventListener('DOMContentLoaded', function () {
         document.head.appendChild(faLink);
     }
 
-    // 3. CSS Styles Inject Karein (Header + Pill Shape Social Bar)
+    // 3. CSS Styles Inject Karein (Centered Layout Fix)
     if (!document.getElementById('nav-custom-styles')) {
         const style = document.createElement('style');
         style.id = 'nav-custom-styles';
         style.textContent = `
             .site-header {
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
+                justify-content: space-between;
                 max-width: 1100px;
                 width: 100%;
-                margin: 10px auto 10px auto;
+                margin: 10px auto 25px auto;
                 padding: 10px 15px;
                 box-sizing: border-box;
+            }
+            .header-left {
+                flex: 1;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
             }
             .site-header .logo-img {
                 height: 80px;
                 width: auto;
                 display: block;
             }
-            .site-header .nav-links {
+            .header-center {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+            .header-right {
+                flex: 1;
+            }
+            .nav-links {
                 display: flex;
                 gap: 8px;
                 align-items: center;
+                justify-content: center;
             }
-            .site-header .nav-btn {
+            .nav-btn {
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
@@ -46,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 color: #f8fafc;
                 border: 1px solid #334155;
                 text-decoration: none;
-                padding: 8px 14px;
+                padding: 8px 16px;
                 border-radius: 8px;
                 font-size: 14px;
                 font-weight: 600;
@@ -54,21 +70,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 line-height: 1.2;
                 transition: all 0.2s ease;
             }
-            .site-header .nav-btn:hover {
+            .nav-btn:hover {
                 border-color: #10b981;
                 color: #10b981;
             }
 
-            /* Top Social Pill Bar (Exact Like Screenshot) */
-            .social-bar-container {
-                display: flex;
-                justify-content: center;
-                max-width: 1100px;
-                width: 100%;
-                margin: 0 auto 25px auto;
-                padding: 0 15px;
-                box-sizing: border-box;
-            }
+            /* Top Social Pill Bar */
             .social-pill {
                 display: inline-flex;
                 align-items: center;
@@ -106,16 +113,25 @@ document.addEventListener('DOMContentLoaded', function () {
             .bg-reddit { background-color: #ff4500; }
 
             /* Mobile Responsiveness */
-            @media (max-width: 600px) {
+            @media (max-width: 768px) {
                 .site-header {
+                    flex-direction: column;
+                    gap: 15px;
                     padding: 8px 10px;
-                    margin-bottom: 5px;
+                    margin-bottom: 15px;
+                }
+                .header-left {
+                    justify-content: center;
+                    width: 100%;
+                }
+                .header-right {
+                    display: none;
                 }
                 .site-header .logo-img {
-                    height: 55px;
+                    height: 60px;
                 }
-                .site-header .nav-btn {
-                    padding: 6px 10px;
+                .nav-btn {
+                    padding: 6px 12px;
                     font-size: 13px;
                 }
                 .social-pill {
@@ -132,42 +148,39 @@ document.addEventListener('DOMContentLoaded', function () {
         document.head.appendChild(style);
     }
 
-    // 4. Header Element Create Karein
+    // 4. Header Element Create Karein (Buttons Directly Above Social Pill in Center)
     const header = document.createElement('header');
     header.className = 'site-header';
     header.innerHTML = `
-        <a href="index.html" style="text-decoration: none;">
-            <img src="logo.png" alt="Eco Tool Hub Logo" class="logo-img">
-        </a>
-        <nav class="nav-links">
-            <a href="index.html" class="nav-btn">Home</a>
-            <a href="blog.html" class="nav-btn"><span>📚</span> <span>Blog & Guides</span></a>
-        </nav>
-    `;
-
-    // 5. Social Icons Bar Create Karein
-    const socialBar = document.createElement('div');
-    socialBar.className = 'social-bar-container';
-    socialBar.innerHTML = `
-        <div class="social-pill">
-            <a href="https://x.com" target="_blank" class="bg-x" title="X"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://facebook.com" target="_blank" class="bg-fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://instagram.com" target="_blank" class="bg-insta" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://threads.net" target="_blank" class="bg-threads" title="Threads"><i class="fa-brands fa-threads"></i></a>
-            <a href="https://tiktok.com" target="_blank" class="bg-tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://youtube.com" target="_blank" class="bg-yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://pinterest.com" target="_blank" class="bg-pin" title="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-            <a href="https://reddit.com" target="_blank" class="bg-reddit" title="Reddit"><i class="fa-brands fa-reddit-alien"></i></a>
+        <div class="header-left">
+            <a href="index.html" style="text-decoration: none;">
+                <img src="logo.png" alt="Eco Tool Hub Logo" class="logo-img">
+            </a>
         </div>
+        <div class="header-center">
+            <nav class="nav-links">
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="blog.html" class="nav-btn"><span>📚</span> <span>Blog & Guides</span></a>
+            </nav>
+            <div class="social-pill">
+                <a href="https://x.com" target="_blank" class="bg-x" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" class="bg-fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" class="bg-insta" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://threads.net" target="_blank" class="bg-threads" title="Threads"><i class="fa-brands fa-threads"></i></a>
+                <a href="https://tiktok.com" target="_blank" class="bg-tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://youtube.com" target="_blank" class="bg-yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://pinterest.com" target="_blank" class="bg-pin" title="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                <a href="https://reddit.com" target="_blank" class="bg-reddit" title="Reddit"><i class="fa-brands fa-reddit-alien"></i></a>
+            </div>
+        </div>
+        <div class="header-right"></div>
     `;
 
-    // 6. Header aur Social Bar Insert Karein
+    // 5. Header Insert
     const wrapper = document.querySelector('.wrapper') || document.body;
     if (wrapper === document.body) {
-        document.body.insertBefore(socialBar, document.body.firstChild);
-        document.body.insertBefore(header, socialBar);
+        document.body.insertBefore(header, document.body.firstChild);
     } else {
-        wrapper.insertBefore(socialBar, wrapper.firstChild);
-        wrapper.insertBefore(header, socialBar);
+        wrapper.insertBefore(header, wrapper.firstChild);
     }
 });
