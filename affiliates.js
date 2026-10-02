@@ -1,4 +1,4 @@
-// Eco Tool Hub - Affiliate Products Script (Temu Slider Intact & Digital Guides Restored)
+// Eco Tool Hub - Affiliate Products Script (Temu Slider + Auto-Injected Digital Guides)
 
 const affiliateData = {
   // --- DIGITAL GUIDES ---
@@ -16,24 +16,10 @@ const affiliateData = {
         "Step-by-Step Lithium Battery Sizing Formulas",
         "Inverter & Charge Controller Wiring Schematics"
       ]
-    },
-    {
-      id: "digital-compost-mastery",
-      title: "Zero-Odor Home Composting Digital Handbook",
-      price: "$15.00",
-      originalPrice: "$35.00",
-      discount: "SAVE 57%",
-      badge: "E-BOOK",
-      link: "https://www.digistore24.com/redir/452598/digitreams/",
-      features: [
-        "Optimal C:N Ratio Cheat Sheets (30:1 Rules)",
-        "Troubleshooting Rot, Pests & Moisture Control",
-        "Printable Moisture & Temperature Log Sheets"
-      ]
     }
   ],
 
-  // --- TEMU PHYSICAL PRODUCTS (UNTOUCHED & SAFE) ---
+  // --- TEMU PHYSICAL PRODUCTS (SLIDER) ---
   temu: [
     {
       id: "solar-generator",
@@ -80,10 +66,9 @@ const affiliateData = {
   ]
 };
 
-// Variable to keep track of the current Temu product in the slider
 let currentTemuIndex = 0;
 
-// Function to render the Temu Slider Widget
+// Render Temu Slider
 function renderTemuSlider(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -112,30 +97,34 @@ function renderTemuSlider(containerId) {
         View Deal on Temu →
       </a>
       <div style="display: flex; gap: 10px;">
-        <button onclick="changeTemuProduct(-1, '${containerId}')" style="flex: 1; background: #334155; color: #ffffff; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.2s ease;">❮ Prev</button>
-        <button onclick="changeTemuProduct(1, '${containerId}')" style="flex: 1; background: #334155; color: #ffffff; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.2s ease;">Next ❯</button>
+        <button onclick="changeTemuProduct(-1, '${containerId}')" style="flex: 1; background: #334155; color: #ffffff; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600;">❮ Prev</button>
+        <button onclick="changeTemuProduct(1, '${containerId}')" style="flex: 1; background: #334155; color: #ffffff; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600;">Next ❯</button>
       </div>
     </div>
   `;
 }
 
-// Function to handle Prev/Next button clicks for Temu Slider
 window.changeTemuProduct = function(direction, containerId) {
     currentTemuIndex += direction;
-    if (currentTemuIndex >= affiliateData.temu.length) {
-        currentTemuIndex = 0;
-    } else if (currentTemuIndex < 0) {
-        currentTemuIndex = affiliateData.temu.length - 1;
-    }
+    if (currentTemuIndex >= affiliateData.temu.length) currentTemuIndex = 0;
+    else if (currentTemuIndex < 0) currentTemuIndex = affiliateData.temu.length - 1;
     renderTemuSlider(containerId);
 };
 
-// Function to render the Digital Guide Widget (Restored)
-function renderDigitalWidget(containerId, productId = "digital-solar-guide") {
-  const container = document.getElementById(containerId);
-  if (!container) return;
+// Render Digital Guide Widget
+function renderDigitalWidget(containerId) {
+  let container = document.getElementById(containerId);
+  
+  // Agar container page par mojood nahi hai, toh automatic side/bottom par inject kar do
+  if (!container) {
+    const mainContent = document.querySelector("main") || document.body;
+    container = document.createElement("div");
+    container.id = containerId;
+    container.style.cssText = "margin: 20px auto; max-width: 400px; padding: 0 15px;";
+    mainContent.appendChild(container);
+  }
 
-  const product = affiliateData.digital.find(p => p.id === productId) || affiliateData.digital[0];
+  const product = affiliateData.digital[0];
 
   container.innerHTML = `
     <div style="background: #111827; border: 1px solid #10b981; border-radius: 12px; padding: 18px; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.3); box-sizing: border-box; width: 100%;">
@@ -161,21 +150,11 @@ function renderDigitalWidget(containerId, productId = "digital-solar-guide") {
   `;
 }
 
-// Auto Initialize Both Temu and Digital Widgets on Page Load
+// Auto Initialize Both
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Temu Sliders initialization
-    if(document.getElementById("temu-widget-container")) {
-       renderTemuSlider("temu-widget-container");
-    }
-    if(document.getElementById("calculator-temu-widget")) {
-        renderTemuSlider("calculator-temu-widget");
-    }
+    if(document.getElementById("temu-widget-container")) renderTemuSlider("temu-widget-container");
+    if(document.getElementById("calculator-temu-widget")) renderTemuSlider("calculator-temu-widget");
     
-    // 2. Digital Guides Widget initialization (Restored for all calculator/blog pages)
-    if(document.getElementById("calculator-digital-widget")) {
-        renderDigitalWidget("calculator-digital-widget", "digital-solar-guide");
-    }
-    if(document.getElementById("digital-widget-container")) {
-        renderDigitalWidget("digital-widget-container", "digital-solar-guide");
-    }
+    // Digital product ko render karega, agar HTML div missing ho toh khud inject kar dega
+    renderDigitalWidget("calculator-digital-widget");
 });
