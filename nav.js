@@ -1,10 +1,10 @@
-// Eco Tool Hub - Navigation Script (v2.3 - 90px Mobile Logo & Real Threads Icon)
+// Eco Tool Hub - Center-Aligned Navigation (100px Logo & Universal Page Alignment)
 
 (function() {
   // 1. Navigation & Global Overflow CSS Fixes
   const navStyles = document.createElement('style');
   navStyles.innerHTML = `
-    /* Global Page Wobble & Horizontal Scroll Fix for Blog/Articles */
+    /* Global Page Overflow & Layout Alignment Fix */
     html, body {
       max-width: 100% !important;
       overflow-x: hidden !important;
@@ -17,45 +17,56 @@
       box-sizing: inherit;
     }
 
-    /* Header Container Styling */
+    /* Universal Centered Header Container Styling */
     #eth-header-container {
       background-color: #0b0f19;
-      padding: 18px 40px;
+      padding: 20px 20px 15px 20px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 15px;
+      justify-content: center;
+      gap: 12px;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       width: 100%;
       box-sizing: border-box;
+      border-bottom: 1px solid #1f2937;
     }
+    
     .eth-brand-logo {
       display: flex;
       align-items: center;
+      justify-content: center;
       text-decoration: none;
+      margin-bottom: 2px;
     }
+    
+    /* Desktop Logo Size - 100px Guaranteed */
     .eth-brand-logo img {
-      height: 65px; /* Desktop logo size */
-      width: auto;
+      height: 100px !important;
+      width: auto !important;
       object-fit: contain;
       transition: transform 0.2s ease;
     }
     .eth-brand-logo img:hover {
       transform: scale(1.03);
     }
+
     .eth-center-section {
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      margin: 0 auto;
+      width: 100%;
     }
+
     .eth-btn-group {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
     }
+
     .eth-btn {
       background: #1e293b;
       color: #ffffff;
@@ -74,6 +85,7 @@
       background: #334155;
       border-color: #10b981;
     }
+
     .eth-social-capsule {
       background: #111827;
       border: 1px solid #1f2937;
@@ -81,6 +93,7 @@
       border-radius: 50px;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
@@ -117,14 +130,10 @@
     /* Mobile Responsive Optimizations */
     @media (max-width: 768px) {
       #eth-header-container {
-        justify-content: center;
         padding: 15px 10px;
       }
       .eth-brand-logo img {
-        height: 90px; /* Mobile display par extra-prominent bada logo */
-      }
-      .eth-center-section {
-        width: 100%;
+        height: 75px !important; /* Mobile optimal logo height */
       }
       .eth-social-capsule {
         gap: 6px;
@@ -146,7 +155,7 @@
     youtube: "https://www.youtube.com/@eco.toolhub"
   };
 
-  // 3. Header HTML Structure
+  // 3. Perfectly Centered Header HTML Structure
   const navHTML = `
     <div id="eth-header-container">
       <a href="/" class="eth-brand-logo">
@@ -169,7 +178,6 @@
           <a href="${socialLinks.instagram}" target="_blank" rel="noopener" title="Instagram" class="eth-bg-ig">
             <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
-          <!-- Real Official Threads SVG Logo -->
           <a href="${socialLinks.threads}" target="_blank" rel="noopener" title="Threads" class="eth-bg-threads">
             <svg viewBox="0 0 24 24"><path d="M12 21.65c-4.46 0-8.08-3.62-8.08-8.08s3.62-8.08 8.08-8.08 8.08 3.62 8.08 8.08c0 1.82-.62 3.55-1.78 4.93-.34.4-.92.48-1.36.17-.44-.31-.56-.91-.25-1.36 1.34-1.92 1.48-4.52.36-6.68-1.57-3.03-5.27-4.22-8.3-2.65C7.2 9.55 6 11.23 6 13.57c0 3.28 2.67 5.95 5.95 5.95 1.86 0 3.56-.86 4.67-2.36l1.28 1.03C16.48 20.24 14.34 21.65 12 21.65z M12 10.82c-1.59 0-2.85 1.02-2.85 2.31 0 1.28 1.26 2.31 2.85 2.31s2.85-1.03 2.85-2.31c0-1.29-1.26-2.31-2.85-2.31z"/></svg>
           </a>
