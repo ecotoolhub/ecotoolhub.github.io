@@ -1,9 +1,23 @@
-// Eco Tool Hub - Restored Original Header Layout (Screenshot 1218 Match)
+// Eco Tool Hub - Navigation Script (v2.3 - 90px Mobile Logo & Real Threads Icon)
 
 (function() {
-  // 1. Navigation CSS Styles
+  // 1. Navigation & Global Overflow CSS Fixes
   const navStyles = document.createElement('style');
   navStyles.innerHTML = `
+    /* Global Page Wobble & Horizontal Scroll Fix for Blog/Articles */
+    html, body {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    /* Header Container Styling */
     #eth-header-container {
       background-color: #0b0f19;
       padding: 18px 40px;
@@ -13,6 +27,8 @@
       flex-wrap: wrap;
       gap: 15px;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      width: 100%;
+      box-sizing: border-box;
     }
     .eth-brand-logo {
       display: flex;
@@ -20,7 +36,7 @@
       text-decoration: none;
     }
     .eth-brand-logo img {
-      height: 65px;
+      height: 65px; /* Desktop logo size */
       width: auto;
       object-fit: contain;
       transition: transform 0.2s ease;
@@ -98,22 +114,27 @@
     .eth-bg-pin { background-color: #bd081c; }
     .eth-bg-reddit { background-color: #ff4500; }
 
+    /* Mobile Responsive Optimizations */
     @media (max-width: 768px) {
       #eth-header-container {
         justify-content: center;
-        padding: 12px 15px;
+        padding: 15px 10px;
       }
       .eth-brand-logo img {
-        height: 55px;
+        height: 90px; /* Mobile display par extra-prominent bada logo */
       }
       .eth-center-section {
         width: 100%;
+      }
+      .eth-social-capsule {
+        gap: 6px;
+        padding: 4px 10px;
       }
     }
   `;
   document.head.appendChild(navStyles);
 
-  // 2. Social Links Data
+  // 2. Verified Social Links Data
   const socialLinks = {
     facebook: "https://www.facebook.com/ecotoolhub",
     instagram: "https://www.instagram.com/ecotoolhub/",
@@ -148,8 +169,9 @@
           <a href="${socialLinks.instagram}" target="_blank" rel="noopener" title="Instagram" class="eth-bg-ig">
             <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
+          <!-- Real Official Threads SVG Logo -->
           <a href="${socialLinks.threads}" target="_blank" rel="noopener" title="Threads" class="eth-bg-threads">
-            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.843 12.78c-.18 2.91-2.24 4.72-5.06 4.72-3.13 0-5.38-2.31-5.38-5.5 0-3.23 2.27-5.54 5.48-5.54 2.87 0 4.8 1.83 4.97 4.38h-2.1c-.13-1.43-1.12-2.48-2.85-2.48-1.92 0-3.28 1.4-3.28 3.64 0 2.22 1.34 3.6 3.23 3.6 1.71 0 2.76-1.02 2.92-2.38h-2.92v-1.87h4.94v1.43z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 21.65c-4.46 0-8.08-3.62-8.08-8.08s3.62-8.08 8.08-8.08 8.08 3.62 8.08 8.08c0 1.82-.62 3.55-1.78 4.93-.34.4-.92.48-1.36.17-.44-.31-.56-.91-.25-1.36 1.34-1.92 1.48-4.52.36-6.68-1.57-3.03-5.27-4.22-8.3-2.65C7.2 9.55 6 11.23 6 13.57c0 3.28 2.67 5.95 5.95 5.95 1.86 0 3.56-.86 4.67-2.36l1.28 1.03C16.48 20.24 14.34 21.65 12 21.65z M12 10.82c-1.59 0-2.85 1.02-2.85 2.31 0 1.28 1.26 2.31 2.85 2.31s2.85-1.03 2.85-2.31c0-1.29-1.26-2.31-2.85-2.31z"/></svg>
           </a>
           <a href="${socialLinks.tiktok}" target="_blank" rel="noopener" title="TikTok" class="eth-bg-tiktok">
             <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.98-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.57-1.31 1.56-1.3 2.56.01 1.01.55 1.96 1.38 2.51.97.62 2.28.61 3.22-.04.83-.56 1.28-1.55 1.28-2.55.01-4.32.01-8.64.01-12.96z"/></svg>
