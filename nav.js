@@ -1,4 +1,4 @@
-// Eco Tool Hub - Restored Header with Original Buttons & Social Icons
+// Eco Tool Hub - Fixed Navigation Script
 
 (function() {
   // 1. Navigation CSS Styles
@@ -6,7 +6,7 @@
   navStyles.innerHTML = `
     #eth-header-container {
       background-color: #0b0f19;
-      padding: 15px 30px;
+      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -20,13 +20,18 @@
       text-decoration: none;
     }
     .eth-brand-logo img {
-      height: 42px;
+      height: 60px; /* Bada logo size desktop view ke liye */
       width: auto;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+    .eth-brand-logo img:hover {
+      transform: scale(1.03);
     }
     .eth-right-section {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
     }
     .eth-btn {
@@ -35,13 +40,14 @@
       text-decoration: none;
       padding: 8px 16px;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       border: 1px solid #334155;
       transition: all 0.2s ease;
+      cursor: pointer;
     }
     .eth-btn:hover {
       background: #334155;
@@ -52,15 +58,15 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      margin-left: 6px;
+      margin-left: 4px;
     }
     .eth-social-box a {
       color: #94a3b8;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 6px;
       background: rgba(255, 255, 255, 0.05);
       transition: all 0.2s ease;
@@ -72,13 +78,21 @@
       transform: translateY(-2px);
     }
     .eth-social-box svg {
-      width: 15px;
-      height: 15px;
+      width: 16px;
+      height: 16px;
       fill: currentColor;
     }
     @media (max-width: 768px) {
       #eth-header-container {
         justify-content: center;
+        padding: 10px 15px;
+      }
+      .eth-brand-logo img {
+        height: 48px; /* Mobile display par auto-adjust */
+      }
+      .eth-right-section {
+        justify-content: center;
+        width: 100%;
       }
     }
   `;
@@ -96,7 +110,7 @@
     youtube: "https://www.youtube.com/@eco.toolhub"
   };
 
-  // 3. Header HTML with Original Logo & Pill Buttons
+  // 3. Header HTML
   const navHTML = `
     <div id="eth-header-container">
       <a href="/" class="eth-brand-logo">
@@ -105,7 +119,7 @@
 
       <div class="eth-right-section">
         <a href="/" class="eth-btn">🏠 Home</a>
-        <a href="/#guides" class="eth-btn">📚 Blog & Guides</a>
+        <a href="/#guides" onclick="if(document.getElementById('guides')){document.getElementById('guides').scrollIntoView({behavior:'smooth'});}" class="eth-btn">📚 Blog & Guides</a>
 
         <div class="eth-social-box">
           <a href="${socialLinks.facebook}" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
