@@ -1,6 +1,88 @@
-// Eco Tool Hub - Global Navigation Bar (nav.js)
+// Eco Tool Hub - Global Navigation Script
 
-document.addEventListener("DOMContentLoaded", function () {
+(function() {
+  // 1. Font Awesome Icons Auto-Load
+  if (!document.querySelector('link[href*="font-awesome"]')) {
+    const fontAwesome = document.createElement('link');
+    fontAwesome.rel = 'stylesheet';
+    fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
+    document.head.appendChild(fontAwesome);
+  }
+
+  // 2. Navigation Custom CSS Styles
+  const navStyles = document.createElement('style');
+  navStyles.innerHTML = `
+    .eth-navbar {
+      background-color: #0b0f19;
+      border-bottom: 1px solid #1e293b;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .eth-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #10b981;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .eth-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .eth-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+    .eth-links a:hover {
+      color: #10b981;
+    }
+    .eth-socials {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eth-socials a {
+      color: #94a3b8;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.2s ease;
+    }
+    .eth-socials a:hover {
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.15);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      .eth-navbar {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  `;
+  document.head.appendChild(navStyles);
+
+  // 3. Social Media Links
   const socialLinks = {
     facebook: "https://www.facebook.com/ecotoolhub",
     instagram: "https://www.instagram.com/ecotoolhub/",
@@ -13,50 +95,35 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const navHTML = `
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
-      <div class="container">
-        <!-- Brand Logo & Name -->
-        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-          <span class="fs-4 fw-bold text-success">Eco Tool Hub</span>
-        </a>
+    <div class="eth-navbar">
+      <a href="/" class="eth-brand">
+        <span>Eco Tool Hub</span>
+      </a>
 
-        <!-- Mobile Menu Toggle Button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <ul class="eth-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#calculators">Calculators</a></li>
+        <li><a href="/#guides">Guides</a></li>
+      </ul>
 
-        <!-- Navbar Links & Social Icons -->
-        <div class="collapse navbar-collapse" id="navbarContent">
-          <!-- Main Page Links -->
-          <ul class="navbar-menu me-auto mb-2 mb-lg-0 list-unstyled d-flex flex-column flex-lg-row gap-3 mb-0">
-            <li class="nav-item"><a class="nav-link text-light fw-medium" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link text-light fw-medium" href="/calculators">Calculators</a></li>
-            <li class="nav-item"><a class="nav-link text-light fw-medium" href="/guides">Guides</a></li>
-            <li class="nav-item"><a class="nav-link text-light fw-medium" href="/about">About Us</a></li>
-            <li class="nav-item"><a class="nav-link text-light fw-medium" href="/contact">Contact</a></li>
-          </ul>
-
-          <!-- Social Media Profiles -->
-          <div class="social-icons d-flex align-items-center gap-2 mt-3 mt-lg-0">
-            <a href="${socialLinks.facebook}" target="_blank" rel="noopener noreferrer" class="text-light fs-5 hover-success" title="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="${socialLinks.instagram}" target="_blank" rel="noopener noreferrer" class="text-light fs-5 hover-success" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="${socialLinks.threads}" target="_blank" rel="noopener noreferrer" class="text-light fs-5 hover-success" title="Threads"><i class="fab fa-threads"></i></a>
-            <a href="${socialLinks.pinterest}" target="_blank" rel="noopener noreferrer" class="text-light fs-5 hover-success" title="Pinterest"><i class="fab fa-pinterest"></i></a>
-            <a href="${socialLinks.x}" target="_blank" rel="noopener noreferrer" class="text-light fs-5 hover-success" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-            <a href="${socialLinks.reddit}" target="_blank" rel="noopener noreferrer" class="text-light fs-5 hover-success" title="Reddit"><i class="fab fa-reddit-alien"></i></a>
-            <a href="${socialLinks.tiktok}" target="_blank" rel="noopener noreferrer" class="text-light fs-5 hover-success" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="${socialLinks.youtube}" target="_blank" rel="noopener noreferrer" class="text-light fs-5 hover-success" title="YouTube"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
+      <div class="eth-socials">
+        <a href="${socialLinks.facebook}" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="${socialLinks.instagram}" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="${socialLinks.threads}" target="_blank" rel="noopener" title="Threads"><i class="fab fa-threads"></i></a>
+        <a href="${socialLinks.pinterest}" target="_blank" rel="noopener" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+        <a href="${socialLinks.x}" target="_blank" rel="noopener" title="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="${socialLinks.reddit}" target="_blank" rel="noopener" title="Reddit"><i class="fab fa-reddit-alien"></i></a>
+        <a href="${socialLinks.tiktok}" target="_blank" rel="noopener" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="${socialLinks.youtube}" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
       </div>
-    </nav>
+    </div>
   `;
 
-  // Render navigation into header container
-  const headerContainer = document.getElementById("main-header") || document.body;
-  if (headerContainer.id === "main-header") {
-    headerContainer.innerHTML = navHTML;
-  } else {
-    headerContainer.insertAdjacentHTML("afterbegin", navHTML);
-  }
-});
+  // Render on DOM load
+  document.addEventListener("DOMContentLoaded", function () {
+    const headerContainer = document.getElementById("main-header");
+    if (headerContainer) {
+      headerContainer.innerHTML = navHTML;
+    }
+  });
+})();
