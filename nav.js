@@ -1,4 +1,4 @@
-// Eco Tool Hub - Center-Aligned Navigation (100px Logo & Universal Page Alignment)
+// Eco Tool Hub - Center-Aligned Navigation (100px Logo & Universal Page Alignment + Mobile Ad Overlap Fix)
 
 (function() {
   // 1. Navigation & Global Overflow CSS Fixes
@@ -30,6 +30,8 @@
       width: 100%;
       box-sizing: border-box;
       border-bottom: 1px solid #1f2937;
+      position: relative !important;
+      z-index: 99999 !important;
     }
     
     .eth-brand-logo {
@@ -58,6 +60,8 @@
       justify-content: center;
       gap: 10px;
       width: 100%;
+      position: relative !important;
+      z-index: 100000 !important;
     }
 
     .eth-btn-group {
@@ -65,6 +69,8 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+      position: relative !important;
+      z-index: 100001 !important;
     }
 
     .eth-btn {
@@ -80,6 +86,8 @@
       gap: 6px;
       border: 1px solid #334155;
       transition: all 0.2s ease;
+      position: relative !important;
+      z-index: 100002 !important;
     }
     .eth-btn:hover {
       background: #334155;
@@ -127,13 +135,13 @@
     .eth-bg-pin { background-color: #bd081c; }
     .eth-bg-reddit { background-color: #ff4500; }
 
-    /* Mobile Responsive Optimizations */
+    /* Mobile Responsive Optimizations & Ad Overlap Fix */
     @media (max-width: 768px) {
       #eth-header-container {
-        padding: 15px 10px;
+        padding: 55px 10px 15px 10px !important; /* Ad ke liye top space clear kar di */
       }
       .eth-brand-logo img {
-        height: 75px !important; /* Mobile optimal logo height */
+        height: 75px !important;
       }
       .eth-social-capsule {
         gap: 6px;
