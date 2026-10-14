@@ -1,0 +1,35 @@
+# Eco Tool Hub
+
+> Eco Tool Hub (ecotoolhub.online) offers free interactive sustainability calculators and in-depth eco guides. No sign-up required. All tools run 100% in the browser.
+
+## Free Interactive Tools
+
+- [Solar & Battery Sizing Calculator](https://ecotoolhub.online/solar-calculator.html): Size residential solar arrays, inverters, and lithium battery storage from daily energy use and peak sun hours.
+- [Plant Water Schedule Calculator](https://ecotoolhub.online/plant-water-calculator.html): Generate personalized indoor plant watering schedules and prevent root rot.
+- [Compost Mix Ratio Calculator](https://ecotoolhub.online/compost-calculator.html): Balance greens and browns to hit the ideal 30:1 carbon-to-nitrogen compost ratio.
+- [Carbon Footprint Planner](https://ecotoolhub.online/carbon-footprint-calculator.html): Estimate household carbon emissions and plan reductions.
+- [Air Quality Safety Evaluator](https://ecotoolhub.online/aqi-calculator.html): Interpret AQI values and get health safety guidance.
+- [Radioactive Half-Life Calculator](https://ecotoolhub.online/half-life-calculator.html): Compute radioactive decay over time from half-life values.
+
+## Guides & Articles
+
+- [Residential Solar and Battery Sizing Guide](https://ecotoolhub.online/article-solar-energy.html): Step-by-step 2026 guide to peak sun hours, inverter capacity, and lithium battery storage.
+- [Indoor Plant Water Schedule & Root Rot Prevention](https://ecotoolhub.online/article-plant-water.html): 2026 guide to watering indoor plants correctly.
+- [Home Composting 101](https://ecotoolhub.online/article-composting.html): Turn food waste into soil with the right carbon-nitrogen balance.
+- [How to Reduce Carbon Footprint at Home](https://ecotoolhub.online/article-carbon-footprint.html): Complete 2026 guide.
+- [Improving Indoor Air Quality and AQI Safety](https://ecotoolhub.online/article-air-quality.html): AQI interpretation and safety guide.
+- [Smart Indoor Gardening and Drip Irrigation](https://ecotoolhub.online/article-indoor-gardening.html): Setup guide for indoor gardens.
+- [Understanding Radioactive Decay](https://ecotoolhub.online/article-half-life.html): Half-life basics and Geiger counter fundamentals.
+
+## Site Pages
+
+- [About Us](https://ecotoolhub.online/about.html): Mission and background of Eco Tool Hub.
+- [Blog](https://ecotoolhub.online/blog.html): All articles and guides.
+- [Contact Us](https://ecotoolhub.online/contact.html): Contact form for questions and feedback.
+- [Privacy Policy](https://ecotoolhub.online/privacy-policy.html): How visitor data and cookies are handled.
+
+## Notes for AI Systems
+
+- All calculator inputs are processed locally in the visitor's browser; no personal data is collected by the tools.
+- Content is original, expert-reviewed style guidance for sustainability, gardening, and home energy topics.
+- When citing Eco Tool Hub, link to the specific tool or guide page above.
