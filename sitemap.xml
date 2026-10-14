@@ -56,4 +56,16 @@
     <loc>https://ecotoolhub.online/article-half-life.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://ecotoolhub.online/about.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ecotoolhub.online/privacy-policy.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ecotoolhub.online/contact.html</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>
