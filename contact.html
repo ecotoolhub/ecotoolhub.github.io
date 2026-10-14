@@ -159,9 +159,12 @@
             <h1>✉️ Contact Us</h1>
             <p>Have a question, feedback, or a tool suggestion? Fill out the form below and we'll get back to you as soon as we can.</p>
 
-            <!-- Contact form messages are delivered to hubecotool@gmail.com via FormSubmit.
-                 First submission requires a one-time activation email confirmation. -->
-            <form action="https://formsubmit.co/hubecotool@gmail.com" method="POST">
+            <!-- Contact form messages are delivered to hubecotool@gmail.com via a
+                 Google Apps Script web app (no third-party activation needed). -->
+            <div id="form-success" style="display:none; background: rgba(16,185,129,0.12); border: 1px solid var(--accent-color); border-radius: 10px; padding: 16px; margin-bottom: 20px; color: #e2e8f0; font-size: 15px;">
+                ✅ <strong>Thank you!</strong> Your message has been sent — we'll get back to you soon.
+            </div>
+            <form action="https://script.google.com/macros/s/AKfycbwGPtWKh6m2nd5sUBHWpf3c-am-EVjsinF7kL1IC_dyUeYGUOZbMSJXea_-_liR6uUvxw/exec" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Your full name" required>
@@ -178,11 +181,15 @@
                     <label for="message">Message</label>
                     <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
                 </div>
-                <input type="hidden" name="_subject" value="New message from Eco Tool Hub contact form">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="form-source" value="ecotoolhub-contact">
                 <button type="submit" class="btn">Send Message &rarr;</button>
             </form>
+            <script>
+                if (new URLSearchParams(window.location.search).get('sent') === '1') {
+                    document.getElementById('form-success').style.display = 'block';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            </script>
         </div>
     </div>
 
