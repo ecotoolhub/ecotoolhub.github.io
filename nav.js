@@ -262,23 +262,20 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
     injectNav();
   }
 
-  // 4. Adsterra direct-link modal popup (user-approved 2026-10-15, refined 2026-10-15):
-  //    SIRF 6 calculator pages par. Jab user calculator ki inputs change kare
-  //    (values/selects) tab popup box khulta hai — Calculate/Result button par NAHI.
-  //    Box mein ad iframe hota hai, upar timer hota hai ("ad loading…"),
-  //    5 second baad box khud band ho jata hai. Max 1 popup per 60 seconds.
+  // 4. Adsterra direct-link modal popup (user-approved 2026-10-15, refined 2026-10-16):
+  //    SIRF 6 calculator pages par. Koi NAYI window/tab NAHI — sab kuch usi page par box mein.
+  //    - User land karke page par kahin bhi click kare → 1 dafa box khulta hai (5-sec timer, khud band).
+  //    - User Calculate dabakar result generate kare → 1 dafa box khulta hai (same window).
+  //    MAXIMUM 2 dafa per page view — is se zyada kabhi nahi.
   (function() {
     var AD_URL = "https://asiafilm.org/4/a0d7aa6022848f149012b064a8966cdd";
     if (!/calculator\.html$/.test(location.pathname)) return; // sirf calculator pages
-    var KEY = "eth_admodal_last";
+    var shownOnClick = false;   // landing click wala popup
+    var shownOnResult = false;  // result generate wala popup
     var modalOpen = false;
 
     function showModal() {
       if (modalOpen) return;
-      var now = Date.now(), last = 0;
-      try { last = parseInt(sessionStorage.getItem(KEY) || "0", 10) || 0; } catch (e) {}
-      if (now - last < 60000) return;
-      try { sessionStorage.setItem(KEY, String(now)); } catch (e) {}
       modalOpen = true;
 
       var overlay = document.createElement("div");
@@ -314,14 +311,22 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
       });
     }
 
-    // inputs/selects change par trigger; buttons (Calculate waghera) par NAHI
-    document.addEventListener("input", function(ev) {
+    function isCalculateBtn(t) {
+      if (!t || !t.closest) return false;
+      return !!t.closest(".calc-btn, button[type='submit'], input[type='submit']");
+    }
+
+    document.addEventListener("click", function(ev) {
       var t = ev.target;
-      if (t && /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName) && t.type !== "button" && t.type !== "submit") showModal();
-    }, true);
-    document.addEventListener("change", function(ev) {
-      var t = ev.target;
-      if (t && /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName) && t.type !== "button" && t.type !== "submit") showModal();
+      // modal ke andar ya sponsored strip par click → ignore
+      if (t && t.closest) {
+        if (t.closest("#eth-admodal-overlay") || t.closest(".eth-sponsored-strip")) return;
+      }
+      if (isCalculateBtn(t)) {
+        if (!shownOnResult) { shownOnResult = true; showModal(); }
+      } else {
+        if (!shownOnClick) { shownOnClick = true; showModal(); }
+      }
     }, true);
   })();
 
