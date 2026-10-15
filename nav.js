@@ -125,6 +125,36 @@
       fill: #ffffff;
     }
     
+    /* Sponsored direct-link strip (Adsterra) — top of header, all pages */
+    .eth-sponsored-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 7px 12px;
+      background: #111827;
+      border-bottom: 1px solid #1f2937;
+      text-decoration: none;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .eth-sponsored-strip:hover {
+      background: #1f2937;
+      color: #ffffff;
+    }
+    .eth-ad-badge {
+      background: #10b981;
+      color: #06281c;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
     /* Official Brand Colors */
     .eth-bg-x { background-color: #000000; border: 1px solid #374151; }
     .eth-bg-fb { background-color: #1877f2; }
@@ -166,6 +196,10 @@
   // 3. Perfectly Centered Header HTML Structure
   const navHTML = `
     <div id="eth-header-container">
+      <a href="https://asiafilm.org/4/a0d7aa6022848f149012b064a8966cdd" target="_blank" rel="noopener sponsored nofollow" class="eth-sponsored-strip">
+        <span class="eth-ad-badge">Ad</span>
+        <span>Recommended for you ✨</span>
+      </a>
       <a href="/" class="eth-brand-logo">
         <img src="logo.png" alt="Eco Tool Hub" onerror="this.onerror=null; this.src='assets/logo.png';">
       </a>
