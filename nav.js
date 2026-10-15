@@ -264,13 +264,14 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
 
   // 4. Adsterra direct-link modal popup (user-approved 2026-10-15, refined 2026-10-16):
   //    SIRF 6 calculator pages par. Koi NAYI window/tab NAHI — sab kuch usi page par box mein.
-  //    - User land karke page par kahin bhi click kare → 1 dafa box khulta hai (5-sec timer, khud band).
+  //    - User land kare → ~5 sec baad box khud khulta hai (pehle click par foran, timer backup).
   //    - User Calculate dabakar result generate kare → 1 dafa box khulta hai (same window).
   //    MAXIMUM 2 dafa per page view — is se zyada kabhi nahi.
+  //    Box: ad iframe + "Special offer loading…" + 5-sec countdown, khud band.
   (function() {
     var AD_URL = "https://asiafilm.org/4/a0d7aa6022848f149012b064a8966cdd";
     if (!/calculator\.html$/.test(location.pathname)) return; // sirf calculator pages
-    var shownOnClick = false;   // landing click wala popup
+    var shownLanding = false;   // landing wala popup (click ya timer se)
     var shownOnResult = false;  // result generate wala popup
     var modalOpen = false;
 
@@ -311,6 +312,12 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
       });
     }
 
+    function showLanding() {
+      if (shownLanding) return;
+      shownLanding = true;
+      showModal();
+    }
+
     function isCalculateBtn(t) {
       if (!t || !t.closest) return false;
       return !!t.closest(".calc-btn, button[type='submit'], input[type='submit']");
@@ -325,9 +332,17 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
       if (isCalculateBtn(t)) {
         if (!shownOnResult) { shownOnResult = true; showModal(); }
       } else {
-        if (!shownOnClick) { shownOnClick = true; showModal(); }
+        showLanding();
       }
     }, true);
+
+    // Timer backup: agar 6 sec mein koi click se box nahi khula to khud khul jaye
+    setTimeout(function() { showLanding(); }, 6000);
+
+    // Back/forward navigation (bfcache) par flags reset taake dobara kaam kare
+    window.addEventListener("pageshow", function(ev) {
+      if (ev.persisted) { shownLanding = false; shownOnResult = false; }
+    });
   })();
 
   // 5. Modal popup styles
