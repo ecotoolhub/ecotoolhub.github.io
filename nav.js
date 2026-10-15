@@ -262,25 +262,87 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
     injectNav();
   }
 
-  // 4. Adsterra direct-link click popunder (user-approved 2026-10-15):
-  //    kisi bhi page par kahin bhi click → direct link naye tab mein popup.
-  //    Scheme: zyada se zyada 3 second mein 1 popup (throttle), taake tez clicks par
-  //    tabs ki bharmaar na ho. Sponsored strip par click is se alag hai (double popup nahi).
+  // 4. Adsterra direct-link modal popup (user-approved 2026-10-15, refined 2026-10-15):
+  //    SIRF 6 calculator pages par. Jab user calculator ki inputs change kare
+  //    (values/selects) tab popup box khulta hai — Calculate/Result button par NAHI.
+  //    Box mein ad iframe hota hai, upar timer hota hai ("ad loading…"),
+  //    5 second baad box khud band ho jata hai. Max 1 popup per 60 seconds.
   (function() {
     var AD_URL = "https://asiafilm.org/4/a0d7aa6022848f149012b064a8966cdd";
-    var KEY = "eth_adpop_last";
-    document.addEventListener("click", function(ev) {
-      try {
-        if (ev.target && ev.target.closest && ev.target.closest(".eth-sponsored-strip")) return;
-      } catch (e) {}
-      var now = Date.now();
-      var last = 0;
+    if (!/calculator\.html$/.test(location.pathname)) return; // sirf calculator pages
+    var KEY = "eth_admodal_last";
+    var modalOpen = false;
+
+    function showModal() {
+      if (modalOpen) return;
+      var now = Date.now(), last = 0;
       try { last = parseInt(sessionStorage.getItem(KEY) || "0", 10) || 0; } catch (e) {}
-      if (now - last < 3000) return;
+      if (now - last < 60000) return;
       try { sessionStorage.setItem(KEY, String(now)); } catch (e) {}
-      var w = window.open(AD_URL, "_blank", "noopener");
-      if (w) { try { w.blur(); } catch (e) {} }
-      try { window.focus(); } catch (e) {}
+      modalOpen = true;
+
+      var overlay = document.createElement("div");
+      overlay.id = "eth-admodal-overlay";
+      overlay.innerHTML =
+        '<div id="eth-admodal-box">' +
+          '<div id="eth-admodal-head">' +
+            '<span class="eth-ad-badge">Ad</span>' +
+            '<span id="eth-admodal-title">✨ Special offer loading…</span>' +
+            '<span id="eth-admodal-timer">5s</span>' +
+            '<button id="eth-admodal-close" aria-label="Close">×</button>' +
+          "</div>" +
+          '<iframe id="eth-admodal-frame" src="' + AD_URL + '" frameborder="0" scrolling="yes"></iframe>' +
+        "</div>";
+      document.body.appendChild(overlay);
+
+      var secs = 5;
+      var timerEl = document.getElementById("eth-admodal-timer");
+      var iv = setInterval(function() {
+        secs--;
+        if (secs <= 0) { closeModal(); return; }
+        if (timerEl) timerEl.textContent = secs + "s";
+      }, 1000);
+
+      function closeModal() {
+        clearInterval(iv);
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        modalOpen = false;
+      }
+      document.getElementById("eth-admodal-close").addEventListener("click", closeModal);
+      overlay.addEventListener("click", function(ev) {
+        if (ev.target === overlay) closeModal();
+      });
+    }
+
+    // inputs/selects change par trigger; buttons (Calculate waghera) par NAHI
+    document.addEventListener("input", function(ev) {
+      var t = ev.target;
+      if (t && /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName) && t.type !== "button" && t.type !== "submit") showModal();
     }, true);
+    document.addEventListener("change", function(ev) {
+      var t = ev.target;
+      if (t && /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName) && t.type !== "button" && t.type !== "submit") showModal();
+    }, true);
+  })();
+
+  // 5. Modal popup styles
+  (function() {
+    var st = document.createElement("style");
+    st.innerHTML =
+      "#eth-admodal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:1000000;" +
+      "display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;}" +
+      "#eth-admodal-box{width:94%;max-width:440px;background:#111827;border:1px solid #1f2937;" +
+      "border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.6);}" +
+      "#eth-admodal-head{display:flex;align-items:center;gap:8px;padding:10px 12px;" +
+      "background:#0b0f19;border-bottom:1px solid #1f2937;color:#e2e8f0;font-size:0.85rem;" +
+      "font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}" +
+      "#eth-admodal-title{flex:1;}" +
+      "#eth-admodal-timer{background:#1e293b;border:1px solid #334155;color:#fbbf24;" +
+      "font-weight:700;font-size:0.8rem;padding:2px 8px;border-radius:20px;min-width:34px;text-align:center;}" +
+      "#eth-admodal-close{background:transparent;border:0;color:#94a3b8;font-size:1.4rem;" +
+      "cursor:pointer;line-height:1;padding:0 4px;}" +
+      "#eth-admodal-close:hover{color:#fff;}" +
+      "#eth-admodal-frame{display:block;width:100%;height:340px;border:0;background:#fff;}";
+    document.head.appendChild(st);
   })();
 })();
