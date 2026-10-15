@@ -1,5 +1,10 @@
 // Eco Tool Hub - Center-Aligned Navigation (100px Logo & Universal Page Alignment + Mobile Ad Overlap Fix)
 
+// Stub for affiliate product boxes: several pages call loadAffiliateProducts()
+// but no implementation exists (pre-existing). No-op keeps pages error-free
+// without changing visible behavior. (Added 2026-10-15)
+function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
+
 (function() {
   // 1. Navigation & Global Overflow CSS Fixes
   const navStyles = document.createElement('style');
@@ -256,4 +261,26 @@
   } else {
     injectNav();
   }
+
+  // 4. Adsterra direct-link click popunder (user-approved 2026-10-15):
+  //    kisi bhi page par kahin bhi click → direct link naye tab mein popup.
+  //    Scheme: zyada se zyada 3 second mein 1 popup (throttle), taake tez clicks par
+  //    tabs ki bharmaar na ho. Sponsored strip par click is se alag hai (double popup nahi).
+  (function() {
+    var AD_URL = "https://asiafilm.org/4/a0d7aa6022848f149012b064a8966cdd";
+    var KEY = "eth_adpop_last";
+    document.addEventListener("click", function(ev) {
+      try {
+        if (ev.target && ev.target.closest && ev.target.closest(".eth-sponsored-strip")) return;
+      } catch (e) {}
+      var now = Date.now();
+      var last = 0;
+      try { last = parseInt(sessionStorage.getItem(KEY) || "0", 10) || 0; } catch (e) {}
+      if (now - last < 3000) return;
+      try { sessionStorage.setItem(KEY, String(now)); } catch (e) {}
+      var w = window.open(AD_URL, "_blank", "noopener");
+      if (w) { try { w.blur(); } catch (e) {} }
+      try { window.focus(); } catch (e) {}
+    }, true);
+  })();
 })();
