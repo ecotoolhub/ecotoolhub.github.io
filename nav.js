@@ -227,6 +227,7 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
               <a href="carbon-footprint-calculator.html">🌍 Carbon Footprint</a>
               <a href="aqi-calculator.html">🌫️ AQI Health Checker</a>
               <a href="half-life-calculator.html">⏳ Half-Life Calculator</a>
+              <a href="caffeine-half-life-calculator.html">☕ Caffeine Half-Life</a>
             </div>
           </div>
         </div>

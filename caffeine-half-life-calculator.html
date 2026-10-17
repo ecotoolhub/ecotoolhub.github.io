@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H5N51E3WEG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H5N51E3WEG');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caffeine Half-Life Calculator: Coffee Cutoff Time (2026)</title>
+    <meta name="description" content="Free caffeine half-life calculator: how long coffee stays in your system, your personal caffeine cutoff time before bed, and sleep-safe timing.">
+    <link rel="canonical" href="https://ecotoolhub.online/caffeine-half-life-calculator.html" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Caffeine Half-Life Calculator",
+      "url": "https://ecotoolhub.online/caffeine-half-life-calculator.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does caffeine stay in your system?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Caffeine's half-life averages about 5 hours in healthy adults, meaning half is gone after 5 hours and roughly 97% clears after about 25 hours (5 half-lives). Slow metabolizers (up to 7-hour half-life) can feel a single coffee for 12+ hours, while fast metabolizers (3-hour half-life) clear it much sooner."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I stop drinking coffee before bed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most sleep research suggests stopping caffeine 8 to 10 hours before bedtime. A well-known study (Drake et al., 2013) found that caffeine taken even 6 hours before bed disrupted sleep by over an hour. Use the calculator above to find your personal cutoff time based on your drink, servings, and metabolism."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does metabolism change caffeine half-life?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The average is 5 hours, but it ranges from about 3 hours (fast metabolizers, smokers) to 7+ hours (slow metabolizers, pregnant women, people on certain medications like oral contraceptives). Genetics (the CYP1A2 gene) is the biggest factor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much caffeine is in espresso vs drip coffee?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A single espresso shot has about 63 mg of caffeine, while an 8 oz cup of drip coffee has about 95 mg. Cold brew is stronger at roughly 200 mg per 12 oz, and energy drinks range from 80 mg (Red Bull) to 160 mg (Monster) or more."
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #10b981;
+            --accent-hover: #059669;
+            --border-color: #334155;
+            --text-muted: #94a3b8;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .main-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        h1 { color: var(--accent-color); font-size: 24px; margin-bottom: 5px; }
+        p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
+        input, select { width: 100%; padding: 10px 12px; background-color: #0b0f19; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-size: 15px; }
+        button.calc-btn { width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
+        button.calc-btn:hover { background-color: var(--accent-hover); }
+        .result { margin-top: 20px; padding: 20px; background-color: #0b0f19; border-left: 5px solid var(--accent-color); border-radius: 8px; display: none; }
+        .result h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 18px; }
+        .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+        .decision-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; font-size: 13px; }
+        .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
+        .seo-content { margin-top: 40px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; }
+        .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
+        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+        .faq { margin-top: 24px; }
+        .faq h2 { color: var(--accent-color); font-size: 20px; }
+        .faq details { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
+        .faq summary { font-weight: 700; cursor: pointer; font-size: 14px; }
+        .faq p { color: var(--text-muted); font-size: 13px; line-height: 1.6; }
+    </style>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Eco Tool Hub Online Calculators",
+  "operatingSystem": "All",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+    <!-- Open Graph / Twitter (SEO + social sharing) -->
+    <meta property="og:title" content="Caffeine Half-Life Calculator: Coffee Cutoff Time (2026)">
+    <meta property="og:description" content="How long does caffeine stay in your system? Find your personal coffee cutoff time before bed.">
+    <meta property="og:url" content="https://ecotoolhub.online/caffeine-half-life-calculator.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Eco Tool Hub">
+    <meta property="og:image" content="https://ecotoolhub.online/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Caffeine Half-Life Calculator: Coffee Cutoff Time (2026)">
+    <meta name="twitter:description" content="How long does caffeine stay in your system? Find your personal coffee cutoff time before bed.">
+    <meta name="twitter:image" content="https://ecotoolhub.online/logo.png">
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Eco Tool Hub",
+  "url": "https://ecotoolhub.online/",
+  "sameAs": [
+    "https://www.facebook.com/ecotoolhub",
+    "https://www.instagram.com/ecotoolhub/",
+    "https://www.threads.net/@ecotoolhub",
+    "https://www.pinterest.com/ecotoolhub/",
+    "https://x.com/ecotoolhub",
+    "https://www.tiktok.com/@ecotoolhub",
+    "https://www.youtube.com/@eco.toolhub",
+    "https://www.reddit.com/user/ecotoolhub/"
+  ]
+}
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
+        <div class="main-container">
+            <div class="card">
+                <h1>☕ Caffeine Half-Life Calculator</h1>
+                <p class="subtitle">How long coffee stays in your system — and your personal caffeine cutoff time before bed.</p>
+                <div class="form-group">
+                    <label for="drink">What did you drink?</label>
+                    <select id="drink">
+                        <option value="63">Espresso, 1 shot (~63 mg)</option>
+                        <option value="95" selected>Drip coffee, 8 oz (~95 mg)</option>
+                        <option value="200">Cold brew, 12 oz (~200 mg)</option>
+                        <option value="47">Black tea, 8 oz (~47 mg)</option>
+                        <option value="28">Green tea, 8 oz (~28 mg)</option>
+                        <option value="160">Monster, 16 oz (~160 mg)</option>
+                        <option value="80">Red Bull, 8.4 oz (~80 mg)</option>
+                        <option value="34">Coca-Cola, 12 oz (~34 mg)</option>
+                        <option value="300">Pre-workout (~300 mg)</option>
+                        <option value="200">Caffeine pill (~200 mg)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="servings">Servings:</label>
+                    <input type="number" id="servings" value="1" min="0.5" max="10" step="0.5">
+                </div>
+                <div class="form-group">
+                    <label for="consumedAt">Time you drank it:</label>
+                    <input type="time" id="consumedAt" value="14:00">
+                </div>
+                <div class="form-group">
+                    <label for="metabolism">Your caffeine metabolism:</label>
+                    <select id="metabolism">
+                        <option value="7">Slow (~7 h half-life)</option>
+                        <option value="5" selected>Average (~5 h half-life)</option>
+                        <option value="3">Fast (~3 h half-life)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bedtime">Your bedtime:</label>
+                    <input type="time" id="bedtime" value="23:00">
+                </div>
+                <button class="calc-btn" onclick="calculateCaffeine()">Calculate My Cutoff</button>
+                <div class="result" id="resultBox">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultDesc" style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 12px;"></p>
+                    <div class="decision-grid">
+                        <div class="decision-item"><b>☕ Total caffeine:</b><span id="totalMg">-</span></div>
+                        <div class="decision-item"><b>📉 Still in your system:</b><span id="remMg">-</span></div>
+                        <div class="decision-item"><b>😴 Below 50 mg at:</b><span id="below50">-</span></div>
+                        <div class="decision-item"><b>🛑 Drink it before:</b><span id="cutoff">-</span></div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div id="temu-caffeine-slider-container"></div>
+                <div id="caffeine-product-box-1"></div>
+                <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
+                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;"><div style="background: #111b21; border: 1px solid #1f2937; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: center; display: flex; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+  <script>
+    atOptions = { 'key' : '1525488bca9c5e8a2dd00a6951ad1ce2', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+  </script>
+  <script src="https://bicea.org/22/1525488bca9c5e8a2dd00a6951ad1ce2"></script>
+</div>
+RECOMMENDED GUIDE</span>
+                    <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">Caffeine & Sleep: The Full Guide</h3>
+                    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 14px; line-height: 1.5;">How caffeine blocks adenosine, why 6-hour-old coffee still ruins sleep, and smart timing strategies.</p>
+                    <a href="half-life-calculator.html" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-weight: bold; font-size: 13px;">Try the General Half-Life Calculator &rarr;</a>
+                </div>
+            </div>
+        </div>
+        <div class="seo-content">
+            <h2>How the Caffeine Half-Life Calculator Works</h2>
+            <p>Caffeine follows first-order elimination: the amount in your body halves every half-life period. With an average 5-hour half-life, a 95 mg morning coffee leaves about 47 mg after 5 hours and 24 mg after 10 hours. Below roughly 50 mg, most people sleep undisturbed — that is the threshold this calculator targets.</p>
+            <p>Your personal cutoff time is the latest moment you can have your drink and still drop under 50 mg by bedtime. Slow metabolizers (7-hour half-life: pregnancy, oral contraceptives, certain medications) may need a cutoff 3–4 hours earlier than fast metabolizers (3-hour half-life: smokers, CYP1A2 fast variants).</p>
+            <div class="faq">
+                <h2>Caffeine Half-Life FAQs</h2>
+                <details><summary>How long does caffeine stay in your system?</summary><p>About 5 half-lives to ~97% clearance: roughly 25 hours for average metabolizers (5-hour half-life), 15 hours for fast (3-hour), and 35 hours for slow (7-hour) metabolizers.</p></details>
+                <details><summary>When should I stop drinking coffee before bed?</summary><p>8–10 hours before bed is the safe rule. Research (Drake et al., 2013) showed caffeine 6 hours before bed still cut sleep by over an hour. Enter your bedtime above for your exact cutoff.</p></details>
+                <details><summary>Does metabolism change caffeine half-life?</summary><p>Yes — from ~3 hours (fast, e.g. smokers) to ~7+ hours (slow, e.g. pregnancy, oral contraceptives). The CYP1A2 gene is the main driver.</p></details>
+                <details><summary>How much caffeine is in espresso vs drip coffee?</summary><p>Espresso: ~63 mg per shot. Drip coffee: ~95 mg per 8 oz. Cold brew: ~200 mg per 12 oz. Energy drinks: 80–300+ mg depending on brand and size.</p></details>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toMin(t) { const p = t.split(':'); return (+p[0]) * 60 + (+p[1]); }
+        function toTime(mins) {
+            mins = ((mins % 1440) + 1440) % 1440;
+            const h = String(Math.floor(mins / 60)).padStart(2, '0');
+            const m = String(Math.round(mins % 60)).padStart(2, '0');
+            return h + ':' + m;
+        }
+        function calculateCaffeine() {
+            const mgPer = parseFloat(document.getElementById('drink').value) || 0;
+            const servings = parseFloat(document.getElementById('servings').value) || 1;
+            const h = parseFloat(document.getElementById('metabolism').value) || 5;
+            const totalMg = Math.round(mgPer * servings);
+
+            const now = new Date();
+            const nowMin = now.getHours() * 60 + now.getMinutes();
+            let drankMin = toMin(document.getElementById('consumedAt').value || '14:00');
+            let bedMin = toMin(document.getElementById('bedtime').value || '23:00');
+
+            // if "drank at" is in the future today, assume yesterday
+            let elapsedH = (nowMin - drankMin) / 60;
+            if (elapsedH < 0) elapsedH += 24;
+
+            const remaining = totalMg * Math.pow(0.5, elapsedH / h);
+
+            // hours until below 50 mg from the moment of drinking
+            let tBelow50 = 0;
+            if (totalMg > 50) tBelow50 = h * (Math.log(totalMg / 50) / Math.log(2));
+            const below50Clock = toTime(drankMin + tBelow50 * 60);
+
+            // cutoff: latest drink time so that by bedtime <= 50 mg remain
+            // bedtime may be tomorrow relative to drink time
+            let bedFromDrink = bedMin - drankMin;
+            if (bedFromDrink <= 0) bedFromDrink += 1440;
+            const cutoffMin = drankMin + (bedFromDrink - tBelow50 * 60);
+            const cutoffClock = toTime(cutoffMin);
+
+            const box = document.getElementById('resultBox');
+            document.getElementById('resultTitle').innerText =
+                totalMg <= 50 ? "You're already under the sleep-safe zone ✅"
+                              : "Drink it before " + cutoffClock + " 🛑";
+            document.getElementById('resultDesc').innerText =
+                "Based on a " + h + "-hour half-life (" +
+                (h >= 7 ? "slow" : h <= 3 ? "fast" : "average") + " metabolism). " +
+                "Below ~50 mg, caffeine rarely disturbs sleep.";
+            document.getElementById('totalMg').innerText = totalMg + " mg";
+            document.getElementById('remMg').innerText = remaining.toFixed(0) + " mg right now";
+            document.getElementById('below50').innerText = totalMg <= 50 ? "already ✅" : below50Clock;
+            document.getElementById('cutoff').innerText = totalMg <= 50 ? "anytime ✅" : cutoffClock + " for a " + document.getElementById('bedtime').value + " bedtime";
+            box.style.display = 'block';
+        }
+    </script>
+    <script src="affiliates.js"></script>
+    <script src="temu-affiliates.js?v=13.0"></script>
+<div style="background: #111b21; border: 1px solid #1f2937; border-radius: 12px; padding: 15px; margin: 20px 0; text-align: center; display: flex; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+  <script>
+    atOptions = { 'key' : '1525488bca9c5e8a2dd00a6951ad1ce2', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+  </script>
+  <script src="https://bicea.org/22/1525488bca9c5e8a2dd00a6951ad1ce2"></script>
+</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderTemuSlider('caffeine', 'temu-caffeine-slider-container');
+            loadAffiliateProducts('caffeine', 'caffeine-product-box-1');
+        });
+    </script>
+    <script src="nav.js"></script>
+<!-- Top Leaderboard Ad 728x90 -->
+<div style="width: 100%; max-width: 100%; overflow-x: hidden; margin: 20px 0 10px 0; display: flex; justify-content: center; align-items: center;">
+  <div style="max-width: 100%; overflow-x: auto; text-align: center;">
+    <script>
+      atOptions = { 'key' : 'bb15d8803b902cea8e3c8f81d64bd555', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+    </script>
+    <script src="https://bicea.org/22/bb15d8803b902cea8e3c8f81d64bd555"></script>
+  </div>
+</div>
+<!-- Mobile Bottom Banner Ad 320x50 -->
+<div style="width: 100%; margin: 25px 0 15px 0; display: flex; justify-content: center; align-items: center; text-align: center;">
+  <script>
+    atOptions = { 'key' : '768e4627e2eb39b431590839d68fabc5', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+  </script>
+  <script src="https://bicea.org/22/768e4627e2eb39b431590839d68fabc5"></script>
+</div>
+</body>
+</html>
