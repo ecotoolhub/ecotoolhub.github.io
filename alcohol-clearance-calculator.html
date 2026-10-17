@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H5N51E3WEG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H5N51E3WEG');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alcohol Clearance Calculator: When Will I Be Sober? (2026)</title>
+    <meta name="description" content="Free alcohol clearance calculator: estimate your BAC now, hours until sober, and earliest safe time — by drinks, weight, and hours since drinking.">
+    <link rel="canonical" href="https://ecotoolhub.online/alcohol-clearance-calculator.html" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Alcohol Clearance Calculator",
+      "url": "https://ecotoolhub.online/alcohol-clearance-calculator.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does it take for alcohol to leave your system?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The liver clears roughly one standard drink per hour (about 0.015% BAC per hour). A night of 6 drinks takes about 6+ hours from the last drink to reach zero — longer for smaller bodies. Only time sobers you up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can coffee or cold air sober you up faster?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Coffee, cold showers, exercise, and fresh air may make you feel more alert, but they do not speed up liver metabolism. BAC falls at a fixed rate of about 0.015% per hour regardless."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long after drinking can I drive?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only when your BAC is back to zero — or at minimum under your country's legal limit (0.05% in many countries, 0.08% in the US/UK). For 4–5 drinks that typically means 5–7 hours after your last drink. When in doubt, don't drive."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What counts as one standard drink?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One standard drink = 14g of pure alcohol: a 12 oz beer at 5%, a 5 oz glass of wine at 12%, or a 1.5 oz shot of 40% spirits. Strong craft beers and large wine pours often count as 1.5–2 drinks."
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #10b981;
+            --accent-hover: #059669;
+            --border-color: #334155;
+            --text-muted: #94a3b8;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .main-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        h1 { color: var(--accent-color); font-size: 24px; margin-bottom: 5px; }
+        p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
+        input, select { width: 100%; padding: 10px 12px; background-color: #0b0f19; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-size: 15px; }
+        .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        button.calc-btn { width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
+        button.calc-btn:hover { background-color: var(--accent-hover); }
+        .result { margin-top: 20px; padding: 20px; background-color: #0b0f19; border-left: 5px solid var(--accent-color); border-radius: 8px; display: none; }
+        .result h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 18px; }
+        .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+        .decision-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; font-size: 13px; }
+        .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
+        .warn { margin-top: 14px; padding: 12px 14px; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.4); border-radius: 8px; font-size: 12px; color: #fca5a5; line-height: 1.5; }
+        .seo-content { margin-top: 40px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; }
+        .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 0; }
+        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+        .faq details { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
+        .faq summary { font-weight: 700; cursor: pointer; font-size: 14px; }
+        .faq p { color: var(--text-muted); font-size: 13px; line-height: 1.6; }
+    </style>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Eco Tool Hub Online Calculators",
+  "operatingSystem": "All",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+    <!-- Open Graph / Twitter (SEO + social sharing) -->
+    <meta property="og:title" content="Alcohol Clearance Calculator: When Will I Be Sober? (2026)">
+    <meta property="og:description" content="Estimate your BAC now, hours until sober, and earliest safe time — free alcohol clearance calculator.">
+    <meta property="og:url" content="https://ecotoolhub.online/alcohol-clearance-calculator.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Eco Tool Hub">
+    <meta property="og:image" content="https://ecotoolhub.online/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alcohol Clearance Calculator: When Will I Be Sober? (2026)">
+    <meta name="twitter:description" content="Estimate your BAC now, hours until sober, and earliest safe time.">
+    <meta name="twitter:image" content="https://ecotoolhub.online/logo.png">
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Eco Tool Hub",
+  "url": "https://ecotoolhub.online/",
+  "sameAs": [
+    "https://www.facebook.com/ecotoolhub",
+    "https://www.instagram.com/ecotoolhub/",
+    "https://www.threads.net/@ecotoolhub",
+    "https://www.pinterest.com/ecotoolhub/",
+    "https://x.com/ecotoolhub",
+    "https://www.tiktok.com/@ecotoolhub",
+    "https://www.youtube.com/@eco.toolhub",
+    "https://www.reddit.com/user/ecotoolhub/"
+  ]
+}
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
+        <div class="main-container">
+            <div class="card">
+                <h1>🍺 Alcohol Clearance Calculator</h1>
+                <p class="subtitle">Estimate your BAC right now, hours until sober, and the earliest safe time — plan the morning after.</p>
+                <div class="row2">
+                    <div class="form-group">
+                        <label for="drinks">Standard drinks:</label>
+                        <input type="number" id="drinks" value="4" min="0.5" max="30" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="hours">Hours since first drink:</label>
+                        <input type="number" id="hours" value="3" min="0" max="24" step="0.5">
+                    </div>
+                </div>
+                <div class="row2">
+                    <div class="form-group">
+                        <label for="weight">Body weight (kg):</label>
+                        <input type="number" id="weight" value="70" min="35" max="200">
+                    </div>
+                    <div class="form-group">
+                        <label for="sex">Sex:</label>
+                        <select id="sex">
+                            <option value="0.68">Male</option>
+                            <option value="0.55">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 12px;">1 standard drink = 14g alcohol ≈ 12oz beer (5%) · 5oz wine (12%) · 1.5oz spirits (40%)</p>
+                <button class="calc-btn" onclick="calculateAlcohol()">When Am I Sober?</button>
+                <div class="result" id="resultBox">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultDesc" style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 12px;"></p>
+                    <div class="decision-grid">
+                        <div class="decision-item"><b>🩸 Est. BAC now:</b><span id="bacNow">-</span></div>
+                        <div class="decision-item"><b>⏳ Sober (0.00%) in:</b><span id="soberIn">-</span></div>
+                        <div class="decision-item"><b>🚗 Under 0.05% in:</b><span id="driveIn">-</span></div>
+                        <div class="decision-item"><b>🕐 Safe at (clock):</b><span id="safeAt">-</span></div>
+                    </div>
+                    <div class="warn">⚠️ Estimates only (Widmark formula) — food, pace, and tolerance shift real BAC. <b>Never drive after drinking.</b> Laws vary by country; this is not legal advice.</div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div id="temu-alcohol-slider-container"></div>
+                <div id="alcohol-product-box-1"></div>
+                <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
+                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;"><div style="background: #111b21; border: 1px solid #1f2937; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: center; display: flex; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+  <script>
+    atOptions = { 'key' : '1525488bca9c5e8a2dd00a6951ad1ce2', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+  </script>
+  <script src="https://bicea.org/22/1525488bca9c5e8a2dd00a6951ad1ce2"></script>
+</div>
+RELATED TOOL</span>
+                    <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">Half-Life of Anything</h3>
+                    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 14px; line-height: 1.5;">Caffeine, medications, nicotine — compute clearance for any substance with a known half-life.</p>
+                    <a href="half-life-calculator.html" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-weight: bold; font-size: 13px;">Open Half-Life Calculator &rarr;</a>
+                </div>
+            </div>
+        </div>
+        <div class="seo-content">
+            <h2>How Alcohol Clearance Works</h2>
+            <p>Your liver metabolizes alcohol at a nearly constant rate — about <b>one standard drink per hour</b>, or roughly <b>0.015% BAC per hour</b>. Coffee, cold air, and exercise don't speed this up; only time does. This calculator uses the Widmark formula: BAC ≈ (alcohol grams ÷ (body weight × distribution ratio)) − (0.015 × hours).</p>
+            <div class="faq">
+                <h2>Alcohol Clearance FAQs</h2>
+                <details><summary>How long does it take for alcohol to leave your system?</summary><p>About one standard drink per hour. Six drinks ≈ 6+ hours from the last drink to reach zero BAC. Smaller bodies and women (lower water ratio) clear it slower.</p></details>
+                <details><summary>Can coffee sober you up faster?</summary><p>No. Caffeine may make you feel alert, but BAC falls at ~0.015%/hour regardless. "Wide awake but still drunk" is how bad decisions happen.</p></details>
+                <details><summary>How long after drinking can I drive?</summary><p>Only at 0.00% BAC to be safe — or under your country's legal limit (0.05% many countries, 0.08% US/UK). After 4–5 drinks that's typically 5–7 hours from the last drink. When in doubt, don't drive.</p></details>
+                <details><summary>What counts as one standard drink?</summary><p>14g of pure alcohol: 12 oz of 5% beer, 5 oz of 12% wine, or 1.5 oz of 40% spirits. Strong IPAs and generous wine pours often equal 1.5–2 drinks.</p></details>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calculateAlcohol() {
+            const drinks = parseFloat(document.getElementById('drinks').value) || 0;
+            const hours = parseFloat(document.getElementById('hours').value) || 0;
+            const weight = parseFloat(document.getElementById('weight').value) || 70;
+            const r = parseFloat(document.getElementById('sex').value) || 0.68;
+
+            const grams = drinks * 14;
+            const peakBAC = (grams / (weight * 1000 * r)) * 100; // Widmark, %
+            const beta = 0.015;
+            let bacNow = peakBAC - beta * hours;
+            if (bacNow < 0) bacNow = 0;
+
+            const soberIn = bacNow / beta;              // hours to 0.00
+            const driveIn = Math.max(0, (bacNow - 0.05) / beta); // hours to 0.05
+
+            const now = new Date();
+            const safeDate = new Date(now.getTime() + soberIn * 3600000);
+            const safeClock = String(safeDate.getHours()).padStart(2,'0') + ':' + String(safeDate.getMinutes()).padStart(2,'0');
+
+            const box = document.getElementById('resultBox');
+            document.getElementById('resultTitle').innerText =
+                bacNow <= 0 ? "You're at 0.00% — sober ✅" :
+                bacNow >= 0.08 ? "Over most legal driving limits 🚨" :
+                "Below 0.08%, but impairment starts ~0.02% ⚠️";
+            document.getElementById('resultDesc').innerText =
+                "Widmark estimate from " + drinks + " drinks over " + hours + "h. Food, pace, and tolerance shift real BAC — treat this as a rough guide, never a green light to drive.";
+            document.getElementById('bacNow').innerText = bacNow.toFixed(3) + "%";
+            document.getElementById('soberIn').innerText = soberIn <= 0 ? "already ✅" : soberIn.toFixed(1) + " h";
+            document.getElementById('driveIn').innerText = driveIn <= 0 ? "already ✅" : driveIn.toFixed(1) + " h";
+            document.getElementById('safeAt').innerText = soberIn <= 0 ? "now ✅" : safeClock;
+            box.style.display = 'block';
+        }
+    </script>
+    <script src="affiliates.js"></script>
+    <script src="temu-affiliates.js?v=13.0"></script>
+<div style="background: #111b21; border: 1px solid #1f2937; border-radius: 12px; padding: 15px; margin: 20px 0; text-align: center; display: flex; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+  <script>
+    atOptions = { 'key' : '1525488bca9c5e8a2dd00a6951ad1ce2', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+  </script>
+  <script src="https://bicea.org/22/1525488bca9c5e8a2dd00a6951ad1ce2"></script>
+</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderTemuSlider('alcohol', 'temu-alcohol-slider-container');
+            loadAffiliateProducts('alcohol', 'alcohol-product-box-1');
+        });
+    </script>
+    <script src="nav.js"></script>
+<!-- Top Leaderboard Ad 728x90 -->
+<div style="width: 100%; max-width: 100%; overflow-x: hidden; margin: 20px 0 10px 0; display: flex; justify-content: center; align-items: center;">
+  <div style="max-width: 100%; overflow-x: auto; text-align: center;">
+    <script>
+      atOptions = { 'key' : 'bb15d8803b902cea8e3c8f81d64bd555', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+    </script>
+    <script src="https://bicea.org/22/bb15d8803b902cea8e3c8f81d64bd555"></script>
+  </div>
+</div>
+<!-- Mobile Bottom Banner Ad 320x50 -->
+<div style="width: 100%; margin: 25px 0 15px 0; display: flex; justify-content: center; align-items: center; text-align: center;">
+  <script>
+    atOptions = { 'key' : '768e4627e2eb39b431590839d68fabc5', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+  </script>
+  <script src="https://bicea.org/22/768e4627e2eb39b431590839d68fabc5"></script>
+</div>
+</body>
+</html>
