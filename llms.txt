@@ -10,6 +10,14 @@
 - [Carbon Footprint Planner](https://ecotoolhub.online/carbon-footprint-calculator.html): Estimate household carbon emissions and plan reductions.
 - [Air Quality Safety Evaluator](https://ecotoolhub.online/aqi-calculator.html): Interpret AQI values and get health safety guidance.
 - [Radioactive Half-Life Calculator](https://ecotoolhub.online/half-life-calculator.html): Compute radioactive decay over time from half-life values.
+- [Caffeine Half-Life Calculator](https://ecotoolhub.online/caffeine-half-life-calculator.html): How long caffeine stays in your system; personal coffee cutoff time before bed.
+- [Alcohol Clearance Calculator](https://ecotoolhub.online/alcohol-clearance-calculator.html): Estimate BAC, hours until sober, and earliest safe time (Widmark formula).
+
+## Reference Pages
+
+- [Drug Half-Life Chart](https://ecotoolhub.online/drug-half-life-table.html): Half-life and clearance times for 35 common medications (ibuprofen, Adderall, Xanax, Zoloft, and more).
+- [Lahore AQI Guide](https://ecotoolhub.online/lahore-aqi-today.html): What Lahore's AQI numbers mean, smog season advice, masks and purifiers.
+- [Karachi AQI Guide](https://ecotoolhub.online/karachi-aqi-today.html): What Karachi's AQI numbers mean, sea-breeze effect, winter spikes.
 
 ## Guides & Articles
 
@@ -20,6 +28,13 @@
 - [Improving Indoor Air Quality and AQI Safety](https://ecotoolhub.online/article-air-quality.html): AQI interpretation and safety guide.
 - [Smart Indoor Gardening and Drip Irrigation](https://ecotoolhub.online/article-indoor-gardening.html): Setup guide for indoor gardens.
 - [Understanding Radioactive Decay](https://ecotoolhub.online/article-half-life.html): Half-life basics and Geiger counter fundamentals.
+- [US vs India AQI](https://ecotoolhub.online/article-us-india-aqi.html): Why the same PM2.5 gets two different AQI numbers; breakpoint tables compared.
+- [Solar Panels for AC](https://ecotoolhub.online/article-solar-ac-panels.html): How many panels to run a 1, 1.5, or 2-ton air conditioner.
+- [Solar Battery Backup Hours](https://ecotoolhub.online/article-solar-battery-backup.html): How long a solar battery powers a home during blackouts.
+- [Pesticide Soil Half-Life](https://ecotoolhub.online/article-pesticide-soil-half-life.html): Soil half-life timelines for 12 common pesticides.
+- [AQI Numbers Decoded](https://ecotoolhub.online/article-aqi-number-meaning.html): What each AQI number means for your lungs.
+- [Carbon Footprint Numbers](https://ecotoolhub.online/article-carbon-footprint-numbers.html): How much CO2 a household really produces.
+- [Plant Water Amounts](https://ecotoolhub.online/article-plant-water-amounts.html): Exact watering amounts by pot size.
 
 ## Site Pages
 
