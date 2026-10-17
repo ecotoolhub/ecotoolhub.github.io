@@ -99,6 +99,11 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
       border-color: #10b981;
     }
 
+    .eth-dropdown { position: relative !important; }
+    .eth-dropdown-menu { display: none; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 6px; min-width: 215px; z-index: 100003 !important; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+    .eth-dropdown:hover .eth-dropdown-menu, .eth-dropdown:focus-within .eth-dropdown-menu { display: block; }
+    .eth-dropdown-menu a { display: block; padding: 8px 12px; color: #ffffff; text-decoration: none; font-size: 0.85rem; font-weight: 600; border-radius: 6px; white-space: nowrap; }
+    .eth-dropdown-menu a:hover { background: #334155; }
     .eth-social-capsule {
       background: #111827;
       border: 1px solid #1f2937;
@@ -213,6 +218,17 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
         <div class="eth-btn-group">
           <a href="/" class="eth-btn">Home</a>
           <a href="blog.html" class="eth-btn">📚 Blog & Guides</a>
+          <div class="eth-dropdown">
+            <a href="#" class="eth-btn" onclick="return false;">🧰 Tools ▾</a>
+            <div class="eth-dropdown-menu">
+              <a href="solar-calculator.html">☀️ Solar &amp; Battery Sizer</a>
+              <a href="plant-water-calculator.html">🌱 Plant Water Scheduler</a>
+              <a href="compost-calculator.html">♻️ Compost Mix Ratio</a>
+              <a href="carbon-footprint-calculator.html">🌍 Carbon Footprint</a>
+              <a href="aqi-calculator.html">🌫️ AQI Health Checker</a>
+              <a href="half-life-calculator.html">⏳ Half-Life Calculator</a>
+            </div>
+          </div>
         </div>
 
         <div class="eth-social-capsule">
