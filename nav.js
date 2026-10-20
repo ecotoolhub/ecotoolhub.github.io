@@ -279,12 +279,16 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
     injectNav();
   }
 
-  // 4. Adsterra direct-link modal popup (user-approved 2026-10-15, refined 2026-10-16):
-  //    SIRF 6 calculator pages par. Koi NAYI window/tab NAHI — sab kuch usi page par box mein.
+  // 4. Adsterra direct-link modal popup (user-approved 2026-10-15, refined 2026-10-16, v4 2026-10-20):
+  //    SIRF 6 calculator pages par. Box khud koi window/tab NAHI kholta — box ke andar ek saaf
+  //    "View Offer" button hai; sirf tab jab visitor KHUD us button ko dabaye, offer nayi tab
+  //    mein khulta hai. (v3 mein direct-link iframe mein load hota tha — Adsterra iframe loads
+  //    ko click count NAHI karta, is liye dashboard mein clicks 0 aa rahe thay. Asal user-click
+  //    hi count hota hai — yehi v4 ka fix hai, user report 2026-10-20.)
   //    - User land kare → ~5 sec baad box khud khulta hai (pehle click par foran, timer backup).
-  //    - User Calculate dabakar result generate kare → 1 dafa box khulta hai (same window).
+  //    - User Calculate dabakar result generate kare → 1 dafa box khulta hai.
   //    MAXIMUM 2 dafa per page view — is se zyada kabhi nahi.
-  //    Box: ad iframe + "Special offer loading…" + 5-sec countdown, khud band.
+  //    Box: offer card + CTA button + 5-sec countdown, khud band.
   (function() {
     var AD_URL = "https://asiafilm.org/4/a0d7aa6022848f149012b064a8966cdd";
     if (!/calculator\.html$/.test(location.pathname)) return; // sirf calculator pages
@@ -302,11 +306,16 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
         '<div id="eth-admodal-box">' +
           '<div id="eth-admodal-head">' +
             '<span class="eth-ad-badge">Ad</span>' +
-            '<span id="eth-admodal-title">✨ Special offer loading…</span>' +
+            '<span id="eth-admodal-title">✨ Special offer for you</span>' +
             '<span id="eth-admodal-timer">5s</span>' +
             '<button id="eth-admodal-close" aria-label="Close">×</button>' +
           "</div>" +
-          '<iframe id="eth-admodal-frame" src="' + AD_URL + '" frameborder="0" scrolling="yes"></iframe>' +
+          '<a id="eth-admodal-cta" href="' + AD_URL + '" target="_blank" rel="noopener sponsored nofollow">' +
+            '<span id="eth-admodal-big">🎁 A Special Offer For You</span>' +
+            '<span id="eth-admodal-sub">Our sponsor has something for you. Tap the button to view it — opens in a new tab.</span>' +
+            '<span id="eth-admodal-btn">View Offer →</span>' +
+          "</a>" +
+          '<div id="eth-admodal-note">Advertisement • This box closes automatically</div>' +
         "</div>";
       document.body.appendChild(overlay);
 
@@ -379,7 +388,38 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
       "#eth-admodal-close{background:transparent;border:0;color:#94a3b8;font-size:1.4rem;" +
       "cursor:pointer;line-height:1;padding:0 4px;}" +
       "#eth-admodal-close:hover{color:#fff;}" +
-      "#eth-admodal-frame{display:block;width:100%;height:340px;border:0;background:#fff;}";
+      "#eth-admodal-cta{display:flex;flex-direction:column;align-items:center;justify-content:center;" +
+      "gap:12px;text-align:center;padding:34px 22px 26px;text-decoration:none;cursor:pointer;" +
+      "background:linear-gradient(160deg,#064e3b 0%,#0b0f19 70%);color:#f8fafc;" +
+      "font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}" +
+      "#eth-admodal-big{font-size:1.35rem;font-weight:800;line-height:1.3;}" +
+      "#eth-admodal-sub{font-size:0.9rem;color:#cbd5e1;line-height:1.45;max-width:320px;}" +
+      "#eth-admodal-btn{margin-top:6px;background:#10b981;color:#04150d;font-weight:800;font-size:1rem;" +
+      "padding:12px 30px;border-radius:999px;box-shadow:0 6px 18px rgba(16,185,129,0.35);}" +
+      "#eth-admodal-cta:hover #eth-admodal-btn{background:#34d399;}" +
+      "#eth-admodal-note{text-align:center;color:#64748b;font-size:0.72rem;padding:0 12px 14px;" +
+      "background:#0b0f19;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}";
     document.head.appendChild(st);
+  })();
+
+  // 6. CLS fix (2026-10-20, PageSpeed mobile CLS 0.221): Adsterra banner scripts ki jagah
+  //    pehle se reserve kar do taake ad load hone par page content na hiley (layout shift).
+  //    Ad units/keys bilkul same — sirf unke parent container ko fixed min-height milti hai.
+  (function() {
+    var HEIGHTS = { "1525488b": "250px", "bb15d880": "90px", "768e4627": "50px" };
+    function reserveAdSpace() {
+      var scripts = document.querySelectorAll('script[src*="bicea.org/22/"]');
+      for (var i = 0; i < scripts.length; i++) {
+        var src = scripts[i].getAttribute("src") || "";
+        for (var key in HEIGHTS) {
+          if (src.indexOf(key) !== -1) {
+            var p = scripts[i].parentElement;
+            if (p && !p.style.minHeight) p.style.minHeight = HEIGHTS[key];
+          }
+        }
+      }
+    }
+    reserveAdSpace();
+    document.addEventListener("DOMContentLoaded", reserveAdSpace);
   })();
 })();
