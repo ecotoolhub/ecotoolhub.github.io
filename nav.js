@@ -98,6 +98,15 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
       background: #334155;
       border-color: #10b981;
     }
+    /* Mobile fix (2026-10-20, user screenshot): button text ek hi line mein rahe —
+       "Blog & Guides" aadha neeche nahi girega */
+    .eth-btn { white-space: nowrap; flex-shrink: 0; }
+    .eth-btn-group { flex-wrap: nowrap; max-width: 100%; }
+    @media (max-width: 480px) {
+      .eth-btn { padding: 6px 11px; font-size: 0.82rem; }
+      .eth-btn-group { gap: 7px; }
+      #eth-header-container { padding: 16px 10px 12px 10px; }
+    }
 
     .eth-dropdown { position: relative !important; }
     .eth-dropdown-menu { display: none; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 6px; min-width: 215px; z-index: 100003 !important; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
@@ -279,16 +288,17 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
     injectNav();
   }
 
-  // 4. Adsterra direct-link modal popup (v5 — user design 2026-10-20):
-  //    SIRF 6 calculator pages par. Box par NA koi countdown nazar aata hai, NA close button
-  //    hai — backend mein box 10 sec baad khud band ho jata hai (user ko pata nahi chalta).
-  //    Box ke andar "View Offer" button hai: visitor khud dabaye to offer nayi tab mein
-  //    khulta hai (asal click = Adsterra count karta hai; v3 ka iframe load count nahi hota
-  //    tha) aur box band ho jata hai, taake wapis aakar website saaf mile.
-  //    Show SIRF 2 dafa per page view:
-  //    - Land hone par (pehle click par foran, warna ~6 sec ke andar timer se).
-  //    - Calculate dabakar result generate karne par 1 dafa.
-  //    Is se zyada kabhi nahi. Display banner ads har jagah waise hi rehte hain.
+  // 4. Adsterra direct-link modal popup (v6 — user design 2026-10-20 evening):
+  //    SIRF 6 calculator pages par. Box ke ANDAR direct-link IFRAME mein load hota hai
+  //    (user ki strategy: page ad ki taraf gaya hua lage, ad pura render ho). Box pehle
+  //    wale iframe box se BARA hai (max 560px wide, frame ~480px tall) lekin browser
+  //    window se chota rehta hai.
+  //    - 5-sec ka timer: pehle 5 sec user box CLOSE NAHI kar sakta (close button chhupa
+  //      rehta hai, countdown chip nazar aata hai); 5 sec ke baad × aa jata hai, phir
+  //      user khud band kare. Khud-ba-khud band NAHI hota.
+  //    - Show SIRF 2 dafa per page view: land hone ke 7-8 sec ke andar (pehle click par
+  //      foran, warna 7s timer), aur Calculate/result par 1 dafa. Bas.
+  //    Display banner ads har jagah waise hi rehte hain.
   (function() {
     var AD_URL = "https://asiafilm.org/4/a0d7aa6022848f149012b064a8966cdd";
     if (!/calculator\.html$/.test(location.pathname)) return; // sirf calculator pages
@@ -306,30 +316,41 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
         '<div id="eth-admodal-box">' +
           '<div id="eth-admodal-head">' +
             '<span class="eth-ad-badge">Ad</span>' +
-            '<span id="eth-admodal-title">✨ Special offer for you</span>' +
+            '<span id="eth-admodal-title">✨ Special offer loading…</span>' +
+            '<span id="eth-admodal-timer">5s</span>' +
+            '<button id="eth-admodal-close" aria-label="Close" style="display:none">×</button>' +
           "</div>" +
-          '<a id="eth-admodal-cta" href="' + AD_URL + '" target="_blank" rel="noopener sponsored nofollow">' +
-            '<span id="eth-admodal-big">🎁 A Special Offer For You</span>' +
-            '<span id="eth-admodal-sub">Our sponsor has something for you. Tap the button to view it — opens in a new tab.</span>' +
-            '<span id="eth-admodal-btn">View Offer →</span>' +
-          "</a>" +
-          '<div id="eth-admodal-note">Advertisement</div>' +
+          '<iframe id="eth-admodal-frame" src="' + AD_URL + '" frameborder="0" scrolling="yes"></iframe>' +
         "</div>";
       document.body.appendChild(overlay);
 
-      // Backend timer: box 10 sec baad khud band — koi countdown nazar nahi aata,
-      // koi close button nahi (user design v5, 2026-10-20).
-      var iv = setTimeout(function() { closeModal(); }, 10000);
+      // 5-sec lock (user design v6): countdown ke doran close NAHI ho sakta;
+      // 5 sec ke baad × button aa jata hai aur user khud band karta hai.
+      var secs = 5;
+      var timerEl = document.getElementById("eth-admodal-timer");
+      var closeBtn = document.getElementById("eth-admodal-close");
+      var unlocked = false;
+      var iv = setInterval(function() {
+        secs--;
+        if (secs <= 0) {
+          clearInterval(iv);
+          unlocked = true;
+          if (timerEl) timerEl.style.display = "none";
+          if (closeBtn) closeBtn.style.display = "";
+          return;
+        }
+        if (timerEl) timerEl.textContent = secs + "s";
+      }, 1000);
 
       function closeModal() {
-        clearTimeout(iv);
+        if (!unlocked) return; // 5 sec se pehle band nahi hoga
+        clearInterval(iv);
         if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
         modalOpen = false;
       }
-      // Offer par click → nayi tab khulti hai (asal click = Adsterra count) aur box bhi
-      // band ho jata hai, taake user wapis aaye to website saaf mile.
-      document.getElementById("eth-admodal-cta").addEventListener("click", function() {
-        setTimeout(closeModal, 50);
+      closeBtn.addEventListener("click", closeModal);
+      overlay.addEventListener("click", function(ev) {
+        if (ev.target === overlay) closeModal();
       });
     }
 
@@ -357,8 +378,9 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
       }
     }, true);
 
-    // Timer backup: agar 6 sec mein koi click se box nahi khula to khud khul jaye
-    setTimeout(function() { showLanding(); }, 6000);
+    // Timer backup: agar 7 sec mein koi click se box nahi khula to khud khul jaye
+    // (user design v6: page par anay ke 7-8 sec ke andar ad show ho)
+    setTimeout(function() { showLanding(); }, 7000);
 
     // Back/forward navigation (bfcache) par flags reset taake dobara kaam kare
     window.addEventListener("pageshow", function(ev) {
@@ -372,23 +394,18 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
     st.innerHTML =
       "#eth-admodal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:1000000;" +
       "display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;}" +
-      "#eth-admodal-box{width:94%;max-width:440px;background:#111827;border:1px solid #1f2937;" +
+      "#eth-admodal-box{width:96%;max-width:560px;background:#111827;border:1px solid #1f2937;" +
       "border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.6);}" +
       "#eth-admodal-head{display:flex;align-items:center;gap:8px;padding:10px 12px;" +
       "background:#0b0f19;border-bottom:1px solid #1f2937;color:#e2e8f0;font-size:0.85rem;" +
       "font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}" +
       "#eth-admodal-title{flex:1;}" +
-      "#eth-admodal-cta{display:flex;flex-direction:column;align-items:center;justify-content:center;" +
-      "gap:12px;text-align:center;padding:34px 22px 26px;text-decoration:none;cursor:pointer;" +
-      "background:linear-gradient(160deg,#064e3b 0%,#0b0f19 70%);color:#f8fafc;" +
-      "font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}" +
-      "#eth-admodal-big{font-size:1.35rem;font-weight:800;line-height:1.3;}" +
-      "#eth-admodal-sub{font-size:0.9rem;color:#cbd5e1;line-height:1.45;max-width:320px;}" +
-      "#eth-admodal-btn{margin-top:6px;background:#10b981;color:#04150d;font-weight:800;font-size:1rem;" +
-      "padding:12px 30px;border-radius:999px;box-shadow:0 6px 18px rgba(16,185,129,0.35);}" +
-      "#eth-admodal-cta:hover #eth-admodal-btn{background:#34d399;}" +
-      "#eth-admodal-note{text-align:center;color:#64748b;font-size:0.72rem;padding:0 12px 14px;" +
-      "background:#0b0f19;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}";
+      "#eth-admodal-timer{background:#1e293b;border:1px solid #334155;color:#fbbf24;" +
+      "font-weight:700;font-size:0.8rem;padding:2px 8px;border-radius:20px;min-width:34px;text-align:center;}" +
+      "#eth-admodal-close{background:transparent;border:0;color:#94a3b8;font-size:1.4rem;" +
+      "cursor:pointer;line-height:1;padding:0 4px;}" +
+      "#eth-admodal-close:hover{color:#fff;}" +
+      "#eth-admodal-frame{display:block;width:100%;height:480px;max-height:72vh;border:0;background:#fff;}";
     document.head.appendChild(st);
   })();
 
