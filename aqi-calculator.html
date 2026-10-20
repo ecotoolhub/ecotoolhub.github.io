@@ -186,8 +186,26 @@ RECOMMENDED GUIDE</span>
 
         <div class="seo-content" style="margin-top: 24px;">
             <h2>City AQI Guides</h2>
-            <p>What the AQI number means in your city: <a href="lahore-aqi-today.html" style="color: var(--accent-color); font-weight: 700;">Lahore AQI today</a> · <a href="karachi-aqi-today.html" style="color: var(--accent-color); font-weight: 700;">Karachi AQI today</a> — smog season tips, masks, and when to stay indoors.</p>
+            <p id="cityAqiText">What the AQI number means where you live: the same air gets a different number on different national scales — compare them in our <a href="article-us-india-aqi.html" style="color: var(--accent-color); font-weight: 700;">US vs India AQI guide</a>, with mask tips and advice on when to stay indoors.</p>
         </div>
+        <script>
+        // Location-aware city guides (2026-10-20): pehle Lahore/Karachi links SAB ko
+        // dikhte thay. Ab visitor ke timezone ke hisaab se: Pakistan → Lahore/Karachi,
+        // India → US vs India guide, baaki sab → generic guide (upar wala default).
+        (function() {
+            try {
+                var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+                var el = document.getElementById('cityAqiText');
+                if (!el) return;
+                var st = 'style="color: var(--accent-color); font-weight: 700;"';
+                if (tz === 'Asia/Karachi') {
+                    el.innerHTML = 'What the AQI number means in your city: <a href="lahore-aqi-today.html" ' + st + '>Lahore AQI today</a> · <a href="karachi-aqi-today.html" ' + st + '>Karachi AQI today</a> — smog season tips, masks, and when to stay indoors.';
+                } else if (tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta') {
+                    el.innerHTML = 'What the AQI number means in your city: India and the US score the same air differently — see <a href="article-us-india-aqi.html" ' + st + '>US vs India AQI explained</a>, with mask tips and advice on when to stay indoors.';
+                }
+            } catch (e) {}
+        })();
+        </script>
 <div class="seo-content">
             <h2>Understanding Air Quality Index (AQI)</h2>
             <p>Particulate matter PM2.5 penetrates deep into respiratory airways. Utilizing True HEPA air purifiers, negative ion deodorizers, and real-time digital sensors maintains pristine indoor air quality.</p>
