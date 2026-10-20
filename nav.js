@@ -279,16 +279,16 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
     injectNav();
   }
 
-  // 4. Adsterra direct-link modal popup (user-approved 2026-10-15, refined 2026-10-16, v4 2026-10-20):
-  //    SIRF 6 calculator pages par. Box khud koi window/tab NAHI kholta — box ke andar ek saaf
-  //    "View Offer" button hai; sirf tab jab visitor KHUD us button ko dabaye, offer nayi tab
-  //    mein khulta hai. (v3 mein direct-link iframe mein load hota tha — Adsterra iframe loads
-  //    ko click count NAHI karta, is liye dashboard mein clicks 0 aa rahe thay. Asal user-click
-  //    hi count hota hai — yehi v4 ka fix hai, user report 2026-10-20.)
-  //    - User land kare → ~5 sec baad box khud khulta hai (pehle click par foran, timer backup).
-  //    - User Calculate dabakar result generate kare → 1 dafa box khulta hai.
-  //    MAXIMUM 2 dafa per page view — is se zyada kabhi nahi.
-  //    Box: offer card + CTA button + 5-sec countdown, khud band.
+  // 4. Adsterra direct-link modal popup (v5 — user design 2026-10-20):
+  //    SIRF 6 calculator pages par. Box par NA koi countdown nazar aata hai, NA close button
+  //    hai — backend mein box 10 sec baad khud band ho jata hai (user ko pata nahi chalta).
+  //    Box ke andar "View Offer" button hai: visitor khud dabaye to offer nayi tab mein
+  //    khulta hai (asal click = Adsterra count karta hai; v3 ka iframe load count nahi hota
+  //    tha) aur box band ho jata hai, taake wapis aakar website saaf mile.
+  //    Show SIRF 2 dafa per page view:
+  //    - Land hone par (pehle click par foran, warna ~6 sec ke andar timer se).
+  //    - Calculate dabakar result generate karne par 1 dafa.
+  //    Is se zyada kabhi nahi. Display banner ads har jagah waise hi rehte hain.
   (function() {
     var AD_URL = "https://asiafilm.org/4/a0d7aa6022848f149012b064a8966cdd";
     if (!/calculator\.html$/.test(location.pathname)) return; // sirf calculator pages
@@ -307,34 +307,29 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
           '<div id="eth-admodal-head">' +
             '<span class="eth-ad-badge">Ad</span>' +
             '<span id="eth-admodal-title">✨ Special offer for you</span>' +
-            '<span id="eth-admodal-timer">5s</span>' +
-            '<button id="eth-admodal-close" aria-label="Close">×</button>' +
           "</div>" +
           '<a id="eth-admodal-cta" href="' + AD_URL + '" target="_blank" rel="noopener sponsored nofollow">' +
             '<span id="eth-admodal-big">🎁 A Special Offer For You</span>' +
             '<span id="eth-admodal-sub">Our sponsor has something for you. Tap the button to view it — opens in a new tab.</span>' +
             '<span id="eth-admodal-btn">View Offer →</span>' +
           "</a>" +
-          '<div id="eth-admodal-note">Advertisement • This box closes automatically</div>' +
+          '<div id="eth-admodal-note">Advertisement</div>' +
         "</div>";
       document.body.appendChild(overlay);
 
-      var secs = 5;
-      var timerEl = document.getElementById("eth-admodal-timer");
-      var iv = setInterval(function() {
-        secs--;
-        if (secs <= 0) { closeModal(); return; }
-        if (timerEl) timerEl.textContent = secs + "s";
-      }, 1000);
+      // Backend timer: box 10 sec baad khud band — koi countdown nazar nahi aata,
+      // koi close button nahi (user design v5, 2026-10-20).
+      var iv = setTimeout(function() { closeModal(); }, 10000);
 
       function closeModal() {
-        clearInterval(iv);
+        clearTimeout(iv);
         if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
         modalOpen = false;
       }
-      document.getElementById("eth-admodal-close").addEventListener("click", closeModal);
-      overlay.addEventListener("click", function(ev) {
-        if (ev.target === overlay) closeModal();
+      // Offer par click → nayi tab khulti hai (asal click = Adsterra count) aur box bhi
+      // band ho jata hai, taake user wapis aaye to website saaf mile.
+      document.getElementById("eth-admodal-cta").addEventListener("click", function() {
+        setTimeout(closeModal, 50);
       });
     }
 
@@ -383,11 +378,6 @@ function loadAffiliateProducts() { /* affiliate boxes not implemented yet */ }
       "background:#0b0f19;border-bottom:1px solid #1f2937;color:#e2e8f0;font-size:0.85rem;" +
       "font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;}" +
       "#eth-admodal-title{flex:1;}" +
-      "#eth-admodal-timer{background:#1e293b;border:1px solid #334155;color:#fbbf24;" +
-      "font-weight:700;font-size:0.8rem;padding:2px 8px;border-radius:20px;min-width:34px;text-align:center;}" +
-      "#eth-admodal-close{background:transparent;border:0;color:#94a3b8;font-size:1.4rem;" +
-      "cursor:pointer;line-height:1;padding:0 4px;}" +
-      "#eth-admodal-close:hover{color:#fff;}" +
       "#eth-admodal-cta{display:flex;flex-direction:column;align-items:center;justify-content:center;" +
       "gap:12px;text-align:center;padding:34px 22px 26px;text-decoration:none;cursor:pointer;" +
       "background:linear-gradient(160deg,#064e3b 0%,#0b0f19 70%);color:#f8fafc;" +
