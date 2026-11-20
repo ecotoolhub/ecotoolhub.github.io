@@ -189,6 +189,21 @@ var temuData = {
         { title: "UNI-T Uni-Trend Infrared Thermal Imager for HVAC and Solar", rawPrice: "Rs.68,620", link: "https://temu.to/k/eayljj3zqoz", badge: "PRO THERMAL CAM" },
         { title: "50pcs Transparent Plastic Test Tubes with Caps 75x12mm", rawPrice: "Rs.1,554", link: "https://temu.to/k/epfbtfd9q6x", badge: "TEST TUBES 50PK" },
         { title: "25pcs Plastic Test Tubes Transparent with Screw Caps", rawPrice: "Rs.4,738", link: "https://temu.to/k/et6usdq4pae", badge: "SCREW CAP TUBES" }
+    ],
+    "home-resilience": [
+        { title: "NITEK 9000mAh Solar Generator Kit with USB Charger and LED Light", rawPrice: "Rs.8,437", link: "https://temu.to/k/e10mj3jtsqe", badge: "HOT SELLER" },
+        { title: "A Portable 6V Rechargeable Solar Panel Power Generation System", rawPrice: "Rs.8,246", link: "https://temu.to/k/edpvs4ourjg", badge: "TOP RATED" },
+        { title: "500W Continuous Power Inverter, 50W Solar Panel and 50A Controller Kit", rawPrice: "Rs.40,865", link: "https://temu.to/k/e1qqwds8fqz", badge: "COMPLETE KIT" },
+        { title: "22.5W Fast Charging Power Bank DIY Case (6x21700 QC3.0)", rawPrice: "Rs.8,500", link: "https://temu.to/k/eg1rvdpb47o", badge: "FAST CHARGE" },
+        { title: "Portable Power Inverter 300W DC 12V to AC 220V Dual USB", rawPrice: "Rs.19,643", link: "https://temu.to/k/emzahb8y87c", badge: "DUAL USB" },
+        { title: "1 Pack Solar Outdoor Motion Sensor Light 106 Super Bright LEDs IP65", rawPrice: "Rs.9,020", link: "https://temu.to/k/e4s18njnz03", badge: "MOTION SENSOR" },
+        { title: "504 LED Solar Street Light with Remote Control and Motion Sensor", rawPrice: "Rs.14,433", link: "https://temu.to/k/e3pabdjr6w2", badge: "SUPER BRIGHT" },
+        { title: "Outdoor Personal Water Filter Ultralight 4-Stage Straw Purifier", rawPrice: "Rs.1,835", link: "https://temu.to/k/eh05g37ngzy", badge: "WATER FILTER" },
+        { title: "Outdoor Personal Water Filter 0.01 Micron Straw 4pcs Set", rawPrice: "Rs.2,308", link: "https://temu.to/k/ega5mqn96vv", badge: "SURVIVAL 4-PACK" },
+        { title: "Portable PC Water Tank with Faucet Outdoor Camping Container", rawPrice: "Rs.7,725", link: "https://temu.to/k/e7sphrcg927", badge: "WATER BUCKET" },
+        { title: "Portable Water Filtration Straws Set for Emergency Camping", rawPrice: "Rs.1,754", link: "https://temu.to/k/eg67xwhp8e4", badge: "EMERGENCY STRAW" },
+        { title: "50-160L Collapsible Rain Barrel with Spigot and Filter PVC Collector", rawPrice: "Rs.14,143", link: "https://temu.to/k/eujljzrz3nv", badge: "RAIN BARREL" },
+        { title: "Home Air Purifier True HEPA Filter Silent Formaldehyde Removal", rawPrice: "Rs.27,499", link: "https://temu.to/k/eo5iw12dqy5", badge: "TRUE HEPA" }
     ]
 };
 

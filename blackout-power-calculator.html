@@ -167,20 +167,25 @@
                         <div class="cta-item" id="ctaSmall">
                             <b>~1 kWh class — lights, WiFi, phones, a few fridge hours</b>
                             <span>Examples: Jackery Explorer 1000, EcoFlow DELTA 2. Good for short outages and small flats.</span>
-                            <a href="https://www.amazon.com/s?k=1000wh+portable+power+station" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                            <a href="#temu-deals" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
                         </div>
                         <div class="cta-item" id="ctaMedium">
                             <b>~2 kWh class — a full day of essentials for most homes</b>
                             <span>Examples: EcoFlow DELTA 2 Max, Jackery Explorer 2000, BLUETTI AC200 series. The sweet spot for fridge + lights + fan for 24 hours.</span>
-                            <a href="https://www.amazon.com/s?k=2000wh+portable+power+station" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                            <a href="#temu-deals" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
                         </div>
                         <div class="cta-item" id="ctaLarge">
                             <b>3–4 kWh class — multi-day or heavy loads</b>
                             <span>Examples: EcoFlow DELTA Pro, BLUETTI AC300 + battery. For 2+ days of essentials or a pump / medical device on top.</span>
-                            <a href="https://www.amazon.com/s?k=3600wh+portable+power+station" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                            <a href="#temu-deals" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
                         </div>
                     </div>
-                    <p class="disclosure">Affiliate disclosure: some links on this page are affiliate links. If you buy through them, Eco Tool Hub may earn a small commission at no extra cost to you. It helps keep every calculator free. As an Amazon Associate we earn from qualifying purchases.</p>
+                    <p class="disclosure">Affiliate disclosure: some links on this page are affiliate links. If you buy through them, Eco Tool Hub may earn a small commission at no extra cost to you. It helps keep every calculator free.</p>
+                </div>
+                <div id="temu-deals" style="margin-top: 22px;">
+                    <h3 style="color:#f8fafc; margin: 0 0 6px 0;">Discounted backup &amp; emergency picks on Temu</h3>
+                    <p style="color:#cbd5e1; font-size: 14px; margin: 0 0 12px 0;">Real products from our Temu store picks — solar backup power, lights, water filters and storage. Prices update on Temu; check the current deal.</p>
+                    <div id="temu-resilience-slider-container"></div>
                 </div>
             </div>
 
@@ -338,6 +343,12 @@
         }
 
         buildApplianceList();
+    </script>
+    <script src="temu-affiliates.js?v=14.0"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderTemuSlider('home-resilience', 'temu-resilience-slider-container');
+        });
     </script>
     <script src="nav.js"></script>
 <!-- Top Leaderboard Ad 728x90 -->
