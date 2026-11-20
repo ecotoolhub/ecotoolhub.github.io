@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H5N51E3WEG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H5N51E3WEG');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackout Power Calculator: What Size Power Station Do You Need? (2026)</title>
+    <meta name="description" content="Free blackout power needs calculator: pick your essential appliances and find the exact power station size (Wh), inverter watts and solar recharge you need to ride out a power outage. Plus a runtime mode for a station you already own.">
+
+    <link rel="canonical" href="https://ecotoolhub.online/blackout-power-calculator.html" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Blackout Power Needs Calculator",
+      "url": "https://ecotoolhub.online/blackout-power-calculator.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What size power station do I need for a blackout?", "acceptedAnswer": {"@type": "Answer", "text": "Add up the watt-hours of the appliances you must keep running. A typical essentials load (fridge, lights, WiFi, phones, a fan) uses about 3.2 kWh per day, so a 2-3.6 kWh power station covers one full day; divide your daily watt-hours by 0.85 to allow for inverter losses."}},
+        {"@type": "Question", "name": "How long will a 1000Wh power station run a fridge?", "acceptedAnswer": {"@type": "Answer", "text": "A modern fridge draws about 150W while its compressor runs and cycles on roughly 8 hours per day, about 1,200 Wh per day. A 1,000 Wh station delivers about 850 usable Wh, so it runs the fridge alone for roughly 17 hours."}},
+        {"@type": "Question", "name": "Can a power station run a space heater or kettle?", "acceptedAnswer": {"@type": "Answer", "text": "Technically yes if the inverter is rated above 1,500W, but heating appliances drain a battery extremely fast: a 1,500W heater empties a 2 kWh station in about an hour. For heat, blankets and layered clothing are far more practical during an outage."}}
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #10b981;
+            --accent-hover: #059669;
+            --amber: #f59e0b;
+            --border-color: #334155;
+            --text-muted: #94a3b8;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .main-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        h1 { color: var(--accent-color); font-size: 24px; margin-bottom: 5px; }
+        p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+        .mode-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+        .mode-tabs button { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background: #0b0f19; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; }
+        .mode-tabs button.active { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+        .appliance-row { display: grid; grid-template-columns: 26px 1fr 74px 74px; gap: 8px; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .appliance-row label { font-size: 13px; font-weight: 600; }
+        .appliance-row label small { display: block; color: var(--text-muted); font-weight: 400; font-size: 11px; }
+        .appliance-row input[type="number"] { width: 100%; padding: 7px 8px; background-color: #0b0f19; border: 1px solid var(--border-color); border-radius: 6px; color: white; font-size: 13px; }
+        .appliance-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent-color); }
+        .row-head { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+        .form-group { margin: 16px 0; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
+        input[type="range"] { width: 100%; accent-color: var(--accent-color); }
+        select, .num-input { width: 100%; padding: 10px 12px; background-color: #0b0f19; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-size: 15px; }
+        button.calc-btn { width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
+        button.calc-btn:hover { background-color: var(--accent-hover); }
+        .result { margin-top: 20px; padding: 20px; background-color: #0b0f19; border-left: 5px solid var(--accent-color); border-radius: 8px; display: none; }
+        .result h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 18px; }
+        .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+        .decision-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; font-size: 13px; }
+        .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
+        .cta-box { margin-top: 18px; background: #0f172a; border: 1px solid var(--amber); border-radius: 12px; padding: 18px; display: none; }
+        .cta-box h3 { margin: 0 0 6px 0; font-size: 16px; color: #f8fafc; }
+        .cta-box p { color: var(--text-muted); font-size: 12.5px; line-height: 1.55; margin: 0 0 12px 0; }
+        .cta-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+        .cta-item { background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px 14px; }
+        .cta-item b { display: block; font-size: 14px; margin-bottom: 2px; }
+        .cta-item span { color: var(--text-muted); font-size: 12px; display: block; margin-bottom: 9px; line-height: 1.5; }
+        .cta-item a { display: inline-block; background: var(--amber); color: #111827; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 13px; }
+        .cta-item.recommended { border-color: var(--accent-color); }
+        .cta-item .tag { display: inline-block; background: rgba(16,185,129,0.18); color: #34d399; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; margin-bottom: 6px; }
+        .disclosure { font-size: 11px; color: var(--text-muted); margin-top: 12px; line-height: 1.5; }
+        .seo-content { margin-top: 40px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; }
+        .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 26px; }
+        .seo-content h2:first-child { margin-top: 0; }
+        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.65; }
+        .seo-content a { color: #34d399; }
+        .warn { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.45); border-radius: 8px; padding: 10px 12px; font-size: 12.5px; color: #fcd34d; line-height: 1.5; margin-top: 12px; display: none; }
+    </style>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+    <meta property="og:title" content="Blackout Power Needs Calculator - Eco Tool Hub">
+    <meta property="og:description" content="What size power station do you need for a blackout? Pick your appliances and get the exact Wh, inverter size and solar recharge.">
+    <meta property="og:url" content="https://ecotoolhub.online/blackout-power-calculator.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Eco Tool Hub">
+    <meta property="og:image" content="https://ecotoolhub.online/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blackout Power Needs Calculator - Eco Tool Hub">
+    <meta name="twitter:description" content="Size a backup power station for your home in under a minute.">
+    <meta name="twitter:image" content="https://ecotoolhub.online/logo.png">
+</head>
+<body>
+
+    <div class="wrapper">
+        <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
+
+        <div class="main-container">
+            <div class="card">
+                <h1>Blackout Power Needs Calculator</h1>
+                <p class="subtitle">Tick the appliances you must keep running in a power cut. We do the maths: battery size, inverter watts and solar recharge — using the same 3-day readiness approach as official guidance (Ready.gov / FEMA).</p>
+
+                <div class="mode-tabs">
+                    <button id="tabMode1" class="active" onclick="setMode(1)">Mode 1: Size My Backup</button>
+                    <button id="tabMode2" onclick="setMode(2)">Mode 2: My Station's Runtime</button>
+                </div>
+
+                <div class="appliance-row row-head"><span></span><span>Appliance</span><span>Watts</span><span>Hrs/day</span></div>
+                <div id="applianceList"></div>
+
+                <div class="warn" id="heatWarn">⚠️ Heating appliances (space heater, kettle) drain batteries extremely fast — a 1,500W heater empties a 2 kWh station in about an hour. Blankets and layered clothing are the practical way to stay warm in an outage.</div>
+
+                <div id="mode1Inputs">
+                    <div class="form-group">
+                        <label for="daysRange">Days of backup: <span id="daysLabel" style="color:#34d399;">1 day</span></label>
+                        <input type="range" id="daysRange" min="1" max="7" step="1" value="1" oninput="document.getElementById('daysLabel').innerText = this.value + (this.value=='1' ? ' day' : ' days')">
+                    </div>
+                </div>
+
+                <div id="mode2Inputs" style="display:none;">
+                    <div class="form-group">
+                        <label for="stationWh">Your power station size (Wh):</label>
+                        <input type="number" class="num-input" id="stationWh" value="1024" min="100" step="1">
+                        <p style="color:var(--text-muted); font-size:12px; margin:6px 0 0;">Tip: it is printed on the unit — e.g. 512, 1024, 2048 or 3600 Wh.</p>
+                    </div>
+                </div>
+
+                <button class="calc-btn" onclick="calculateBlackout()">Calculate</button>
+
+                <div class="result" id="resultBox">
+                    <h3 id="resultTitle"></h3>
+                    <p id="resultDesc" style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 12px;"></p>
+                    <div class="decision-grid">
+                        <div class="decision-item"><b>⚡ Daily Energy Need:</b><span id="whPerDay">-</span></div>
+                        <div class="decision-item"><b>🔋 Battery Capacity Needed:</b><span id="batteryNeeded">-</span></div>
+                        <div class="decision-item"><b>🔌 Inverter Size (min):</b><span id="inverterNeeded">-</span></div>
+                        <div class="decision-item"><b>☀️ Solar Recharge Panel:</b><span id="solarNeeded">-</span></div>
+                    </div>
+                </div>
+
+                <div class="cta-box" id="ctaBox">
+                    <h3>Power stations that match your result</h3>
+                    <p id="ctaIntro">Based on your numbers, look at this size class. Prices change often and many models are discounted during preparedness sales — check the current deal before you buy.</p>
+                    <div class="cta-grid">
+                        <div class="cta-item" id="ctaSmall">
+                            <b>~1 kWh class — lights, WiFi, phones, a few fridge hours</b>
+                            <span>Examples: Jackery Explorer 1000, EcoFlow DELTA 2. Good for short outages and small flats.</span>
+                            <a href="https://www.amazon.com/s?k=1000wh+portable+power+station" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                        </div>
+                        <div class="cta-item" id="ctaMedium">
+                            <b>~2 kWh class — a full day of essentials for most homes</b>
+                            <span>Examples: EcoFlow DELTA 2 Max, Jackery Explorer 2000, BLUETTI AC200 series. The sweet spot for fridge + lights + fan for 24 hours.</span>
+                            <a href="https://www.amazon.com/s?k=2000wh+portable+power+station" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                        </div>
+                        <div class="cta-item" id="ctaLarge">
+                            <b>3–4 kWh class — multi-day or heavy loads</b>
+                            <span>Examples: EcoFlow DELTA Pro, BLUETTI AC300 + battery. For 2+ days of essentials or a pump / medical device on top.</span>
+                            <a href="https://www.amazon.com/s?k=3600wh+portable+power+station" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                        </div>
+                    </div>
+                    <p class="disclosure">Affiliate disclosure: some links on this page are affiliate links. If you buy through them, Eco Tool Hub may earn a small commission at no extra cost to you. It helps keep every calculator free. As an Amazon Associate we earn from qualifying purchases.</p>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="background: #111b21; border: 1px solid #1f2937; border-radius: 12px; padding: 15px; text-align: center; display: flex; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+  <script>
+    atOptions = {
+      'key' : '1525488bca9c5e8a2dd00a6951ad1ce2',
+      'format' : 'iframe',
+      'height' : 250,
+      'width' : 300,
+      'params' : {}
+    };
+  </script>
+  <script src="https://bicea.org/22/1525488bca9c5e8a2dd00a6951ad1ce2"></script>
+</div>
+                <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
+                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">NEXT STEP</span>
+                    <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">How much water &amp; food should you store?</h3>
+                    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 14px; line-height: 1.5;">Power is only half of being ready. Work out your household's water, food, medical kit and survival supplies in one go.</p>
+                    <a href="emergency-supplies-calculator.html" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-weight: bold; font-size: 13px;">Open Supplies Calculator &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="seo-content">
+            <h2>How this calculator works</h2>
+            <p>Every appliance uses energy measured in watt-hours: <b>watts × hours used = watt-hours (Wh)</b>. Add up everything you ticked and you get your daily need. A power station never delivers its full label capacity — the inverter wastes some energy as heat — so we divide by <b>0.85</b> (85% usable), the standard planning figure used by manufacturers. The inverter size is your running watts plus a 25% safety margin; note that a fridge compressor briefly draws 3–5× its running watts when it starts, which is why we never recommend an inverter below 600W when a fridge is ticked.</p>
+            <p>A typical essentials load — fridge, five LED bulbs, WiFi router, two phones, a laptop and a fan — comes to roughly <b>3.2 kWh per day</b>. That is why the ~2–3.6 kWh class is the sweet spot for one full day of backup, and why adding a space heater or kettle changes the answer dramatically: heating elements are the hungriest loads in any home.</p>
+            <h2>Why plan for 3 days?</h2>
+            <p>Official guidance in the US (Ready.gov / FEMA), the UK ("Be Ready" campaign) and the EU Preparedness Union Strategy all use the same starting point: a household should be able to look after itself for <b>at least 72 hours</b> — food, water, medicines, light, communication and a way to cook. Germany advises 10 days and Sweden a week, so the days slider goes to 7; build up gradually, a day at a time, rather than buying everything at once.</p>
+            <h2>Fridge safety in an outage (USDA)</h2>
+            <p>Keep the doors closed: a fridge keeps food safe for about <b>4 hours</b> without power, a full freezer about <b>48 hours</b> (24 hours if half full). When in doubt, throw it out. Our <a href="emergency-supplies-calculator.html">Emergency Supplies Calculator</a> covers the water, food and kit side of the same plan, and the <a href="solar-calculator.html">Solar &amp; Battery Calculator</a> sizes a permanent rooftop system if you want backup that refills itself every day.</p>
+            <p style="font-size:12px;">Sources: Ready.gov emergency kit guidance (ready.gov/kit), USDA FSIS food safety during power outages, UK Cabinet Office "Be Ready" campaign. Figures checked November 2026. This page gives planning estimates, not safety guarantees — for medical devices such as CPAP or oxygen, always confirm runtime with your device supplier.</p>
+        </div>
+    </div>
+
+    <script>
+        var APPLIANCES = [
+            { id: 'fridge',    name: 'Refrigerator',            note: 'compressor runs ~8h/day equivalent', watts: 150,  hours: 8,   on: true,  surge: true },
+            { id: 'lights',    name: 'LED lights (5 bulbs)',    note: '10W each',                            watts: 50,   hours: 5,   on: true },
+            { id: 'wifi',      name: 'WiFi router',             note: 'keep news & contact alive',           watts: 10,   hours: 24,  on: true },
+            { id: 'phones',    name: 'Phone charging (2 phones)', note: '',                                  watts: 20,   hours: 3,   on: true },
+            { id: 'laptop',    name: 'Laptop',                  note: '',                                    watts: 65,   hours: 4,   on: true },
+            { id: 'fan',       name: 'Ceiling / table fan',     note: '',                                    watts: 75,   hours: 8,   on: true },
+            { id: 'tv',        name: 'TV',                      note: '',                                    watts: 100,  hours: 3,   on: false },
+            { id: 'cpap',      name: 'CPAP machine',            note: 'confirm with your supplier',          watts: 60,   hours: 8,   on: false },
+            { id: 'microwave', name: 'Microwave',               note: 'short bursts only',                   watts: 1000, hours: 0.3, on: false },
+            { id: 'washer',    name: 'Washing machine',         note: 'one load',                            watts: 500,  hours: 0.7, on: false },
+            { id: 'pump',      name: 'Water / well pump',       note: '',                                    watts: 750,  hours: 1,   on: false },
+            { id: 'heater',    name: 'Space heater',            note: 'very heavy load',                     watts: 1500, hours: 2,   on: false, heavy: true },
+            { id: 'kettle',    name: 'Electric kettle',         note: 'very heavy load',                     watts: 1500, hours: 0.3, on: false, heavy: true }
+        ];
+        var currentMode = 1;
+
+        function buildApplianceList() {
+            var html = '';
+            APPLIANCES.forEach(function(a) {
+                html += '<div class="appliance-row">' +
+                    '<input type="checkbox" id="on_' + a.id + '"' + (a.on ? ' checked' : '') + ' onchange="toggleHeatWarn()">' +
+                    '<label for="on_' + a.id + '">' + a.name + (a.note ? '<small>' + a.note + '</small>' : '') + '</label>' +
+                    '<input type="number" id="w_' + a.id + '" value="' + a.watts + '" min="0" step="1">' +
+                    '<input type="number" id="h_' + a.id + '" value="' + a.hours + '" min="0" step="0.1" max="24">' +
+                    '</div>';
+            });
+            document.getElementById('applianceList').innerHTML = html;
+        }
+
+        function toggleHeatWarn() {
+            var show = false;
+            APPLIANCES.forEach(function(a) { if (a.heavy && document.getElementById('on_' + a.id).checked) show = true; });
+            document.getElementById('heatWarn').style.display = show ? 'block' : 'none';
+        }
+
+        function setMode(m) {
+            currentMode = m;
+            document.getElementById('tabMode1').className = m === 1 ? 'active' : '';
+            document.getElementById('tabMode2').className = m === 2 ? 'active' : '';
+            document.getElementById('mode1Inputs').style.display = m === 1 ? 'block' : 'none';
+            document.getElementById('mode2Inputs').style.display = m === 2 ? 'block' : 'none';
+        }
+
+        function readLoads() {
+            var whDay = 0, runW = 0, hasFridge = false;
+            APPLIANCES.forEach(function(a) {
+                if (!document.getElementById('on_' + a.id).checked) return;
+                var w = parseFloat(document.getElementById('w_' + a.id).value) || 0;
+                var h = parseFloat(document.getElementById('h_' + a.id).value) || 0;
+                whDay += w * h;
+                runW += w;
+                if (a.surge) hasFridge = true;
+            });
+            return { whDay: whDay, runW: runW, hasFridge: hasFridge };
+        }
+
+        function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+
+        function calculateBlackout() {
+            var loads = readLoads();
+            var box = document.getElementById('resultBox');
+            var cta = document.getElementById('ctaBox');
+            if (loads.whDay <= 0) {
+                document.getElementById('resultTitle').innerText = 'Tick at least one appliance first';
+                document.getElementById('resultDesc').innerText = 'Select what you need to keep running, then press Calculate.';
+                document.getElementById('whPerDay').innerText = '-';
+                document.getElementById('batteryNeeded').innerText = '-';
+                document.getElementById('inverterNeeded').innerText = '-';
+                document.getElementById('solarNeeded').innerText = '-';
+                box.style.display = 'block';
+                cta.style.display = 'none';
+                return;
+            }
+            var inverterW = Math.max(Math.ceil(loads.runW * 1.25 / 100) * 100, loads.hasFridge ? 600 : 0);
+            var solarW = Math.ceil((loads.whDay / (4 * 0.8)) / 50) * 50;
+            document.getElementById('whPerDay').innerText = fmt(loads.whDay) + ' Wh/day';
+
+            if (currentMode === 1) {
+                var days = parseFloat(document.getElementById('daysRange').value) || 1;
+                var needed = loads.whDay * days / 0.85;
+                document.getElementById('resultTitle').innerText = 'You need about ' + fmt(needed) + ' Wh of battery';
+                document.getElementById('resultDesc').innerText = 'That covers your ticked appliances for ' + days + (days == 1 ? ' day' : ' days') + ', allowing 15% inverter losses. Look for a power station of at least this capacity, or stack two smaller ones.';
+                document.getElementById('batteryNeeded').innerText = fmt(needed) + ' Wh (' + (needed / 1000).toFixed(1) + ' kWh)';
+                document.getElementById('inverterNeeded').innerText = fmt(inverterW) + ' W';
+                document.getElementById('solarNeeded').innerText = fmt(solarW) + ' W of panels';
+                markClass(needed);
+            } else {
+                var station = parseFloat(document.getElementById('stationWh').value) || 0;
+                var usable = station * 0.85;
+                var daysRun = usable / loads.whDay;
+                var hoursRun = daysRun * 24;
+                document.getElementById('resultTitle').innerText = 'Your station runs this load for about ' + (hoursRun >= 48 ? daysRun.toFixed(1) + ' days' : Math.floor(hoursRun) + ' hours');
+                document.getElementById('resultDesc').innerText = 'From ' + fmt(station) + ' Wh you get about ' + fmt(usable) + ' usable Wh after inverter losses. Unticking heavy loads (heater, kettle, microwave) stretches runtime the most.';
+                document.getElementById('batteryNeeded').innerText = 'Usable: ' + fmt(usable) + ' Wh';
+                document.getElementById('inverterNeeded').innerText = fmt(inverterW) + ' W needed';
+                document.getElementById('solarNeeded').innerText = fmt(solarW) + ' W to refill daily';
+                markClass(station);
+            }
+            box.style.display = 'block';
+            cta.style.display = 'block';
+            box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function markClass(wh) {
+            ['ctaSmall', 'ctaMedium', 'ctaLarge'].forEach(function(id) {
+                var el = document.getElementById(id);
+                el.className = 'cta-item';
+                var tag = el.querySelector('.tag'); if (tag) tag.remove();
+            });
+            var target = wh <= 1300 ? 'ctaSmall' : (wh <= 2600 ? 'ctaMedium' : 'ctaLarge');
+            var el = document.getElementById(target);
+            el.className = 'cta-item recommended';
+            var tag = document.createElement('span');
+            tag.className = 'tag'; tag.innerText = 'Matches your result';
+            el.insertBefore(tag, el.firstChild);
+        }
+
+        buildApplianceList();
+    </script>
+    <script src="nav.js"></script>
+<!-- Top Leaderboard Ad 728x90 -->
+<div style="width: 100%; max-width: 100%; overflow-x: hidden; margin: 20px 0 10px 0; display: flex; justify-content: center; align-items: center;">
+  <div style="max-width: 100%; overflow-x: auto; text-align: center;">
+    <script>
+      atOptions = {
+        'key' : 'bb15d8803b902cea8e3c8f81d64bd555',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+    <script src="https://bicea.org/22/bb15d8803b902cea8e3c8f81d64bd555"></script>
+  </div>
+</div>
+<script data-cfasync="false" src="https://bicea.org/14/16a6bbca147ffb3e77e012fd46aec472"></script>
+<!-- Mobile Bottom Banner Ad 320x50 -->
+<div style="width: 100%; margin: 25px 0 15px 0; display: flex; justify-content: center; align-items: center; text-align: center;">
+  <script>
+    atOptions = {
+      'key' : '768e4627e2eb39b431590839d68fabc5',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script src="https://bicea.org/22/768e4627e2eb39b431590839d68fabc5"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H5N51E3WEG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H5N51E3WEG');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Supplies Calculator: Water, Food, Medical &amp; Baby Kit (2026)</title>
+    <meta name="description" content="Free emergency supplies calculator: how much water and food to store for your family for 3, 7, 10 or 14 days — including babies and pets — plus a printable medical kit, survival kit and home supplies checklist based on Ready.gov and UK Be Ready guidance.">
+
+    <link rel="canonical" href="https://ecotoolhub.online/emergency-supplies-calculator.html" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Emergency Supplies Calculator",
+      "url": "https://ecotoolhub.online/emergency-supplies-calculator.html",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "How much water should I store for emergencies?", "acceptedAnswer": {"@type": "Answer", "text": "Ready.gov (US) advises 1 gallon per person per day for several days, for drinking and sanitation. The UK Be Ready campaign advises storing 3 litres of drinking water per person per day. A family of four planning for 7 days therefore needs about 106 litres (28 gallons) on the US standard."}},
+        {"@type": "Question", "name": "How many diapers should I stock for a baby in an emergency?", "acceptedAnswer": {"@type": "Answer", "text": "Plan on 10 diapers a day for a newborn and about 8 a day for an older baby. A 7-day supply for one baby is roughly 60-70 diapers, plus wipes, rash cream and a changing mat — babies cannot wait out a shortage the way adults can."}},
+        {"@type": "Question", "name": "How long should an emergency food supply last?", "acceptedAnswer": {"@type": "Answer", "text": "Start with 72 hours (3 days) — the minimum in US, UK and EU guidance — then build toward 7-14 days. Germany advises 10 days of food and Sweden one week. Build gradually: one extra day of supplies per shopping trip is how most families get there."}}
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #10b981;
+            --accent-hover: #059669;
+            --amber: #f59e0b;
+            --border-color: #334155;
+            --text-muted: #94a3b8;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .wrapper { max-width: 1100px; width: 100%; margin-top: 20px; }
+        .back-link { color: var(--accent-color); text-decoration: none; display: inline-block; margin-bottom: 20px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+        .main-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        h1 { color: var(--accent-color); font-size: 24px; margin-bottom: 5px; }
+        p.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+        .form-group { margin-bottom: 6px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
+        label small { display: block; color: var(--text-muted); font-weight: 400; font-size: 11px; margin-top: 2px; }
+        input, select { width: 100%; padding: 10px 12px; background-color: #0b0f19; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-size: 15px; }
+        .day-btns { display: flex; gap: 8px; margin: 4px 0 14px; flex-wrap: wrap; }
+        .day-btns button { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border-color); background: #0b0f19; color: var(--text-muted); font-weight: 700; font-size: 13px; cursor: pointer; }
+        .day-btns button.active { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+        button.calc-btn { width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
+        button.calc-btn:hover { background-color: var(--accent-hover); }
+        .result { margin-top: 20px; padding: 20px; background-color: #0b0f19; border-left: 5px solid var(--accent-color); border-radius: 8px; display: none; }
+        .result h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 18px; }
+        .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+        .decision-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; font-size: 13px; }
+        .decision-item b { display: block; color: #f8fafc; margin-bottom: 3px; }
+        .checklist { margin-top: 22px; display: none; }
+        .checklist h3 { color: var(--accent-color); font-size: 17px; margin: 18px 0 8px; }
+        .checklist ul { list-style: none; padding: 0; margin: 0; }
+        .checklist li { padding: 6px 0 6px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13.5px; color: #e2e8f0; }
+        .checklist li input { width: auto; margin-right: 9px; accent-color: var(--accent-color); }
+        .checklist li span { color: var(--text-muted); font-size: 12px; }
+        .print-btn { margin-top: 16px; background: #0b0f19; color: #34d399; border: 1px solid var(--accent-color); padding: 10px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; }
+        .cta-box { margin-top: 22px; background: #0f172a; border: 1px solid var(--amber); border-radius: 12px; padding: 18px; display: none; }
+        .cta-box h3 { margin: 0 0 6px 0; font-size: 16px; color: #f8fafc; }
+        .cta-box > p { color: var(--text-muted); font-size: 12.5px; line-height: 1.55; margin: 0 0 12px 0; }
+        .cta-item { background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
+        .cta-item b { display: block; font-size: 14px; margin-bottom: 2px; }
+        .cta-item span { color: var(--text-muted); font-size: 12px; display: block; margin-bottom: 9px; line-height: 1.5; }
+        .cta-item a { display: inline-block; background: var(--amber); color: #111827; text-decoration: none; padding: 8px 14px; border-radius: 6px; font-weight: 800; font-size: 13px; }
+        .disclosure { font-size: 11px; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+        .seo-content { margin-top: 40px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; }
+        .seo-content h2 { color: var(--accent-color); font-size: 20px; margin-top: 26px; }
+        .seo-content h2:first-child { margin-top: 0; }
+        .seo-content p, .seo-content li { color: var(--text-muted); font-size: 14px; line-height: 1.65; }
+        .seo-content a { color: #34d399; }
+        @media print {
+            body { background: #fff; color: #000; padding: 0; }
+            body * { visibility: hidden; }
+            #printArea, #printArea * { visibility: visible; }
+            #printArea { position: absolute; left: 0; top: 0; width: 100%; background: #fff; color: #000; border: none; }
+            #printArea h3, #printArea b { color: #000 !important; }
+            #printArea p, #printArea li, #printArea span { color: #222 !important; }
+            .print-btn { display: none !important; }
+        }
+    </style>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+    <meta property="og:title" content="Emergency Supplies Calculator - Eco Tool Hub">
+    <meta property="og:description" content="How much water, food, medicine and baby supplies does your family need for 3-14 days? Get exact numbers plus a printable checklist.">
+    <meta property="og:url" content="https://ecotoolhub.online/emergency-supplies-calculator.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Eco Tool Hub">
+    <meta property="og:image" content="https://ecotoolhub.online/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Emergency Supplies Calculator - Eco Tool Hub">
+    <meta name="twitter:description" content="Water, food, medical kit and baby supplies for your whole household — exact quantities, printable checklist.">
+    <meta name="twitter:image" content="https://ecotoolhub.online/logo.png">
+</head>
+<body>
+
+    <div class="wrapper">
+        <a href="index.html" class="back-link">&larr; Back to Eco Tool Hub</a>
+
+        <div class="main-container">
+            <div class="card">
+                <h1>Emergency Supplies Calculator</h1>
+                <p class="subtitle">Tell us who is in your home. We work out the water, food, medicine and baby supplies for the days you choose — the same planning standards used by Ready.gov (US) and the UK's Be Ready campaign — and build your printable kit checklist.</p>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="adults">Adults</label>
+                        <input type="number" id="adults" value="2" min="0" max="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="children">Children (3–12 yrs)</label>
+                        <input type="number" id="children" value="1" min="0" max="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="infants">Babies / toddlers (0–2 yrs)<small>The ones who can't wait — counted separately</small></label>
+                        <input type="number" id="infants" value="0" min="0" max="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="pets">Pets (dog/cat)</label>
+                        <input type="number" id="pets" value="0" min="0" max="20">
+                    </div>
+                </div>
+
+                <label style="margin-top:10px;">How many days should your home be ready for?</label>
+                <div class="day-btns" id="dayBtns">
+                    <button data-days="3" class="active" onclick="setDays(3)">3 days (minimum)</button>
+                    <button data-days="7" onclick="setDays(7)">7 days</button>
+                    <button data-days="10" onclick="setDays(10)">10 days</button>
+                    <button data-days="14" onclick="setDays(14)">14 days</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="standard">Water standard</label>
+                    <select id="standard">
+                        <option value="us">US — Ready.gov: 1 gallon (3.8L) per person/day, drinking + sanitation</option>
+                        <option value="eu">UK / EU — 3L drinking per person/day + 2L cooking &amp; hygiene</option>
+                    </select>
+                </div>
+
+                <button class="calc-btn" onclick="calculateSupplies()">Build My Supplies Plan</button>
+
+                <div id="printArea">
+                    <div class="result" id="resultBox">
+                        <h3 id="resultTitle"></h3>
+                        <p id="resultDesc" style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 12px;"></p>
+                        <div class="decision-grid">
+                            <div class="decision-item"><b>💧 Water to store:</b><span id="waterOut">-</span></div>
+                            <div class="decision-item"><b>🍽️ Food energy:</b><span id="foodOut">-</span></div>
+                            <div class="decision-item"><b>🍼 Baby supplies:</b><span id="babyOut">-</span></div>
+                            <div class="decision-item"><b>🐾 Pet supplies:</b><span id="petOut">-</span></div>
+                        </div>
+                    </div>
+
+                    <div class="checklist" id="checklistBox">
+                        <h3>🏠 Home supplies</h3>
+                        <ul id="listHome"></ul>
+                        <h3>🩹 Medical kit</h3>
+                        <ul id="listMedical"></ul>
+                        <h3>🎒 Survival kit (grab-and-go)</h3>
+                        <ul id="listSurvival"></ul>
+                        <div id="babySection">
+                            <h3>🍼 Baby &amp; small children</h3>
+                            <ul id="listBaby"></ul>
+                        </div>
+                        <button class="print-btn" onclick="window.print()">🖨️ Print / Save This Checklist</button>
+                        <p style="font-size:11px; color:var(--text-muted); line-height:1.5;">Planning estimates based on Ready.gov, UK Be Ready and USDA guidance, checked November 2026. Keep prescription medicines and infant feeding decisions guided by your own doctor.</p>
+                    </div>
+                </div>
+
+                <div class="cta-box" id="ctaBox">
+                    <h3>Build the kit gradually — start with these</h3>
+                    <p>You do not need everything today. Official guidance says build gradually. These are the items families usually buy first; many are discounted during preparedness sales, so check the current price before you buy.</p>
+                    <div class="cta-item">
+                        <b>Emergency food kits (ready-made, long shelf life)</b>
+                        <span>Matched to the calorie total above — 72-hour kits first, then 2-week family buckets.</span>
+                        <a href="https://www.amazon.com/s?k=emergency+food+supply+kit" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                    </div>
+                    <div class="cta-item">
+                        <b>Water storage &amp; filters</b>
+                        <span>Stackable 5-gallon containers for home storage, and a filter straw or countertop filter as backup.</span>
+                        <a href="https://www.amazon.com/s?k=water+storage+containers+5+gallon" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                    </div>
+                    <div class="cta-item">
+                        <b>Home first aid &amp; medical kits</b>
+                        <span>A complete home medical kit covers the checklist above in one box — bandages, antiseptic, thermometers and more.</span>
+                        <a href="https://www.amazon.com/s?k=home+first+aid+kit+emergency" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                    </div>
+                    <div class="cta-item">
+                        <b>Baby emergency essentials</b>
+                        <span>Diapers in the next size up, wipes, formula dispensers and ready-to-feed supplies — the items that run out first.</span>
+                        <a href="https://www.amazon.com/s?k=baby+emergency+supplies+diapers+wipes" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                    </div>
+                    <div class="cta-item">
+                        <b>Hand-crank radio + light</b>
+                        <span>News and light with no batteries and no grid — the one gadget every official kit list includes.</span>
+                        <a href="https://www.amazon.com/s?k=hand+crank+emergency+radio" target="_blank" rel="sponsored nofollow noopener">Check prices &amp; deals &rarr;</a>
+                    </div>
+                    <p class="disclosure">Affiliate disclosure: some links on this page are affiliate links. If you buy through them, Eco Tool Hub may earn a small commission at no extra cost to you. It helps keep every calculator free. As an Amazon Associate we earn from qualifying purchases.</p>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="background: #111b21; border: 1px solid #1f2937; border-radius: 12px; padding: 15px; text-align: center; display: flex; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+  <script>
+    atOptions = {
+      'key' : '1525488bca9c5e8a2dd00a6951ad1ce2',
+      'format' : 'iframe',
+      'height' : 250,
+      'width' : 300,
+      'params' : {}
+    };
+  </script>
+  <script src="https://bicea.org/22/1525488bca9c5e8a2dd00a6951ad1ce2"></script>
+</div>
+                <div style="background-color: #0f172a; border: 1px solid #10b981; border-radius: 12px; padding: 18px; text-align: center;">
+                    <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">DON'T FORGET POWER</span>
+                    <h3 style="color: #f8fafc; font-size: 15px; margin: 10px 0 8px 0; line-height: 1.4;">What size power station does your home need?</h3>
+                    <p style="color: #94a3b8; font-size: 12px; margin-bottom: 14px; line-height: 1.5;">Supplies keep you fed. A right-sized battery keeps the fridge, lights and phones alive. Work out your number in a minute.</p>
+                    <a href="blackout-power-calculator.html" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 9px; border-radius: 6px; font-weight: bold; font-size: 13px;">Open Blackout Calculator &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="seo-content">
+            <h2>The numbers behind this calculator</h2>
+            <p><b>Water.</b> Ready.gov advises storing <b>1 gallon per person per day</b> for several days, covering drinking and sanitation. The UK's Be Ready campaign advises <b>3 litres of drinking water per person per day</b>; we add 2 litres for cooking and basic hygiene on that standard. Children, nursing mothers and hot climates need more — when in doubt, round up. Store water in food-grade containers, keep it in a cool dark place, and replace home-filled containers every 6 months.</p>
+            <p><b>Food.</b> We plan on <b>2,000 kcal per adult per day</b> and <b>1,600 kcal per child</b> — the same planning figures used by established emergency food calculators. Choose foods that need no refrigeration and little or no cooking: canned meals, peanut butter, dried fruit, cereal, and ready-to-eat pouches. Remember a manual can opener. Rotate stock into everyday meals so nothing expires unused.</p>
+            <h2>Babies can't wait — plan for them first</h2>
+            <p>Adults can ration and improvise; a baby cannot. In any disruption the first shelves to empty are diapers, wipes and formula. Our rule: keep <b>10 diapers a day for a newborn, 8 for an older baby</b>, one size up from what they wear today, plus wipes (roughly 20 a day), rash cream, and sealed water for mixing formula if you use it. If you breastfeed, the most important supply is food and water for the mother. Add comfort items — a familiar blanket or toy — because a calm baby in a stressful night is not a luxury, it is what lets the whole family cope.</p>
+            <h2>How long should you prepare for?</h2>
+            <p>Three days is the shared minimum across US, UK and EU guidance. Sweden advises a week, Germany 10 days. Most families build up gradually — the UK campaign's own advice — adding a day of supplies at a time. Pair this plan with our <a href="blackout-power-calculator.html">Blackout Power Calculator</a> so your fridge, lights and phones last as long as your food does.</p>
+            <p style="font-size:12px;">Sources: Ready.gov/kit and Ready.gov water guidance; UK Cabinet Office "Be Ready" campaign (beready.campaign.gov.uk); EU Preparedness Union Strategy (72-hour self-sufficiency). Checked November 2026. Planning estimates only — follow your doctor for medicines and infant feeding.</p>
+        </div>
+    </div>
+
+    <script>
+        var planDays = 3;
+        function setDays(d) {
+            planDays = d;
+            var btns = document.querySelectorAll('#dayBtns button');
+            btns.forEach(function(b) { b.className = parseInt(b.getAttribute('data-days')) === d ? 'active' : ''; });
+        }
+        function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+        function li(text, sub) { return '<li><label style="font-weight:400; display:flex; align-items:flex-start; gap:2px;"><input type="checkbox"><span style="color:#e2e8f0; font-size:13.5px;">' + text + (sub ? ' <span>' + sub + '</span>' : '') + '</span></label></li>'; }
+
+        function calculateSupplies() {
+            var adults = Math.max(0, parseInt(document.getElementById('adults').value) || 0);
+            var children = Math.max(0, parseInt(document.getElementById('children').value) || 0);
+            var infants = Math.max(0, parseInt(document.getElementById('infants').value) || 0);
+            var pets = Math.max(0, parseInt(document.getElementById('pets').value) || 0);
+            var people = adults + children + infants;
+            var standard = document.getElementById('standard').value;
+            var days = planDays;
+
+            if (people === 0 && pets === 0) {
+                document.getElementById('resultTitle').innerText = 'Add at least one person first';
+                document.getElementById('resultDesc').innerText = 'Enter your household above, then press Build My Supplies Plan.';
+                document.getElementById('resultBox').style.display = 'block';
+                return;
+            }
+
+            // Water
+            var perPersonDayL = standard === 'us' ? 3.785 : 5.0;
+            var petWaterDayL = 1.0;
+            var waterL = people * perPersonDayL * days + pets * petWaterDayL * days;
+            var waterGal = waterL / 3.785;
+            var jugs = Math.ceil(waterL / 18.9); // 5-gallon jugs
+            var cases = Math.ceil(waterL / 12);  // 24 x 500ml cases
+
+            // Food
+            var kcalDay = adults * 2000 + children * 1600 + infants * 700;
+            var kcalTotal = kcalDay * days;
+            var cans = Math.ceil(kcalTotal / 400);
+            var riceKg = kcalTotal / 3600;
+            var petFoodKg = pets * 0.35 * days;
+
+            document.getElementById('resultTitle').innerText = 'Your ' + days + '-day plan for ' + people + (people === 1 ? ' person' : ' people') + (pets ? ' + ' + pets + (pets === 1 ? ' pet' : ' pets') : '');
+            document.getElementById('resultDesc').innerText = standard === 'us'
+                ? 'US standard: 1 gallon per person per day (drinking + sanitation). Food planned at 2,000 kcal per adult and 1,600 kcal per child per day.'
+                : 'UK/EU standard: 3 litres drinking water per person per day plus 2 litres for cooking and hygiene. Food planned at 2,000 kcal per adult and 1,600 kcal per child per day.';
+            document.getElementById('waterOut').innerText = fmt(waterL) + ' litres (' + waterGal.toFixed(1) + ' gal) — about ' + jugs + ' × 5-gal jugs or ' + cases + ' cases of bottled water';
+            document.getElementById('foodOut').innerText = fmt(kcalTotal) + ' kcal total (' + fmt(kcalDay) + '/day) — e.g. ' + fmt(cans) + ' canned meals (400 kcal) or ' + riceKg.toFixed(1) + ' kg dry rice equivalent';
+            document.getElementById('babyOut').innerText = infants > 0
+                ? fmt(infants * 9 * days) + ' diapers, ' + fmt(infants * 20 * days) + ' wipes, ' + fmt(infants * 3 * days) + ' baby food pouches + formula water'
+                : 'No babies in this plan';
+            document.getElementById('petOut').innerText = pets > 0
+                ? petFoodKg.toFixed(1) + ' kg dry pet food + ' + fmt(pets * days) + ' litres of water'
+                : 'No pets in this plan';
+
+            // Checklists
+            document.getElementById('listHome').innerHTML =
+                li('Stored water — ' + fmt(waterL) + ' litres', 'in food-grade containers, cool dark place') +
+                li('Food — ' + fmt(kcalTotal) + ' kcal', 'no-cook or low-cook, plus a manual can opener') +
+                li('Torches / lanterns + spare batteries', 'one light per person') +
+                li('Battery or hand-crank radio', 'for news when internet and TV are down') +
+                li('Power bank, charged', 'keep phones alive for calls and alerts') +
+                li('Cash in small notes', 'card machines fail without power') +
+                li('Copies of key documents', 'IDs, insurance, prescriptions — sealed waterproof folder') +
+                li('Sanitation: bin bags, wet wipes, hand sanitiser', '') +
+                li('Blankets and warm layers for everyone', 'heating may be off — see the blackout calculator') +
+                li('Basic tools: wrench, pliers, duct tape, matches/lighter', '');
+
+            document.getElementById('listMedical').innerHTML =
+                li('Prescription medicines — ' + Math.max(7, days) + '-day buffer', 'rotate so it never expires; ask your pharmacist') +
+                li('Adhesive bandages (assorted) + sterile gauze pads', '') +
+                li('Antiseptic wipes / solution + antibiotic ointment', '') +
+                li('Pain and fever relief (adult + children versions)', 'paracetamol/acetaminophen, ibuprofen') +
+                li('Oral rehydration salts', 'essential for children with stomach illness') +
+                li('Thermometer + spare batteries', '') +
+                li('Tweezers, small scissors, safety pins', '') +
+                li('Disposable gloves + face masks', '') +
+                li('Any personal items: inhaler, EpiPen, glucose meter supplies', 'check expiry dates twice a year') +
+                li('First aid leaflet / offline guide on your phone', '');
+
+            document.getElementById('listSurvival').innerHTML =
+                li('Hand-crank / solar radio with torch and phone charging', 'the one gadget on every official list') +
+                li('Solar LED lantern', 'charges by day, lights the night') +
+                li('Water filter straw or portable purifier', 'backup if stored water runs out') +
+                li('Emergency blankets (foil) — one per person', '') +
+                li('Whistle', 'signals for help with almost no effort') +
+                li('Multi-tool or Swiss-style knife', '') +
+                li('Dust masks + work gloves', '') +
+                li('Waterproof matches / fire starters in a sealed bag', '') +
+                li('Local paper map + written contact list', 'phones and internet may be down') +
+                li('Small solar power bank', 'for phones and lights');
+
+            if (infants > 0) {
+                document.getElementById('babySection').style.display = 'block';
+                document.getElementById('listBaby').innerHTML =
+                    li('Diapers — ' + fmt(infants * 9 * days), 'buy one size up; babies grow into them') +
+                    li('Baby wipes — ' + fmt(infants * 20 * days), 'also the family fallback for hygiene') +
+                    li('Formula + sealed mixing water (if formula feeding)', 'or ready-to-feed bottles for the first 3 days') +
+                    li('Baby food pouches — ' + fmt(infants * 3 * days), 'no cooking or fridge needed') +
+                    li('Rash cream + infant fever medicine (age-correct)', 'check doses with your pharmacist') +
+                    li('2 changes of warm clothes + familiar blanket/toy', 'comfort keeps a baby calm — and a calm baby helps everyone') +
+                    li('Baby carrier / sling', 'keeps hands free if you must move') +
+                    li('Pacifiers (2 spares, sealed)', '');
+            } else {
+                document.getElementById('babySection').style.display = 'none';
+            }
+
+            document.getElementById('resultBox').style.display = 'block';
+            document.getElementById('checklistBox').style.display = 'block';
+            document.getElementById('ctaBox').style.display = 'block';
+            document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+    <script src="nav.js"></script>
+<!-- Top Leaderboard Ad 728x90 -->
+<div style="width: 100%; max-width: 100%; overflow-x: hidden; margin: 20px 0 10px 0; display: flex; justify-content: center; align-items: center;">
+  <div style="max-width: 100%; overflow-x: auto; text-align: center;">
+    <script>
+      atOptions = {
+        'key' : 'bb15d8803b902cea8e3c8f81d64bd555',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+    <script src="https://bicea.org/22/bb15d8803b902cea8e3c8f81d64bd555"></script>
+  </div>
+</div>
+<script data-cfasync="false" src="https://bicea.org/14/16a6bbca147ffb3e77e012fd46aec472"></script>
+<!-- Mobile Bottom Banner Ad 320x50 -->
+<div style="width: 100%; margin: 25px 0 15px 0; display: flex; justify-content: center; align-items: center; text-align: center;">
+  <script>
+    atOptions = {
+      'key' : '768e4627e2eb39b431590839d68fabc5',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script src="https://bicea.org/22/768e4627e2eb39b431590839d68fabc5"></script>
+</div>
+</body>
+</html>
