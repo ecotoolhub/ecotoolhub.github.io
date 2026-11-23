@@ -203,7 +203,15 @@ var temuData = {
         { title: "Portable PC Water Tank with Faucet Outdoor Camping Container", rawPrice: "Rs.7,725", link: "https://temu.to/k/e7sphrcg927", badge: "WATER BUCKET" },
         { title: "Portable Water Filtration Straws Set for Emergency Camping", rawPrice: "Rs.1,754", link: "https://temu.to/k/eg67xwhp8e4", badge: "EMERGENCY STRAW" },
         { title: "50-160L Collapsible Rain Barrel with Spigot and Filter PVC Collector", rawPrice: "Rs.14,143", link: "https://temu.to/k/eujljzrz3nv", badge: "RAIN BARREL" },
-        { title: "Home Air Purifier True HEPA Filter Silent Formaldehyde Removal", rawPrice: "Rs.27,499", link: "https://temu.to/k/eo5iw12dqy5", badge: "TRUE HEPA" }
+        { title: "Home Air Purifier True HEPA Filter Silent Formaldehyde Removal", rawPrice: "Rs.27,499", link: "https://temu.to/k/eo5iw12dqy5", badge: "TRUE HEPA" },
+        { title: "Portable ABS Mini Water Filter Straw Survival Gear", rawPrice: "Rs.3,042", link: "https://temu.to/k/eza0jclbdy8", badge: "MINI PURIFIER" },
+        { title: "Foldable Rain Water Collection Bucket with Filter and Faucet", rawPrice: "Rs.34,046", link: "https://temu.to/k/efqo28233iz", badge: "WATER STORAGE" },
+        { title: "42gal/160L High Strength Collapsible PVC Rainwater Storage Tank", rawPrice: "Rs.27,858", link: "https://temu.to/k/etxwvlktqnh", badge: "160L PVC TANK" },
+        { title: "4pcs Solar Wall Light with Motion Sensor Remote Control IP65", rawPrice: "Rs.8,573", link: "https://temu.to/k/epq3ne35xhh", badge: "4-PACK DEAL" },
+        { title: "172 LED Solar Outdoor Security Motion Sensor Flood Light IP65", rawPrice: "Rs.6,828", link: "https://temu.to/k/eus08rww2z9", badge: "WATERPROOF" },
+        { title: "Surge and Lightning Protection Device 2P/4P 20KA-40KA AC 380V", rawPrice: "Rs.3,136", link: "https://temu.to/k/em5h3mn72rv", badge: "SURGE PROTECTOR" },
+        { title: "Portable Air Quality Monitor Carbon Monoxide Digital Detector", rawPrice: "Rs.2,987", link: "https://temu.to/k/e4r6clsko6e", badge: "CO DETECTOR" },
+        { title: "Portable USB Air Purifier Cleaner HEPA Filter and Negative Ions", rawPrice: "Rs.5,558", link: "https://temu.to/k/ep4tucjljca", badge: "USB PURIFIER" }
     ]
 };
 
